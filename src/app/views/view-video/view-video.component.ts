@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, map } from 'rxjs';
+
+import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
+import { IVideo } from 'src/app/types/models/video.interface';
 
 @Component({
   selector: 'app-view-video',
@@ -6,6 +11,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./view-video.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewVideoComponent {
+export class ViewVideoComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private videoDataService: VideoDataService
+  ) {}
 
+  public video$: Observable<IVideo | null> = this.videoDataService.data$;
+
+  public showVideo$: Observable<boolean> = this.video$.pipe(map(v => Boolean(v)));
+
+  public ngOnInit(): void {
+    this.videoDataService.getVideo(this.route.snapshot.params['id']);
+  }
 }

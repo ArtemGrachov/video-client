@@ -1,5 +1,8 @@
 <div class="page">
   <div class="container">
-    qwe
+    <app-player
+      *ngIf="showVideo$ | async"
+      [video]="(video$ | async)!"
+    ></app-player>
   </div>
 </div>

@@ -13,3 +13,5 @@ export interface IGetVideosQuery {
   search?: string | null;
   subscriptions?: boolean | null;
 }
+
+export interface IGetVideoResponse extends IVideo {}

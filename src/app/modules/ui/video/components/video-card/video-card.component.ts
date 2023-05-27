@@ -35,4 +35,8 @@ export class VideoCardComponent {
   public get isLiked(): boolean {
     return this.video.isLiked;
   }
+
+  public get videoLink(): string[] {
+    return ['video', this.video.id.toString()];
+  }
 }

@@ -6,6 +6,7 @@ import { AvatarModule } from '../other/avatar/avatar.module';
 
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { VideoGridComponent } from './components/video-grid/video-grid.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { VideoGridComponent } from './components/video-grid/video-grid.component
   imports: [
     CommonModule,
     ThumbnailModule,
-    AvatarModule
+    AvatarModule,
+    RouterModule
   ]
 })
 export class VideoModule { }

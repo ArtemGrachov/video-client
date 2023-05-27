@@ -11,6 +11,8 @@ import { VideoDataService } from './services/video-data.service';
     CommonModule,
     VideoApiModule
   ],
-  providers: [VideoDataService]
+  providers: [
+    VideoDataService
+  ]
 })
 export class VideoDataModule { }
