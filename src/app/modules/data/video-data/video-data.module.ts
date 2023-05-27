@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VideoApiModule } from '../video-api/video-api.module';
+import { VideoApiModule } from '../../data/video-api/video-api.module';
 
 import { VideoDataService } from './services/video-data.service';
 

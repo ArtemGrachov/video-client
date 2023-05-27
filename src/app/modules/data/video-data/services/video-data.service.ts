@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { VideoApiService } from '../../video-api/services/video-api.service';
+import { VideoApiService } from '../../../data/video-api/services/video-api.service';
 
 import { IVideo } from 'src/app/types/models/video.interface';
 import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';

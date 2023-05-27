@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [{ path: '', loadChildren: () => import('./views/view-index/view-index.module').then(m => m.ViewIndexModule) }];
+const routes: Routes = [
+  {
+    path: 'video/:id',
+    loadChildren: () => import('./views/view-video/view-video.module').then(m => m.ViewVideoModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./views/view-index/view-index.module').then(m => m.ViewIndexModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {

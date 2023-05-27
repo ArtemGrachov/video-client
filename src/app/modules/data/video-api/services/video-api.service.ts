@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
+import { IVideo } from 'src/app/types/models/video.interface';
 
 @Injectable()
 export class VideoApiService {
@@ -20,5 +21,9 @@ export class VideoApiService {
     }
 
     return this.http.get<IGetVideosResponse>('http://localhost:4000/video', { params });
+  }
+
+  public getVideo(videoId: number): Observable<IVideo> {
+    return this.http.get<IVideo>(`http://localhost:4000/video/${videoId}`);
   }
 }
