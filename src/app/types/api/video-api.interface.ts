@@ -7,3 +7,9 @@ export interface IGetVideosResponse {
   users: IUser[];
   pagination: IPagination;
 }
+
+export interface IGetVideosQuery {
+  page?: number | null;
+  search?: string | null;
+  subscriptions?: boolean | null;
+}

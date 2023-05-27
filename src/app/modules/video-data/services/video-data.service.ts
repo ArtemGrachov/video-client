@@ -1,12 +1,13 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { VideoApiService } from '../../video-api/services/video-api.service';
 
 import { IVideo } from 'src/app/types/models/video.interface';
-import { IGetVideosResponse } from 'src/app/types/api/video-api.interface';
+import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
 import { IDictionary } from 'src/app/types/other/dictionary.interface';
 import { IUser } from 'src/app/types/models/user.interface';
+import { IPagination } from 'src/app/types/other/pagination.interface';
 
 @Injectable()
 export class VideoDataService {
@@ -14,34 +15,55 @@ export class VideoDataService {
 
   private itemsSbj$: BehaviorSubject<IVideo[]> = new BehaviorSubject([] as IVideo[]);
 
+  private paginationSbj$: BehaviorSubject<IPagination | null> = new BehaviorSubject(null as IPagination | null);
+
   public data$: Observable<IGetVideosResponse | null> = this.dataSbj$.asObservable();
 
   public items$: Observable<IVideo[]> = this.itemsSbj$.asObservable();
 
-  constructor(
-    @Inject(PLATFORM_ID) private platofrmId: Object,
-    private videoApiService: VideoApiService
-  ) { }
+  public pagination$: Observable<IPagination | null> = this.paginationSbj$.asObservable();
 
-  public getVideos(): void {
+  constructor(private videoApiService: VideoApiService) { }
+
+  public getVideos(query?: IGetVideosQuery): void {
     this
       .videoApiService
-      .getVideos()
-      .subscribe(res => this.handleData(res))
+      .getVideos(query)
+      .subscribe(res => this.handleData(res, query))
   }
 
-  private handleData(res: IGetVideosResponse): void {
+  private handleData(res: IGetVideosResponse, query?: IGetVideosQuery): void {
     const userMap: IDictionary<IUser> = res.users.reduce((acc, curr) => {
       acc[curr.id] = curr;
       return acc;
     }, {} as IDictionary<IUser>);
 
-    const newItems = [
-      ...this.itemsSbj$.getValue(),
-      ...res.data.map(video => ({ ...video, author: userMap[video.authorId] }))
-    ];
+    const pagination = this.paginationSbj$.getValue();
+    let items = this.itemsSbj$.getValue();
+
+    const newItems = res.data.map(video => ({ ...video, author: userMap[video.authorId] }))
+
+    const page = query?.page ?? 1;
+    let lowerPage = pagination?.lowerPage ?? page;
+    let upperPage = pagination?.upperPage ?? page;
+
+    if (page < lowerPage) {
+      items.unshift(...newItems);
+      lowerPage = page;
+    } else if (page > upperPage) {
+      items.push(...newItems);
+      upperPage = page;
+    } else {
+      items = newItems;
+      lowerPage = upperPage = page;
+    }
 
     this.dataSbj$.next(res);
-    this.itemsSbj$.next(newItems);
+    this.itemsSbj$.next(items);
+    this.paginationSbj$.next({
+      ...res.pagination,
+      lowerPage,
+      upperPage
+    });
   }
 }
