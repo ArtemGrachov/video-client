@@ -2,8 +2,8 @@
 
 :host {
   background-color: map-get($colors, 'background-secondary');
-  color: orange;
-  border-bottom: 1px solid lime;
+  color: map-get($colors, 'text-primary');
+  border-bottom: 1px solid map-get($colors, 'text-primary');
 }
 
 .logo {

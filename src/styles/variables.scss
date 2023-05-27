@@ -2,7 +2,10 @@ $colors: (
   'background-primary': #3b3b3b,
   'background-secondary': #1c1c1c,
   'text-main': white,
-  'text-secondary': #cdcdcd
+  'text-primary': #ff6a00,
+  'text-secondary': #cdcdcd,
+  'button-default': #464646,
+  'button-primary': #ff6a00,
 );
 
 $container-width: 1200px;
@@ -16,6 +19,6 @@ $breakpoints: (
   'xl': 1600px
 );
 
-$transition: 200ms;
+$transition: 150ms;
 
 $border-radius: 8px;

@@ -1,0 +1,38 @@
+@import '../variables.scss';
+
+.button {
+  display: block;
+  padding: 12px 24px;
+  text-align: center;
+  line-height: 1;
+  font-size: 14px;
+  border-radius: 50px;
+  border: none;
+  min-width: 200px;
+  color: map-get($colors, 'text-main');
+  cursor: pointer;
+  transition: $transition;
+  font-weight: 500;
+  letter-spacing: 2px;
+  background: map-get($colors, 'button-default');
+
+  &:hover {
+    background: lighten(map-get($colors, 'button-default'), 5);
+  }
+
+  &:active {
+    background: lighten(map-get($colors, 'button-default'), 15);
+  }
+
+  &-primary {
+    background: map-get($colors, 'button-primary');
+
+    &:hover {
+      background: lighten(map-get($colors, 'button-primary'), 5);
+    }
+
+    &:active {
+      background: lighten(map-get($colors, 'button-primary'), 15);
+    }
+  }
+}
