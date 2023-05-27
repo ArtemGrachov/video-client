@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { VideoDataService } from '../../video-data/services/video-data.service';
+import { VideoListDataService } from '../../video-list-data/services/video-list-data.service';
 import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class VideoListFormService {
     subscriptions: new FormControl(false)
   });
 
-  constructor(private videoDataService: VideoDataService) { }
+  constructor(private videoListDataService: VideoListDataService) { }
 
   public setValue(value: IGetVideosQuery): void {
     this.form.patchValue(value);
@@ -20,6 +20,6 @@ export class VideoListFormService {
 
   public update(): void {
     const formValue = this.form.getRawValue();
-    this.videoDataService.getVideos(formValue);
+    this.videoListDataService.getVideos(formValue);
   }
 }

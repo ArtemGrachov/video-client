@@ -10,7 +10,7 @@ import { IUser } from 'src/app/types/models/user.interface';
 import { IPagination } from 'src/app/types/other/pagination.interface';
 
 @Injectable()
-export class VideoDataService {
+export class VideoListDataService {
   private dataSbj$: BehaviorSubject<IGetVideosResponse | null> = new BehaviorSubject(null as IGetVideosResponse | null);
 
   private itemsSbj$: BehaviorSubject<IVideo[]> = new BehaviorSubject([] as IVideo[]);

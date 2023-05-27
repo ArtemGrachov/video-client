@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { skip } from 'rxjs';
 
-import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
+import { VideoListDataService } from 'src/app/modules/data/video-list-data/services/video-list-data.service';
 import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
 import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
 
@@ -16,7 +16,7 @@ export class ViewIndexComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private videoDataService: VideoDataService,
+    private videoListDataService: VideoListDataService,
     private videoListFormService: VideoListFormService
   ) {}
 
@@ -30,9 +30,9 @@ export class ViewIndexComponent implements OnInit, OnDestroy {
       this.videoListFormService.update();
     });
 
-  public items$ = this.videoDataService.items$;
+  public items$ = this.videoListDataService.items$;
 
-  public pagination$ = this.videoDataService.pagination$;
+  public pagination$ = this.videoListDataService.pagination$;
 
   private routeQueryToFormValue(query: Params): IGetVideosQuery {
     const formValue: IGetVideosQuery = {};

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VideoDataModule } from 'src/app/modules/data/video-data/video-data.module';
+import { VideoListDataModule } from 'src/app/modules/data/video-list-data/video-list-data.module';
 import { VideoModule } from 'src/app/modules/ui/video/video.module';
 import { VideoListFormModule } from 'src/app/modules/data/video-list-form/video-list-form.module';
 
@@ -15,7 +15,7 @@ import { ViewIndexComponent } from './view-index.component';
   imports: [
     CommonModule,
     ViewIndexRoutingModule,
-    VideoDataModule,
+    VideoListDataModule,
     VideoModule,
     VideoListFormModule
   ]
