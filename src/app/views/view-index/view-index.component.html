@@ -1,4 +1,3 @@
 <div class="container">
-  <p>view-index works!</p>
-  {{ items$ | async | json }}
+  <app-video-grid [videos]="(items$ | async)!"></app-video-grid>
 </div>

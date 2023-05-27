@@ -3,8 +3,10 @@
 :host {
   background-color: map-get($colors, 'background-secondary');
   color: orange;
+  border-bottom: 1px solid lime;
 }
 
 .logo {
   padding: 20px 0;
+  font-weight: bold;
 }

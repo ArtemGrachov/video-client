@@ -1,0 +1,25 @@
+@import '../../../../../styles/variables.scss';
+
+:host {
+  display: block;
+}
+
+.thumbnail {
+  padding-top: 80%;
+  transition: $transition;
+}
+
+.thumbnail-wrap {
+  overflow: hidden;
+
+  &:hover {
+    .thumbnail {
+      transform: scale(1.2) rotate(3deg);
+    }
+  }
+}
+
+.name {
+  padding: 6px 10px;
+  font-weight: 500;
+}

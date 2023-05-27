@@ -1,3 +1,5 @@
+import { IMedia } from './media.interface';
+
 export interface IVideo {
   id: number;
   name: string;
@@ -6,4 +8,5 @@ export interface IVideo {
   createdAt: string;
   isLiked: boolean;
   likesCount: number;
+  media: IMedia;
 }

@@ -1,8 +1,18 @@
 $colors: (
-  'background-primary': #202020,
-  'background-secondary': #0f0f0f,
+  'background-primary': #3b3b3b,
+  'background-secondary': #1c1c1c,
   'text-main': white
 );
 
 $container-width: 1200px;
 $container-padding: 20px;
+
+$breakpoints: (
+  'xs': 420px,
+  'sm': 768px,
+  'md': 1024px,
+  'lg': 1200px,
+  'xl': 1600px
+);
+
+$transition: 200ms;
