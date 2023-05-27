@@ -31,4 +31,8 @@ export class VideoCardComponent {
   public get authorAvatarSrc(): string | null {
     return this.author?.avatar?.url ?? null;
   }
+
+  public get isLiked(): boolean {
+    return this.video.isLiked;
+  }
 }
