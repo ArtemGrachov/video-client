@@ -1,7 +1,8 @@
 $colors: (
   'background-primary': #3b3b3b,
   'background-secondary': #1c1c1c,
-  'text-main': white
+  'text-main': white,
+  'text-secondary': #cdcdcd
 );
 
 $container-width: 1200px;
@@ -16,3 +17,5 @@ $breakpoints: (
 );
 
 $transition: 200ms;
+
+$border-radius: 8px;

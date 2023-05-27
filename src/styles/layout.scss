@@ -9,6 +9,7 @@ body {
   background-color: map-get($colors, 'background-primary');
   color: map-get($colors, 'text-main');
   font-family: 'Inter', sans-serif;
+  font-size: 18px;
 }
 
 .layout {

@@ -1,9 +1,11 @@
 import { IMedia } from './media.interface';
+import { IUser } from './user.interface';
 
 export interface IVideo {
   id: number;
   name: string;
   description: string;
+  author?: IUser;
   authorId: number;
   createdAt: string;
   isLiked: boolean;

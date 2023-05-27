@@ -1,6 +1,16 @@
 <div class="thumbnail-wrap">
   <app-thumbnail class="thumbnail" [src]="thumbnailSrc"></app-thumbnail>
 </div>
-<div class="name">
-  {{ videoName }}
+<div class="details">
+  <div class="details-avatar">
+    <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
+  </div>
+  <div class="details-text">
+    <div class="author">
+      {{ authorName }}
+    </div>
+    <div class="name">
+      {{ videoName }}
+    </div>
+  </div>
 </div>

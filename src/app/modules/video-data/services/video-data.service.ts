@@ -1,8 +1,12 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { VideoApiService } from '../../video-api/services/video-api.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+import { VideoApiService } from '../../video-api/services/video-api.service';
+
 import { IVideo } from 'src/app/types/models/video.interface';
 import { IGetVideosResponse } from 'src/app/types/api/video-api.interface';
+import { IDictionary } from 'src/app/types/other/dictionary.interface';
+import { IUser } from 'src/app/types/models/user.interface';
 
 @Injectable()
 export class VideoDataService {
@@ -27,7 +31,17 @@ export class VideoDataService {
   }
 
   private handleData(res: IGetVideosResponse): void {
+    const userMap: IDictionary<IUser> = res.users.reduce((acc, curr) => {
+      acc[curr.id] = curr;
+      return acc;
+    }, {} as IDictionary<IUser>);
+
+    const newItems = [
+      ...this.itemsSbj$.getValue(),
+      ...res.data.map(video => ({ ...video, author: userMap[video.authorId] }))
+    ];
+
     this.dataSbj$.next(res);
-    this.itemsSbj$.next([...this.itemsSbj$.getValue(), ...res.data]);
+    this.itemsSbj$.next(newItems);
   }
 }

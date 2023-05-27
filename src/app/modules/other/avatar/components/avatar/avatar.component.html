@@ -1,0 +1,8 @@
+<img *ngIf="showAvatar; else placeholder" [src]="src" class="avatar-image" />
+<ng-template #placeholder>
+  <div class="avatar-placeholder">
+    <span class="material-icons">
+      person
+    </span>
+  </div>
+</ng-template>

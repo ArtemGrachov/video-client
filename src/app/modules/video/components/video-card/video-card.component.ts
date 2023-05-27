@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { IUser } from 'src/app/types/models/user.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
 @Component({
@@ -17,5 +18,17 @@ export class VideoCardComponent {
 
   public get thumbnailSrc(): string {
     return this.video.media.thumbnailUrl;
+  }
+
+  public get author(): IUser | null {
+    return this.video.author ?? null;
+  }
+
+  public get authorName(): string | null {
+    return this.author?.name ?? null;
+  }
+
+  public get authorAvatarSrc(): string | null {
+    return this.author?.avatar?.url ?? null;
   }
 }
