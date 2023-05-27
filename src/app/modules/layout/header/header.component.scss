@@ -1,0 +1,10 @@
+@import '../../../../styles/variables.scss';
+
+:host {
+  background-color: map-get($colors, 'background-secondary');
+  color: orange;
+}
+
+.logo {
+  padding: 20px 0;
+}

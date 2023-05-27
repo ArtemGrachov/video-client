@@ -1,0 +1,25 @@
+@import './variables.scss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: map-get($colors, 'background-primary');
+  color: map-get($colors, 'text-main');
+  font-family: 'Inter', sans-serif;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100%;
+}
+
+.container {
+  max-width: $container-width + ($container-padding * 2);
+  padding: 0 $container-padding;
+  margin: 0 auto;
+}
