@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
+import { Observable } from 'rxjs';
+import { EStatus } from 'src/app/constants/status';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+import { LoginDataService } from 'src/app/modules/data/login-data/services/login-data.service';
 
 import { ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
 
@@ -12,11 +14,18 @@ import { ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ViewLoginComponent extends SimpleModalComponent<void, void> {
-  constructor(private authService: AuthService) {
+  constructor(private loginDataService: LoginDataService) {
     super();
   }
 
+  public loginStatus$: Observable<EStatus> = this.loginDataService.loginStatus$;
+
+  public loginError$: Observable<any> = this.loginDataService.loginError$;
+
   public submitHandler(formValue: ILoginRequestPayload): void {
-    this.authService.login(formValue).subscribe();
+    this
+      .loginDataService
+      .login(formValue)
+      .subscribe(() => this.close());
   }
 }

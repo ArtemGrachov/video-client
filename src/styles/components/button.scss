@@ -1,6 +1,7 @@
 @import '../variables.scss';
 
 .button {
+  position: relative;
   display: block;
   padding: 12px 24px;
   text-align: center;
@@ -15,6 +16,7 @@
   font-weight: 500;
   letter-spacing: 2px;
   background: map-get($colors, 'button-default');
+  overflow: hidden;
 
   &:hover {
     background: lighten(map-get($colors, 'button-default'), 5);
@@ -56,5 +58,38 @@
     height: 48px;
     border-radius: 50%;
     min-width: 0;
+  }
+}
+
+.button-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(map-get($colors, 'button-default'), .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: progress;
+
+  &-icon {
+    animation-name: button-loader;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes button-loader {
+  50% {
+    transform: rotate(180deg);
+  }
+
+  70% {
+    transform: rotate(180deg);
+  }
+
+  70.1% {
+    transform: rotate(0);
   }
 }

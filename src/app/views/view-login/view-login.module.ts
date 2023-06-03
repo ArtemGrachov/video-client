@@ -4,7 +4,7 @@ import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormLoginModule } from 'src/app/modules/ui/forms/form-login/form-login.module';
-import { AuthModule } from 'src/app/modules/data/auth/auth.module';
+import { LoginDataModule } from 'src/app/modules/data/login-data/login-data.module';
 
 import { ViewLoginModalService } from './services/view-login-modal.service';
 import { ViewLoginComponent } from './view-login.component';
@@ -17,7 +17,8 @@ import { ViewLoginComponent } from './view-login.component';
     CommonModule,
     SimpleModalModule,
     ModalModule,
-    FormLoginModule
+    FormLoginModule,
+    LoginDataModule
   ],
   providers: [
     ViewLoginModalService

@@ -29,5 +29,10 @@
   </app-form-control>
   <button type="submit" class="button mx-auto">
     Submit
+    <div *ngIf="submitProcessing" class="button-loader">
+      <span class="material-icons button-loader-icon">
+        hourglass_bottom
+      </span>
+    </div>
   </button>
 </form>

@@ -3,6 +3,10 @@
     Login
   </app-modal-header>
   <app-modal-body>
-    <app-form-login (formSubmit)="submitHandler($event)"></app-form-login>
+    <app-form-login
+      [submitStatus]="loginStatus$ | async"
+      [submitError]="loginError$ | async"
+      (formSubmit)="submitHandler($event)"
+    ></app-form-login>
   </app-modal-body>
 </app-modal-window>
