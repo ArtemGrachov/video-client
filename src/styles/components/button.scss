@@ -36,6 +36,18 @@
     }
   }
 
+  &-transparent {
+    background: rgba(black, 0);
+
+    &:hover {
+      background: rgba(black, .1);
+    }
+
+    &:active {
+      background: rgba(black, .15);
+    }
+  }
+
   &-icon {
     display: inline-flex;
     align-items: center;

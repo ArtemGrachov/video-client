@@ -1,0 +1,21 @@
+@import '../../../../../../styles/variables.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid map-get($colors, 'background-primary');
+}
+
+.title {
+  padding: 8px 24px;
+  flex: 1 1 0;
+  color: map-get($colors, 'text-secondary');
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.close {
+  flex: 0 0 auto;
+  color: map-get($colors, 'text-secondary');
+}
