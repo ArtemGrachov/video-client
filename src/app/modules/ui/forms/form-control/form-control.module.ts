@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ControlClientErrorModule } from '../control-client-error/control-client-error.module';
+
 import { FormControlComponent } from './form-control.component';
 
 @NgModule({
@@ -8,7 +10,8 @@ import { FormControlComponent } from './form-control.component';
     FormControlComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ControlClientErrorModule
   ],
   exports: [
     FormControlComponent

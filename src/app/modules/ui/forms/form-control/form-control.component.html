@@ -5,7 +5,8 @@
   <ng-content></ng-content>
 </div>
 <div class="errors">
-  <ng-container *ngIf="showValidationErrors">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid facilis velit, deserunt placeat voluptas ut, iste consequatur similique laborum nisi quisquam? Debitis, commodi doloribus impedit odit consequatur porro minima accusamus.
-  </ng-container>
+  <app-control-client-error
+    *ngIf="showValidationErrors"
+    [control]="control"
+  ></app-control-client-error>
 </div>
