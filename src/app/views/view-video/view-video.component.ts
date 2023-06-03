@@ -11,17 +11,10 @@ import { IVideo } from 'src/app/types/models/video.interface';
   styleUrls: ['./view-video.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewVideoComponent implements OnInit {
-  constructor(
-    private route: ActivatedRoute,
-    private videoDataService: VideoDataService
-  ) {}
+export class ViewVideoComponent {
+  constructor(private videoDataService: VideoDataService) {}
 
   public video$: Observable<IVideo | null> = this.videoDataService.data$;
 
   public showVideo$: Observable<boolean> = this.video$.pipe(map(v => Boolean(v)));
-
-  public ngOnInit(): void {
-    this.videoDataService.getVideo(this.route.snapshot.params['id']);
-  }
 }

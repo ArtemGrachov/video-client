@@ -2,7 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewVideoComponent } from './view-video.component';
 
-const routes: Routes = [{ path: '', component: ViewVideoComponent }];
+import { viewVideoResolver } from './view-video.resolver';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ViewVideoComponent,
+    resolve: { preFetchData: viewVideoResolver }
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
