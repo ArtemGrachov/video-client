@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { EStatus } from 'src/app/constants/status';
 
 import { ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
@@ -26,7 +27,7 @@ export class FormLoginComponent {
 
   public form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required]),
   });
 
   public submitHandler(): void {

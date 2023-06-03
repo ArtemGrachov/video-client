@@ -1,0 +1,14 @@
+@import '../../../../../styles/variables.scss';
+
+:host {
+  display: block;
+  $font-size: 12px;
+  $line-height: 1.2;
+  color: map-get($colors, 'text-error');
+  font-size: $font-size;
+  line-height: $line-height;
+  min-height: $font-size * $line-height;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
