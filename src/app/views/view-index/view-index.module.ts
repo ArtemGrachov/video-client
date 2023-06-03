@@ -7,6 +7,7 @@ import { VideoListFormModule } from 'src/app/modules/data/video-list-form/video-
 
 import { ViewIndexRoutingModule } from './view-index-routing.module';
 import { ViewIndexComponent } from './view-index.component';
+import { RouteHandlerService } from './services/route-handler.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,9 @@ import { ViewIndexComponent } from './view-index.component';
     VideoListDataModule,
     VideoModule,
     VideoListFormModule
+  ],
+  providers: [
+    RouteHandlerService
   ]
 })
 export class ViewIndexModule { }

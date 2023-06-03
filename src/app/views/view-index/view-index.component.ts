@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { skip } from 'rxjs';
 
 import { VideoListDataService } from 'src/app/modules/data/video-list-data/services/video-list-data.service';
 import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
-import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
+import { RouteHandlerService } from './services/route-handler.service';
 
 @Component({
   selector: 'app-view-index',
@@ -12,10 +12,11 @@ import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
   styleUrls: ['./view-index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewIndexComponent implements OnInit, OnDestroy {
+export class ViewIndexComponent implements OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private routeHandlerSerivce: RouteHandlerService,
     private videoListDataService: VideoListDataService,
     private videoListFormService: VideoListFormService
   ) {}
@@ -25,7 +26,7 @@ export class ViewIndexComponent implements OnInit, OnDestroy {
     .queryParams
     .pipe(skip(1))
     .subscribe(query => {
-      const formValue = this.routeQueryToFormValue(query);
+      const formValue = this.routeHandlerSerivce.routeQueryToFormValue(query);
       this.videoListFormService.setValue(formValue);
       this.videoListFormService.update();
     });
@@ -34,48 +35,13 @@ export class ViewIndexComponent implements OnInit, OnDestroy {
 
   public pagination$ = this.videoListDataService.pagination$;
 
-  private routeQueryToFormValue(query: Params): IGetVideosQuery {
-    const formValue: IGetVideosQuery = {};
-
-    const page = +(query['page'] as string);
-
-    if (!isNaN(page)) {
-      formValue.page = page;
-    }
-
-    formValue.search = query['search'];
-
-    return formValue;
-  }
-
-  private formValueToRouteQuery(formValue: IGetVideosQuery): Params {
-    const result: Params = {
-      search: formValue.search
-    };
-
-    if (formValue.page === 1) {
-      result['page'] = null;
-    } else {
-      result['page'] = formValue.page;
-    }
-
-    return result;
-  }
-
-  public ngOnInit(): void {
-    const formValue = this.routeQueryToFormValue(this.route.snapshot.queryParams);
-
-    this.videoListFormService.setValue(formValue)
-    this.videoListFormService.update();
-  }
-
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();
   }
 
   private updateRoute(): void {
     const formValue = this.videoListFormService.form.value;
-    const queryParams = this.formValueToRouteQuery(formValue);
+    const queryParams = this.routeHandlerSerivce.formValueToRouteQuery(formValue);
 
     this.router.navigate(
       ['.'],

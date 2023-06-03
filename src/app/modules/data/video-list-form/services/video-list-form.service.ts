@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { VideoListDataService } from '../../video-list-data/services/video-list-data.service';
-import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
+import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
 
 @Injectable()
 export class VideoListFormService {
@@ -18,8 +19,8 @@ export class VideoListFormService {
     this.form.patchValue(value);
   }
 
-  public update(): void {
+  public update(): Observable<IGetVideosResponse> {
     const formValue = this.form.getRawValue();
-    this.videoListDataService.getVideos(formValue);
+    return this.videoListDataService.getVideos(formValue);
   }
 }

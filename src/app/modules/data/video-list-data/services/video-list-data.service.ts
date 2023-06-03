@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { VideoApiService } from '../../video-api/services/video-api.service';
 
@@ -25,11 +25,11 @@ export class VideoListDataService {
 
   constructor(private videoApiService: VideoApiService) { }
 
-  public getVideos(query?: IGetVideosQuery): void {
-    this
+  public getVideos(query?: IGetVideosQuery): Observable<IGetVideosResponse> {
+    return this
       .videoApiService
       .getVideos(query)
-      .subscribe(res => this.handleData(res, query))
+      .pipe(tap(res => this.handleData(res, query)))
   }
 
   private handleData(res: IGetVideosResponse, query?: IGetVideosQuery): void {
