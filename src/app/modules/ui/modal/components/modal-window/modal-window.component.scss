@@ -1,0 +1,10 @@
+@import '../../../../../../styles/variables.scss';
+
+:host {
+  background: map-get($colors, 'background-secondary');
+  border-radius: 50px;
+  box-shadow: 0px 5px 20px -4px rgba(black, 0.612);
+  display: block;
+  margin: 48px auto;
+  max-width: 420px;
+}

@@ -2,6 +2,7 @@ import { APP_ID, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 
 import { LayoutModule } from './modules/ui/layout/layout.module';
 
@@ -17,7 +18,8 @@ import { AppComponent } from './app.component';
     TransferHttpCacheModule,
     HttpClientModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    SimpleModalModule.forRoot({ container: 'modal-container' })
   ],
   providers: [
     provideClientHydration(),

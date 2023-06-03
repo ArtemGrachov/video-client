@@ -35,4 +35,14 @@
       background: lighten(map-get($colors, 'button-primary'), 15);
     }
   }
+
+  &-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    min-width: 0;
+  }
 }
