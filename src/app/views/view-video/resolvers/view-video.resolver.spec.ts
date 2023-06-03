@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { viewVideoResolver } from './view-video.resolver';
 
 describe('viewVideoResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
+  const executeResolver: ResolveFn<boolean> = (...resolverParameters) =>
       TestBed.runInInjectionContext(() => viewVideoResolver(...resolverParameters));
 
   beforeEach(() => {
