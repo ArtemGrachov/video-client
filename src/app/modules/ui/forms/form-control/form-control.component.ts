@@ -7,8 +7,14 @@ import { AbstractControl } from '@angular/forms';
   styleUrls: ['./form-control.component.scss']
 })
 export class FormControlComponent {
-  @Input()
+  @Input('control')
   public control?: AbstractControl<any, any> | null;
+
+  @Input('selector')
+  public selector?: string
+
+  @Input('serverError')
+  public serverError?: any
 
   public get showValidationErrors(): boolean {
     return (this.control?.touched && this.control?.invalid) ?? false;

@@ -5,6 +5,10 @@
   <ng-content></ng-content>
 </div>
 <div class="errors">
+  <app-control-server-error
+    [selector]="selector"
+    [error]="serverError"
+  ></app-control-server-error>
   <app-control-client-error
     *ngIf="showValidationErrors"
     [control]="control"

@@ -1,7 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="submitHandler()">
   <app-form-control
     class="mb-md"
+    [selector]="'email'"
     [control]="form.get('email')"
+    [serverError]="submitError"
   >
     <div label>
       Email
@@ -15,7 +17,9 @@
   </app-form-control>
   <app-form-control
     class="mb-md"
+    [selector]="'password'"
     [control]="form.get('password')"
+    [serverError]="submitError"
   >
     <div label>
       Password

@@ -1,4 +1,4 @@
-enum EValidationFieldErrors {
+export enum EValidationFieldErrors {
   REQUIRED = 'REQUIRED',
   NOT_EMAIL = 'NOT_EMAIL',
   FORMAT = 'FORMAT',

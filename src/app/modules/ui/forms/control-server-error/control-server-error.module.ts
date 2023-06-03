@@ -3,18 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { FormValidationModule } from 'src/app/modules/utils/form-validation/form-validation.module';
 
-import { FormServerErrorComponent } from './form-server-error.component';
+import { ControlServerErrorComponent } from './control-server-error.component';
 
 @NgModule({
   declarations: [
-    FormServerErrorComponent
+    ControlServerErrorComponent
   ],
   imports: [
     CommonModule,
     FormValidationModule,
   ],
   exports: [
-    FormServerErrorComponent
+    ControlServerErrorComponent
   ]
 })
-export class FormServerErrorModule { }
+export class ControlServerErrorModule { }
