@@ -40,6 +40,8 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  text-decoration: none;
+  color: map-get($colors, 'text-main');
 }
 
 .author {
