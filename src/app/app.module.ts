@@ -5,6 +5,7 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 
 import { LayoutModule } from './modules/ui/layout/layout.module';
+import { AuthModule } from './modules/data/auth/auth.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     AppRoutingModule,
     LayoutModule,
+    AuthModule,
     SimpleModalModule.forRoot({ container: 'modal-container' })
   ],
   providers: [

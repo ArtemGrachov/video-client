@@ -3,6 +3,6 @@
     Login
   </app-modal-header>
   <app-modal-body>
-    <app-form-login></app-form-login>
+    <app-form-login (formSubmit)="submitHandler($event)"></app-form-login>
   </app-modal-body>
 </app-modal-window>

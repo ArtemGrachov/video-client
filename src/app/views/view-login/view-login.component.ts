@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 
-import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
+import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+
+import { ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
 
 @Component({
   selector: 'app-view-login',
@@ -9,4 +11,12 @@ import { VideoDataService } from 'src/app/modules/data/video-data/services/video
   styleUrls: ['./view-login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewLoginComponent extends SimpleModalComponent<void, void> {}
+export class ViewLoginComponent extends SimpleModalComponent<void, void> {
+  constructor(private authService: AuthService) {
+    super();
+  }
+
+  public submitHandler(formValue: ILoginRequestPayload): void {
+    this.authService.login(formValue).subscribe();
+  }
+}
