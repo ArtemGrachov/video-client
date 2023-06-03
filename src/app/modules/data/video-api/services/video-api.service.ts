@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable()
 export class VideoApiService {
   constructor(private http: HttpClient) { }
@@ -20,10 +22,10 @@ export class VideoApiService {
       params = params.set('search', query.search);
     }
 
-    return this.http.get<IGetVideosResponse>('http://localhost:4000/video', { params });
+    return this.http.get<IGetVideosResponse>(`${environment.API_URL}/video`, { params });
   }
 
   public getVideo(videoId: number): Observable<IVideo> {
-    return this.http.get<IVideo>(`http://localhost:4000/video/${videoId}`);
+    return this.http.get<IVideo>(`${environment.API_URL}/video/${videoId}`);
   }
 }

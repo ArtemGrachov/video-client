@@ -11,6 +11,10 @@ import { AuthModule } from './modules/data/auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { environment } from 'src/environments/environment';
+
+console.log('API URL IS', environment.API_URL);
+
 @NgModule({
   declarations: [
     AppComponent
