@@ -1,0 +1,30 @@
+$step: 4px;
+
+.mb {
+  &-xs {
+    margin-bottom: $step;
+  }
+
+  &-sm {
+    margin-bottom: $step * 2;
+  }
+
+  &-md {
+    margin-bottom: $step * 3;
+  }
+
+  &-lg {
+    margin-bottom: $step * 4;
+  }
+
+  &-xl {
+    margin-bottom: $step * 8;
+  }
+}
+
+.mx {
+  &-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

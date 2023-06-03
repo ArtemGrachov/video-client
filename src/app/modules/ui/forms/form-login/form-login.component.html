@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <app-form-control
+    class="mb-md"
+    [control]="form.get('email')"
+  >
+    <div label>
+      Email
+    </div>
+    <input
+      type="email"
+      class="input-default"
+      formControlName="email"
+    />
+  </app-form-control>
+  <app-form-control
+    class="mb-xl"
+    [control]="form.get('password')"
+  >
+    <div label>
+      Password
+    </div>
+    <input
+      type="password"
+      class="input-default"
+      formControlName="password"
+    />
+  </app-form-control>
+  <button type="submit" class="button mx-auto">
+    Submit
+  </button>
+</form>

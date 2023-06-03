@@ -1,0 +1,24 @@
+@import '../variables.scss';
+
+.input-default {
+  display: block;
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid map-get($colors, 'border-primary');
+  padding: 8px 24px;
+  font-size: 16px;
+  color: map-get($colors, 'text-secondary');
+  transition: $transition;
+  line-height: 1;
+
+  &:focus {
+    outline: none;
+    border-color: darken(map-get($colors, 'border-primary'), 50);
+  }
+
+  &.ng-touched {
+    &.ng-invalid {
+      border-color: map-get($colors, 'border-error');
+    }
+  }
+}

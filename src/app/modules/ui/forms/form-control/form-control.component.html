@@ -1,0 +1,11 @@
+<div class="label">
+  <ng-content select="[label]"></ng-content>
+</div>
+<div class="control">
+  <ng-content></ng-content>
+</div>
+<div class="errors">
+  <ng-container *ngIf="showValidationErrors">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid facilis velit, deserunt placeat voluptas ut, iste consequatur similique laborum nisi quisquam? Debitis, commodi doloribus impedit odit consequatur porro minima accusamus.
+  </ng-container>
+</div>

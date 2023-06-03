@@ -4,9 +4,12 @@ $colors: (
   'text-main': #1d1d1d,
   'text-primary': #333333,
   'text-secondary': #505050,
+  'text-error': #ff1500,
   'button-default': #b2b2b2,
   'button-primary': #696969,
-);
+  'border-primary': #e1e1e1,
+  'border-error': #ff1500,
+  );
 
 $container-width: 1200px;
 $container-padding: 20px;
