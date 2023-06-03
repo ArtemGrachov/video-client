@@ -13,8 +13,4 @@ export class HeaderComponent {
   public openAuthModal(): void {
     this.viewLoginModalService.showModal();
   }
-
-  ngOnInit() {
-    this.openAuthModal()
-  }
 }
