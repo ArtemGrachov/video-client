@@ -26,6 +26,7 @@
     "@looorent/ngx-simple-modal": "^16.0.0",
     "@nguniversal/express-engine": "^16.0.2",
     "express": "^4.15.2",
+    "ngx-cookie-service-ssr": "^16.0.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

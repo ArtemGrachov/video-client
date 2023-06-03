@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
+
+import { AUTH_COOKIE_REFRESH_TOKEN_KEY, AUTH_COOKIE_TOKEN_KEY } from 'src/app/constants/auth';
+
+import { IAuthResponse } from 'src/app/types/api/auth-api.interface';
 
 @Injectable()
 export class AuthService {
-  public authorize(): void {
-    console.log('@todo');
+  constructor(private cookieService: SsrCookieService) {}
+
+  public authorize(authData: IAuthResponse): void {
+    this.cookieService.set(AUTH_COOKIE_TOKEN_KEY, authData.token);
+    this.cookieService.set(AUTH_COOKIE_REFRESH_TOKEN_KEY, authData.refreshToken);
   }
 }

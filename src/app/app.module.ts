@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { HttpClientModule } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 import { LayoutModule } from './modules/ui/layout/layout.module';
 import { AuthModule } from './modules/data/auth/auth.module';
@@ -26,6 +27,7 @@ import { AppComponent } from './app.component';
   providers: [
     provideClientHydration(),
     { provide: APP_ID, useValue: 'app-video' },
+    SsrCookieService,
   ],
   bootstrap: [AppComponent]
 })

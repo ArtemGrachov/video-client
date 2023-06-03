@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
+import { AuthService } from '../../auth/services/auth.service';
 import { AuthApiService } from '../../auth-api/services/auth-api.service';
 
 import { IAuthResponse, ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
@@ -17,7 +18,10 @@ export class LoginDataService {
 
   public loginError$: Observable<any | null> = this.loginErrorSbj$.asObservable();
 
-  constructor(private authApiService: AuthApiService) { }
+  constructor(
+    private authService: AuthService,
+    private authApiService: AuthApiService,
+  ) { }
 
   public login(payload: ILoginRequestPayload): Observable<IAuthResponse> {
     this.loginStatusSbj$.next(EStatus.PROCESSING);
@@ -29,7 +33,9 @@ export class LoginDataService {
       .pipe(
         tap(
           {
-            next: () => {
+            next: (res) => {
+              this.authService.authorize(res);
+
               this.loginStatusSbj$.next(EStatus.SUCCESS);
               this.loginErrorSbj$.next(null);
             },
