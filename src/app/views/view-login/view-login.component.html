@@ -3,10 +3,24 @@
     Login
   </app-modal-header>
   <app-modal-body>
-    <app-form-login
-      [submitStatus]="loginStatus$ | async"
-      [submitError]="loginError$ | async"
-      (formSubmit)="submitHandler($event)"
-    ></app-form-login>
+    <button
+      type="button"
+      class="text-button mb-lg"
+    >
+      No account? Register
+    </button>
+    <div class="mb-lg">
+      <app-form-login
+        [submitStatus]="loginStatus$ | async"
+        [submitError]="loginError$ | async"
+        (formSubmit)="submitHandler($event)"
+      ></app-form-login>
+    </div>
+    <button
+      type="button"
+      class="text-button"
+    >
+      Forgot password?
+    </button>
   </app-modal-body>
 </app-modal-window>

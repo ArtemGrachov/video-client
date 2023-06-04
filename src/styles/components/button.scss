@@ -93,3 +93,26 @@
     transform: rotate(0);
   }
 }
+
+.text-button {
+  color: map-get($colors, 'text-secondary');
+  display: block;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 14px;
+  cursor: pointer;
+  transition: $transition;
+  text-align: center;
+  width: 100%;
+
+  &:hover {
+    color: darken(map-get($colors, 'text-secondary'), 40);
+  }
+
+  &:active {
+    color: lighten(map-get($colors, 'text-secondary'), 10);
+  }
+}
