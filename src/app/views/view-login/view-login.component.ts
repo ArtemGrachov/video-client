@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { EStatus } from 'src/app/constants/status';
 
 import { LoginDataService } from 'src/app/modules/data/login-data/services/login-data.service';
+import { ViewRegistrationModalService } from '../view-registration/services/view-registration-modal.service';
 
 import { ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
 
@@ -14,7 +15,10 @@ import { ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ViewLoginComponent extends SimpleModalComponent<void, void> {
-  constructor(private loginDataService: LoginDataService) {
+  constructor(
+    private loginDataService: LoginDataService,
+    private viewRegistrationModalService: ViewRegistrationModalService,
+  ) {
     super();
   }
 
@@ -27,5 +31,10 @@ export class ViewLoginComponent extends SimpleModalComponent<void, void> {
       .loginDataService
       .login(formValue)
       .subscribe(() => this.close());
+  }
+
+  public registrationHandler(): void {
+    this.viewRegistrationModalService.showModal();
+    this.close();
   }
 }

@@ -7,11 +7,12 @@ import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 import { LayoutModule } from './modules/ui/layout/layout.module';
 import { AuthModule } from './modules/data/auth/auth.module';
+import { ViewRegistrationModule } from './views/view-registration/view-registration.module';
+import { ViewLoginModule } from './views/view-login/view-login.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     LayoutModule,
     AuthModule,
-    SimpleModalModule.forRoot({ container: 'modal-container' })
+    SimpleModalModule.forRoot({ container: 'modal-container' }),
+    ViewRegistrationModule,
+    ViewLoginModule
   ],
   providers: [
     provideClientHydration(),

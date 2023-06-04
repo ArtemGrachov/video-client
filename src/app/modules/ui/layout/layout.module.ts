@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ViewLoginModule } from 'src/app/views/view-login/view-login.module';
-
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
@@ -13,8 +11,7 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent
   ],
   imports: [
-    CommonModule,
-    ViewLoginModule
+    CommonModule
   ]
 })
 export class LayoutModule { }
