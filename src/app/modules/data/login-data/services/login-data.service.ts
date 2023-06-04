@@ -40,7 +40,6 @@ export class LoginDataService {
               this.loginErrorSbj$.next(null);
             },
             error: (error: any) => {
-              console.dir(error)
               this.loginStatusSbj$.next(EStatus.ERROR);
               this.loginErrorSbj$.next(error);
             }

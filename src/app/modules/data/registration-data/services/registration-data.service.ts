@@ -35,7 +35,6 @@ export class RegistrationDataService {
               this.registrationErrorSbj$.next(null);
             },
             error: (error: any) => {
-              console.dir(error)
               this.registrationStatusSbj$.next(EStatus.ERROR);
               this.registrationErrorSbj$.next(error);
             }

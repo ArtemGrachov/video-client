@@ -35,7 +35,6 @@ export class ResetPasswordRequestDataService {
               this.requestErrorSbj$.next(null);
             },
             error: (error: any) => {
-              console.dir(error)
               this.requestStatusSbj$.next(EStatus.ERROR);
               this.requestErrorSbj$.next(error);
             }
