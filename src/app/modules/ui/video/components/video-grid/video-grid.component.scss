@@ -3,7 +3,7 @@
 $gap: 20px;
 
 .grid {
-  margin: -calc($gap / 2);
+  margin: -(calc($gap / 2));
   padding: 0;
   list-style: none;
 
