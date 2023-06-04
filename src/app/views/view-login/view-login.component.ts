@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+
 import { EStatus } from 'src/app/constants/status';
 
 import { LoginDataService } from 'src/app/modules/data/login-data/services/login-data.service';
@@ -18,6 +20,7 @@ export class ViewLoginComponent extends SimpleModalComponent<void, void> {
   constructor(
     private loginDataService: LoginDataService,
     private viewRegistrationModalService: ViewRegistrationModalService,
+    private toastr: ToastrService,
   ) {
     super();
   }
@@ -30,7 +33,10 @@ export class ViewLoginComponent extends SimpleModalComponent<void, void> {
     this
       .loginDataService
       .login(formValue)
-      .subscribe(() => this.close());
+      .subscribe({
+        next: () => this.close(),
+        error: () => this.toastr.error('Login error')
+      });
   }
 
   public registrationHandler(): void {

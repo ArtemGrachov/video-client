@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { LayoutModule } from './modules/ui/layout/layout.module';
 import { AuthModule } from './modules/data/auth/auth.module';
@@ -22,6 +24,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     TransferHttpCacheModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     LayoutModule,
     AuthModule,

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -18,7 +19,8 @@ import { IRegistrationRequestPayload } from 'src/app/types/api/auth-api.interfac
 export class ViewRegistrationComponent extends SimpleModalComponent<void, void> {
   constructor(
     private registrationDataService: RegistrationDataService,
-    private viewLoginModalService: ViewLoginModalService
+    private viewLoginModalService: ViewLoginModalService,
+    private toastr: ToastrService,
   ) {
     super();
   }
@@ -31,7 +33,13 @@ export class ViewRegistrationComponent extends SimpleModalComponent<void, void> 
     this
       .registrationDataService
       .registration(formValue)
-      .subscribe(() => this.loginHandler());
+      .subscribe({
+        next: () => {
+          this.toastr.success('Account registered successfully');
+          this.loginHandler();
+        },
+        error: () => this.toastr.error('Registration error'),
+      });
   }
 
   public loginHandler(): void {
