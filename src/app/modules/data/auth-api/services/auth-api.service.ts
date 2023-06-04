@@ -6,6 +6,7 @@ import {
   IAuthResponse,
   ILoginRequestPayload,
   IRegistrationRequestPayload,
+  IResetPasswordPayload,
   IResetPasswordRequestPayload,
 } from 'src/app/types/api/auth-api.interface';
 import { IApiGenericResponse } from 'src/app/types/api/common.interface';
@@ -26,5 +27,9 @@ export class AuthApiService {
 
   public resetPasswordRequest(payload: IResetPasswordRequestPayload): Observable<IApiGenericResponse> {
     return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/reset-password-request`, payload);
+  }
+
+  public resetPassword(payload: IResetPasswordPayload): Observable<IApiGenericResponse> {
+    return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/reset-password`, payload);
   }
 }

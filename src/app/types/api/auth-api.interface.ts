@@ -18,3 +18,9 @@ export interface IRegistrationRequestPayload {
 export interface IResetPasswordRequestPayload {
   email: string;
 }
+
+export interface IResetPasswordPayload {
+  resetPasswordToken: string;
+  password: string;
+  passwordConfirmation: string;
+}
