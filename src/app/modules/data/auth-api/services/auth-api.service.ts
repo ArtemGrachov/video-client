@@ -18,4 +18,8 @@ export class AuthApiService {
   public registration(payload: IRegistrationRequestPayload): Observable<IApiGenericResponse> {
     return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/registration`, payload);
   }
+
+  public resetPasswordRequest(payload: IRegistrationRequestPayload): Observable<IApiGenericResponse> {
+    return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/reset-password-request`, payload);
+  }
 }

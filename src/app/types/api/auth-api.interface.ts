@@ -14,3 +14,7 @@ export interface IRegistrationRequestPayload {
   password: string;
   passwordConfirmation: string;
 }
+
+export interface IResetPasswordRequestPayload {
+  email: string;
+}
