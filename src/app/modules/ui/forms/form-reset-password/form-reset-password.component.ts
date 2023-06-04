@@ -13,7 +13,7 @@ import { PASSWORD_REG_EXP, matchValidatorFactory } from 'src/app/modules/utils/o
   selector: 'app-form-reset-password',
   templateUrl: './form-reset-password.component.html',
   styleUrls: ['./form-reset-password.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormResetPasswordComponent {
   @Input('submitStatus')
@@ -51,11 +51,10 @@ export class FormResetPasswordComponent {
   );
 
   public form: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
     password: this.controlPassword,
     passwordConfirmation: this.controlPasswordConfirmation
   });
+
   public submitHandler(): void {
     if (this.form.invalid || this.submitProcessing) {
       this.form.markAllAsTouched();

@@ -107,6 +107,7 @@
   transition: $transition;
   text-align: center;
   width: 100%;
+  padding: 0;
 
   &:hover {
     color: darken(map-get($colors, 'text-secondary'), 40);
@@ -114,5 +115,10 @@
 
   &:active {
     color: lighten(map-get($colors, 'text-secondary'), 10);
+  }
+
+  &-inline {
+    display: inline;
+    width: auto;
   }
 }
