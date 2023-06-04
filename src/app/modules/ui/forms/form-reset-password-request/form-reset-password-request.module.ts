@@ -16,6 +16,9 @@ import { FormResetPasswordRequestComponent } from './form-reset-password-request
     ReactiveFormsModule,
     FormControlModule,
     FormServerErrorModule,
-  ]
+  ],
+  exports: [
+    FormResetPasswordRequestComponent,
+  ],
 })
 export class FormResetPasswordRequestModule { }

@@ -9,6 +9,7 @@ import { LoginDataService } from 'src/app/modules/data/login-data/services/login
 import { ViewRegistrationModalService } from '../view-registration/services/view-registration-modal.service';
 
 import { ILoginRequestPayload } from 'src/app/types/api/auth-api.interface';
+import { ViewResetPasswordRequestModalService } from '../view-reset-password-request/services/view-reset-password-request-modal.service';
 
 @Component({
   selector: 'app-view-login',
@@ -20,6 +21,7 @@ export class ViewLoginComponent extends SimpleModalComponent<void, void> {
   constructor(
     private loginDataService: LoginDataService,
     private viewRegistrationModalService: ViewRegistrationModalService,
+    private viewResetPasswordRequestModalService: ViewResetPasswordRequestModalService,
     private toastr: ToastrService,
   ) {
     super();
@@ -41,6 +43,11 @@ export class ViewLoginComponent extends SimpleModalComponent<void, void> {
 
   public registrationHandler(): void {
     this.viewRegistrationModalService.showModal();
+    this.close();
+  }
+
+  public resetPasswordRequestHandler(): void {
+    this.viewResetPasswordRequestModalService.showModal();
     this.close();
   }
 }

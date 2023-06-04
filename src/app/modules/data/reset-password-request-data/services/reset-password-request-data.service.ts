@@ -5,7 +5,7 @@ import { EStatus } from 'src/app/constants/status';
 
 import { AuthApiService } from '../../auth-api/services/auth-api.service';
 
-import { IRegistrationRequestPayload } from 'src/app/types/api/auth-api.interface';
+import { IResetPasswordRequestPayload } from 'src/app/types/api/auth-api.interface';
 import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class ResetPasswordRequestDataService {
 
   constructor(private authApiService: AuthApiService) { }
 
-  public registration(payload: IRegistrationRequestPayload): Observable<IApiGenericResponse> {
+  public resetPasswordRequest(payload: IResetPasswordRequestPayload): Observable<IApiGenericResponse> {
     this.requestStatusSbj$.next(EStatus.PROCESSING);
     this.requestErrorSbj$.next(null);
 

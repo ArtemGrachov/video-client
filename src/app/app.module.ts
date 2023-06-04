@@ -11,6 +11,7 @@ import { LayoutModule } from './modules/ui/layout/layout.module';
 import { AuthModule } from './modules/data/auth/auth.module';
 import { ViewRegistrationModule } from './views/view-registration/view-registration.module';
 import { ViewLoginModule } from './views/view-login/view-login.module';
+import { ViewResetPasswordRequestModule } from './views/view-reset-password-request/view-reset-password-request.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ import { AppComponent } from './app.component';
     AuthModule,
     SimpleModalModule.forRoot({ container: 'modal-container' }),
     ViewRegistrationModule,
-    ViewLoginModule
+    ViewLoginModule,
+    ViewResetPasswordRequestModule,
   ],
   providers: [
     provideClientHydration(),

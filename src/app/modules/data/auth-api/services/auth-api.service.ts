@@ -2,7 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IAuthResponse, ILoginRequestPayload, IRegistrationRequestPayload } from 'src/app/types/api/auth-api.interface';
+import {
+  IAuthResponse,
+  ILoginRequestPayload,
+  IRegistrationRequestPayload,
+  IResetPasswordRequestPayload,
+} from 'src/app/types/api/auth-api.interface';
 import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 
 import { environment } from 'src/environments/environment';
@@ -19,7 +24,7 @@ export class AuthApiService {
     return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/registration`, payload);
   }
 
-  public resetPasswordRequest(payload: IRegistrationRequestPayload): Observable<IApiGenericResponse> {
+  public resetPasswordRequest(payload: IResetPasswordRequestPayload): Observable<IApiGenericResponse> {
     return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/reset-password-request`, payload);
   }
 }

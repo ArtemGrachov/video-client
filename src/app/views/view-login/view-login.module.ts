@@ -18,7 +18,7 @@ import { ViewLoginComponent } from './view-login.component';
     SimpleModalModule,
     ModalModule,
     FormLoginModule,
-    LoginDataModule
+    LoginDataModule,
   ],
   providers: [
     ViewLoginModalService
