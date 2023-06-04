@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
-import { FormLoginModule } from 'src/app/modules/ui/forms/form-login/form-login.module';
-import { LoginDataModule } from 'src/app/modules/data/login-data/login-data.module';
+import { FormRegistrationModule } from 'src/app/modules/ui/forms/form-registration/form-registration.module';
 
 import { ViewRegistrationComponent } from './view-registration.component';
 import { ViewRegistrationModalService } from './services/view-registration-modal.service';
@@ -17,8 +16,7 @@ import { ViewRegistrationModalService } from './services/view-registration-modal
     CommonModule,
     SimpleModalModule,
     ModalModule,
-    FormLoginModule,
-    LoginDataModule
+    FormRegistrationModule,
   ],
   providers: [
     ViewRegistrationModalService

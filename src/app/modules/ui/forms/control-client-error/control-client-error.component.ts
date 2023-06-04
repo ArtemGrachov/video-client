@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, Simple
 import { AbstractControl } from '@angular/forms';
 import { Observable, map, of, startWith } from 'rxjs';
 
+import { IDictionary } from 'src/app/types/other/dictionary.interface';
+import { ValidationMessageFactory } from 'src/app/types/other/validation.types';
+
 @Component({
   selector: 'app-control-client-error',
   templateUrl: './control-client-error.component.html',
@@ -13,6 +16,20 @@ export class ControlClientErrorComponent implements OnChanges {
   public control?: AbstractControl<any, any> | null;
 
   public validationMessage$: Observable<string | null> = of(null);
+
+  @Input('customErrorMessages')
+  public customErrorMessages?: IDictionary<ValidationMessageFactory> | null;
+
+  private errorMessageMap: IDictionary<ValidationMessageFactory> = {
+    required: () => 'This field is required',
+    pattern: () => 'This field has incorrect format',
+    match: () => 'Fields do not match',
+    email: () => 'This filed should have email format',
+    minlength: (
+      { requiredLength, actualLength }:
+      { requiredLength: number, actualLength: number }
+    ) => `This field should have ${requiredLength} symbols`
+  };
 
   public ngOnChanges(changes: SimpleChanges): void {
     const newControl: AbstractControl<any, any> | undefined = changes['control']?.currentValue
@@ -27,19 +44,34 @@ export class ControlClientErrorComponent implements OnChanges {
     }
   }
 
+  private get mergedErrorMessages(): IDictionary<ValidationMessageFactory> {
+    if (!this.customErrorMessages) {
+      return this.errorMessageMap;
+    }
+
+    return {
+      ...this.errorMessageMap,
+      ...this.customErrorMessages,
+    };
+  }
+
   private getErrorText(): string | null {
     if (!this.control?.errors) {
       return null;
     }
 
-    if (this.control.errors['required']) {
-      return 'This field is required';
+    const key = Object.keys(this.control.errors)[0];
+
+    if (!key) {
+      return null;
     }
 
-    if (this.control.errors['email']) {
-      return 'This field should have email format';
+    const message = this.mergedErrorMessages[key];
+
+    if (!message) {
+      return null;
     }
 
-    return null
+    return message(this.control.errors[key]);
   }
 }

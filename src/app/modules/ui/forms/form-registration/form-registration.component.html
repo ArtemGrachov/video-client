@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="submitHandler()">
+  <app-form-control
+    class="mb-md"
+    [selector]="'name'"
+    [control]="form.get('name')"
+    [serverError]="submitError"
+  >
+    <div label>
+      Name
+    </div>
+    <input
+      name="name"
+      type="text"
+      class="input-default"
+      formControlName="name"
+    />
+  </app-form-control>
+  <app-form-control
+    class="mb-md"
+    [selector]="'email'"
+    [control]="form.get('email')"
+    [serverError]="submitError"
+  >
+    <div label>
+      Email
+    </div>
+    <input
+      name="email"
+      type="email"
+      class="input-default"
+      formControlName="email"
+    />
+  </app-form-control>
+  <app-form-control
+    class="mb-md"
+    [selector]="'password'"
+    [control]="form.get('password')"
+    [serverError]="submitError"
+    [customClientErrorMessages]="passwordValidationMessages"
+  >
+    <div label>
+      Password
+    </div>
+    <input
+      name="password"
+      type="password"
+      class="input-default"
+      formControlName="password"
+    />
+  </app-form-control>
+  <app-form-control
+    class="mb-md"
+    [selector]="'passwordConfirmation'"
+    [control]="form.get('passwordConfirmation')"
+    [serverError]="submitError"
+  >
+    <div label>
+      Confirm password
+    </div>
+    <input
+      name="passwordConfirmation"
+      type="password"
+      class="input-default"
+      formControlName="passwordConfirmation"
+    />
+  </app-form-control>
+  <app-form-server-error
+    class="mb-md"
+    [error]="submitError"
+  ></app-form-server-error>
+  <button type="submit" class="button mx-auto">
+    Submit
+    <div *ngIf="submitProcessing" class="button-loader">
+      <span class="material-icons button-loader-icon">
+        hourglass_bottom
+      </span>
+    </div>
+  </button>
+</form>
