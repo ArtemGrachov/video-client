@@ -10,6 +10,10 @@
     >
       Already have an account? Log in
     </button>
-    <app-form-registration></app-form-registration>
+    <app-form-registration
+      [submitStatus]="registrationStatus$ | async"
+      [submitError]="registrationError$ | async"
+      (formSubmit)="submitHandler($event)"
+    ></app-form-registration>
   </app-modal-body>
 </app-modal-window>

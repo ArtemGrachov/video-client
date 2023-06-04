@@ -1,7 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
+import { Observable } from 'rxjs';
+
+import { EStatus } from 'src/app/constants/status';
 
 import { ViewLoginModalService } from '../view-login/services/view-login-modal.service';
+import { RegistrationDataService } from 'src/app/modules/data/registration-data/services/registration-data.service';
+
+import { IRegistrationRequestPayload } from 'src/app/types/api/auth-api.interface';
 
 @Component({
   selector: 'app-view-registration',
@@ -10,8 +16,22 @@ import { ViewLoginModalService } from '../view-login/services/view-login-modal.s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewRegistrationComponent extends SimpleModalComponent<void, void> {
-  constructor(private viewLoginModalService: ViewLoginModalService) {
+  constructor(
+    private registrationDataService: RegistrationDataService,
+    private viewLoginModalService: ViewLoginModalService
+  ) {
     super();
+  }
+
+  public registrationStatus$: Observable<EStatus> = this.registrationDataService.registrationStatus$;
+
+  public registrationError$: Observable<any> = this.registrationDataService.registrationError$;
+
+  public submitHandler(formValue: IRegistrationRequestPayload): void {
+    this
+      .registrationDataService
+      .registration(formValue)
+      .subscribe(() => this.loginHandler());
   }
 
   public loginHandler(): void {
