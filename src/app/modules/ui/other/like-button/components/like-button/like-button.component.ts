@@ -20,6 +20,10 @@ export class LikeButtonComponent {
     return this.isLiked ? 'favorite' : 'favorite_border';
   }
 
+  public get showCounter(): boolean {
+    return this.likesCount > 0;
+  }
+
   public clickHandler(): void {
     this.clickEmitter.emit();
   }

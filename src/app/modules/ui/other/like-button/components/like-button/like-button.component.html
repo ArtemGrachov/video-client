@@ -7,5 +7,10 @@
   <span class="material-icons icon">
     {{ iconName }}
   </span>
-  <div class="likes-counter"></div>
+  <div
+    *ngIf="showCounter"
+    class="likes-counter"
+  >
+    {{ likesCount }}
+  </div>
 </button>
