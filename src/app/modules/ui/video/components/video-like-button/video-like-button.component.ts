@@ -6,6 +6,8 @@ import { EStatus } from 'src/app/constants/status';
 
 import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
 import { VideoLikeDataService } from 'src/app/modules/data/video-data/services/video-like-data.service';
+import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
 
 import { IVideo } from 'src/app/types/models/video.interface';
 
@@ -23,6 +25,8 @@ export class VideoLikeButtonComponent {
     @Optional() private videoDataService: VideoDataService,
     @Optional() private videoLikeDataService: VideoLikeDataService,
     private toastrService: ToastrService,
+    private authService: AuthService,
+    private viewLoginModalService: ViewLoginModalService,
   ) {}
 
   public likeStatus$: Observable<EStatus> = this.videoLikeDataService?.likeStatus$ ?? of(EStatus.INIT);
@@ -45,6 +49,11 @@ export class VideoLikeButtonComponent {
 
   public like(): void {
     if (!this.isActive) {
+      return;
+    }
+
+    if (!this.authService.isAuthorized) {
+      this.viewLoginModalService.showModal();
       return;
     }
 

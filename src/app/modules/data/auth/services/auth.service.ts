@@ -9,6 +9,12 @@ import { IAuthResponse } from 'src/app/types/api/auth-api.interface';
 export class AuthService {
   constructor(private cookieService: SsrCookieService) {}
 
+  private isAuthorizedFlag: boolean = Boolean(this.cookieService.get(AUTH_COOKIE_TOKEN_KEY));
+
+  public get isAuthorized(): boolean {
+    return this.isAuthorizedFlag;
+  }
+
   public getAuthToken(): string | null {
     return this.cookieService.get(AUTH_COOKIE_TOKEN_KEY) ?? null;
   }
@@ -16,5 +22,6 @@ export class AuthService {
   public authorize(authData: IAuthResponse): void {
     this.cookieService.set(AUTH_COOKIE_TOKEN_KEY, authData.token, 30, '/');
     this.cookieService.set(AUTH_COOKIE_REFRESH_TOKEN_KEY, authData.refreshToken, 30, '/');
+    this.isAuthorizedFlag = true;
   }
 }
