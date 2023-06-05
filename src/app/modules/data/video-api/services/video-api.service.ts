@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { IGetCommentsQuery, IGetCommentsResponse } from 'src/app/types/api/comments-api.interface';
 import { IGetVideosQuery, IGetVideosResponse, ILikeVideoResponse } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
@@ -35,5 +36,15 @@ export class VideoApiService {
 
   public removeLikeVideo(videoId: number): Observable<ILikeVideoResponse> {
     return this.http.delete<ILikeVideoResponse>(`${environment.API_URL}/video/${videoId}/like`);
+  }
+
+  public getVideoComments(videoId: number, query?: IGetCommentsQuery): Observable<IGetCommentsResponse> {
+    let params = new HttpParams();
+
+    if (query?.page) {
+      params = params.set('page', query.page);
+    }
+
+    return this.http.get<IGetCommentsResponse>(`${environment.API_URL}/video/${videoId}/comments`, { params });
   }
 }
