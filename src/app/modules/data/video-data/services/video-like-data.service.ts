@@ -19,13 +19,15 @@ export class VideoLikeDataService {
 
   constructor(private videoApiService: VideoApiService) { }
 
-  public likeVideo(videoId: number): Observable<ILikeVideoResponse> {
+  public likeVideo(videoId: number, like: boolean = true): Observable<ILikeVideoResponse> {
     this.likeStatusSbj$.next(EStatus.PROCESSING);
     this.likeErrorSbj$.next(null);
 
-    return this
-      .videoApiService
-      .likeVideo(videoId)
+    const action = like
+      ? this.videoApiService.likeVideo(videoId)
+      : this.videoApiService.removeLikeVideo(videoId);
+
+    return action
       .pipe(
         tap(
           {

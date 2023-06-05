@@ -32,4 +32,8 @@ export class VideoApiService {
   public likeVideo(videoId: number): Observable<ILikeVideoResponse> {
     return this.http.post<ILikeVideoResponse>(`${environment.API_URL}/video/${videoId}/like`, null);
   }
+
+  public removeLikeVideo(videoId: number): Observable<ILikeVideoResponse> {
+    return this.http.delete<ILikeVideoResponse>(`${environment.API_URL}/video/${videoId}/like`);
+  }
 }

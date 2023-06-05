@@ -29,7 +29,7 @@ export class VideoDataService {
     this.dataSbj$.next(res);
   }
 
-  public likeVideo(): Observable<ILikeVideoResponse | null> {
+  public likeVideo(like: boolean = true): Observable<ILikeVideoResponse | null> {
     const video = this.dataSbj$.value;
 
     if (!video) {
@@ -38,13 +38,13 @@ export class VideoDataService {
 
     return this
       .videoLikeDataService
-      .likeVideo(video.id)
+      .likeVideo(video.id, like)
       .pipe(
         tap(res => {
           const newVideo = {
             ...video,
             likesCount: res.count,
-            isLiked: true,
+            isLiked: like,
           } as IVideo;
 
           this.dataSbj$.next(newVideo);

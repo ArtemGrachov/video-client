@@ -62,7 +62,7 @@ export class VideoLikeButtonComponent {
       .pipe(
         take(1),
         filter(processing => !processing),
-        switchMap(() => this.videoDataService.likeVideo()),
+        switchMap(() => this.videoDataService.likeVideo(!this.isLiked)),
       )
       .subscribe({
         error: () => {
