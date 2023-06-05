@@ -25,6 +25,10 @@ body {
   margin: 0 auto;
 }
 
+.container-narrow {
+  max-width: $container-width-narrow + ($container-padding * 2);
+}
+
 .page {
   padding-top: 48px;
   padding-bottom: 128px;

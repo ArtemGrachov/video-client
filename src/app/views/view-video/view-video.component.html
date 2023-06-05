@@ -1,5 +1,5 @@
-<div *ngIf="showVideo$ | async" class="page">
-  <div class="container">
+<div class="page">
+  <div *ngIf="showVideo$ | async" class="container mb-xl">
     <div class="player mb-xl">
       <app-player
         [video]="(video$ | async)!"
@@ -8,5 +8,11 @@
     <app-video-details
       [video]="(video$ | async)!"
     ></app-video-details>
+  </div>
+  <div *ngIf="showComments$ | async" class="container container-narrow">
+    <app-comment-list
+      [comments]="(comments$ | async)!"
+      [pagination]="(commentsPagination$ | async)!"
+    ></app-comment-list>
   </div>
 </div>

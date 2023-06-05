@@ -1,0 +1,43 @@
+@import '/src/styles/variables.scss';
+
+.comment {
+  border-radius: 16px;
+  background: map-get($colors, 'background-secondary');
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+
+  &-avatar {
+    margin-right: 10px;
+    flex: 0 0 auto;
+  }
+
+  &-name {
+    font-size: 12px;
+    color: map-get($colors, 'text-secondary');
+  }
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.date {
+  font-size: 12px;
+  color: map-get($colors, 'text-secondary');
+}
+
+.content {
+  padding: 0 16px 16px;
+}

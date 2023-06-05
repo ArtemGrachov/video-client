@@ -1,0 +1,18 @@
+<div class="comment">
+  <div class="header">
+    <div class="author">
+      <div class="author-avatar">
+        <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
+      </div>
+      <div class="author-name">
+        {{ authorName }}
+      </div>
+    </div>
+    <div class="date">
+      {{ createdAtFormatted }}
+    </div>
+  </div>
+  <div class="content">
+    {{ content }}
+  </div>
+</div>
