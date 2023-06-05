@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VideoDataModule } from 'src/app/modules/data/video-data/video-data.module';
 import { PlayerModule } from 'src/app/modules/ui/player/player.module';
 import { VideoModule } from 'src/app/modules/ui/video/video.module';
+import { VideoListDataModule } from 'src/app/modules/data/video-list-data/video-list-data.module';
 
 import { ViewVideoRoutingModule } from './view-video-routing.module';
 import { ViewVideoComponent } from './view-video.component';
@@ -18,6 +19,7 @@ import { ViewVideoComponent } from './view-video.component';
     VideoDataModule,
     PlayerModule,
     VideoModule,
+    VideoListDataModule,
   ]
 })
 export class ViewVideoModule {}

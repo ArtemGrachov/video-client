@@ -23,6 +23,10 @@
   &:active {
     background: rgba(white, 0.5);
   }
+
+  &.liked {
+    color: map-get($colors, 'red');
+  }
 }
 
 .icon {

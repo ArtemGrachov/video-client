@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   public authorize(authData: IAuthResponse): void {
-    this.cookieService.set(AUTH_COOKIE_TOKEN_KEY, authData.token);
-    this.cookieService.set(AUTH_COOKIE_REFRESH_TOKEN_KEY, authData.refreshToken);
+    this.cookieService.set(AUTH_COOKIE_TOKEN_KEY, authData.token, 30, '/');
+    this.cookieService.set(AUTH_COOKIE_REFRESH_TOKEN_KEY, authData.refreshToken, 30, '/');
   }
 }

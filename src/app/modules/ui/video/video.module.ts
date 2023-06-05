@@ -9,17 +9,20 @@ import { LikeButtonModule } from '../other/like-button/like-button.module';
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { VideoGridComponent } from './components/video-grid/video-grid.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
+import { VideoLikeButtonComponent } from './components/video-like-button/video-like-button.component';
 
 @NgModule({
   declarations: [
     VideoCardComponent,
     VideoGridComponent,
     VideoDetailsComponent,
+    VideoLikeButtonComponent,
   ],
   exports: [
     VideoCardComponent,
     VideoGridComponent,
     VideoDetailsComponent,
+    VideoLikeButtonComponent,
   ],
   imports: [
     CommonModule,

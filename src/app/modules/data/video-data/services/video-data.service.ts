@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
 import { VideoApiService } from '../../video-api/services/video-api.service';
+import { VideoLikeDataService } from './video-like-data.service';
 
-import { IGetVideoResponse } from 'src/app/types/api/video-api.interface';
+import { IGetVideoResponse, ILikeVideoResponse } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
 @Injectable()
@@ -12,7 +13,10 @@ export class VideoDataService {
 
   public data$: Observable<IGetVideoResponse | null> = this.dataSbj$.asObservable();
 
-  constructor(private videoApiService: VideoApiService) { }
+  constructor(
+    private videoApiService: VideoApiService,
+    private videoLikeDataService: VideoLikeDataService,
+  ) { }
 
   public getVideo(videoId: number): Observable<IVideo> {
     return this
@@ -23,5 +27,28 @@ export class VideoDataService {
 
   private handleData(res: IGetVideoResponse): void {
     this.dataSbj$.next(res);
+  }
+
+  public likeVideo(): Observable<ILikeVideoResponse | null> {
+    const video = this.dataSbj$.value;
+
+    if (!video) {
+      return of(null);
+    }
+
+    return this
+      .videoLikeDataService
+      .likeVideo(video.id)
+      .pipe(
+        tap(res => {
+          const newVideo = {
+            ...video,
+            likesCount: res.count,
+            isLiked: true,
+          } as IVideo;
+
+          this.dataSbj$.next(newVideo);
+        })
+      );
   }
 }

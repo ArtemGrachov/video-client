@@ -15,3 +15,7 @@ export interface IGetVideosQuery {
 }
 
 export interface IGetVideoResponse extends IVideo {}
+
+export interface ILikeVideoResponse {
+  count: number;
+}

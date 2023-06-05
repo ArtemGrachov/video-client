@@ -1,4 +1,9 @@
-<button type="button" class="like">
+<button
+  type="button"
+  class="like"
+  [class.liked]="isLiked"
+  (click)="clickHandler()"
+>
   <span class="material-icons icon">
     {{ iconName }}
   </span>

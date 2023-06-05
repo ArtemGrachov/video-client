@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
+import { IGetVideosQuery, IGetVideosResponse, ILikeVideoResponse } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
 import { environment } from 'src/environments/environment';
@@ -27,5 +27,9 @@ export class VideoApiService {
 
   public getVideo(videoId: number): Observable<IVideo> {
     return this.http.get<IVideo>(`${environment.API_URL}/video/${videoId}`);
+  }
+
+  public likeVideo(videoId: number): Observable<ILikeVideoResponse> {
+    return this.http.post<ILikeVideoResponse>(`${environment.API_URL}/video/${videoId}/like`, null);
   }
 }
