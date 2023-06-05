@@ -25,7 +25,7 @@ export class CommentsListDataService {
 
   constructor(private videoApiService: VideoApiService) { }
 
-  public getVideos(videoId: number, query?: IGetCommentsQuery): Observable<IGetCommentsResponse> {
+  public getVideoComments(videoId: number, query?: IGetCommentsQuery): Observable<IGetCommentsResponse> {
     return this
       .videoApiService
       .getVideoComments(videoId, query)
