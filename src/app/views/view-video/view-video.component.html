@@ -13,6 +13,8 @@
     <app-comment-list
       [comments]="(comments$ | async)!"
       [pagination]="(commentsPagination$ | async)!"
+      (getPrevPage)="getCommentsPrevPageHandler()"
+      (getNextPage)="getCommentsNextPageHandler()"
     ></app-comment-list>
   </div>
 </div>

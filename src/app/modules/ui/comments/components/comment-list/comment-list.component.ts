@@ -16,11 +16,11 @@ export class CommentListComponent {
   @Input()
   public pagination?: IPagination | null
 
-  @Output()
-  private emitGetPrevPage: EventEmitter<void> = new EventEmitter();
+  @Output('getPrevPage')
+  private getPrevPageEmitter: EventEmitter<void> = new EventEmitter();
 
-  @Output()
-  private emitGetNextPage: EventEmitter<void> = new EventEmitter();
+  @Output('getNextPage')
+  private getNextPageEmitter: EventEmitter<void> = new EventEmitter();
 
   public get showPreviousPage(): boolean {
     if (this.pagination?.lowerPage == null) {
@@ -39,10 +39,10 @@ export class CommentListComponent {
   }
 
   public prevPageHandler(): void {
-    this.emitGetPrevPage.emit();
+    this.getPrevPageEmitter.emit();
   }
 
   public nextPageHandler(): void {
-    this.emitGetNextPage.emit();
+    this.getNextPageEmitter.emit();
   }
 }
