@@ -1,0 +1,40 @@
+@import '../../../../../../styles/variables.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+
+  &-avatar {
+    margin-right: 10px;
+  }
+}
+
+.name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: map-get($colors, 'text-secondary');
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+}
+
+.description {
+  background: map-get($colors, 'background-secondary');
+  padding: 24px;
+  border-radius: 50px;
+}

@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { ThumbnailModule } from '../other/thumbnail/thumbnail.module';
 import { AvatarModule } from '../other/avatar/avatar.module';
 
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { VideoGridComponent } from './components/video-grid/video-grid.component';
-import { RouterModule } from '@angular/router';
+import { VideoDetailsComponent } from './components/video-details/video-details.component';
 
 @NgModule({
   declarations: [
     VideoCardComponent,
-    VideoGridComponent
+    VideoGridComponent,
+    VideoDetailsComponent,
   ],
   exports: [
     VideoCardComponent,
-    VideoGridComponent
+    VideoGridComponent,
+    VideoDetailsComponent,
   ],
   imports: [
     CommonModule,

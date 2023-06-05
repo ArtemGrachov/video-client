@@ -1,6 +1,10 @@
 $step: 4px;
 
 .mb {
+  &-none {
+    margin-bottom: 0;
+  }
+
   &-xs {
     margin-bottom: $step;
   }

@@ -1,8 +1,12 @@
-<div class="page">
+<div *ngIf="showVideo$ | async" class="page">
   <div class="container">
-    <app-player
-      *ngIf="showVideo$ | async"
+    <div class="player mb-xl">
+      <app-player
+        [video]="(video$ | async)!"
+      ></app-player>
+    </div>
+    <app-video-details
       [video]="(video$ | async)!"
-    ></app-player>
+    ></app-video-details>
   </div>
 </div>
