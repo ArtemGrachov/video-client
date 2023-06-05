@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
-import { Observable, map, of, startWith } from 'rxjs';
+import { Observable, filter, map, of, startWith, switchMap, take } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { EStatus } from 'src/app/constants/status';
@@ -28,7 +28,6 @@ export class VideoLikeButtonComponent {
   public likeStatus$: Observable<EStatus> = this.videoLikeDataService?.likeStatus$ ?? of(EStatus.INIT);
 
   public likeProcessing$: Observable<boolean> = this.likeStatus$.pipe(
-    startWith(false),
     map(status => status === EStatus.PROCESSING)
   );
 
@@ -50,8 +49,12 @@ export class VideoLikeButtonComponent {
     }
 
     this
-      .videoDataService
-      .likeVideo()
+      .likeProcessing$
+      .pipe(
+        take(1),
+        filter(processing => !processing),
+        switchMap(() => this.videoDataService.likeVideo()),
+      )
       .subscribe({
         error: () => {
           this.toastrService.error('Liking video error');

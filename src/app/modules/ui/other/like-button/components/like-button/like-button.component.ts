@@ -13,9 +13,6 @@ export class LikeButtonComponent {
   @Input('likesCount')
   public likesCount: number = 0;
 
-  @Input('processing')
-  public processing: boolean = false;
-
   @Output('click')
   private clickEmitter: EventEmitter<void> = new EventEmitter();
 
