@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { ThumbnailModule } from '../other/thumbnail/thumbnail.module';
 import { AvatarModule } from '../other/avatar/avatar.module';
+import { LikeButtonModule } from '../other/like-button/like-button.module';
 
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { VideoGridComponent } from './components/video-grid/video-grid.component';
@@ -24,7 +25,8 @@ import { VideoDetailsComponent } from './components/video-details/video-details.
     CommonModule,
     ThumbnailModule,
     AvatarModule,
-    RouterModule
+    RouterModule,
+    LikeButtonModule,
   ]
 })
 export class VideoModule { }

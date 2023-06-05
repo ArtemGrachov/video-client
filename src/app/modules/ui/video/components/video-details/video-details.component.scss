@@ -3,7 +3,6 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .author {
@@ -15,21 +14,15 @@
   }
 }
 
-.name {
-  flex: 1 1 auto;
+.title {
   min-width: 0;
   font-weight: 500;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: 12px;
-  margin-bottom: 6px;
-  color: map-get($colors, 'text-secondary');
+  margin-right: auto;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   flex: 0 0 auto;
 }
 
@@ -37,4 +30,9 @@
   background: map-get($colors, 'background-secondary');
   padding: 24px;
   border-radius: 50px;
+}
+
+.like {
+  flex: 0 0 auto;
+  margin-right: 16px;
 }

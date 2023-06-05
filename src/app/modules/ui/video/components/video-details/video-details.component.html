@@ -1,15 +1,21 @@
-<div class="header mb-xl">
+<div class="header mb-md">
   <h1 class="title mb-none">
     {{ videoName }}
   </h1>
-  <div class="author">
-    <div class="author-avatar">
-      <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
-    </div>
-    <div class="author-text">
-      <div class="author">
-        {{ authorName }}
-      </div>
+  <div class="like">
+    <app-like-button></app-like-button>
+  </div>
+  <button class="button" type="button">
+    Subscribe
+  </button>
+</div>
+<div class="author mb-xl">
+  <div class="author-avatar">
+    <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
+  </div>
+  <div class="author-text">
+    <div class="author">
+      {{ authorName }}
     </div>
   </div>
 </div>
