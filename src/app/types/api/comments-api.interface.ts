@@ -11,3 +11,9 @@ export interface IGetCommentsResponse {
   users: IUser[];
   pagination: IPagination;
 }
+
+export interface ICreateCommentPayload {
+  content: string;
+}
+
+export interface ICreateCommentResponse extends IComment {}
