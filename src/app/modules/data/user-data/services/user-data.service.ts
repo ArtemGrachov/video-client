@@ -11,6 +11,10 @@ export class UserDataService {
 
   public data$: Observable<IGetUserResponse | null> = this.dataSbj$.asObservable();
 
+  public get dataSnapshot(): IGetUserResponse | null {
+    return this.dataSbj$.value;
+  }
+
   constructor(
     private userApiService: UserApiService,
   ) { }

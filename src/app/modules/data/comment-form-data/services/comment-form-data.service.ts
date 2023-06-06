@@ -5,6 +5,7 @@ import { EStatus } from 'src/app/constants/status';
 
 import { VideoApiService } from '../../video-api/services/video-api.service';
 import { CommentsListDataService } from '../../comments-list-data/services/comments-list-data.service';
+import { UserDataService } from '../../user-data/services/user-data.service';
 
 import { ICreateCommentPayload, ICreateCommentResponse } from 'src/app/types/api/comments-api.interface';
 
@@ -21,6 +22,7 @@ export class CommentFormDataService {
   constructor(
     private videoApiService: VideoApiService,
     private commentListDataService: CommentsListDataService,
+    private userDataService: UserDataService,
   ) { }
 
   public createComment(videoId: number, payload: ICreateCommentPayload): Observable<ICreateCommentResponse> {
@@ -34,7 +36,10 @@ export class CommentFormDataService {
         tap(
           {
             next: (res) => {
-              this.commentListDataService.unshiftItem(res);
+              this.commentListDataService.unshiftItem({
+                ...res,
+                author: this.userDataService.dataSnapshot!
+              });
               this.submitStatusSbj$.next(EStatus.SUCCESS);
               this.submitErrorSbj$.next(null);
             },
