@@ -28,7 +28,7 @@ export class ViewIndexComponent implements OnDestroy {
     .subscribe(query => {
       const formValue = this.routeHandlerSerivce.routeQueryToFormValue(query);
       this.videoListFormService.setValue(formValue);
-      this.videoListFormService.update();
+      this.videoListFormService.update().subscribe();
     });
 
   public items$ = this.videoListDataService.items$;
