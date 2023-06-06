@@ -7,15 +7,12 @@ import { SsrCookieService } from 'ngx-cookie-service-ssr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { CoreModule } from './modules/main/core/core.module';
 import { LayoutModule } from './modules/ui/layout/layout.module';
-import { AuthModule } from './modules/data/auth/auth.module';
-import { ViewRegistrationModule } from './views/view-registration/view-registration.module';
-import { ViewLoginModule } from './views/view-login/view-login.module';
-import { ViewResetPasswordRequestModule } from './views/view-reset-password-request/view-reset-password-request.module';
+import { ModalsModule } from './modules/main/modals/modals.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 
 @NgModule({
   declarations: [
@@ -28,12 +25,10 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
-    LayoutModule,
-    AuthModule,
     SimpleModalModule.forRoot({ container: 'modal-container' }),
-    ViewRegistrationModule,
-    ViewLoginModule,
-    ViewResetPasswordRequestModule,
+    LayoutModule,
+    CoreModule,
+    ModalsModule,
   ],
   providers: [
     provideClientHydration(),
