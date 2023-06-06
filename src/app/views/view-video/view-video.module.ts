@@ -9,13 +9,14 @@ import { CommentsListDataModule } from 'src/app/modules/data/comments-list-data/
 import { CommentsModule } from 'src/app/modules/ui/comments/comments.module';
 import { CommentsListFormModule } from 'src/app/modules/data/comments-list-form/comments-list-form.module';
 import { FormCommentModule } from 'src/app/modules/ui/forms/form-comment/form-comment.module';
+import { CommentFormDataModule } from 'src/app/modules/data/comment-form-data/comment-form-data.module';
 
 import { ViewVideoRoutingModule } from './view-video-routing.module';
 import { ViewVideoComponent } from './view-video.component';
 
 @NgModule({
   declarations: [
-    ViewVideoComponent
+    ViewVideoComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +29,7 @@ import { ViewVideoComponent } from './view-video.component';
     CommentsListFormModule,
     CommentsModule,
     FormCommentModule,
+    CommentFormDataModule,
   ]
 })
 export class ViewVideoModule {}

@@ -1,25 +1,32 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, map } from 'rxjs';
 
+import { EStatus } from 'src/app/constants/status';
+
+import { CommentFormDataService } from 'src/app/modules/data/comment-form-data/services/comment-form-data.service';
 import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
 import { CommentsListFormService } from 'src/app/modules/data/comments-list-form/services/comments-list-form.service';
 import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
 
+import { ICreateCommentPayload } from 'src/app/types/api/comments-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
 @Component({
   selector: 'app-view-video',
   templateUrl: './view-video.component.html',
   styleUrls: ['./view-video.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewVideoComponent {
   constructor(
     private videoDataService: VideoDataService,
     private commentsListDataService: CommentsListDataService,
     private commentsListFormService: CommentsListFormService,
+    private commentFormDataService: CommentFormDataService,
     private route: ActivatedRoute,
+    private toastr: ToastrService,
   ) {}
 
   public commentsData$ = this.commentsListDataService.data$;
@@ -33,6 +40,10 @@ export class ViewVideoComponent {
   public showVideo$: Observable<boolean> = this.video$.pipe(map(v => Boolean(v)));
 
   public showComments$: Observable<boolean> = this.commentsData$.pipe(map(v => Boolean(v)));
+
+  public commentFormSubmitStatus$: Observable<EStatus> = this.commentFormDataService.submitStatus$;
+
+  public commentFormSubmitError$: Observable<any> = this.commentFormDataService.submitError$;
 
   private get videoId(): number {
     return +this.route.snapshot.params['id'];
@@ -58,5 +69,14 @@ export class ViewVideoComponent {
 
   public getCommentsNextPageHandler(): void {
     this.changeCommentsPage(1);
+  }
+
+  public createCommentSubmitHandler(formValue: ICreateCommentPayload): void {
+    this
+      .commentFormDataService
+      .createComment(this.videoId, formValue)
+      .subscribe({
+        error: () => this.toastr.error('Creating comment error'),
+      });
   }
 }

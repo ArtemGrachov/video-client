@@ -32,6 +32,11 @@ export class CommentsListDataService {
       .pipe(tap(res => this.handleData(res, query)))
   }
 
+  public unshiftItem(item: IComment): void {
+    const items = this.itemsSbj$.value;
+    this.itemsSbj$.next([item, ...items]);
+  }
+
   private handleData(res: IGetCommentsResponse, query?: IGetCommentsQuery): void {
     const userMap: IDictionary<IUser> = res.users.reduce((acc, curr) => {
       acc[curr.id] = curr;

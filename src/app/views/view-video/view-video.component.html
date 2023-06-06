@@ -11,7 +11,11 @@
   </div>
   <div *ngIf="showComments$ | async" class="container container-narrow">
     <div class="mb-xl">
-      <app-form-comment></app-form-comment>
+      <app-form-comment
+        [submitStatus]="commentFormSubmitStatus$ | async"
+        [submitError]="commentFormSubmitError$ | async"
+        (formSubmit)="createCommentSubmitHandler($event)"
+      ></app-form-comment>
     </div>
     <app-comment-list
       [comments]="(comments$ | async)!"
