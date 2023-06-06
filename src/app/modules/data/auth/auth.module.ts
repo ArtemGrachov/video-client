@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthApiModule } from '../auth-api/auth-api.module';
+import { UserDataModule } from '../user-data/user-data.module';
 
 import { AuthService } from './services/auth.service';
 import { AuthInterceptorInterceptor } from './services/auth-interceptor.interceptor';
@@ -11,7 +12,8 @@ import { AuthInterceptorInterceptor } from './services/auth-interceptor.intercep
   declarations: [],
   imports: [
     CommonModule,
-    AuthApiModule
+    AuthApiModule,
+    UserDataModule,
   ],
   providers: [
     AuthService,
