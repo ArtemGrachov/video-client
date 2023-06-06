@@ -10,6 +10,9 @@
     ></app-video-details>
   </div>
   <div *ngIf="showComments$ | async" class="container container-narrow">
+    <div class="mb-xl">
+      <app-form-comment></app-form-comment>
+    </div>
     <app-comment-list
       [comments]="(comments$ | async)!"
       [pagination]="(commentsPagination$ | async)!"

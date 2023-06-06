@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="submitHandler()">
+  <app-form-control
+    class="mb-md"
+    [selector]="'content'"
+    [control]="form.get('content')"
+    [serverError]="submitError"
+  >
+    <textarea
+      name="content"
+      class="textarea-default"
+      placeholder="Comment"
+      formControlName="content"
+    ></textarea>
+  </app-form-control>
+  <app-form-server-error
+    class="mb-md"
+    [error]="submitError"
+  ></app-form-server-error>
+  <button type="submit" class="button">
+    Submit
+    <div *ngIf="submitProcessing" class="button-loader">
+      <span class="material-icons button-loader-icon">
+        hourglass_bottom
+      </span>
+    </div>
+  </button>
+</form>

@@ -8,6 +8,7 @@ import { VideoListDataModule } from 'src/app/modules/data/video-list-data/video-
 import { CommentsListDataModule } from 'src/app/modules/data/comments-list-data/comments-list-data.module';
 import { CommentsModule } from 'src/app/modules/ui/comments/comments.module';
 import { CommentsListFormModule } from 'src/app/modules/data/comments-list-form/comments-list-form.module';
+import { FormCommentModule } from 'src/app/modules/ui/forms/form-comment/form-comment.module';
 
 import { ViewVideoRoutingModule } from './view-video-routing.module';
 import { ViewVideoComponent } from './view-video.component';
@@ -26,6 +27,7 @@ import { ViewVideoComponent } from './view-video.component';
     CommentsListDataModule,
     CommentsListFormModule,
     CommentsModule,
+    FormCommentModule,
   ]
 })
 export class ViewVideoModule {}
