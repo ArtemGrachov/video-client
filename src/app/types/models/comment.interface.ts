@@ -13,4 +13,6 @@ export interface IComment {
   likeError?: any;
   editStatus?: EStatus;
   editError?: any;
+  deleteStatus?: EStatus;
+  deleteError?: any;
 }

@@ -1,8 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
 import * as dayjs from 'dayjs';
+import { of, switchMap, tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
 import { ViewCommentEditModalService } from 'src/app/views/views-comment-edit/services/view-comment-edit-modal.service';
+import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
 import { ModalConfirmationService } from '../../../modals/modal-confirmation/services/modal-confirmation.service';
 
 import { IComment } from 'src/app/types/models/comment.interface';
@@ -22,6 +25,8 @@ export class CommentItemComponent {
     private authService: AuthService,
     private viewCommentEditModalService: ViewCommentEditModalService,
     private modalConfirmationService: ModalConfirmationService,
+    private commentsListDataService: CommentsListDataService,
+    private toastrService: ToastrService,
   ) {}
 
   public get content(): string {
@@ -72,13 +77,24 @@ export class CommentItemComponent {
     this.modalConfirmationService.showModal({
       title: 'Confirm deleting',
       question: 'Are you sure you want to delete this comment?'
-    }).subscribe(result => {
-      if (result) {
-        console.log('@todo delete comment');
-        return;
-      }
-
-      console.log('@todo leave comment');
     })
+    .pipe(
+      switchMap(result => {
+        if (!result) {
+          return of(null);
+        }
+
+        return this
+          .commentsListDataService
+          .deleteComment(this.comment.id)
+          .pipe(
+            tap({
+              next: () => this.toastrService.success('Comment deleted successfully'),
+              error: () => this.toastrService.error('Comment deleting error'),
+            })
+          )
+      })
+    )
+    .subscribe();
   }
 }

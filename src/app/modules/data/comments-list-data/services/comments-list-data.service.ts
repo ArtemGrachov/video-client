@@ -13,10 +13,11 @@ import {
   IGetCommentsResponse,
   ILikeCommentResponse,
 } from 'src/app/types/api/comments-api.interface';
+import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 import { IComment } from 'src/app/types/models/comment.interface';
+import { IUser } from 'src/app/types/models/user.interface';
 import { IPagination } from 'src/app/types/other/pagination.interface';
 import { IDictionary } from 'src/app/types/other/dictionary.interface';
-import { IUser } from 'src/app/types/models/user.interface';
 
 @Injectable()
 export class CommentsListDataService {
@@ -78,6 +79,14 @@ export class CommentsListDataService {
       ...changes,
       id,
     });
+  }
+
+  public removeItem(id: number): void {
+    const newItems = this
+      .itemsSnapshot
+      .filter(item => item.id !== id);
+
+    this.itemsSbj$.next(newItems);
   }
 
   private handleData(res: IGetCommentsResponse, query?: IGetCommentsQuery): void {
@@ -187,6 +196,38 @@ export class CommentsListDataService {
                 {
                   editStatus: EStatus.ERROR,
                   editError: error,
+                },
+              );
+            }
+          }
+        )
+      );
+  }
+
+  public deleteComment(commentId: number): Observable<IApiGenericResponse> {
+    this.updateItem(
+      commentId,
+      {
+        deleteStatus: EStatus.PROCESSING,
+        deleteError: null,
+      },
+    );
+
+    return this
+      .commentsApiService
+      .deleteComment(commentId)
+      .pipe(
+        tap(
+          {
+            next: () => {
+              this.removeItem(commentId);
+            },
+            error: (error: any) => {
+              this.updateItem(
+                commentId,
+                {
+                  deleteStatus: EStatus.ERROR,
+                  deleteError: error,
                 },
               );
             }
