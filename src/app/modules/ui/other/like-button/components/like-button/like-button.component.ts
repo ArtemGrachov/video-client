@@ -13,8 +13,8 @@ export class LikeButtonComponent {
   @Input('likesCount')
   public likesCount: number = 0;
 
-  @Output('click')
-  private clickEmitter: EventEmitter<void> = new EventEmitter();
+  @Output('like')
+  private likeEmitter: EventEmitter<void> = new EventEmitter();
 
   public get iconName(): string {
     return this.isLiked ? 'favorite' : 'favorite_border';
@@ -25,6 +25,6 @@ export class LikeButtonComponent {
   }
 
   public clickHandler(): void {
-    this.clickEmitter.emit();
+    this.likeEmitter.emit();
   }
 }

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { VideoApiModule } from '../video-api/video-api.module';
 
 import { VideoDataService } from './services/video-data.service';
-import { VideoLikeDataService } from './services/video-like-data.service';
 
 @NgModule({
   declarations: [],
@@ -14,7 +13,6 @@ import { VideoLikeDataService } from './services/video-like-data.service';
   ],
   providers: [
     VideoDataService,
-    VideoLikeDataService
   ]
 })
 export class VideoDataModule { }

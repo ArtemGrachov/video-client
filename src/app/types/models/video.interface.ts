@@ -1,3 +1,5 @@
+import { EStatus } from 'src/app/constants/status';
+
 import { IMedia } from './media.interface';
 import { IUser } from './user.interface';
 
@@ -11,4 +13,6 @@ export interface IVideo {
   isLiked: boolean;
   likesCount: number;
   media: IMedia;
+  likeStatus?: EStatus;
+  likeError?: any;
 }

@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
-import { Observable, filter, map, of, startWith, switchMap, take } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { EStatus } from 'src/app/constants/status';
 
 import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
-import { VideoLikeDataService } from 'src/app/modules/data/video-data/services/video-like-data.service';
 import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
 import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
 
@@ -23,17 +21,18 @@ export class VideoLikeButtonComponent {
 
   constructor(
     @Optional() private videoDataService: VideoDataService,
-    @Optional() private videoLikeDataService: VideoLikeDataService,
     private toastrService: ToastrService,
     private authService: AuthService,
     private viewLoginModalService: ViewLoginModalService,
   ) {}
 
-  public likeStatus$: Observable<EStatus> = this.videoLikeDataService?.likeStatus$ ?? of(EStatus.INIT);
+  public get likeStatus(): EStatus {
+    return this.video?.likeStatus ?? EStatus.INIT;
+  }
 
-  public likeProcessing$: Observable<boolean> = this.likeStatus$.pipe(
-    map(status => status === EStatus.PROCESSING)
-  );
+  public get likeProcessing(): boolean {
+    return this.likeStatus === EStatus.PROCESSING;
+  }
 
   private get isActive(): boolean {
     return this.video != null && this.videoDataService != null;
@@ -47,8 +46,8 @@ export class VideoLikeButtonComponent {
     return this.video?.isLiked ?? false;
   }
 
-  public like(): void {
-    if (!this.isActive) {
+  public likeHandler(): void {
+    if (!this.isActive || this.likeProcessing) {
       return;
     }
 
@@ -57,13 +56,7 @@ export class VideoLikeButtonComponent {
       return;
     }
 
-    this
-      .likeProcessing$
-      .pipe(
-        take(1),
-        filter(processing => !processing),
-        switchMap(() => this.videoDataService.likeVideo(!this.isLiked)),
-      )
+    this.videoDataService.likeVideo(!this.isLiked)
       .subscribe({
         error: () => {
           this.toastrService.error('Liking video error');
