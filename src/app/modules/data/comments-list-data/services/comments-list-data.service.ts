@@ -141,13 +141,14 @@ export class CommentsListDataService {
       .pipe(
         tap(
           {
-            next: (res) => {
+            next: ({ count }) => {
               this.updateItem(
                 commentId,
                 {
                   likeStatus: EStatus.SUCCESS,
                   likeError: null,
                   isLiked: like,
+                  likesCount: count,
                 },
               );
             },
