@@ -22,7 +22,9 @@
     ></app-comment-like-button>
     <button
       *ngIf="allowEdit"
+      type="button"
       class="button button-icon button-transparent"
+      (click)="editHandler()"
     >
       <span class="material-icons">
         edit
@@ -30,7 +32,9 @@
     </button>
     <button
       *ngIf="allowDelete"
+      type="button"
       class="button button-icon button-transparent"
+      (click)="deleteHandler()"
     >
       <span class="material-icons">
         delete_forever

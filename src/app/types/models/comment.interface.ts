@@ -11,4 +11,6 @@ export interface IComment {
   likesCount: number;
   likeStatus?: EStatus;
   likeError?: any;
+  editStatus?: EStatus;
+  editError?: any;
 }

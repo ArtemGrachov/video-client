@@ -1,0 +1,26 @@
+<app-modal-window>
+  <app-modal-header (close)="close()">
+    {{ title }}
+  </app-modal-header>
+  <app-modal-body>
+    <div class="question mb-lg">
+      {{ question}}
+    </div>
+    <div class="actions">
+      <button
+        type="button"
+        class="button button-primary action mr-lg"
+        (click)="confirmHandler()"
+      >
+        Confirm
+      </button>
+      <button
+        type="button"
+        class="button action"
+        (click)="rejectHandler()"
+      >
+        Reject
+      </button>
+    </div>
+  </app-modal-body>
+</app-modal-window>

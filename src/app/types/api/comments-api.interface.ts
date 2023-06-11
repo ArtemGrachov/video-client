@@ -16,7 +16,13 @@ export interface ICreateCommentPayload {
   content: string;
 }
 
+export interface IEditCommentPayload {
+  content: string;
+}
+
 export interface ICreateCommentResponse extends IComment {}
+
+export interface IEditCommentResponse extends IComment {}
 
 export interface ILikeCommentResponse {
   count: number;

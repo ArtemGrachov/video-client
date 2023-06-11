@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AvatarModule } from '../other/avatar/avatar.module';
 import { LikeButtonModule } from '../other/like-button/like-button.module';
+import { ModalConfirmationModule } from '../modals/modal-confirmation/modal-confirmation.module';
 
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
@@ -18,6 +19,7 @@ import { CommentLikeButtonComponent } from './components/comment-like-button/com
     CommonModule,
     AvatarModule,
     LikeButtonModule,
+    ModalConfirmationModule,
   ],
   exports: [
     CommentItemComponent,

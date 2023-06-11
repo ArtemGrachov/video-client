@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ILikeCommentResponse } from 'src/app/types/api/comments-api.interface';
+import {
+  IEditCommentPayload,
+  IEditCommentResponse,
+  ILikeCommentResponse,
+} from 'src/app/types/api/comments-api.interface';
 
 import { environment } from 'src/environments/environment';
 
@@ -16,5 +20,9 @@ export class CommentsApiService {
 
   public removeLikeComment(commentId: number): Observable<ILikeCommentResponse> {
     return this.http.delete<ILikeCommentResponse>(`${environment.API_URL}/comments/${commentId}/like`);
+  }
+
+  public updateComment(commentId: number, payload: IEditCommentPayload): Observable<IEditCommentResponse> {
+    return this.http.patch<IEditCommentResponse>(`${environment.API_URL}/comments/${commentId}`, payload);
   }
 }

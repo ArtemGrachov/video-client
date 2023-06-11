@@ -6,7 +6,13 @@ import { EStatus } from 'src/app/constants/status';
 import { VideoApiService } from '../../video-api/services/video-api.service';
 import { CommentsApiService } from '../../comments-api/services/comments-api.service';
 
-import { IGetCommentsQuery, IGetCommentsResponse, ILikeCommentResponse } from 'src/app/types/api/comments-api.interface';
+import {
+  IEditCommentPayload,
+  IEditCommentResponse,
+  IGetCommentsQuery,
+  IGetCommentsResponse,
+  ILikeCommentResponse,
+} from 'src/app/types/api/comments-api.interface';
 import { IComment } from 'src/app/types/models/comment.interface';
 import { IPagination } from 'src/app/types/other/pagination.interface';
 import { IDictionary } from 'src/app/types/other/dictionary.interface';
@@ -142,6 +148,45 @@ export class CommentsListDataService {
                 {
                   likeStatus: EStatus.ERROR,
                   likeError: error,
+                },
+              );
+            }
+          }
+        )
+      );
+  }
+
+  public updateComment(commentId: number, payload: IEditCommentPayload): Observable<IEditCommentResponse> {
+    this.updateItem(
+      commentId,
+      {
+        editStatus: EStatus.PROCESSING,
+        editError: null,
+      },
+    );
+
+    return this
+      .commentsApiService
+      .updateComment(commentId, payload)
+      .pipe(
+        tap(
+          {
+            next: (res) => {
+              this.updateItem(
+                commentId,
+                {
+                  ...res,
+                  editStatus: EStatus.SUCCESS,
+                  editError: null,
+                },
+              );
+            },
+            error: (error: any) => {
+              this.updateItem(
+                commentId,
+                {
+                  editStatus: EStatus.ERROR,
+                  editError: error,
                 },
               );
             }

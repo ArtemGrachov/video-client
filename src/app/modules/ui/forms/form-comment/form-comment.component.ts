@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EStatus } from 'src/app/constants/status';
 
 import { ICreateCommentPayload } from 'src/app/types/api/comments-api.interface';
+import { IComment } from 'src/app/types/models/comment.interface';
 
 @Component({
   selector: 'app-form-comment',
@@ -12,6 +13,9 @@ import { ICreateCommentPayload } from 'src/app/types/api/comments-api.interface'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormCommentComponent {
+  @Input()
+  public comment?: IComment | null;
+
   @Input('submitStatus')
   public submitStatus: EStatus | null = EStatus.INIT;
 
@@ -36,5 +40,18 @@ export class FormCommentComponent {
     }
 
     this.submitEmitter.next(this.form.value);
+  }
+
+  public ngOnInit(): void {
+    if (this.comment) {
+      this.fillForm(this.comment);
+    }
+  }
+
+  public fillForm(comment: IComment): void {
+    this.form.setValue(
+      { content: comment.content },
+      { emitEvent: false }
+    );
   }
 }

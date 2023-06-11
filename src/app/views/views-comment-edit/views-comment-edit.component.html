@@ -1,0 +1,15 @@
+<app-modal-window>
+  <app-modal-header (close)="close()">
+    Edit comment
+  </app-modal-header>
+  <app-modal-body>
+    <div class="mb-lg">
+      <app-form-comment
+        [comment]="comment"
+        [submitStatus]="submitStatus"
+        [submitError]="submitError"
+        (formSubmit)="submitHandler($event)"
+      ></app-form-comment>
+    </div>
+  </app-modal-body>
+</app-modal-window>

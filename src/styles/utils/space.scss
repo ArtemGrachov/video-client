@@ -26,6 +26,12 @@ $step: 4px;
   }
 }
 
+.mr {
+  &-lg {
+    margin-right: $step * 4;
+  }
+}
+
 .mx {
   &-auto {
     margin-left: auto;
