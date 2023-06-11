@@ -40,6 +40,7 @@
 
   &-transparent {
     background: rgba(black, 0);
+    color: map-get($colors, 'text-secondary');
 
     &:hover {
       background: rgba(black, .1);

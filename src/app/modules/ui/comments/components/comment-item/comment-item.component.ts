@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import * as dayjs from 'dayjs';
+import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
 
 import { IComment } from 'src/app/types/models/comment.interface';
 import { IUser } from 'src/app/types/models/user.interface';
@@ -13,6 +14,8 @@ import { IUser } from 'src/app/types/models/user.interface';
 export class CommentItemComponent {
   @Input()
   public comment!: IComment;
+
+  constructor(private userDataService: UserDataService) {}
 
   public get content(): string {
     return this.comment.content;
@@ -36,5 +39,21 @@ export class CommentItemComponent {
 
   public get authorAvatarSrc(): string | null {
     return this.author?.avatar?.url ?? null;
+  }
+
+  public get userIsAuthor(): boolean {
+    if (!this.userDataService.dataSnapshot) {
+      return false;
+    }
+
+    return this.author?.id === this.userDataService.dataSnapshot?.id;
+  }
+
+  public get allowEdit(): boolean {
+    return this.userIsAuthor;
+  }
+
+  public get allowDelete(): boolean {
+    return this.userIsAuthor;
   }
 }

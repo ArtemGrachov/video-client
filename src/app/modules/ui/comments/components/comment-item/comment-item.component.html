@@ -17,7 +17,24 @@
   </div>
   <div class="actions">
     <app-comment-like-button
+      class="mr-auto"
       [comment]="comment"
     ></app-comment-like-button>
+    <button
+      *ngIf="allowEdit"
+      class="button button-icon button-transparent"
+    >
+      <span class="material-icons">
+        edit
+      </span>
+    </button>
+    <button
+      *ngIf="allowDelete"
+      class="button button-icon button-transparent"
+    >
+      <span class="material-icons">
+        delete_forever
+      </span>
+    </button>
   </div>
 </div>
