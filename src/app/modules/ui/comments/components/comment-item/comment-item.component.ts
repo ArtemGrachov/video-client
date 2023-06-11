@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import * as dayjs from 'dayjs';
-import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
+
+import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
 
 import { IComment } from 'src/app/types/models/comment.interface';
 import { IUser } from 'src/app/types/models/user.interface';
@@ -15,7 +16,7 @@ export class CommentItemComponent {
   @Input()
   public comment!: IComment;
 
-  constructor(private userDataService: UserDataService) {}
+  constructor(private authService: AuthService) {}
 
   public get content(): string {
     return this.comment.content;
@@ -42,11 +43,11 @@ export class CommentItemComponent {
   }
 
   public get userIsAuthor(): boolean {
-    if (!this.userDataService.dataSnapshot) {
+    if (!this.authService.userDataSnapshot) {
       return false;
     }
 
-    return this.author?.id === this.userDataService.dataSnapshot?.id;
+    return this.author?.id === this.authService.userDataSnapshot?.id;
   }
 
   public get allowEdit(): boolean {
