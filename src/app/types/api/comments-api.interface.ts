@@ -17,3 +17,7 @@ export interface ICreateCommentPayload {
 }
 
 export interface ICreateCommentResponse extends IComment {}
+
+export interface ILikeCommentResponse {
+  count: number;
+}

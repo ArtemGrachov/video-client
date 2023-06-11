@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
-import { VideoApiService } from '../../video-api/services/video-api.service';
+import { EStatus } from 'src/app/constants/status';
 
-import { IGetCommentsQuery, IGetCommentsResponse } from 'src/app/types/api/comments-api.interface';
+import { VideoApiService } from '../../video-api/services/video-api.service';
+import { CommentsApiService } from '../../comments-api/services/comments-api.service';
+
+import { IGetCommentsQuery, IGetCommentsResponse, ILikeCommentResponse } from 'src/app/types/api/comments-api.interface';
 import { IComment } from 'src/app/types/models/comment.interface';
 import { IPagination } from 'src/app/types/other/pagination.interface';
 import { IDictionary } from 'src/app/types/other/dictionary.interface';
@@ -23,7 +26,14 @@ export class CommentsListDataService {
 
   public pagination$: Observable<IPagination | null> = this.paginationSbj$.asObservable();
 
-  constructor(private videoApiService: VideoApiService) { }
+  public get itemsSnapshot(): IComment[] {
+    return this.itemsSbj$.value;
+  }
+
+  constructor(
+    private videoApiService: VideoApiService,
+    private commentsApiService: CommentsApiService,
+  ) { }
 
   public getVideoComments(videoId: number, query?: IGetCommentsQuery): Observable<IGetCommentsResponse> {
     return this
@@ -33,8 +43,35 @@ export class CommentsListDataService {
   }
 
   public unshiftItem(item: IComment): void {
-    const items = this.itemsSbj$.value;
-    this.itemsSbj$.next([item, ...items]);
+    this.itemsSbj$.next([item, ...this.itemsSnapshot]);
+  }
+
+  public replaceItem(newItem: IComment): void {
+    const newItems = this
+      .itemsSnapshot
+      .map((item) => {
+        if (item.id !== newItem.id) {
+          return item;
+        }
+
+        return newItem;
+      });
+
+    this.itemsSbj$.next(newItems);
+  }
+
+  public updateItem(id: number, changes: Partial<IComment>): void {
+    const item = this.itemsSnapshot.find(comment => comment.id === id);
+
+    if (!item) {
+      return;
+    }
+
+    this.replaceItem({
+      ...item,
+      ...changes,
+      id,
+    });
   }
 
   private handleData(res: IGetCommentsResponse, query?: IGetCommentsQuery): void {
@@ -70,5 +107,46 @@ export class CommentsListDataService {
       lowerPage,
       upperPage
     });
+  }
+
+  public likeComment(commentId: number, like: boolean = true): Observable<ILikeCommentResponse> {
+    const action = like
+      ? this.commentsApiService.likeComment(commentId)
+      : this.commentsApiService.removeLikeComment(commentId);
+
+    this.updateItem(
+      commentId,
+      {
+        likeStatus: EStatus.PROCESSING,
+        likeError: null,
+      },
+    );
+
+    return action
+      .pipe(
+        tap(
+          {
+            next: (res) => {
+              this.updateItem(
+                commentId,
+                {
+                  likeStatus: EStatus.SUCCESS,
+                  likeError: null,
+                  isLiked: like,
+                },
+              );
+            },
+            error: (error: any) => {
+              this.updateItem(
+                commentId,
+                {
+                  likeStatus: EStatus.ERROR,
+                  likeError: error,
+                },
+              );
+            }
+          }
+        )
+      );
   }
 }

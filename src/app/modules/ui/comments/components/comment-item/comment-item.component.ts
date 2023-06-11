@@ -37,5 +37,4 @@ export class CommentItemComponent {
   public get authorAvatarSrc(): string | null {
     return this.author?.avatar?.url ?? null;
   }
-
 }

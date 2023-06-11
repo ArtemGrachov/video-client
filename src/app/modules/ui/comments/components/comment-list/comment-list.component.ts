@@ -45,4 +45,8 @@ export class CommentListComponent {
   public nextPageHandler(): void {
     this.getNextPageEmitter.emit();
   }
+
+  public trackBy(index: number, item: IComment): number {
+    return item.id;
+  }
 }

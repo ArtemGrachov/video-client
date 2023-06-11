@@ -9,7 +9,7 @@
   </button>
 </div>
 <ul class="list">
-  <li class="item" *ngFor="let comment of comments">
+  <li class="item" *ngFor="let comment of comments; trackBy: trackBy">
     <app-comment-item [comment]="comment"></app-comment-item>
   </li>
 </ul>

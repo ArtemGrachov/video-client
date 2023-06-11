@@ -1,3 +1,4 @@
+import { EStatus } from 'src/app/constants/status';
 import { IUser } from './user.interface';
 
 export interface IComment {
@@ -6,4 +7,8 @@ export interface IComment {
   authorId: number;
   author?: IUser;
   createdAt: string;
+  isLiked: boolean;
+  likesCount: number;
+  likeStatus?: EStatus;
+  likeError?: any;
 }
