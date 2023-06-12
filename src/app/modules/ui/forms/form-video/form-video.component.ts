@@ -29,6 +29,10 @@ export class FormVideoComponent {
     return this.submitStatus === EStatus.PROCESSING;
   }
 
+  public get initialVideoSrc(): string | null {
+    return this.video?.media.url ?? null;
+  }
+
   public form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
