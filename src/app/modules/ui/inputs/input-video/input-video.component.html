@@ -7,14 +7,14 @@
 />
 <div class="mb-lg">
   <video
-    *ngIf="showVideo"
-    [src]="videoSrc"
+    *ngIf="showVideo$ | async"
+    [src]="videoSrc$ | async"
     controls
     class="video"
   ></video>
 </div>
 <div
-  *ngIf="showPlaceholder"
+  *ngIf="showPlaceholder$ | async"
   class="placeholder mb-lg"
   (click)="uploadHandler()"
 >

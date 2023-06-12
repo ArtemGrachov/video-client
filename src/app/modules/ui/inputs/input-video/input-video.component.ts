@@ -1,7 +1,17 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  PLATFORM_ID,
+  ViewChild,
+  forwardRef,
+} from '@angular/core';
 import { isPlatformServer } from '@angular/common';
-import { Component, ElementRef, Inject, Input, PLATFORM_ID, ViewChild, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { prettySize } from 'pretty-size';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-input-video',
@@ -14,6 +24,7 @@ import { prettySize } from 'pretty-size';
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputVideoComponent implements ControlValueAccessor {
   @ViewChild('input')
@@ -22,7 +33,7 @@ export class InputVideoComponent implements ControlValueAccessor {
   @Input()
   public initialValue?: File | string | null;
 
-  private value: File | string | null = null;
+  private value$: BehaviorSubject<File | string | null> = new BehaviorSubject(null as File | string | null);
 
   private onTouched: any = () => {};
 
@@ -30,53 +41,53 @@ export class InputVideoComponent implements ControlValueAccessor {
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
-  public get videoSrc(): string | null {
-    if (isPlatformServer(this.platformId) || !this.value) {
+  public videoSrc$: Observable<string | null> = this
+    .value$
+    .pipe(
+      map((value) => {
+        if (isPlatformServer(this.platformId) || !value) {
+          return null;
+        }
+
+        if (typeof value === 'string') {
+          return value;
+        }
+
+        try {
+          return URL.createObjectURL(value);
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
+      })
+  )
+
+  public showVideo$: Observable<boolean> = this.videoSrc$.pipe(map(videoSrc => Boolean(videoSrc)))
+
+  public showPlaceholder$: Observable<boolean> = this.value$.pipe(map(value => !value));
+
+  public fileName$: Observable<string | null> = this.value$.pipe(map(value => {
+    if (typeof value === 'string') {
       return null;
     }
 
-    if (typeof this.value === 'string') {
-      return this.value;
-    }
-
-    try {
-      return URL.createObjectURL(this.value);
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  }
-
-  public get showVideo(): boolean {
-    return Boolean(this.videoSrc);
-  }
-
-  public get showPlaceholder(): boolean {
-    return !this.value;
-  }
-
-  public get fileName(): string | null {
-    if (typeof this.value === 'string') {
-      return null;
-    }
-
-    return this.value?.name ?? null;
-  }
+    return value?.name ?? null;
+  }));
 
   public get allowReset(): boolean {
     return this.initialValue != null;
   }
 
-  public get fileSizeFormatted(): string | null {
-    if (!this.value || typeof this.value === 'string') {
+  public fileSizeFormatted$: Observable<string | null> = this.value$.pipe(map(value => {
+    if (!value || typeof value === 'string') {
       return null;
     }
 
-    return prettySize(this.value.size)
-  }
+    return prettySize(value.size)
+  }))
 
   public writeValue(value: File | null): void {
-    this.value = value;
+    this.value$.next(value);
   }
 
   public registerOnTouched(fn: any): void {
@@ -102,10 +113,10 @@ export class InputVideoComponent implements ControlValueAccessor {
   }
 
   public changeHandler(value: File | string | null): void {
-    this.value = value;
+    this.value$.next(value);
 
     if (this.onChanged) {
-      this.onChanged(this.value);
+      this.onChanged(value);
     }
   }
 
