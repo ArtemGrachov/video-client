@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -17,15 +18,18 @@ import { ViewResetPasswordRequestModalService } from '../view-reset-password-req
   styleUrls: ['./view-login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewLoginComponent extends SimpleModalComponent<void, void> {
+export class ViewLoginComponent extends SimpleModalComponent<{ redirectTo?: string | null }, void> {
   constructor(
     private loginDataService: LoginDataService,
     private viewRegistrationModalService: ViewRegistrationModalService,
     private viewResetPasswordRequestModalService: ViewResetPasswordRequestModalService,
     private toastr: ToastrService,
+    private router: Router,
   ) {
     super();
   }
+
+  public redirectTo?: string | null;
 
   public loginStatus$: Observable<EStatus> = this.loginDataService.loginStatus$;
 
@@ -36,7 +40,13 @@ export class ViewLoginComponent extends SimpleModalComponent<void, void> {
       .loginDataService
       .login(formValue)
       .subscribe({
-        next: () => this.close(),
+        next: () => {
+          this.close();
+
+          if (this.redirectTo) {
+            this.router.navigateByUrl(this.redirectTo);
+          }
+        },
         error: () => this.toastr.error('Login error')
       });
   }

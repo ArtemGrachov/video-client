@@ -6,12 +6,14 @@ import { ViewLoginComponent } from '../view-login.component';
 export class ViewLoginModalService {
   constructor(private simpleModalService: SimpleModalService) { }
 
-  public showModal(): void {
+  public showModal(redirectTo?: string | null): void {
     this
       .simpleModalService
       .addModal(
         ViewLoginComponent,
-        null,
+        {
+          redirectTo,
+        },
         {
           closeOnEscape: true,
           closeOnClickOutside: true,
