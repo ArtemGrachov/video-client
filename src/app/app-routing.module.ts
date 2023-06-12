@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authOnlyGuard } from './shared/guards/auth-only/auth-only.guard';
 
 const routes: Routes = [
+  {
+    path: 'video/create',
+    loadChildren: () => import('./views/view-create-video/view-create-video.module').then(m => m.ViewCreateVideoModule),
+    canActivate: [authOnlyGuard],
+  },
   {
     path: 'video/:id',
     loadChildren: () => import('./views/view-video/view-video.module').then(m => m.ViewVideoModule)

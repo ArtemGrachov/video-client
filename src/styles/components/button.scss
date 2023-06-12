@@ -17,6 +17,7 @@
   letter-spacing: 2px;
   background: map-get($colors, 'button-default');
   overflow: hidden;
+  text-decoration: none;
 
   &:hover {
     background: lighten(map-get($colors, 'button-default'), 5);

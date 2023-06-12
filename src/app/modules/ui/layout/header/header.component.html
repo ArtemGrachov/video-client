@@ -1,7 +1,16 @@
 <div class="container">
   <div class="row">
-    <a class="logo" routerLink="/">
+    <a class="logo mr-auto" routerLink="/">
       VIDEO
+    </a>
+    <a
+      *ngIf="allowVideoCreate"
+      [routerLink]="['video', 'create']"
+      class="button button-icon mr-md"
+    >
+      <span class="material-icons">
+        video_call
+      </span>
     </a>
     <button
       type="button"

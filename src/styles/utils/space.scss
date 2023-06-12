@@ -27,6 +27,10 @@ $step: 4px;
 }
 
 .mr {
+  &-md {
+    margin-right: $step * 3;
+  }
+
   &-lg {
     margin-right: $step * 4;
   }
