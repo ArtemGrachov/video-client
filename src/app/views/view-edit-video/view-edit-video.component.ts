@@ -39,6 +39,12 @@ export class ViewEditVideoComponent {
   public submitError$: Observable<any> = this.videoFormDataService.submitError$;
 
   public submitHandler(formValue: IUpdateVideoPayload): void {
+    const payload = { ...formValue };
+
+    if (typeof payload.video === 'string') {
+      delete payload.video;
+    }
+
     this
       .videoFormDataService
       .updateVideo(this.videoId, formValue)

@@ -15,6 +15,7 @@
       Update video "{{ videoName$ | async }}"
     </h1>
     <app-form-video
+      [video]="video$ | async"
       [submitStatus]="submitStatus$ | async"
       [submitError]="submitError$ | async"
       (formSubmit)="submitHandler($event)"
