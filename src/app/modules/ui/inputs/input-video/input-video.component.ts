@@ -1,5 +1,7 @@
-import { Component, ElementRef, ViewChild, forwardRef } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
+import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { prettySize } from 'pretty-size';
 
 @Component({
   selector: 'app-input-video',
@@ -21,7 +23,38 @@ export class InputVideoComponent implements ControlValueAccessor {
 
   private onTouched: any = () => {};
 
-  private onChanged: any = () => {}
+  private onChanged: any = () => {};
+
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
+  public get videoSrc(): string | null {
+    if (isPlatformServer(this.platformId) || !this.value) {
+      return null;
+    }
+
+    try {
+      return URL.createObjectURL(this.value);
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  public get showVideo(): boolean {
+    return Boolean(this.videoSrc);
+  }
+
+  public get fileName(): string | null {
+    return this.value?.name ?? null;
+  }
+
+  public get fileSizeFormatted(): string | null {
+    if (!this.value) {
+      return null;
+    }
+
+    return prettySize(this.value.size)
+  }
 
   public writeValue(value: File | null): void {
     this.value = value;
@@ -55,6 +88,10 @@ export class InputVideoComponent implements ControlValueAccessor {
     if (this.onChanged) {
       this.onChanged(this.value);
     }
+  }
+
+  public uploadHandler(): void {
+    this.inputEl.nativeElement.click();
   }
 
   public clearHandler(): void {

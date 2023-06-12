@@ -1,12 +1,33 @@
-<input
-  #input
-  type="file"
-  multiple="false"
-  (change)="inputChangeHandler($event)"
-/>
+<div>
+  <video
+    *ngIf="showVideo"
+    [src]="videoSrc"
+    controls
+  ></video>
+</div>
+<div>
+  <input
+    #input
+    type="file"
+    multiple="false"
+    (change)="inputChangeHandler($event)"
+  />
+</div>
+<div>
+  Name: {{ fileName }}
+</div>
+<div>
+  Size: {{ fileSizeFormatted }}
+</div>
+<button
+  type="button"
+  (click)="uploadHandler()"
+>
+  Upload
+</button>
 <button
   type="button"
   (click)="clearHandler()"
 >
-  delete
+  Delete
 </button>
