@@ -32,10 +32,13 @@
     [control]="form.get('description')"
     [serverError]="submitError"
   >
+    <div label>
+      Description
+    </div>
     <textarea
       name="description"
       class="textarea-default"
-      placeholder="Comment"
+      placeholder="A few words about the video..."
       formControlName="description"
     ></textarea>
   </app-form-control>
