@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AuthModule } from '../../data/auth/auth.module';
 import { InitService } from './services/init.service';
+import { ConfigService } from './services/config.service';
 
 import { AuthService } from '../../data/auth/services/auth.service';
 
@@ -24,6 +25,7 @@ function appConfigFactory(initService: InitService, authService: AuthService) {
       deps: [InitService, AuthService],
       multi: true,
     },
+    ConfigService,
   ],
 })
 export class CoreModule { }

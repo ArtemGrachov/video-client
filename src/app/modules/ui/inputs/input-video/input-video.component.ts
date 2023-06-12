@@ -13,6 +13,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { prettySize } from 'pretty-size';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
+import { ConfigService } from 'src/app/modules/main/core/services/config.service';
+
 @Component({
   selector: 'app-input-video',
   templateUrl: './input-video.component.html',
@@ -39,7 +41,14 @@ export class InputVideoComponent implements ControlValueAccessor {
 
   private onChanged: any = () => {};
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private configService: ConfigService,
+  ) {}
+
+  public get videoInputAcceptAttr(): string {
+    return this.configService.videoInputAcceptAttr;
+  }
 
   public videoSrc$: Observable<string | null> = this
     .value$
