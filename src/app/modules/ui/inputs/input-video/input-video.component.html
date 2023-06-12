@@ -1,33 +1,46 @@
-<div>
+<input
+  class="input"
+  #input
+  type="file"
+  multiple="false"
+  (change)="inputChangeHandler($event)"
+/>
+<div class="mb-lg">
   <video
     *ngIf="showVideo"
     [src]="videoSrc"
     controls
+    class="video"
   ></video>
 </div>
-<div>
-  <input
-    #input
-    type="file"
-    multiple="false"
-    (change)="inputChangeHandler($event)"
-  />
-</div>
-<div>
-  Name: {{ fileName }}
-</div>
-<div>
-  Size: {{ fileSizeFormatted }}
-</div>
-<button
-  type="button"
+<div
+  *ngIf="showPlaceholder"
+  class="placeholder mb-lg"
   (click)="uploadHandler()"
 >
-  Upload
-</button>
-<button
-  type="button"
-  (click)="clearHandler()"
->
-  Delete
-</button>
+  Click to upload video
+</div>
+<div class="actions">
+  <button
+    type="button"
+    class="button mr-md"
+    (click)="uploadHandler()"
+  >
+    Upload
+  </button>
+  <button
+    type="button"
+    class="button mr-md"
+    (click)="clearHandler()"
+  >
+    Delete
+  </button>
+  <button
+    *ngIf="allowReset"
+    type="button"
+    class="button mr-md"
+    (click)="resetHandler()"
+  >
+    Reset
+  </button>
+</div>

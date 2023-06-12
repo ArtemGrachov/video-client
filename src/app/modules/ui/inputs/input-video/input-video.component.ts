@@ -1,5 +1,5 @@
 import { isPlatformServer } from '@angular/common';
-import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild, forwardRef } from '@angular/core';
+import { Component, ElementRef, Inject, Input, PLATFORM_ID, ViewChild, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { prettySize } from 'pretty-size';
 
@@ -19,7 +19,10 @@ export class InputVideoComponent implements ControlValueAccessor {
   @ViewChild('input')
   public inputEl!: ElementRef<HTMLInputElement>;
 
-  private value: File | null = null;
+  @Input()
+  public initialValue?: File | string | null;
+
+  private value: File | string | null = null;
 
   private onTouched: any = () => {};
 
@@ -30,6 +33,10 @@ export class InputVideoComponent implements ControlValueAccessor {
   public get videoSrc(): string | null {
     if (isPlatformServer(this.platformId) || !this.value) {
       return null;
+    }
+
+    if (typeof this.value === 'string') {
+      return this.value;
     }
 
     try {
@@ -44,12 +51,24 @@ export class InputVideoComponent implements ControlValueAccessor {
     return Boolean(this.videoSrc);
   }
 
+  public get showPlaceholder(): boolean {
+    return !this.value;
+  }
+
   public get fileName(): string | null {
+    if (typeof this.value === 'string') {
+      return null;
+    }
+
     return this.value?.name ?? null;
   }
 
+  public get allowReset(): boolean {
+    return this.initialValue != null;
+  }
+
   public get fileSizeFormatted(): string | null {
-    if (!this.value) {
+    if (!this.value || typeof this.value === 'string') {
       return null;
     }
 
@@ -82,7 +101,7 @@ export class InputVideoComponent implements ControlValueAccessor {
     this.changeHandler(value);
   }
 
-  public changeHandler(value: File | null): void {
+  public changeHandler(value: File | string | null): void {
     this.value = value;
 
     if (this.onChanged) {
@@ -96,5 +115,9 @@ export class InputVideoComponent implements ControlValueAccessor {
 
   public clearHandler(): void {
     this.changeHandler(null);
+  }
+
+  public resetHandler(): void {
+    this.changeHandler(this.initialValue ?? null);
   }
 }
