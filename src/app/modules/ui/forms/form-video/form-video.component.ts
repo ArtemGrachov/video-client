@@ -31,6 +31,8 @@ export class FormVideoComponent {
     video: new FormControl(null, [Validators.required]),
   });
 
+  x = this.form.valueChanges.subscribe(e => console.log('vl', e));
+
   public submitHandler(): void {
     if (this.form.invalid || this.submitProcessing) {
       this.form.markAllAsTouched();

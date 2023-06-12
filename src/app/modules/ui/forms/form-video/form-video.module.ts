@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { FormVideoComponent } from './form-video.component';
+import { InputVideoModule } from '../../inputs/input-video/input-video.module';
 import { FormControlModule } from '../form-control/form-control.module';
 import { FormServerErrorModule } from '../form-server-error/form-server-error.module';
+
+import { FormVideoComponent } from './form-video.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { FormServerErrorModule } from '../form-server-error/form-server-error.mo
     ReactiveFormsModule,
     FormControlModule,
     FormServerErrorModule,
+    InputVideoModule,
   ],
   exports: [
     FormVideoComponent,
