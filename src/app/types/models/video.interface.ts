@@ -15,4 +15,6 @@ export interface IVideo {
   media: IMedia;
   likeStatus?: EStatus;
   likeError?: any;
+  deleteStatus?: EStatus;
+  deleteError?: any;
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, map } from 'rxjs';
+import { EMPTY, Observable, map, switchMap, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -10,6 +10,7 @@ import { CommentFormDataService } from 'src/app/modules/data/comment-form-data/s
 import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
 import { CommentsListFormService } from 'src/app/modules/data/comments-list-form/services/comments-list-form.service';
 import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
+import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 
 import { ICreateCommentPayload } from 'src/app/types/api/comments-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
@@ -22,13 +23,15 @@ import { IVideo } from 'src/app/types/models/video.interface';
 })
 export class ViewVideoComponent {
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
     private authService: AuthService,
     private videoDataService: VideoDataService,
     private commentsListDataService: CommentsListDataService,
     private commentsListFormService: CommentsListFormService,
     private commentFormDataService: CommentFormDataService,
-    private route: ActivatedRoute,
-    private toastr: ToastrService,
+    private modalConfirmationService: ModalConfirmationService,
   ) {}
 
   public commentsData$ = this.commentsListDataService.data$;
@@ -84,5 +87,33 @@ export class ViewVideoComponent {
       .subscribe({
         error: () => this.toastr.error('Creating comment error'),
       });
+  }
+
+  public deleteHandler(): void {
+    this.modalConfirmationService.showModal({
+      title: 'Confirm deleting',
+      question: 'Are you sure you want to delete this video?'
+    })
+    .pipe(
+      switchMap(result => {
+        if (!result) {
+          return EMPTY;
+        }
+
+        return this
+          .videoDataService
+          .deleteVideo()
+          .pipe(
+            tap({
+              next: () => {
+                this.toastr.success('Video deleted successfully');
+                this.router.navigate(['/']);
+              },
+              error: () => this.toastr.error('Video deleting error'),
+            })
+          )
+      })
+    )
+    .subscribe();
   }
 }

@@ -8,6 +8,7 @@ import {
   IGetCommentsQuery,
   IGetCommentsResponse,
 } from 'src/app/types/api/comments-api.interface';
+import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 import {
   ICreateVideoPayload,
   ICreateVideoResponse,
@@ -91,5 +92,9 @@ export class VideoApiService {
     }
 
     return this.http.patch<IUpdateVideoResponse>(`${environment.API_URL}/video/${videoId}`, formData);
+  }
+
+  public deleteVideo(videoId: number): Observable<IApiGenericResponse> {
+    return this.http.delete<IApiGenericResponse>(`${environment.API_URL}/video/${videoId}`);
   }
 }

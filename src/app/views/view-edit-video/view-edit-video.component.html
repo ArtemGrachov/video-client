@@ -19,6 +19,15 @@
       [submitStatus]="submitStatus$ | async"
       [submitError]="submitError$ | async"
       (formSubmit)="submitHandler($event)"
-    ></app-form-video>
+    >
+      <button
+        actions
+        type="button"
+        class="button"
+        (click)="deleteHandler()"
+      >
+        Delete
+      </button>
+    </app-form-video>
   </div>
 </div>

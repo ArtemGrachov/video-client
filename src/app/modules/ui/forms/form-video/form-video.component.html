@@ -46,12 +46,15 @@
     class="mb-md"
     [error]="submitError"
   ></app-form-server-error>
-  <button type="submit" class="button">
-    Submit
-    <div *ngIf="submitProcessing" class="button-loader">
-      <span class="material-icons button-loader-icon">
-        hourglass_bottom
-      </span>
-    </div>
-  </button>
+  <div class="actions">
+    <button type="submit" class="button">
+      Submit
+      <div *ngIf="submitProcessing" class="button-loader">
+        <span class="material-icons button-loader-icon">
+          hourglass_bottom
+        </span>
+      </div>
+    </button>
+    <ng-content actions></ng-content>
+  </div>
 </form>

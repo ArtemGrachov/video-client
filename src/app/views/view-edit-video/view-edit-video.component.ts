@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, map } from 'rxjs';
+import { EMPTY, Observable, map, switchMap, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
 import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
 import { VideoFormDataService } from 'src/app/modules/data/video-form-data/services/video-form-data.service';
+import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 
 import { IUpdateVideoPayload } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
@@ -19,11 +20,12 @@ import { IVideo } from 'src/app/types/models/video.interface';
 })
 export class ViewEditVideoComponent {
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
     private videoDataService: VideoDataService,
     private videoFormDataService: VideoFormDataService,
-    private toastr: ToastrService,
-    private route: ActivatedRoute,
-    private router: Router,
+    private modalConfirmationService: ModalConfirmationService,
   ) {}
 
   public get videoId(): number {
@@ -55,5 +57,33 @@ export class ViewEditVideoComponent {
         },
         error: () => this.toastr.error('Video updating error'),
       });
+  }
+
+  public deleteHandler(): void {
+    this.modalConfirmationService.showModal({
+      title: 'Confirm deleting',
+      question: 'Are you sure you want to delete this video?'
+    })
+    .pipe(
+      switchMap(result => {
+        if (!result) {
+          return EMPTY;
+        }
+
+        return this
+          .videoDataService
+          .deleteVideo()
+          .pipe(
+            tap({
+              next: () => {
+                this.toastr.success('Video deleted successfully');
+                this.router.navigate(['/']);
+              },
+              error: () => this.toastr.error('Video deleting error'),
+            })
+          )
+      })
+    )
+    .subscribe();
   }
 }

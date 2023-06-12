@@ -14,9 +14,19 @@
     class="container mb-xl"
   >
     <div class="actions">
-      <a [routerLink]="['/', 'video', videoId, 'edit']" class="button">
+      <a
+        [routerLink]="['/', 'video', videoId, 'edit']"
+        class="button mr-md"
+      >
         Edit
       </a>
+      <button
+        type="button"
+        class="button"
+        (click)="deleteHandler()"
+      >
+        Delete
+      </button>
     </div>
   </div>
   <div *ngIf="showComments$ | async" class="container container-narrow">

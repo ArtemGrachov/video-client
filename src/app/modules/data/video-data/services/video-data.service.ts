@@ -5,6 +5,7 @@ import { EStatus } from 'src/app/constants/status';
 
 import { VideoApiService } from '../../video-api/services/video-api.service';
 
+import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 import { IGetVideoResponse, ILikeVideoResponse } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
@@ -72,6 +73,37 @@ export class VideoDataService {
               this.updateData({
                 likeStatus: EStatus.ERROR,
                 likeError: error,
+              });
+            }
+          }
+        )
+      );
+  }
+
+  public deleteVideo(): Observable<IApiGenericResponse> {
+    if (!this.dataSnapshot) {
+      throw new Error('No video to delete');
+    }
+
+    this.updateData({
+      deleteStatus: EStatus.PROCESSING,
+      deleteError: null,
+    });
+
+    return this.videoApiService.deleteVideo(this.dataSnapshot.id)
+      .pipe(
+        tap(
+          {
+            next: (res) => {
+              this.updateData({
+                deleteStatus: EStatus.SUCCESS,
+                deleteError: null,
+              });
+            },
+            error: (error: any) => {
+              this.updateData({
+                deleteStatus: EStatus.ERROR,
+                deleteError: error,
               });
             }
           }
