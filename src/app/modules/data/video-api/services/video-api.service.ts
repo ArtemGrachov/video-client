@@ -9,6 +9,8 @@ import {
   IGetCommentsResponse,
 } from 'src/app/types/api/comments-api.interface';
 import {
+  ICreateVideoPayload,
+  ICreateVideoResponse,
   IGetVideosQuery,
   IGetVideosResponse,
   ILikeVideoResponse,
@@ -59,5 +61,15 @@ export class VideoApiService {
 
   public createVideoComment(videoId: number, payload: ICreateCommentPayload): Observable<ICreateCommentResponse> {
     return this.http.post<ICreateCommentResponse>(`${environment.API_URL}/video/${videoId}/comments`, payload);
+  }
+
+  public createVideo(payload: ICreateVideoPayload): Observable<ICreateVideoResponse> {
+    const formData = new FormData();
+
+    formData.append('name', payload.name);
+    formData.append('description', payload.description);
+    formData.append('video', payload.video);
+
+    return this.http.post<ICreateVideoResponse>(`${environment.API_URL}/video`, formData);
   }
 }

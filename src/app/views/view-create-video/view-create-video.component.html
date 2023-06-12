@@ -3,6 +3,10 @@
     <h1 class="mb-xl">
       Upload video
     </h1>
-    <app-form-video></app-form-video>
+    <app-form-video
+      [submitStatus]="submitStatus$ | async"
+      [submitError]="submitError$ | async"
+      (formSubmit)="submitHandler($event)"
+    ></app-form-video>
   </div>
 </div>
