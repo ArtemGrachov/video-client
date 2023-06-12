@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="submitHandler()">
+  <app-form-control
+    class="mb-md"
+    [selector]="'name'"
+    [control]="form.get('name')"
+    [serverError]="submitError"
+  >
+    <div label>
+      Name
+    </div>
+    <input
+      name="name"
+      type="text"
+      class="input-default"
+      formControlName="name"
+    />
+  </app-form-control>
+  <app-form-control
+    class="mb-md"
+    [selector]="'description'"
+    [control]="form.get('description')"
+    [serverError]="submitError"
+  >
+    <textarea
+      name="description"
+      class="textarea-default"
+      placeholder="Comment"
+      formControlName="description"
+    ></textarea>
+  </app-form-control>
+  <app-form-server-error
+    class="mb-md"
+    [error]="submitError"
+  ></app-form-server-error>
+  <button type="submit" class="button">
+    Submit
+    <div *ngIf="submitProcessing" class="button-loader">
+      <span class="material-icons button-loader-icon">
+        hourglass_bottom
+      </span>
+    </div>
+  </button>
+</form>

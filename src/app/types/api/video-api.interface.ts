@@ -19,3 +19,9 @@ export interface IGetVideoResponse extends IVideo {}
 export interface ILikeVideoResponse {
   count: number;
 }
+
+export interface ICreateVideoPayload {
+  name: string;
+  description: string;
+  video: File;
+}
