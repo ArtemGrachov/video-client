@@ -14,6 +14,8 @@ import {
   IGetVideosQuery,
   IGetVideosResponse,
   ILikeVideoResponse,
+  IUpdateVideoPayload,
+  IUpdateVideoResponse,
 } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
@@ -71,5 +73,23 @@ export class VideoApiService {
     formData.append('video', payload.video);
 
     return this.http.post<ICreateVideoResponse>(`${environment.API_URL}/video`, formData);
+  }
+
+  public updateVideo(videoId: number, payload: IUpdateVideoPayload): Observable<IUpdateVideoResponse> {
+    const formData = new FormData();
+
+    if (payload.name) {
+      formData.append('name', payload.name);
+    }
+
+    if (payload.description) {
+      formData.append('description', payload.description);
+    }
+
+    if (payload.video) {
+      formData.append('video', payload.video);
+    }
+
+    return this.http.patch<IUpdateVideoResponse>(`${environment.API_URL}/video/${videoId}`, formData);
   }
 }

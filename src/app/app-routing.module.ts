@@ -9,6 +9,11 @@ const routes: Routes = [
     canActivate: [authOnlyGuard],
   },
   {
+    path: 'video/:id/edit',
+    loadChildren: () => import('./views/view-edit-video/view-edit-video.module').then(m => m.ViewEditVideoModule),
+    canActivate: [authOnlyGuard],
+  },
+  {
     path: 'video/:id',
     loadChildren: () => import('./views/view-video/view-video.module').then(m => m.ViewVideoModule)
   },

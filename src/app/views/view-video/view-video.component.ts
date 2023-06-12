@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
+import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
 import { CommentFormDataService } from 'src/app/modules/data/comment-form-data/services/comment-form-data.service';
 import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
 import { CommentsListFormService } from 'src/app/modules/data/comments-list-form/services/comments-list-form.service';
@@ -21,6 +22,7 @@ import { IVideo } from 'src/app/types/models/video.interface';
 })
 export class ViewVideoComponent {
   constructor(
+    private authService: AuthService,
     private videoDataService: VideoDataService,
     private commentsListDataService: CommentsListDataService,
     private commentsListFormService: CommentsListFormService,
@@ -45,7 +47,11 @@ export class ViewVideoComponent {
 
   public commentFormSubmitError$: Observable<any> = this.commentFormDataService.submitError$;
 
-  private get videoId(): number {
+  public userIsAuthor$: Observable<boolean> = this
+    .video$
+    .pipe(map(video => video!.authorId === this.authService.userDataSnapshot?.id));
+
+  public get videoId(): number {
     return +this.route.snapshot.params['id'];
   }
 

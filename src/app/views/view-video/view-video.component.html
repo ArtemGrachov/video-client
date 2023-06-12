@@ -9,6 +9,16 @@
       [video]="(video$ | async)!"
     ></app-video-details>
   </div>
+  <div
+    *ngIf="userIsAuthor$ | async"
+    class="container mb-xl"
+  >
+    <div class="actions">
+      <a [routerLink]="['/', 'video', videoId, 'edit']" class="button">
+        Edit
+      </a>
+    </div>
+  </div>
   <div *ngIf="showComments$ | async" class="container container-narrow">
     <div class="mb-xl">
       <app-form-comment

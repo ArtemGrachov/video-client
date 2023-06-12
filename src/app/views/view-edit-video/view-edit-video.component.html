@@ -1,0 +1,23 @@
+<div class="page">
+  <div class="container mb-md">
+    <a
+      [routerLink]="['/', 'video', videoId]"
+      class="text-button return-link"
+    >
+      <span class="material-icons">
+        arrow_back
+      </span>
+      Return
+    </a>
+  </div>
+  <div class="container container-narrow">
+    <h1 class="mb-xl">
+      Update video "{{ videoName$ | async }}"
+    </h1>
+    <app-form-video
+      [submitStatus]="submitStatus$ | async"
+      [submitError]="submitError$ | async"
+      (formSubmit)="submitHandler($event)"
+    ></app-form-video>
+  </div>
+</div>

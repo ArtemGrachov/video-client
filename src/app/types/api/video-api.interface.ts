@@ -27,3 +27,11 @@ export interface ICreateVideoPayload {
 }
 
 export interface ICreateVideoResponse extends IVideo {}
+
+export interface IUpdateVideoPayload {
+  name?: string;
+  description?: string;
+  video?: File;
+}
+
+export interface IUpdateVideoResponse extends IVideo {}
