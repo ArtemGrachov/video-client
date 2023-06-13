@@ -1,0 +1,19 @@
+<form
+  class="input-default-wrap"
+  [formGroup]="form"
+  (ngSubmit)="submitHandler()"
+>
+  <input
+    type="text"
+    formControlName="query"
+    class="input-default input-default-with-suffix"
+  />
+  <button
+    type="submit"
+    class="button button-icon input-default-action input-default-action-suffix button-transparent button-icon-sm"
+  >
+    <span class="material-icons">
+      search
+    </span>
+  </button>
+</form>

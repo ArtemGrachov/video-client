@@ -60,6 +60,12 @@
     height: 48px;
     border-radius: 50%;
     min-width: 0;
+    padding: 0;
+
+    &-sm {
+      width: 32px;
+      height: 32px;
+    }
   }
 }
 

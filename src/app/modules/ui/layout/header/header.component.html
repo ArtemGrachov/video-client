@@ -1,8 +1,14 @@
 <div class="container">
   <div class="row">
-    <a class="logo mr-auto" routerLink="/">
+    <a class="logo" routerLink="/">
       VIDEO
     </a>
+    <div class="mx-auto search">
+      <app-form-search
+        [query]="searchQuery$ | async"
+        (formSubmit)="searchHandler($event)"
+      ></app-form-search>
+    </div>
     <a
       *ngIf="allowVideoCreate"
       [routerLink]="['video', 'create']"

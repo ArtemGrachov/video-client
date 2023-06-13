@@ -25,6 +25,27 @@
 
 .input-default {
   padding: 8px 24px;
+
+  &-with-suffix {
+    padding-right: 60px;
+  }
+}
+
+.input-default-wrap {
+  position: relative;
+}
+
+.input-default-action {
+  position: absolute;
+  top: 3px;
+
+  &-prefix {
+    left: 3px;
+  }
+
+  &-suffix {
+    right: 3px;
+  }
 }
 
 .textarea-default {

@@ -20,9 +20,11 @@ export class RouteHandlerService {
   }
 
   public formValueToRouteQuery(formValue: IGetVideosQuery): Params {
-    const result: Params = {
-      search: formValue.search
-    };
+    const result: Params = {};
+
+    if (formValue.search) {
+      result['search'] = formValue.search
+    }
 
     if (formValue.page === 1) {
       result['page'] = null;
