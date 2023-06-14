@@ -41,6 +41,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./views/view-index/view-index.module').then(m => m.ViewIndexModule),
   },
+  { path: 'profile', loadChildren: () => import('./views/view-profile/view-profile.module').then(m => m.ViewProfileModule) },
 ];
 
 @NgModule({

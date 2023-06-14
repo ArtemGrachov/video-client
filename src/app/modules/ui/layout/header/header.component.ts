@@ -37,6 +37,14 @@ export class HeaderComponent {
     return this.authService.isAuthorized;
   }
 
+  public get isAuthorized(): boolean {
+    return this.authService.isAuthorized;
+  }
+
+  public get isGuest(): boolean {
+    return !this.authService.isAuthorized;
+  }
+
   public openAuthModal(): void {
     this.viewLoginModalService.showModal();
   }

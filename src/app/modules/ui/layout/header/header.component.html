@@ -27,6 +27,7 @@
       </span>
     </a>
     <button
+      *ngIf="isGuest"
       type="button"
       class="button button-icon"
       (click)="openAuthModal()"
@@ -35,5 +36,14 @@
         login
       </span>
     </button>
+    <a
+      *ngIf="isAuthorized"
+      [routerLink]="['/', 'profile']"
+      class="button button-icon mr-md"
+    >
+      <span class="material-icons">
+        person
+      </span>
+    </a>
   </div>
 </div>
