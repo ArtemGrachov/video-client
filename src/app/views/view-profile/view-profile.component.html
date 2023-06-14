@@ -1,1 +1,7 @@
-<p>view-profile works!</p>
+<div class="page">
+  <div class="container container-narrow">
+    <app-user-details
+      [user]="(user$ | async)!"
+    ></app-user-details>
+  </div>
+</div>
