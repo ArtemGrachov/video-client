@@ -6,4 +6,5 @@ export interface IPlaylist {
   description: string;
   authorId: number;
   author?: IUser;
+  videoCount: number;
 }

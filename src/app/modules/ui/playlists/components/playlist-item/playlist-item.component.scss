@@ -7,6 +7,12 @@
   border-radius: 12px;
 }
 
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .author {
   display: flex;
   align-items: center;
@@ -35,4 +41,13 @@
   width: 40px;
   height: 40px;
   flex: 0 0 auto;
+}
+
+.video-count {
+  font-size: 14px;
+  color: map-get($colors, 'text-secondary');
+
+  &-value {
+    font-weight: bold;
+  }
 }

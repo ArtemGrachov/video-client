@@ -27,4 +27,8 @@ export class PlaylistItemComponent {
   public get authorAvatarSrc(): string | null {
     return this.author?.avatar?.url ?? null;
   }
+
+  public get videoCount(): number {
+    return this.playlist.videoCount;
+  }
 }
