@@ -2,8 +2,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IGetPlaylistsQuery, IGetPlaylistsResponse } from 'src/app/types/api/playlist-api.interface';
-import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
+import {
+  IGetPlaylistResponse,
+  IGetPlaylistsQuery,
+  IGetPlaylistsResponse,
+} from 'src/app/types/api/playlist-api.interface';
+import {
+  IGetVideosQuery,
+  IGetVideosResponse,
+} from 'src/app/types/api/video-api.interface';
 
 import { environment } from 'src/environments/environment';
 
@@ -37,5 +44,9 @@ export class PlaylistApiService {
     }
 
     return this.http.get<IGetVideosResponse>(`${environment.API_URL}/playlists/${playlistId}/video`, { params });
+  }
+
+  public getPlaylist(playlistId: number): Observable<IGetPlaylistResponse> {
+    return this.http.get<IGetPlaylistResponse>(`${environment.API_URL}/playlists/${playlistId}`);
   }
 }

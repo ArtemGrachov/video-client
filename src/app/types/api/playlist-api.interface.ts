@@ -13,3 +13,5 @@ export interface IGetPlaylistsResponse {
   users: IUser[];
   pagination: IPagination;
 }
+
+export interface IGetPlaylistResponse extends IPlaylist {}

@@ -6,11 +6,13 @@ import { AvatarModule } from '../other/avatar/avatar.module';
 
 import { PlaylistItemComponent } from './components/playlist-item/playlist-item.component';
 import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
+import { PlaylistDetailsComponent } from './playlist-details/playlist-details.component';
 
 @NgModule({
   declarations: [
     PlaylistItemComponent,
     PlaylistListComponent,
+    PlaylistDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { PlaylistListComponent } from './components/playlist-list/playlist-list.
   exports: [
     PlaylistItemComponent,
     PlaylistListComponent,
+    PlaylistDetailsComponent,
   ],
 })
 export class PlaylistsModule { }

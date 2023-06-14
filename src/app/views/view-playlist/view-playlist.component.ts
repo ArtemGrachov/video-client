@@ -5,6 +5,7 @@ import { skip } from 'rxjs';
 import { RouteHandlerService } from './services/route-handler.service';
 import { VideoListDataService } from 'src/app/modules/data/video-list-data/services/video-list-data.service';
 import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
+import { PlaylistDataService } from 'src/app/modules/data/playlist-data/services/playlist-data.service';
 
 @Component({
   selector: 'app-view-playlist',
@@ -18,7 +19,8 @@ export class ViewPlaylistComponent {
     private route: ActivatedRoute,
     private routeHandlerSerivce: RouteHandlerService,
     private videoListDataService: VideoListDataService,
-    private videoListFormService: VideoListFormService
+    private videoListFormService: VideoListFormService,
+    private playlistDataService: PlaylistDataService,
   ) {}
 
   public get playlistId(): number {
@@ -38,6 +40,8 @@ export class ViewPlaylistComponent {
   public items$ = this.videoListDataService.items$;
 
   public pagination$ = this.videoListDataService.pagination$;
+
+  public playlist$ = this.playlistDataService.data$;
 
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();

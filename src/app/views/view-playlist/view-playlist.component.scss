@@ -1,0 +1,7 @@
+@import '/src/styles/variables.scss';
+
+.details {
+  background: map-get($colors, 'background-secondary');
+  padding: 24px;
+  border-radius: 12px;
+}

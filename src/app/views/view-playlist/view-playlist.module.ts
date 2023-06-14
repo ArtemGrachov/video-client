@@ -5,6 +5,8 @@ import { VideoListDataModule } from 'src/app/modules/data/video-list-data/video-
 import { VideoListFormModule } from 'src/app/modules/data/video-list-form/video-list-form.module';
 import { VideoModule } from 'src/app/modules/ui/video/video.module';
 import { ViewPlaylistRoutingModule } from './view-playlist-routing.module';
+import { PlaylistsModule } from 'src/app/modules/ui/playlists/playlists.module';
+import { PlaylistDataModule } from 'src/app/modules/data/playlist-data/playlist-data.module';
 
 import { RouteHandlerService } from './services/route-handler.service';
 
@@ -20,6 +22,8 @@ import { ViewPlaylistComponent } from './view-playlist.component';
     VideoListDataModule,
     VideoListFormModule,
     VideoModule,
+    PlaylistsModule,
+    PlaylistDataModule,
   ],
   providers: [
     RouteHandlerService,
