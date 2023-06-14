@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./views/view-video/view-video.module').then(m => m.ViewVideoModule)
   },
   {
+    path: 'playlists',
+    loadChildren: () => import('./views/view-playlists/view-playlists.module').then(m => m.ViewPlaylistsModule),
+  },
+  {
     path: 'reset-password',
     loadChildren: () => import('./views/view-reset-password/view-reset-password.module').then(m => m.ViewResetPasswordModule)
   },
