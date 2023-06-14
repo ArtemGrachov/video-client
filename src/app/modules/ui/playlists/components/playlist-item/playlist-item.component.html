@@ -1,21 +1,26 @@
-<div class="name">
-  {{ playlistName }}
-</div>
-<div class="details">
-  <div class="author">
-    <div class="author-avatar">
-      <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
-    </div>
-    <div class="author-text">
-      <div class="author-name">
-        {{ authorName }}
+<a
+  [routerLink]="playlistLink"
+  class="link"
+>
+  <div class="name">
+    {{ playlistName }}
+  </div>
+  <div class="details">
+    <div class="author">
+      <div class="author-avatar">
+        <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
+      </div>
+      <div class="author-text">
+        <div class="author-name">
+          {{ authorName }}
+        </div>
       </div>
     </div>
+    <div class="video-count">
+      Videos:
+      <span class="video-count-value">
+        {{ videoCount }}
+      </span>
+    </div>
   </div>
-  <div class="video-count">
-    Videos:
-    <span class="video-count-value">
-      {{ videoCount }}
-    </span>
-  </div>
-</div>
+</a>

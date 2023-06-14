@@ -1,10 +1,12 @@
 @import '/src/styles/variables.scss';
 
-:host {
+.link {
   display: block;
   padding: 16px;
   background: map-get($colors, 'background-secondary');
   border-radius: 12px;
+  color: map-get($colors, 'text-main');
+  text-decoration: none;
 }
 
 .details {

@@ -31,4 +31,8 @@ export class PlaylistItemComponent {
   public get videoCount(): number {
     return this.playlist.videoCount;
   }
+
+  public get playlistLink(): string[] {
+    return ['/', 'playlists', this.playlist.id.toString()];
+  }
 }

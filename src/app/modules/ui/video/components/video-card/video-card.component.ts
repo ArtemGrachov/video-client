@@ -37,6 +37,6 @@ export class VideoCardComponent {
   }
 
   public get videoLink(): string[] {
-    return ['video', this.video.id.toString()];
+    return ['/', 'video', this.video.id.toString()];
   }
 }

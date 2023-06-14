@@ -15,7 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'video/:id',
-    loadChildren: () => import('./views/view-video/view-video.module').then(m => m.ViewVideoModule)
+    loadChildren: () => import('./views/view-video/view-video.module').then(m => m.ViewVideoModule),
+  },
+  {
+    path: 'playlists/:id',
+    loadChildren: () => import('./views/view-playlist/view-playlist.module').then(m => m.ViewPlaylistModule),
   },
   {
     path: 'playlists',
@@ -23,11 +27,11 @@ const routes: Routes = [
   },
   {
     path: 'reset-password',
-    loadChildren: () => import('./views/view-reset-password/view-reset-password.module').then(m => m.ViewResetPasswordModule)
+    loadChildren: () => import('./views/view-reset-password/view-reset-password.module').then(m => m.ViewResetPasswordModule),
   },
   {
     path: '',
-    loadChildren: () => import('./views/view-index/view-index.module').then(m => m.ViewIndexModule)
+    loadChildren: () => import('./views/view-index/view-index.module').then(m => m.ViewIndexModule),
   },
 ];
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VideoApiModule } from '../video-api/video-api.module';
+import { PlaylistApiModule } from '../playlist-api/playlist-api.module';
 
 import { VideoListDataService } from './services/video-list-data.service';
 
@@ -9,7 +10,8 @@ import { VideoListDataService } from './services/video-list-data.service';
   declarations: [],
   imports: [
     CommonModule,
-    VideoApiModule
+    VideoApiModule,
+    PlaylistApiModule,
   ],
   providers: [VideoListDataService]
 })

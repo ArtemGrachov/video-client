@@ -23,4 +23,9 @@ export class VideoListFormService {
     const formValue = this.form.getRawValue();
     return this.videoListDataService.getVideos(formValue);
   }
+
+  public updatePlaylist(playlistId: number): Observable<IGetVideosResponse> {
+    const formValue = this.form.getRawValue();
+    return this.videoListDataService.getPlaylistVideos(playlistId, formValue);
+  }
 }

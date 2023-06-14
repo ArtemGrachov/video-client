@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { VideoApiService } from '../../video-api/services/video-api.service';
+import { PlaylistApiService } from '../../playlist-api/services/playlist-api.service';
 
 import { IVideo } from 'src/app/types/models/video.interface';
 import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
@@ -23,13 +24,23 @@ export class VideoListDataService {
 
   public pagination$: Observable<IPagination | null> = this.paginationSbj$.asObservable();
 
-  constructor(private videoApiService: VideoApiService) { }
+  constructor(
+    private videoApiService: VideoApiService,
+    private playlistApiService: PlaylistApiService,
+  ) { }
 
   public getVideos(query?: IGetVideosQuery): Observable<IGetVideosResponse> {
     return this
       .videoApiService
       .getVideos(query)
-      .pipe(tap(res => this.handleData(res, query)))
+      .pipe(tap(res => this.handleData(res, query)));
+  }
+
+  public getPlaylistVideos(playlistId: number, query?: IGetVideosQuery): Observable<IGetVideosResponse> {
+    return this
+      .playlistApiService
+      .getPlaylistVideos(playlistId, query)
+      .pipe(tap(res => this.handleData(res, query)));
   }
 
   private handleData(res: IGetVideosResponse, query?: IGetVideosQuery): void {
@@ -63,7 +74,7 @@ export class VideoListDataService {
     this.paginationSbj$.next({
       ...res.pagination,
       lowerPage,
-      upperPage
+      upperPage,
     });
   }
 }
