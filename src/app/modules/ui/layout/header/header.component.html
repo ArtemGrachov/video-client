@@ -10,8 +10,16 @@
       ></app-form-search>
     </div>
     <a
+      [routerLink]="['/', 'playlists']"
+      class="button button-icon mr-md"
+    >
+      <span class="material-icons">
+        subscriptions
+      </span>
+    </a>
+    <a
       *ngIf="allowVideoCreate"
-      [routerLink]="['video', 'create']"
+      [routerLink]="['/', 'video', 'create']"
       class="button button-icon mr-md"
     >
       <span class="material-icons">
