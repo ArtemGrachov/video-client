@@ -5,6 +5,24 @@
         [playlist]="(playlist$ | async)!"
       ></app-playlist-details>
     </div>
+    <div
+      *ngIf="userIsAuthor$ | async"
+      class="actions"
+    >
+      <a
+        [routerLink]="['/', 'playlist', playlistId, 'edit']"
+        class="button mr-md"
+      >
+        Edit
+      </a>
+      <button
+        type="button"
+        class="button"
+        (click)="deleteHandler()"
+      >
+        Delete
+      </button>
+    </div>
     <app-video-grid
       [videos]="(items$ | async)!"
       [pagination]="pagination$ | async"

@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
+import { EStatus } from 'src/app/constants/status';
+
 import { PlaylistApiService } from '../../playlist-api/services/playlist-api.service';
 
 import { IGetPlaylistResponse } from 'src/app/types/api/playlist-api.interface';
+import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 import { IPlaylist } from 'src/app/types/models/playlist.interface';
 
 @Injectable()
@@ -38,5 +41,36 @@ export class PlaylistDataService {
       ...this.dataSnapshot,
       ...data,
     });
+  }
+
+  public deletePlaylist(): Observable<IApiGenericResponse> {
+    if (!this.dataSnapshot) {
+      throw new Error('No playlist to delete');
+    }
+
+    this.updateData({
+      deleteStatus: EStatus.PROCESSING,
+      deleteError: null,
+    });
+
+    return this.playlistApiService.deleteVideo(this.dataSnapshot.id)
+      .pipe(
+        tap(
+          {
+            next: (res) => {
+              this.updateData({
+                deleteStatus: EStatus.SUCCESS,
+                deleteError: null,
+              });
+            },
+            error: (error: any) => {
+              this.updateData({
+                deleteStatus: EStatus.ERROR,
+                deleteError: error,
+              });
+            }
+          }
+        )
+      );
   }
 }

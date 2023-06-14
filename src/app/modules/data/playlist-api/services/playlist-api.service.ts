@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 
 import {
   ICreatePlaylistPayload,
@@ -54,5 +55,9 @@ export class PlaylistApiService {
 
   public createPlaylist(payload: ICreatePlaylistPayload): Observable<ICreatePlaylistResponse> {
     return this.http.post<ICreatePlaylistResponse>(`${environment.API_URL}/playlists`, payload);
+  }
+
+  public deleteVideo(playlistId: number): Observable<IApiGenericResponse> {
+    return this.http.delete<IApiGenericResponse>(`${environment.API_URL}/playlists/${playlistId}`);
   }
 }

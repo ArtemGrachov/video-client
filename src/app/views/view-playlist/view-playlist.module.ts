@@ -7,6 +7,7 @@ import { VideoModule } from 'src/app/modules/ui/video/video.module';
 import { ViewPlaylistRoutingModule } from './view-playlist-routing.module';
 import { PlaylistsModule } from 'src/app/modules/ui/playlists/playlists.module';
 import { PlaylistDataModule } from 'src/app/modules/data/playlist-data/playlist-data.module';
+import { ModalConfirmationModule } from 'src/app/modules/ui/modals/modal-confirmation/modal-confirmation.module';
 
 import { RouteHandlerService } from './services/route-handler.service';
 
@@ -24,6 +25,7 @@ import { ViewPlaylistComponent } from './view-playlist.component';
     VideoModule,
     PlaylistsModule,
     PlaylistDataModule,
+    ModalConfirmationModule,
   ],
   providers: [
     RouteHandlerService,

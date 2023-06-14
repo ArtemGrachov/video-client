@@ -1,3 +1,4 @@
+import { EStatus } from 'src/app/constants/status';
 import { IUser } from './user.interface';
 
 export interface IPlaylist {
@@ -7,4 +8,6 @@ export interface IPlaylist {
   authorId: number;
   author?: IUser;
   videoCount: number;
+  deleteStatus?: EStatus;
+  deleteError?: any;
 }

@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { skip } from 'rxjs';
+import { EMPTY, Observable, map, skip, switchMap, tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
+import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
 import { RouteHandlerService } from './services/route-handler.service';
 import { VideoListDataService } from 'src/app/modules/data/video-list-data/services/video-list-data.service';
 import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
 import { PlaylistDataService } from 'src/app/modules/data/playlist-data/services/playlist-data.service';
+import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 
 @Component({
   selector: 'app-view-playlist',
@@ -15,12 +18,15 @@ import { PlaylistDataService } from 'src/app/modules/data/playlist-data/services
 })
 export class ViewPlaylistComponent {
   constructor(
+    private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
+    private authService: AuthService,
     private routeHandlerSerivce: RouteHandlerService,
     private videoListDataService: VideoListDataService,
     private videoListFormService: VideoListFormService,
     private playlistDataService: PlaylistDataService,
+    private modalConfirmationService: ModalConfirmationService,
   ) {}
 
   public get playlistId(): number {
@@ -42,6 +48,10 @@ export class ViewPlaylistComponent {
   public pagination$ = this.videoListDataService.pagination$;
 
   public playlist$ = this.playlistDataService.data$;
+
+  public userIsAuthor$: Observable<boolean> = this
+    .playlist$
+    .pipe(map(playlist => playlist!.authorId === this.authService.userDataSnapshot?.id));
 
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();
@@ -81,5 +91,32 @@ export class ViewPlaylistComponent {
 
   public getNextPageHandler(): void {
     this.changePage(1);
+  }
+  public deleteHandler(): void {
+    this.modalConfirmationService.showModal({
+      title: 'Confirm deleting',
+      question: 'Are you sure you want to delete this video?'
+    })
+    .pipe(
+      switchMap(result => {
+        if (!result) {
+          return EMPTY;
+        }
+
+        return this
+          .playlistDataService
+          .deletePlaylist()
+          .pipe(
+            tap({
+              next: () => {
+                this.toastr.success('Playlist deleted successfully');
+                this.router.navigate(['/', 'playlists']);
+              },
+              error: () => this.toastr.error('Playlist deleting error'),
+            })
+          )
+      })
+    )
+    .subscribe();
   }
 }
