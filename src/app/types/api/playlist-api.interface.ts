@@ -15,3 +15,10 @@ export interface IGetPlaylistsResponse {
 }
 
 export interface IGetPlaylistResponse extends IPlaylist {}
+
+export interface ICreatePlaylistPayload {
+  name: string;
+  description: string;
+}
+
+export interface ICreatePlaylistResponse extends IPlaylist {}

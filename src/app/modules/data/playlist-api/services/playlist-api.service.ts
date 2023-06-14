@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
+  ICreatePlaylistPayload,
+  ICreatePlaylistResponse,
   IGetPlaylistResponse,
   IGetPlaylistsQuery,
   IGetPlaylistsResponse,
@@ -48,5 +50,9 @@ export class PlaylistApiService {
 
   public getPlaylist(playlistId: number): Observable<IGetPlaylistResponse> {
     return this.http.get<IGetPlaylistResponse>(`${environment.API_URL}/playlists/${playlistId}`);
+  }
+
+  public createPlaylist(payload: ICreatePlaylistPayload): Observable<ICreatePlaylistResponse> {
+    return this.http.post<ICreatePlaylistResponse>(`${environment.API_URL}/playlists`, payload);
   }
 }

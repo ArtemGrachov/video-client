@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./views/view-video/view-video.module').then(m => m.ViewVideoModule),
   },
   {
+    path: 'playlists/create',
+    loadChildren: () => import('./views/view-playlist-create/view-playlist-create.module').then(m => m.ViewPlaylistCreateModule),
+  },
+  {
     path: 'playlists/:id',
     loadChildren: () => import('./views/view-playlist/view-playlist.module').then(m => m.ViewPlaylistModule),
   },

@@ -1,5 +1,13 @@
 <div class="page">
   <div class="container">
+    <div class="mb-xl">
+      <a
+        class="button button-primary"
+        [routerLink]="['/', 'playlists', 'create']"
+      >
+        Create playlist
+      </a>
+    </div>
     <app-playlist-list
       [playlists]="(items$ | async)!"
       [pagination]="pagination$ | async"

@@ -1,0 +1,12 @@
+<div class="page">
+  <div class="container container-narrow">
+    <h1 class="mb-xl">
+      Create playlist
+    </h1>
+    <app-form-playlist
+      [submitStatus]="submitStatus$ | async"
+      [submitError]="submitError$ | async"
+      (formSubmit)="submitHandler($event)"
+    ></app-form-playlist>
+  </div>
+</div>
