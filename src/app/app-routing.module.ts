@@ -22,6 +22,10 @@ const routes: Routes = [
     loadChildren: () => import('./views/view-playlist-create/view-playlist-create.module').then(m => m.ViewPlaylistCreateModule),
   },
   {
+    path: 'playlists/:id/edit',
+    loadChildren: () => import('./views/view-playlist-edit/view-playlist-edit.module').then(m => m.ViewPlaylistEditModule),
+  },
+  {
     path: 'playlists/:id',
     loadChildren: () => import('./views/view-playlist/view-playlist.module').then(m => m.ViewPlaylistModule),
   },

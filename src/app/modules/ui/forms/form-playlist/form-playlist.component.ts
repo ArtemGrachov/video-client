@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EStatus } from 'src/app/constants/status';
 
 import { ICreatePlaylistPayload } from 'src/app/types/api/playlist-api.interface';
+import { IPlaylist } from 'src/app/types/models/playlist.interface';
 
 @Component({
   selector: 'app-form-playlist',
@@ -12,10 +13,13 @@ import { ICreatePlaylistPayload } from 'src/app/types/api/playlist-api.interface
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormPlaylistComponent {
-  @Input('submitStatus')
+  @Input()
+  public playlist?: IPlaylist | null;
+
+  @Input()
   public submitStatus: EStatus | null = EStatus.INIT;
 
-  @Input('submitError')
+  @Input()
   public submitError: any = null;
 
   @Output('formSubmit')
@@ -30,6 +34,12 @@ export class FormPlaylistComponent {
     description: new FormControl('', [Validators.required]),
   });
 
+  public ngOnInit(): void {
+    if (this.playlist) {
+      this.fillForm(this.playlist);
+    }
+  }
+
   public submitHandler(): void {
     if (this.form.invalid || this.submitProcessing) {
       this.form.markAllAsTouched();
@@ -37,5 +47,15 @@ export class FormPlaylistComponent {
     }
 
     this.submitEmitter.next(this.form.value);
+  }
+
+  public fillForm(playlist: IPlaylist): void {
+    this.form.setValue(
+      {
+        name: playlist.name,
+        description: playlist.description,
+      },
+      { emitEvent: false }
+    );
   }
 }

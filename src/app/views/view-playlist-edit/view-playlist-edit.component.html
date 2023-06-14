@@ -1,0 +1,13 @@
+<div class="page">
+  <div class="container container-narrow">
+    <h1 class="mb-xl">
+      Update playlist "{{ playlistName$ | async }}"
+    </h1>
+    <app-form-playlist
+      [playlist]="(playlist$ | async)!"
+      [submitStatus]="submitStatus$ | async"
+      [submitError]="submitError$ | async"
+      (formSubmit)="submitHandler($event)"
+    ></app-form-playlist>
+  </div>
+</div>

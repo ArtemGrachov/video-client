@@ -22,3 +22,10 @@ export interface ICreatePlaylistPayload {
 }
 
 export interface ICreatePlaylistResponse extends IPlaylist {}
+
+export interface IUpdatePlaylistPayload {
+  name?: string;
+  description?: string;
+}
+
+export interface IUpdatePlaylistResponse extends IPlaylist {}
