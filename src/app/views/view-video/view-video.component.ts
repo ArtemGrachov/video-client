@@ -58,6 +58,10 @@ export class ViewVideoComponent {
     return +this.route.snapshot.params['id'];
   }
 
+  public get showCommentsForm(): boolean {
+    return this.authService.isAuthorized;
+  }
+
   private changeCommentsPage(shift: number = 0): void {
     const pageControl = this.commentsListFormService.form.get('page');
 

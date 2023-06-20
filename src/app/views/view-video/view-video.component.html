@@ -29,14 +29,14 @@
       </button>
     </div>
   </div>
+  <div *ngIf="showCommentsForm" class="container container-narrow mb-xl">
+    <app-form-comment
+      [submitStatus]="commentFormSubmitStatus$ | async"
+      [submitError]="commentFormSubmitError$ | async"
+      (formSubmit)="createCommentSubmitHandler($event)"
+    ></app-form-comment>
+  </div>
   <div *ngIf="showComments$ | async" class="container container-narrow">
-    <div class="mb-xl">
-      <app-form-comment
-        [submitStatus]="commentFormSubmitStatus$ | async"
-        [submitError]="commentFormSubmitError$ | async"
-        (formSubmit)="createCommentSubmitHandler($event)"
-      ></app-form-comment>
-    </div>
     <app-comment-list
       [comments]="(comments$ | async)!"
       [pagination]="(commentsPagination$ | async)!"
