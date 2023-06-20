@@ -2,5 +2,10 @@
   <h2 class="mb-xl">
     Edit profile
   </h2>
-  <app-form-profile></app-form-profile>
+  <app-form-profile
+    [user]="(user$ | async)!"
+    [submitStatus]="submitStatus$ | async"
+    [submitError]="submitError$ | async"
+    (formSubmit)="submitHandler($event)"
+  ></app-form-profile>
 </div>

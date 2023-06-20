@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EStatus } from 'src/app/constants/status';
 
 import { IUpdateUserPayload } from 'src/app/types/api/users-api.interface';
+import { IUser } from 'src/app/types/models/user.interface';
 
 @Component({
   selector: 'app-form-profile',
@@ -12,6 +13,9 @@ import { IUpdateUserPayload } from 'src/app/types/api/users-api.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormProfileComponent {
+  @Input('user')
+  public user?: IUser;
+
   @Input('submitStatus')
   public submitStatus: EStatus | null = EStatus.INIT;
 
@@ -38,5 +42,22 @@ export class FormProfileComponent {
     }
 
     this.submitEmitter.next(this.form.value);
+  }
+
+  public ngOnInit(): void {
+    if (this.user) {
+      this.fillForm(this.user);
+    }
+  }
+
+  public fillForm(user: IUser): void {
+    this.form.setValue(
+      {
+        email: user.email,
+        name: user.name,
+        avatar: user.avatar?.thumbnailUrl,
+      },
+      { emitEvent: false }
+    );
   }
 }
