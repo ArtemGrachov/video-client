@@ -6,6 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: ViewProfileComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/profile-edit/profile-edit.module').then(m => m.ProfileEditModule)
+      },
+    ],
   },
 ];
 

@@ -1,0 +1,41 @@
+@import '/src/styles/variables.scss';
+
+.row {
+  display: flex;
+  align-items: stretch;
+  margin: -$layout-gap / 2;
+}
+
+.col {
+  flex: 0 0 auto;
+  padding: $layout-gap / 2;
+
+  &-sm {
+    width: 25%;
+  }
+
+  &-lg {
+    width: 75%;
+  }
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin-bottom: 16px;
+}
+
+.nav-trigger {
+  text-align: left;
+}
+
+.wrapper {
+  background: map-get($colors, 'background-secondary');
+  border-radius: 12px;
+  padding: 24px;
+  height: 100%;
+}

@@ -1,7 +1,46 @@
 <div class="page">
-  <div class="container container-narrow">
-    <app-user-details
-      [user]="(user$ | async)!"
-    ></app-user-details>
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm">
+        <div class="wrapper">
+          <div class="mb-xl">
+            <app-user-details
+              [user]="(user$ | async)!"
+            ></app-user-details>
+          </div>
+          <nav class="nav">
+            <ul class="nav-list">
+              <li class="nav-item">
+                <a href="#" class="nav-trigger button button-block button-transparent">
+                  <span class="material-icons button-symbol">
+                    mode_edit
+                  </span>
+                  Edit profile
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-trigger button button-block button-transparent">
+                  <span class="material-icons button-symbol">
+                    key
+                  </span>
+                  Change password
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-trigger button button-block button-transparent">
+                  <span class="material-icons button-symbol">
+                    logout
+                  </span>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col col-lg">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </div>
