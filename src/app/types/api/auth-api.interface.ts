@@ -24,3 +24,8 @@ export interface IResetPasswordPayload {
   password: string;
   passwordConfirmation: string;
 }
+
+export interface IChangePasswordPayload {
+  password: string;
+  passwordConfirmation: string;
+}

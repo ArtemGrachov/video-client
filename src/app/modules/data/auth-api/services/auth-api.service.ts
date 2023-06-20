@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import {
   IAuthResponse,
+  IChangePasswordPayload,
   ILoginRequestPayload,
   IRegistrationRequestPayload,
   IResetPasswordPayload,
@@ -31,5 +32,9 @@ export class AuthApiService {
 
   public resetPassword(payload: IResetPasswordPayload): Observable<IApiGenericResponse> {
     return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/reset-password`, payload);
+  }
+
+  public changePassword(payload: IChangePasswordPayload): Observable<IApiGenericResponse> {
+    return this.http.post<IApiGenericResponse>(`${environment.API_URL}/auth/change-password`, payload);
   }
 }
