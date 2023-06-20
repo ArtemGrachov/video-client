@@ -29,6 +29,10 @@ export class FormProfileComponent {
     return this.submitStatus === EStatus.PROCESSING;
   }
 
+  public get initialAvatarSrc(): string | null {
+    return this.user?.avatar?.url ?? null;
+  }
+
   public form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.email]),
     name: new FormControl(''),
@@ -55,7 +59,7 @@ export class FormProfileComponent {
       {
         email: user.email,
         name: user.name,
-        avatar: user.avatar?.thumbnailUrl,
+        avatar: user.avatar?.url,
       },
       { emitEvent: false }
     );

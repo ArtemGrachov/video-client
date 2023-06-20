@@ -1,6 +1,17 @@
 <form [formGroup]="form" (ngSubmit)="submitHandler()">
   <app-form-control
     class="mb-md"
+    [selector]="'avatar'"
+    [control]="form.get('avatar')"
+    [serverError]="submitError"
+  >
+    <app-input-image
+      formControlName="avatar"
+      [initialValue]="initialAvatarSrc"
+    ></app-input-image>
+  </app-form-control>
+  <app-form-control
+    class="mb-md"
     [selector]="'email'"
     [control]="form.get('email')"
     [serverError]="submitError"

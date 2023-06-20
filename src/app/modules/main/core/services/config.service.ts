@@ -22,7 +22,26 @@ export class ConfigService {
     'wmv',
   ];
 
+  public readonly imageAcceptableExt = [
+    'webp',
+    'avif',
+    'bmp',
+    'gif',
+    'heif',
+    'heic',
+    'ico',
+    'jpg',
+    'jpe',
+    'jpeg',
+    'png',
+    'svg',
+  ];
+
   public get videoInputAcceptAttr(): string {
+    return this.videoAcceptableExt.map(ext => `video/${ext}`).join(',');
+  }
+
+  public get imageInputAcceptAttr(): string {
     return this.videoAcceptableExt.map(ext => `video/${ext}`).join(',');
   }
 }

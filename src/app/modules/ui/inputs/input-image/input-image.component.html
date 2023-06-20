@@ -1,0 +1,49 @@
+<input
+  class="input"
+  #input
+  type="file"
+  multiple="false"
+  [accept]="imageInputAcceptAttr"
+  (change)="inputChangeHandler($event)"
+/>
+<div class="mb-lg">
+  <img
+    *ngIf="showImage$ | async"
+    class="image"
+    [src]="imageSrc$ | async"
+  />
+</div>
+<div class="mg-lg">
+  {{ fileSizeFormatted$ | async }}
+</div>
+<div
+  *ngIf="showPlaceholder$ | async"
+  class="placeholder mb-lg"
+  (click)="uploadHandler()"
+>
+  Click to upload image
+</div>
+<div class="actions">
+  <button
+    type="button"
+    class="button mr-md"
+    (click)="uploadHandler()"
+  >
+    Upload
+  </button>
+  <button
+    type="button"
+    class="button mr-md"
+    (click)="clearHandler()"
+  >
+    Delete
+  </button>
+  <button
+    *ngIf="allowReset"
+    type="button"
+    class="button mr-md"
+    (click)="resetHandler()"
+  >
+    Reset
+  </button>
+</div>

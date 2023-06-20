@@ -1,0 +1,33 @@
+@import '/src/styles/variables.scss';
+
+.input {
+  display: none;
+}
+
+.image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.placeholder {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background: map-get($colors, 'background-secondary');
+  border: 3px dashed map-get($colors, 'border-primary');
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten(map-get($colors, 'background-secondary'), 1);
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

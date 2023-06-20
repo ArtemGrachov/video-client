@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormControlModule } from '../form-control/form-control.module';
 import { FormServerErrorModule } from '../form-server-error/form-server-error.module';
+import { InputImageModule } from '../../inputs/input-image/input-image.module';
 
 import { FormProfileComponent } from './form-profile.component';
 
@@ -16,6 +17,7 @@ import { FormProfileComponent } from './form-profile.component';
     ReactiveFormsModule,
     FormControlModule,
     FormServerErrorModule,
+    InputImageModule,
   ],
   exports: [
     FormProfileComponent,
