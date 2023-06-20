@@ -8,6 +8,10 @@ const routes: Routes = [
     component: ViewProfileComponent,
     children: [
       {
+        path: 'change-password',
+        loadChildren: () => import('./views/change-password/change-password.module').then(m => m.ChangePasswordModule)
+      },
+      {
         path: '',
         loadChildren: () => import('./views/profile-edit/profile-edit.module').then(m => m.ProfileEditModule)
       },
