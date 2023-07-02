@@ -2,12 +2,29 @@
   <h1 class="title mb-none">
     {{ videoName }}
   </h1>
-  <div class="like">
-    <app-video-like-button [video]="video"></app-video-like-button>
+  <div class="actions">
+    <ul class="actions-list">
+      <li class="actions-item">
+        <button
+          type="button"
+          class="button button-icon button-transparent"
+          (click)="addToPlaylistHandler()"
+        >
+          <span class="material-icons">
+            library_add
+          </span>
+        </button>
+      </li>
+      <li class="actions-item">
+        <app-video-like-button [video]="video"></app-video-like-button>
+      </li>
+      <li class="actions-item">
+        <button class="button" type="button">
+          Subscribe
+        </button>
+      </li>
+    </ul>
   </div>
-  <button class="button" type="button">
-    Subscribe
-  </button>
 </div>
 <div class="author mb-xl">
   <div class="author-avatar">

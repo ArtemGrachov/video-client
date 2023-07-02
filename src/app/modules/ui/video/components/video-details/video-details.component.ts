@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
 
 import { IUser } from 'src/app/types/models/user.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
+import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-add-video/services/view-playlist-add-video-modal.service';
 
 @Component({
   selector: 'app-video-details',
@@ -12,6 +13,8 @@ import { IVideo } from 'src/app/types/models/video.interface';
 export class VideoDetailsComponent {
   @Input()
   public video!: IVideo;
+
+  constructor(@Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService) {}
 
   public get videoName(): string {
     return this.video.name;
@@ -31,5 +34,9 @@ export class VideoDetailsComponent {
 
   public get authorAvatarSrc(): string | null {
     return this.author?.avatar?.url ?? null;
+  }
+
+  public addToPlaylistHandler(): void {
+    this.viewPlaylistAddVideoModalService?.showModal();
   }
 }

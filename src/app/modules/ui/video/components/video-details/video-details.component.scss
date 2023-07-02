@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '../../../../../../styles/variables.scss';
 
 .header {
@@ -32,7 +33,17 @@
   border-radius: 50px;
 }
 
-.like {
-  flex: 0 0 auto;
-  margin-right: 16px;
+.actions {
+  $gap: 16px;
+
+  &-list {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    margin: math.div(-$gap, 2);
+  }
+
+  &-item {
+    padding: math.div($gap, 2);
+  }
 }

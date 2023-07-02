@@ -12,6 +12,7 @@ import { FormCommentModule } from 'src/app/modules/ui/forms/form-comment/form-co
 import { CommentFormDataModule } from 'src/app/modules/data/comment-form-data/comment-form-data.module';
 import { ViewsCommentEditModule } from 'src/app/views/views-comment-edit/views-comment-edit.module';
 import { ModalConfirmationModule } from 'src/app/modules/ui/modals/modal-confirmation/modal-confirmation.module';
+import { ViewPlaylistAddVideoModule } from '../view-playlist-add-video/view-playlist-add-video.module';
 
 import { ViewVideoRoutingModule } from './view-video-routing.module';
 import { ViewVideoComponent } from './view-video.component';
@@ -34,6 +35,7 @@ import { ViewVideoComponent } from './view-video.component';
     CommentFormDataModule,
     ViewsCommentEditModule,
     ModalConfirmationModule,
+    ViewPlaylistAddVideoModule,
   ]
 })
 export class ViewVideoModule {}
