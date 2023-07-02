@@ -49,7 +49,7 @@ const routes: Routes = [
     canActivate: [authOnlyGuard],
   },
   {
-    path: 'user/:id',
+    path: 'users/:id',
     loadChildren: () => import('./views/view-user/view-user.module').then(m => m.ViewUserModule)
   },
 ];

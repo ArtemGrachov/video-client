@@ -30,6 +30,6 @@ export class PlaylistDetailsComponent {
       return [];
     }
 
-    return ['/', 'user', this.author.id.toString()];
+    return ['/', 'users', this.author.id.toString()];
   }
 }

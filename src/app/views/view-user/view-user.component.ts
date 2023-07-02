@@ -14,4 +14,21 @@ export class ViewUserComponent {
   constructor(private userDataService: UserDataService) {}
 
   public userData$: Observable<IUser | null> = this.userDataService.data$;
+
+  public get videosLink(): string[] {
+    return [
+      '/',
+      'users',
+      this.userDataService.dataSnapshot!.id.toString(),
+    ];
+  }
+
+  public get playlistsLink(): string[] {
+    return [
+      '/',
+      'users',
+      this.userDataService.dataSnapshot!.id.toString(),
+      'playlists'
+    ];
+  }
 }

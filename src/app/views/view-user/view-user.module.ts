@@ -6,6 +6,7 @@ import { UsersModule } from 'src/app/modules/ui/users/users.module';
 import { ViewUserRoutingModule } from './view-user-routing.module';
 
 import { ViewUserComponent } from './view-user.component';
+import { ViewUserVideosModule } from './views/view-user-videos/view-user-videos.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ViewUserComponent } from './view-user.component';
     ViewUserRoutingModule,
     UserDataModule,
     UsersModule,
+    ViewUserVideosModule,
   ],
 })
 export class ViewUserModule { }

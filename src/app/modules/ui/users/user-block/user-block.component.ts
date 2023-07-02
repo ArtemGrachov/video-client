@@ -25,6 +25,6 @@ export class UserBlockComponent {
       return [];
     }
 
-    return ['/', 'user', this.user.id.toString()];
+    return ['/', 'users', this.user.id.toString()];
   }
 }
