@@ -1,14 +1,15 @@
+@use 'sass:math';
 @import '/src/styles/variables.scss';
 
 .row {
   display: flex;
   align-items: stretch;
-  margin: -$layout-gap / 2;
+  margin: math.div(-$layout-gap, 2);
 }
 
 .col {
   flex: 0 0 auto;
-  padding: $layout-gap / 2;
+  padding: math.div($layout-gap, 2);
 
   &-sm {
     width: 25%;
