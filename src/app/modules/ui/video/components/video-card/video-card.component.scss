@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  position: relative;
 }
 
 .thumbnail {
@@ -58,4 +59,10 @@
 
 .like {
   flex: 0 0 auto;
+}
+
+.remove-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }

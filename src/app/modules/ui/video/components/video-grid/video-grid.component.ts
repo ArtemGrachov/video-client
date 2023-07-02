@@ -45,4 +45,8 @@ export class VideoGridComponent {
   public nextPageHandler(): void {
     this.emitGetNextPage.emit();
   }
+
+  public trackBy(index: number, item: IVideo): number {
+    return item.id;
+  }
 }

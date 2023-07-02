@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ThumbnailModule } from '../other/thumbnail/thumbnail.module';
 import { AvatarModule } from '../other/avatar/avatar.module';
 import { LikeButtonModule } from '../other/like-button/like-button.module';
+import { ModalConfirmationModule } from '../modals/modal-confirmation/modal-confirmation.module';
 
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { VideoGridComponent } from './components/video-grid/video-grid.component';
@@ -30,6 +31,7 @@ import { VideoLikeButtonComponent } from './components/video-like-button/video-l
     AvatarModule,
     RouterModule,
     LikeButtonModule,
+    ModalConfirmationModule,
   ]
 })
 export class VideoModule { }

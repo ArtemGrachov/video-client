@@ -16,3 +16,13 @@
     </a>
   </div>
 </div>
+<button
+  *ngIf="showRemoveButton$ | async"
+  type="button"
+  class="button button-icon remove-button"
+  (click)="deleteHandler()"
+>
+  <span class="material-icons">
+    clear
+  </span>
+</button>

@@ -9,7 +9,7 @@
   </button>
 </div>
 <ul class="grid">
-  <li class="item" *ngFor="let video of videos">
+  <li class="item" *ngFor="let video of videos; trackBy: trackBy">
     <app-video-card [video]="video"></app-video-card>
   </li>
 </ul>

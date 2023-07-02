@@ -79,4 +79,8 @@ export class PlaylistApiService {
   public addVideoToPlaylist(playlistId: number, payload: IPlaylistAddVideoPayload): Observable<IApiGenericResponse> {
     return this.http.post<IApiGenericResponse>(`${environment.API_URL}/playlists/${playlistId}/video`, payload);
   }
+
+  public removeVideoFromPlaylist(playlistId: number, videoId: number): Observable<IApiGenericResponse> {
+    return this.http.delete<IApiGenericResponse>(`${environment.API_URL}/playlists/${playlistId}/video/${videoId}`);
+  }
 }
