@@ -22,6 +22,22 @@ export class ViewProfileComponent {
 
   public user$: Observable<IUser | null> = this.userDataService.data$;
 
+  public get ownPageLink(): string[] {
+    return [
+      '/',
+      'users',
+      this.userDataService.dataSnapshot!.id.toString(),
+    ];
+  }
+
+  public get editLink(): string[] {
+    return ['/', 'profile'];
+  }
+
+  public get changePasswordLink(): string[] {
+    return ['/', 'profile', 'change-password'];
+  }
+
   public logoutHandler(): void {
     this.authService.unauthorize();
     this.router.navigate(['/']);
