@@ -27,10 +27,20 @@ export class AuthService {
     return this.cookieService.get(AUTH_COOKIE_TOKEN_KEY) ?? null;
   }
 
+  public getRefreshToken(): string | null {
+    return this.cookieService.get(AUTH_COOKIE_REFRESH_TOKEN_KEY) ?? null;
+  }
+
   public authorize(authData: IAuthResponse): void {
     this.cookieService.set(AUTH_COOKIE_TOKEN_KEY, authData.token, 30, '/');
     this.cookieService.set(AUTH_COOKIE_REFRESH_TOKEN_KEY, authData.refreshToken, 30, '/');
     this.isAuthorizedFlag = true;
+  }
+
+  public unauthorize(): void {
+    this.cookieService.delete(AUTH_COOKIE_TOKEN_KEY, '/');
+    this.cookieService.delete(AUTH_COOKIE_REFRESH_TOKEN_KEY, '/');
+    this.isAuthorizedFlag = false;
   }
 
   public get userDataSnapshot(): IUser | null {

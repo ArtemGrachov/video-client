@@ -29,3 +29,7 @@ export interface IChangePasswordPayload {
   password: string;
   passwordConfirmation: string;
 }
+
+export interface IRefreshTokenPayload {
+  refreshToken: string;
+}
