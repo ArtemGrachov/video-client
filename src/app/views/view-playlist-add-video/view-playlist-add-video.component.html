@@ -5,6 +5,9 @@
   <app-modal-body>
     <app-form-add-to-playlist
       [playlists]="(items$ | async)!"
+      [submitStatus]="submitStatus$ | async"
+      [submitError]="submitError$ | async"
+      (formSubmit)="submitHandler($event)"
     ></app-form-add-to-playlist>
   </app-modal-body>
 </app-modal-window>

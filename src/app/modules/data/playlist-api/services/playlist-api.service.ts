@@ -9,6 +9,7 @@ import {
   IGetPlaylistResponse,
   IGetPlaylistsQuery,
   IGetPlaylistsResponse,
+  IPlaylistAddVideoPayload,
   IUpdatePlaylistPayload,
   IUpdatePlaylistResponse,
 } from 'src/app/types/api/playlist-api.interface';
@@ -71,7 +72,11 @@ export class PlaylistApiService {
     return this.http.patch<IUpdatePlaylistResponse>(`${environment.API_URL}/playlists/${playlistId}`, payload);
   }
 
-  public deleteVideo(playlistId: number): Observable<IApiGenericResponse> {
+  public deletePlaylist(playlistId: number): Observable<IApiGenericResponse> {
     return this.http.delete<IApiGenericResponse>(`${environment.API_URL}/playlists/${playlistId}`);
+  }
+
+  public addVideoToPlaylist(playlistId: number, payload: IPlaylistAddVideoPayload): Observable<IApiGenericResponse> {
+    return this.http.post<IApiGenericResponse>(`${environment.API_URL}/playlists/${playlistId}/video`, payload);
   }
 }

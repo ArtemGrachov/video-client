@@ -3,14 +3,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { IPlaylistAddVideoPayload } from 'src/app/types/api/playlist-api.interface';
+import { IFormAddToPlaylistValue } from 'src/app/types/forms/form-add-to-playlist.interface';
 import { IPlaylist } from 'src/app/types/models/playlist.interface';
 
 @Component({
   selector: 'app-form-add-to-playlist',
   templateUrl: './form-add-to-playlist.component.html',
   styleUrls: ['./form-add-to-playlist.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormAddToPlaylistComponent {
   @Input('submitStatus')
@@ -23,7 +23,7 @@ export class FormAddToPlaylistComponent {
   public playlists?: IPlaylist[]
 
   @Output('formSubmit')
-  private submitEmitter: EventEmitter<IPlaylistAddVideoPayload> = new EventEmitter()
+  private submitEmitter: EventEmitter<IFormAddToPlaylistValue> = new EventEmitter()
 
   public get submitProcessing(): boolean {
     return this.submitStatus === EStatus.PROCESSING;

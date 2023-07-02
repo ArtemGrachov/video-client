@@ -53,7 +53,7 @@ export class PlaylistDataService {
       deleteError: null,
     });
 
-    return this.playlistApiService.deleteVideo(this.dataSnapshot.id)
+    return this.playlistApiService.deletePlaylist(this.dataSnapshot.id)
       .pipe(
         tap(
           {

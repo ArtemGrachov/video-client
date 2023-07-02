@@ -37,6 +37,6 @@ export class VideoDetailsComponent {
   }
 
   public addToPlaylistHandler(): void {
-    this.viewPlaylistAddVideoModalService?.showModal();
+    this.viewPlaylistAddVideoModalService?.showModal(this.video);
   }
 }
