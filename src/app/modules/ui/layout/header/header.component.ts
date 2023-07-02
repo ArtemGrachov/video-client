@@ -19,6 +19,12 @@ export class HeaderComponent {
     private route: ActivatedRoute,
   ) {}
 
+  public isAuthorized$: Observable<boolean> = this.authService.isAuthorizedFlag$;
+
+  public allowVideoCreate$: Observable<boolean> = this.authService.isAuthorizedFlag$;
+
+  public isGuest$: Observable<boolean> = this.authService.isAuthorizedFlag$.pipe(map(v => !v));
+
   public searchQuery$: Observable<string | null> = combineLatest([
     this.route.queryParams,
     this.route.url,
@@ -34,10 +40,6 @@ export class HeaderComponent {
   );
 
   public get allowVideoCreate(): boolean {
-    return this.authService.isAuthorized;
-  }
-
-  public get isAuthorized(): boolean {
     return this.authService.isAuthorized;
   }
 

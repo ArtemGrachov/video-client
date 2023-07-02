@@ -18,7 +18,7 @@
       </span>
     </a>
     <a
-      *ngIf="allowVideoCreate"
+      *ngIf="allowVideoCreate$ | async"
       [routerLink]="['/', 'video', 'create']"
       class="button button-icon mr-md"
     >
@@ -27,7 +27,7 @@
       </span>
     </a>
     <button
-      *ngIf="isGuest"
+      *ngIf="isGuest$ | async"
       type="button"
       class="button button-icon"
       (click)="openAuthModal()"
@@ -37,7 +37,7 @@
       </span>
     </button>
     <a
-      *ngIf="isAuthorized"
+      *ngIf="isAuthorized$ | async"
       [routerLink]="['/', 'profile']"
       class="button button-icon mr-md"
     >

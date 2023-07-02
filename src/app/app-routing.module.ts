@@ -20,10 +20,12 @@ const routes: Routes = [
   {
     path: 'playlists/create',
     loadChildren: () => import('./views/view-playlist-create/view-playlist-create.module').then(m => m.ViewPlaylistCreateModule),
+    canActivate: [authOnlyGuard],
   },
   {
     path: 'playlists/:id/edit',
     loadChildren: () => import('./views/view-playlist-edit/view-playlist-edit.module').then(m => m.ViewPlaylistEditModule),
+    canActivate: [authOnlyGuard],
   },
   {
     path: 'playlists/:id',
@@ -41,7 +43,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./views/view-index/view-index.module').then(m => m.ViewIndexModule),
   },
-  { path: 'profile', loadChildren: () => import('./views/view-profile/view-profile.module').then(m => m.ViewProfileModule) },
+  {
+    path: 'profile',
+    loadChildren: () => import('./views/view-profile/view-profile.module').then(m => m.ViewProfileModule),
+    canActivate: [authOnlyGuard],
+  },
 ];
 
 @NgModule({

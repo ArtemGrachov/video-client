@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { AUTH_COOKIE_REFRESH_TOKEN_KEY, AUTH_COOKIE_TOKEN_KEY } from 'src/app/constants/auth';
 
@@ -17,10 +17,14 @@ export class AuthService {
     private userDataService: UserDataService,
   ) {}
 
-  private isAuthorizedFlag: boolean = Boolean(this.cookieService.get(AUTH_COOKIE_TOKEN_KEY));
+  private isAuthorizedFlagSbj$: BehaviorSubject<boolean> = new BehaviorSubject(
+    Boolean(this.cookieService.get(AUTH_COOKIE_TOKEN_KEY))
+  );
+
+  public isAuthorizedFlag$: Observable<boolean> = this.isAuthorizedFlagSbj$.asObservable();
 
   public get isAuthorized(): boolean {
-    return this.isAuthorizedFlag;
+    return this.isAuthorizedFlagSbj$.getValue();
   }
 
   public getAuthToken(): string | null {
@@ -34,13 +38,13 @@ export class AuthService {
   public authorize(authData: IAuthResponse): void {
     this.cookieService.set(AUTH_COOKIE_TOKEN_KEY, authData.token, 30, '/');
     this.cookieService.set(AUTH_COOKIE_REFRESH_TOKEN_KEY, authData.refreshToken, 30, '/');
-    this.isAuthorizedFlag = true;
+    this.isAuthorizedFlagSbj$.next(true);
   }
 
   public unauthorize(): void {
     this.cookieService.delete(AUTH_COOKIE_TOKEN_KEY, '/');
     this.cookieService.delete(AUTH_COOKIE_REFRESH_TOKEN_KEY, '/');
-    this.isAuthorizedFlag = false;
+    this.isAuthorizedFlagSbj$.next(false);
   }
 
   public get userDataSnapshot(): IUser | null {

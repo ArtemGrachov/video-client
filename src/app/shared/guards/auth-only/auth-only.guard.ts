@@ -12,11 +12,15 @@ export const authOnlyGuard: CanActivateFn = (route, state) => {
   const platformId = inject(PLATFORM_ID);
 
   if (authService.isAuthorized) {
-    return authService.isAuthorized;
+    return true;
   }
 
   if (isPlatformBrowser(platformId)) {
     viewLoginModalService.showModal(state.url);
+
+    if (router.getCurrentNavigation()?.previousNavigation) {
+      return false;
+    }
   }
 
   return router.parseUrl('/');
