@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
 
+import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-add-video/services/view-playlist-add-video-modal.service';
+
 import { IUser } from 'src/app/types/models/user.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
-import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-add-video/services/view-playlist-add-video-modal.service';
+import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
 
 @Component({
   selector: 'app-video-details',
@@ -14,7 +17,11 @@ export class VideoDetailsComponent {
   @Input()
   public video!: IVideo;
 
-  constructor(@Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService) {}
+  constructor(
+    private authService: AuthService,
+    private viewLoginModalService: ViewLoginModalService,
+    @Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService
+  ) {}
 
   public get videoName(): string {
     return this.video.name;
@@ -37,6 +44,11 @@ export class VideoDetailsComponent {
   }
 
   public addToPlaylistHandler(): void {
+    if (!this.authService.isAuthorized) {
+      this.viewLoginModalService.showModal();
+      return;
+    }
+
     this.viewPlaylistAddVideoModalService?.showModal(this.video);
   }
 }
