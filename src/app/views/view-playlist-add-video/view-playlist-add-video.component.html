@@ -8,6 +8,7 @@
       [submitStatus]="submitStatus$ | async"
       [submitError]="submitError$ | async"
       (formSubmit)="submitHandler($event)"
+      (loadPlaylists)="loadPlaylistsHandler()"
     ></app-form-add-to-playlist>
   </app-modal-body>
 </app-modal-window>

@@ -31,6 +31,7 @@
     "express": "^4.15.2",
     "lodash": "^4.17.21",
     "ngx-cookie-service-ssr": "^16.0.0",
+    "ngx-infinite-scroll": "^16.0.0",
     "ngx-toastr": "^17.0.2",
     "normalize.css": "^8.0.1",
     "pretty-size": "^2.0.0",

@@ -5,7 +5,13 @@
     [control]="form.get('playlist')"
     [serverError]="submitError"
   >
-    <ul class="selection-default playlist-selection">
+    <ul
+      class="selection-default playlist-selection"
+      infiniteScroll
+      [scrollWindow]="false"
+      [alwaysCallback]="true"
+      (scrolled)="playlistsScrollHandler()"
+    >
       <li
         *ngFor="let playlist of playlists"
         class="selection-default-item"

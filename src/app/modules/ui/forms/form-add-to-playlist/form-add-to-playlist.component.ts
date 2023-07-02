@@ -25,6 +25,9 @@ export class FormAddToPlaylistComponent {
   @Output('formSubmit')
   private submitEmitter: EventEmitter<IFormAddToPlaylistValue> = new EventEmitter()
 
+  @Output('loadPlaylists')
+  private loadPlaylistsEmitter: EventEmitter<void> = new EventEmitter()
+
   public get submitProcessing(): boolean {
     return this.submitStatus === EStatus.PROCESSING;
   }
@@ -44,5 +47,9 @@ export class FormAddToPlaylistComponent {
     }
 
     this.submitEmitter.next(this.form.value);
+  }
+
+  public playlistsScrollHandler(): void {
+    this.loadPlaylistsEmitter.emit();
   }
 }

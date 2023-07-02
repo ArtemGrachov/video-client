@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup } from '@angular/forms';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -41,7 +42,23 @@ export class ViewPlaylistAddVideoComponent extends SimpleModalComponent<{ video:
 
   public submitError$: Observable<any> = this.playlistAddVideoDataService.submitError$;
 
+  private get playlistsForm(): FormGroup {
+    return this.playlistsFormDataService.form;
+  }
+
   public ngOnInit(): void {
+    this.initPlaylists();
+  }
+
+  private initPlaylists(): void {
+    if (this.playlistsListDataService.getStatusSnapshot !== EStatus.INIT) {
+      return;
+    }
+
+    this.loadPlaylists();
+  }
+
+  private loadPlaylists(): void {
     const payload: IGetPlaylistsQuery = {
       ...this.playlistsFormDataService.form.value,
       userIds: [this.userDataService.dataSnapshot?.id!],
@@ -60,10 +77,28 @@ export class ViewPlaylistAddVideoComponent extends SimpleModalComponent<{ video:
       .submit(formValue.playlist, { videoIds: [this.video.id] })
       .subscribe({
         next: () => {
-          this.toastr.error('Video added to playlist successfully');
+          this.toastr.success('Video added to playlist successfully');
           this.close();
         },
         error: () => this.toastr.error('Adding video to playlist error'),
       });
+  }
+
+  public loadPlaylistsHandler(): void {
+    if (this.playlistsListDataService.getStatusSnapshot === EStatus.PROCESSING) {
+      return;
+    }
+
+    const pageControl = this.playlistsForm.get('page')!
+    const currentPage = pageControl.value as number;
+
+    if (currentPage >= (this.playlistsListDataService.paginationSnapshot?.totalPages ?? 1)) {
+      return;
+    }
+
+    const nextPage = currentPage + 1;
+
+    pageControl.patchValue(nextPage);
+    this.loadPlaylists();
   }
 }
