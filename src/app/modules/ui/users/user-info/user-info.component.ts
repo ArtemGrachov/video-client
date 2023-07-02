@@ -17,11 +17,11 @@ export class UserInfoComponent {
     return this.user.name;
   }
 
-  public get userAvatar(): IMedia {
-    return this.user.avatar;
+  public get userAvatar(): IMedia | null {
+    return this.user.avatar ?? null;
   }
 
   public get userAvatarSrc(): string | null {
-    return this.userAvatar.url;
+    return this.userAvatar?.url ?? null;
   }
 }
