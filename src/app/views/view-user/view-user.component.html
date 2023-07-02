@@ -1,1 +1,35 @@
-<p>view-user works!</p>
+<div class="page">
+  <div class="container">
+    <div class="header mb-xl">
+      <div class="mr-auto">
+        <app-user-info
+          [user]="(userData$ | async)!"
+        ></app-user-info>
+      </div>
+      <nav class="nav mr-md">
+        <ul class="actions-list">
+          <li class="actions-item">
+            <a href="#" class="actions-trigger button button-transparent">
+              Videos
+            </a>
+          </li>
+          <li class="actions-item">
+            <a href="#" class="actions-trigger button button-transparent">
+              Playlists
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <ul class="actions-list">
+        <li class="actions-item">
+          <button
+            type="button"
+            class="button"
+          >
+            Subscribe
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

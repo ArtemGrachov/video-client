@@ -1,0 +1,26 @@
+@use 'sass:math';
+@import '/src/styles/variables.scss';
+
+.header {
+  border-radius: 32px;
+  padding: 16px;
+  background: map-get($colors, 'background-secondary');
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  $gap: 16px;
+
+  &-list {
+    list-style: none;
+    margin: math.div(-$gap, 2);
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &-item {
+    padding: math.div($gap, 2);
+  }
+}
