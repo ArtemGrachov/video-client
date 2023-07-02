@@ -48,6 +48,10 @@ const routes: Routes = [
     loadChildren: () => import('./views/view-profile/view-profile.module').then(m => m.ViewProfileModule),
     canActivate: [authOnlyGuard],
   },
+  {
+    path: 'user/:id',
+    loadChildren: () => import('./views/view-user/view-user.module').then(m => m.ViewUserModule)
+  },
 ];
 
 @NgModule({

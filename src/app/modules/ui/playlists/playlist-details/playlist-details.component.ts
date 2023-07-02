@@ -21,15 +21,15 @@ export class PlaylistDetailsComponent {
     return this.playlist.author ?? null;
   }
 
-  public get authorName(): string | null {
-    return this.author?.name ?? null;
-  }
-
-  public get authorAvatarSrc(): string | null {
-    return this.author?.avatar?.url ?? null;
-  }
-
   public get description(): string {
     return this.playlist.description;
+  }
+
+  public get authorLink(): string[] {
+    if (!this.author) {
+      return [];
+    }
+
+    return ['/', 'user', this.author.id.toString()];
   }
 }

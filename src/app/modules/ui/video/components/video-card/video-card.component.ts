@@ -67,6 +67,14 @@ export class VideoCardComponent {
     return ['/', 'video', this.video.id.toString()];
   }
 
+  public get authorLink(): string[] {
+    if (!this.author) {
+      return [];
+    }
+
+    return ['/', 'user', this.author.id.toString()];
+  }
+
   public deleteHandler(): void {
     if (!this.playlistDataService?.dataSnapshot || !this.videoListDataService) {
       return;

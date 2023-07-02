@@ -6,25 +6,10 @@
   align-items: center;
 }
 
-.author {
-  display: flex;
-  align-items: center;
-
-  &-avatar {
-    margin-right: 10px;
-  }
-}
-
 .title {
   min-width: 0;
   font-weight: 500;
   margin-right: auto;
-}
-
-.avatar {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 auto;
 }
 
 .description {

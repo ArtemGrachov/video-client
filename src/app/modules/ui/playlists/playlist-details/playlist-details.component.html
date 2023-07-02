@@ -1,18 +1,14 @@
 <h1>
   {{ playlistName }}
 </h1>
-<div class="details mb-xl">
-  <div class="author">
-    <div class="author-avatar">
-      <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
-    </div>
-    <div class="author-text">
-      <div class="author-name">
-        {{ authorName }}
-      </div>
-    </div>
-  </div>
+<div
+  *ngIf="author"
+  class="author mb-xl"
+>
+  <app-user-block
+    [user]="author"
+  ></app-user-block>
 </div>
-<div>
+<div class="description">
   {{ description }}
 </div>

@@ -35,14 +35,6 @@ export class VideoDetailsComponent {
     return this.video.author ?? null;
   }
 
-  public get authorName(): string | null {
-    return this.author?.name ?? null;
-  }
-
-  public get authorAvatarSrc(): string | null {
-    return this.author?.avatar?.url ?? null;
-  }
-
   public addToPlaylistHandler(): void {
     if (!this.authService.isAuthorized) {
       this.viewLoginModalService.showModal();

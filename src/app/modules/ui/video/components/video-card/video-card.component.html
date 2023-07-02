@@ -4,13 +4,13 @@
   </div>
 </a>
 <div class="details">
-  <div class="details-avatar">
+  <a [routerLink]="authorLink" class="details-avatar">
     <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
-  </div>
+  </a>
   <div class="details-text">
-    <div class="author">
+    <a [routerLink]="authorLink" class="author">
       {{ authorName }}
-    </div>
+    </a>
     <a class="name" [routerLink]="videoLink">
       {{ videoName }}
     </a>
