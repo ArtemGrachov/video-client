@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="submitHandler()">
+  <app-form-control
+    class="mb-md"
+    [selector]="'playlist'"
+    [control]="form.get('playlist')"
+    [serverError]="submitError"
+  >
+    <ul class="selection-default playlist-selection">
+      <li
+        *ngFor="let playlist of playlists"
+        class="selection-default-item"
+      >
+        <input
+          type="radio"
+          name="playlist"
+          [id]="'pl_' + playlist.id"
+          class="selection-default-control"
+          formControlName="playlist"
+          [value]="playlist.id"
+        />
+        <label
+          [for]="'pl_' + playlist.id"
+          class="selection-default-label"
+        >
+          {{ playlist.name }}
+        </label>
+      </li>
+    </ul>
+  </app-form-control>
+  <app-form-server-error
+    class="mb-md"
+    [error]="submitError"
+  ></app-form-server-error>
+  <button type="submit" class="button">
+    Submit
+    <div *ngIf="submitProcessing" class="button-loader">
+      <span class="material-icons button-loader-icon">
+        hourglass_bottom
+      </span>
+    </div>
+  </button>
+</form>

@@ -3,5 +3,8 @@
     Add to playlist
   </app-modal-header>
   <app-modal-body>
+    <app-form-add-to-playlist
+      [playlists]="(items$ | async)!"
+    ></app-form-add-to-playlist>
   </app-modal-body>
 </app-modal-window>

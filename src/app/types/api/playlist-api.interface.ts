@@ -6,6 +6,7 @@ export interface IGetPlaylistsQuery {
   userIds?: number[] | null;
   search?: string | null;
   page?: number | null;
+  perPage?: number | null;
 }
 
 export interface IGetPlaylistsResponse {
@@ -29,3 +30,7 @@ export interface IUpdatePlaylistPayload {
 }
 
 export interface IUpdatePlaylistResponse extends IPlaylist {}
+
+export interface IPlaylistAddVideoPayload {
+  videoIds: number[];
+}

@@ -34,6 +34,14 @@ export class PlaylistApiService {
       params = params.set('search', query.search);
     }
 
+    if (query?.userIds) {
+      params = params.set('userIds', query.userIds.toString());
+    }
+
+    if (query?.perPage) {
+      params = params.set('perPage', query.perPage);
+    }
+
     return this.http.get<IGetPlaylistsResponse>(`${environment.API_URL}/playlists`, { params });
   }
 
