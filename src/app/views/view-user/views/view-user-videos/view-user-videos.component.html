@@ -1,1 +1,10 @@
-<p>view-user-videos works!</p>
+<div class="page">
+  <div class="container">
+    <app-video-grid
+      [videos]="(items$ | async)!"
+      [pagination]="pagination$ | async"
+      (getPrevPage)="getPrevPageHandler()"
+      (getNextPage)="getNextPageHandler()"
+    ></app-video-grid>
+  </div>
+</div>

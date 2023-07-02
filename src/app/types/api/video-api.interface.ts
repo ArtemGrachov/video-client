@@ -12,6 +12,7 @@ export interface IGetVideosQuery {
   page?: number | null;
   search?: string | null;
   subscriptions?: boolean | null;
+  userIds?: Array<string | number>;
 }
 
 export interface IGetVideoResponse extends IVideo {}

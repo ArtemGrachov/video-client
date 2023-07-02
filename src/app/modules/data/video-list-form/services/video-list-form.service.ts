@@ -19,9 +19,14 @@ export class VideoListFormService {
     this.form.patchValue(value);
   }
 
-  public update(): Observable<IGetVideosResponse> {
-    const formValue = this.form.getRawValue();
-    return this.videoListDataService.getVideos(formValue);
+  public update(query?: IGetVideosQuery): Observable<IGetVideosResponse> {
+    const payload = { ...this.form.getRawValue() };
+
+    if (query) {
+      Object.assign(payload, query);
+    }
+
+    return this.videoListDataService.getVideos(payload);
   }
 
   public updatePlaylist(playlistId: number): Observable<IGetVideosResponse> {

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 
-import { IGetPlaylistsQuery } from 'src/app/types/api/playlist-api.interface';
+import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
 
 @Injectable()
 export class RouteHandlerService {
-  public routeQueryToFormValue(query: Params): IGetPlaylistsQuery {
-    const formValue: IGetPlaylistsQuery = {};
+  public routeQueryToFormValue(query: Params): IGetVideosQuery {
+    const formValue: IGetVideosQuery = {};
 
     const page = +(query['page'] as string);
 
@@ -19,7 +19,7 @@ export class RouteHandlerService {
     return formValue;
   }
 
-  public formValueToRouteQuery(formValue: IGetPlaylistsQuery): Params {
+  public formValueToRouteQuery(formValue: IGetVideosQuery): Params {
     const result: Params = {};
 
     if (formValue.search) {

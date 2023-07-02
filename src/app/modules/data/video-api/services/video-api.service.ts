@@ -37,6 +37,10 @@ export class VideoApiService {
       params = params.set('search', query.search);
     }
 
+    if (query?.userIds) {
+      params = params.set('userIds', query.userIds.toString());
+    }
+
     return this.http.get<IGetVideosResponse>(`${environment.API_URL}/video`, { params });
   }
 
