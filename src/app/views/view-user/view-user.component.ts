@@ -32,4 +32,13 @@ export class ViewUserComponent {
       'playlists'
     ];
   }
+
+  public get subscriptionsLink(): string[] {
+    return [
+      '/',
+      'users',
+      this.userDataService.dataSnapshot!.id.toString(),
+      'subscriptions'
+    ];
+  }
 }

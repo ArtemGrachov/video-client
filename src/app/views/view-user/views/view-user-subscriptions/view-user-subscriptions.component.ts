@@ -10,11 +10,11 @@ import { RouteHandlerService } from './services/route-handler.service';
 
 @Component({
   selector: 'app-view-users',
-  templateUrl: './view-users.component.html',
-  styleUrls: ['./view-users.component.scss'],
+  templateUrl: './view-user-subscriptions.component.html',
+  styleUrls: ['./view-user-subscriptions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ViewUsersComponent {
+export class ViewUserSubscriptionsComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,

@@ -19,7 +19,11 @@ const routes: Routes = [
         path: 'playlists',
         loadChildren: () => import('./views/view-user-playlists/view-user-playlists.module').then(m => m.ViewUserPlaylistsModule),
       },
-    ]
+      {
+        path: 'subscriptions',
+        loadChildren: () => import('./views/view-user-subscriptions/view-user-subscriptions.module').then(m => m.ViewUserSubscriptionsModule),
+      },
+    ],
   },
 ];
 
