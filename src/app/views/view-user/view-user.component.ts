@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+
 import { IUser } from 'src/app/types/models/user.interface';
 
 @Component({

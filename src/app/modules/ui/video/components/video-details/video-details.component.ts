@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, Optional } from '@angular/core';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
 import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-add-video/services/view-playlist-add-video-modal.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 import { IUser } from 'src/app/types/models/user.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
-import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
-import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
 
 @Component({
   selector: 'app-video-details',
@@ -21,7 +21,7 @@ export class VideoDetailsComponent {
   constructor(
     private authService: AuthService,
     private viewLoginModalService: ViewLoginModalService,
-    private userService: UserDataService,
+    @Inject('MAIN_USER_SERVICE') private userService: UserDataService,
     @Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService
   ) {}
 

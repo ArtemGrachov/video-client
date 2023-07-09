@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { map } from 'rxjs';
 
 import { RouteHandlerService } from '../services/route-handler.service';
-import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
+import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
 
 export const viewIndexResolver: ResolveFn<boolean> = (route, state) => {
   const routeHandlerSerivce: RouteHandlerService = inject(RouteHandlerService);

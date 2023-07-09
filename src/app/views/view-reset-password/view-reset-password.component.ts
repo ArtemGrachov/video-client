@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
 import { EStatus } from 'src/app/constants/status';
 
 import { ViewLoginModalService } from '../view-login/services/view-login-modal.service';
-import { ResetPasswordDataService } from 'src/app/modules/data/reset-password-data/services/reset-password-data.service';
+import { ResetPasswordDataService } from 'src/app/services/reset-password-data/reset-password-data.service';
 
 import { IFormResetPasswordValue } from 'src/app/types/forms/form-reset-password.interface';
 import { IResetPasswordPayload } from 'src/app/types/api/auth-api.interface';

@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { map } from 'rxjs';
 
-import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
 
 export const viewUserResolver: ResolveFn<boolean> = (route, state) => {
   const userDataService = inject(UserDataService);

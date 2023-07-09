@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -6,12 +6,12 @@ import { FormGroup } from '@angular/forms';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { PlaylistsFormDataService } from 'src/app/modules/data/playlists-form-data/services/playlists-form-data.service';
-import { PlaylistsListDataService } from 'src/app/modules/data/playlists-list-data/services/playlists-list-data.service';
-import { PlaylistAddVideoDataService } from 'src/app/modules/data/playlist-add-video-data/services/playlist-add-video-data.service';
-import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
+import { PlaylistsListDataService } from 'src/app/services/playlists-list-data/playlists-list-data.service';
+import { PlaylistsFormDataService } from 'src/app/services/playlists-form-data/playlists-form-data.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { PlaylistAddVideoDataService } from 'src/app/services/playlist-add-video-data/playlist-add-video-data.service';
 
-import { IGetPlaylistsQuery, IPlaylistAddVideoPayload } from 'src/app/types/api/playlist-api.interface';
+import { IGetPlaylistsQuery } from 'src/app/types/api/playlist-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 import { IFormAddToPlaylistValue } from 'src/app/types/forms/form-add-to-playlist.interface';
 
@@ -26,7 +26,7 @@ export class ViewPlaylistAddVideoComponent extends SimpleModalComponent<{ video:
     private toastr: ToastrService,
     private playlistsListDataService: PlaylistsListDataService,
     private playlistsFormDataService: PlaylistsFormDataService,
-    private userDataService: UserDataService,
+    @Inject('MAIN_USER_SERVICE') private userDataService: UserDataService,
     private playlistAddVideoDataService: PlaylistAddVideoDataService,
   ) {
     super();

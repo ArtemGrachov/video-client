@@ -5,8 +5,8 @@ import { Observable, map } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { ResetPasswordRequestDataService } from 'src/app/modules/data/reset-password-request-data/services/reset-password-request-data.service';
 import { ViewLoginModalService } from '../view-login/services/view-login-modal.service';
+import { ResetPasswordRequestDataService } from 'src/app/services/reset-password-request-data/reset-password-request-data.service';
 
 import { IResetPasswordRequestPayload } from 'src/app/types/api/auth-api.interface';
 

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { VideoFormDataService } from 'src/app/modules/data/video-form-data/services/video-form-data.service';
+import { VideoFormDataService } from 'src/app/services/video-form-data/video-form-data.service';
 
 import { ICreateVideoPayload } from 'src/app/types/api/video-api.interface';
 

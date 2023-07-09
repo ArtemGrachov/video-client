@@ -3,9 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
-import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
 
-import { UserFormDataService } from 'src/app/modules/data/user-form-data/services/user-form-data.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { UserFormDataService } from 'src/app/services/user-form-data/user-form-data.service';
 
 import { IUpdateUserPayload } from 'src/app/types/api/users-api.interface';
 import { IUser } from 'src/app/types/models/user.interface';

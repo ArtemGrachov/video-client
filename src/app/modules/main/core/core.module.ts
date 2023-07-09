@@ -1,13 +1,14 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthModule } from '../../data/auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { UserApiService } from 'src/app/services/user-api/user-api.service';
+
 import { InitService } from './services/init.service';
 import { ConfigService } from './services/config.service';
 
-import { AuthService } from '../../data/auth/services/auth.service';
-
-function appConfigFactory(initService: InitService, authService: AuthService) {
+function appConfigFactory(initService: InitService) {
   return () => initService.init();
 }
 
@@ -18,11 +19,16 @@ function appConfigFactory(initService: InitService, authService: AuthService) {
     AuthModule,
   ],
   providers: [
+    UserApiService,
+    {
+      provide: 'MAIN_USER_SERVICE',
+      useClass: UserDataService,
+    },
     InitService,
     {
       provide: APP_INITIALIZER,
       useFactory: appConfigFactory,
-      deps: [InitService, AuthService],
+      deps: [InitService, 'MAIN_USER_SERVICE'],
       multi: true,
     },
     ConfigService,

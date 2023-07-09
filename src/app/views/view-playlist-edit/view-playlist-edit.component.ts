@@ -5,8 +5,8 @@ import { Observable, map } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { PlaylistDataService } from 'src/app/modules/data/playlist-data/services/playlist-data.service';
-import { PlaylistFormDataService } from 'src/app/modules/data/playlist-form-data/services/playlist-form-data.service';
+import { PlaylistDataService } from 'src/app/services/playlist-data/playlist-data.service';
+import { PlaylistFormDataService } from 'src/app/services/playlist-form-data/playlist-form-data.service';
 
 import { IUpdatePlaylistPayload } from 'src/app/types/api/playlist-api.interface';
 

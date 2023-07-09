@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
-import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
 
 import { IUser } from 'src/app/types/models/user.interface';
 
@@ -16,7 +16,7 @@ import { IUser } from 'src/app/types/models/user.interface';
 export class ViewProfileComponent {
   constructor(
     private authService: AuthService,
-    private userDataService: UserDataService,
+    @Inject('MAIN_USER_SERVICE') private userDataService: UserDataService,
     private router: Router,
   ) {}
 

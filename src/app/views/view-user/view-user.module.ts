@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UserDataModule } from 'src/app/modules/data/user-data/user-data.module';
 import { UsersModule } from 'src/app/modules/ui/users/users.module';
 import { ViewUserRoutingModule } from './view-user-routing.module';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { UserApiService } from 'src/app/services/user-api/user-api.service';
 
 import { ViewUserComponent } from './view-user.component';
-import { ViewUserVideosModule } from './views/view-user-videos/view-user-videos.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +15,11 @@ import { ViewUserVideosModule } from './views/view-user-videos/view-user-videos.
   imports: [
     CommonModule,
     ViewUserRoutingModule,
-    UserDataModule,
     UsersModule,
-    ViewUserVideosModule,
   ],
+  providers: [
+    UserDataService,
+    UserApiService,
+  ]
 })
 export class ViewUserModule { }

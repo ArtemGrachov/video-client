@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EStatus } from 'src/app/constants/status';
 
 import { ViewLoginModalService } from '../view-login/services/view-login-modal.service';
-import { RegistrationDataService } from 'src/app/modules/data/registration-data/services/registration-data.service';
+import { RegistrationDataService } from 'src/app/services/registration-data/registration-data.service';
 
 import { IRegistrationRequestPayload } from 'src/app/types/api/auth-api.interface';
 

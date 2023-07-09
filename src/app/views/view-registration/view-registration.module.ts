@@ -4,7 +4,8 @@ import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormRegistrationModule } from 'src/app/modules/ui/forms/form-registration/form-registration.module';
-import { RegistrationDataModule } from 'src/app/modules/data/registration-data/registration-data.module';
+import { RegistrationDataService } from 'src/app/services/registration-data/registration-data.service';
+import { AuthApiService } from 'src/app/services/auth-api/auth-api.service';
 
 import { ViewRegistrationComponent } from './view-registration.component';
 import { ViewRegistrationModalService } from './services/view-registration-modal.service';
@@ -18,10 +19,11 @@ import { ViewRegistrationModalService } from './services/view-registration-modal
     SimpleModalModule,
     ModalModule,
     FormRegistrationModule,
-    RegistrationDataModule,
   ],
   providers: [
-    ViewRegistrationModalService
+    ViewRegistrationModalService,
+    RegistrationDataService,
+    AuthApiService,
   ]
 })
 export class ViewRegistrationModule { }

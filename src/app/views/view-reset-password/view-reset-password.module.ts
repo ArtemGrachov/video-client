@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormResetPasswordModule } from 'src/app/modules/ui/forms/form-reset-password/form-reset-password.module';
-import { ResetPasswordDataModule } from 'src/app/modules/data/reset-password-data/reset-password-data.module';
+import { ResetPasswordDataService } from 'src/app/services/reset-password-data/reset-password-data.service';
+import { AuthApiService } from 'src/app/services/auth-api/auth-api.service';
 
 import { ViewResetPasswordRoutingModule } from './view-reset-password-routing.module';
 import { ViewResetPasswordComponent } from './view-reset-password.component';
@@ -14,8 +15,11 @@ import { ViewResetPasswordComponent } from './view-reset-password.component';
   imports: [
     CommonModule,
     ViewResetPasswordRoutingModule,
-    ResetPasswordDataModule,
     FormResetPasswordModule,
   ],
+  providers: [
+    ResetPasswordDataService,
+    AuthApiService,
+  ]
 })
 export class ViewResetPasswordModule { }

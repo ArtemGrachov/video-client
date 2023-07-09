@@ -3,12 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable, map, skip, switchMap, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
-import { RouteHandlerService } from './services/route-handler.service';
-import { VideoListDataService } from 'src/app/modules/data/video-list-data/services/video-list-data.service';
-import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
-import { PlaylistDataService } from 'src/app/modules/data/playlist-data/services/playlist-data.service';
 import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
+import { RouteHandlerService } from './services/route-handler.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
+import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
+import { PlaylistDataService } from 'src/app/services/playlist-data/playlist-data.service';
 
 @Component({
   selector: 'app-view-playlist',

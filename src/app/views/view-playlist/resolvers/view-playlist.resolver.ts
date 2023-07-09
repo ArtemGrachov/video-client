@@ -2,9 +2,9 @@ import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { combineLatest, map } from 'rxjs';
 
-import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
-import { PlaylistDataService } from 'src/app/modules/data/playlist-data/services/playlist-data.service';
 import { RouteHandlerService } from '../services/route-handler.service';
+import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
+import { PlaylistDataService } from 'src/app/services/playlist-data/playlist-data.service';
 
 export const viewPlaylistResolver: ResolveFn<boolean> = (route, state) => {
   const routeHandlerSerivce: RouteHandlerService = inject(RouteHandlerService);

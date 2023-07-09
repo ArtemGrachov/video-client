@@ -3,7 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EStatus } from 'src/app/constants/status';
 
-import { ChangePasswordDataService } from 'src/app/modules/data/change-password-data/services/change-password-data.service';
+import { ChangePasswordDataService } from 'src/app/services/change-password-data/change-password-data.service';
+
 import { IChangePasswordPayload } from 'src/app/types/api/auth-api.interface';
 
 @Component({

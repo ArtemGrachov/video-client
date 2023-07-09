@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { skip } from 'rxjs';
 
 import { RouteHandlerService } from './services/route-handler.service';
-
-import { PlaylistsListDataService } from 'src/app/modules/data/playlists-list-data/services/playlists-list-data.service';
-import { PlaylistsFormDataService } from 'src/app/modules/data/playlists-form-data/services/playlists-form-data.service';
-import { skip } from 'rxjs';
+import { PlaylistsListDataService } from 'src/app/services/playlists-list-data/playlists-list-data.service';
+import { PlaylistsFormDataService } from 'src/app/services/playlists-form-data/playlists-form-data.service';
 
 @Component({
   selector: 'app-view-user-playlists',

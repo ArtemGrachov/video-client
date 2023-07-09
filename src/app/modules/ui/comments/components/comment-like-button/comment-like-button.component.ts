@@ -3,9 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
-import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
 import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommentsListDataService } from 'src/app/services/comments-list-data/comments-list-data.service';
 
 import { IComment } from 'src/app/types/models/comment.interface';
 

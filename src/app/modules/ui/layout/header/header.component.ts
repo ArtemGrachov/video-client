@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, combineLatest, map } from 'rxjs';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
 
 @Component({

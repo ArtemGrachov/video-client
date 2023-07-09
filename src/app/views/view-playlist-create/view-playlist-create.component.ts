@@ -4,7 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EStatus } from 'src/app/constants/status';
 
-import { PlaylistFormDataService } from 'src/app/modules/data/playlist-form-data/services/playlist-form-data.service';
+import { PlaylistFormDataService } from 'src/app/services/playlist-form-data/playlist-form-data.service';
+
 import { ICreatePlaylistPayload } from 'src/app/types/api/playlist-api.interface';
 
 @Component({

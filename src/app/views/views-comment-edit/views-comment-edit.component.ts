@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
+import { CommentsListDataService } from 'src/app/services/comments-list-data/comments-list-data.service';
 
 import { IEditCommentPayload } from 'src/app/types/api/comments-api.interface';
 import { IComment } from 'src/app/types/models/comment.interface';

@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { skip } from 'rxjs';
 
 import { RouteHandlerService } from './services/route-handler.service';
-import { VideoListDataService } from 'src/app/modules/data/video-list-data/services/video-list-data.service';
-import { VideoListFormService } from 'src/app/modules/data/video-list-form/services/video-list-form.service';
+import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
+import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
+
 import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
 
 @Component({

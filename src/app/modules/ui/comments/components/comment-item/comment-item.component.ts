@@ -3,9 +3,9 @@ import * as dayjs from 'dayjs';
 import { of, switchMap, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommentsListDataService } from 'src/app/services/comments-list-data/comments-list-data.service';
 import { ViewCommentEditModalService } from 'src/app/views/views-comment-edit/services/view-comment-edit-modal.service';
-import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
 import { ModalConfirmationService } from '../../../modals/modal-confirmation/services/modal-confirmation.service';
 
 import { IComment } from 'src/app/types/models/comment.interface';

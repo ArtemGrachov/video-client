@@ -5,12 +5,13 @@ import { EMPTY, Observable, map, switchMap, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
-import { CommentFormDataService } from 'src/app/modules/data/comment-form-data/services/comment-form-data.service';
-import { CommentsListDataService } from 'src/app/modules/data/comments-list-data/services/comments-list-data.service';
-import { CommentsListFormService } from 'src/app/modules/data/comments-list-form/services/comments-list-form.service';
-import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
 import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
+
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommentFormDataService } from 'src/app/services/comment-form-data/comment-form-data.service';
+import { CommentsListDataService } from 'src/app/services/comments-list-data/comments-list-data.service';
+import { CommentsListFormService } from 'src/app/services/comments-list-form/comments-list-form.service';
+import { VideoDataService } from 'src/app/services/video-data/video-data.service';
 
 import { ICreateCommentPayload } from 'src/app/types/api/comments-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';

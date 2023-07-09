@@ -3,8 +3,7 @@ import { inject } from '@angular/core';
 import { map } from 'rxjs';
 
 import { RouteHandlerService } from '../services/route-handler.service';
-
-import { PlaylistsFormDataService } from 'src/app/modules/data/playlists-form-data/services/playlists-form-data.service';
+import { PlaylistsFormDataService } from 'src/app/services/playlists-form-data/playlists-form-data.service';
 
 export const viewPlaylistsResolver: ResolveFn<boolean> = (route, state) => {
   const routeHandlerSerivce: RouteHandlerService = inject(RouteHandlerService);

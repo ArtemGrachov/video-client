@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { combineLatest } from 'rxjs';
 
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable()
 export class InitService {

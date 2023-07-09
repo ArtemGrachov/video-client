@@ -5,9 +5,9 @@ import { EMPTY, Observable, map, switchMap, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
-import { VideoFormDataService } from 'src/app/modules/data/video-form-data/services/video-form-data.service';
 import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
+import { VideoDataService } from 'src/app/services/video-data/video-data.service';
+import { VideoFormDataService } from 'src/app/services/video-form-data/video-form-data.service';
 
 import { IUpdateVideoPayload } from 'src/app/types/api/video-api.interface';
 import { IVideo } from 'src/app/types/models/video.interface';

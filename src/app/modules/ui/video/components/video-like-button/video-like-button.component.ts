@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 
 import { EStatus } from 'src/app/constants/status';
 
-import { VideoDataService } from 'src/app/modules/data/video-data/services/video-data.service';
-import { AuthService } from 'src/app/modules/data/auth/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { VideoDataService } from 'src/app/services/video-data/video-data.service';
 import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
 
 import { IVideo } from 'src/app/types/models/video.interface';

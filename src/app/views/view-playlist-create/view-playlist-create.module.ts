@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PlaylistFormDataModule } from 'src/app/modules/data/playlist-form-data/playlist-form-data.module';
 import { FormPlaylistModule } from 'src/app/modules/ui/forms/form-playlist/form-playlist.module';
+import { PlaylistFormDataService } from 'src/app/services/playlist-form-data/playlist-form-data.service';
+import { PlaylistApiService } from 'src/app/services/playlist-api/playlist-api.service';
 
 import { ViewPlaylistCreateRoutingModule } from './view-playlist-create-routing.module';
 import { ViewPlaylistCreateComponent } from './view-playlist-create.component';
@@ -14,8 +15,11 @@ import { ViewPlaylistCreateComponent } from './view-playlist-create.component';
   imports: [
     CommonModule,
     ViewPlaylistCreateRoutingModule,
-    PlaylistFormDataModule,
     FormPlaylistModule,
   ],
+  providers: [
+    PlaylistFormDataService,
+    PlaylistApiService,
+  ]
 })
 export class ViewPlaylistCreateModule { }

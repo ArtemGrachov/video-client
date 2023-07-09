@@ -2,7 +2,7 @@ import { ResolveFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { map } from 'rxjs';
 
-import { PlaylistsFormDataService } from 'src/app/modules/data/playlists-form-data/services/playlists-form-data.service';
+import { PlaylistsFormDataService } from 'src/app/services/playlists-form-data/playlists-form-data.service';
 import { RouteHandlerService } from '../services/route-handler.service';
 
 export const viewUserPlaylistsResolver: ResolveFn<boolean> = (route, state) => {

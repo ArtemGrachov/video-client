@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VideoListFormModule } from 'src/app/modules/data/video-list-form/video-list-form.module';
-import { VideoListDataModule } from 'src/app/modules/data/video-list-data/video-list-data.module';
+import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
+import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
+import { VideoApiService } from 'src/app/services/video-api/video-api.service';
 import { ViewUserVideosRoutingModule } from './view-user-videos-routing.module';
 import { VideoModule } from 'src/app/modules/ui/video/video.module';
 
@@ -17,12 +18,13 @@ import { ViewUserVideosComponent } from './view-user-videos.component';
   imports: [
     CommonModule,
     ViewUserVideosRoutingModule,
-    VideoListFormModule,
-    VideoListDataModule,
     VideoModule,
   ],
   providers: [
     RouteHandlerService,
+    VideoListFormService,
+    VideoListDataService,
+    VideoApiService,
   ]
 })
 export class ViewUserVideosModule {}

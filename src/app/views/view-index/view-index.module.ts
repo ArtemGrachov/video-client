@@ -1,27 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VideoListDataModule } from 'src/app/modules/data/video-list-data/video-list-data.module';
 import { VideoModule } from 'src/app/modules/ui/video/video.module';
-import { VideoListFormModule } from 'src/app/modules/data/video-list-form/video-list-form.module';
+import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
+import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
+import { RouteHandlerService } from './services/route-handler.service';
+import { VideoApiService } from 'src/app/services/video-api/video-api.service';
 
 import { ViewIndexRoutingModule } from './view-index-routing.module';
 import { ViewIndexComponent } from './view-index.component';
-import { RouteHandlerService } from './services/route-handler.service';
 
 @NgModule({
   declarations: [
-    ViewIndexComponent
+    ViewIndexComponent,
   ],
   imports: [
     CommonModule,
     ViewIndexRoutingModule,
-    VideoListDataModule,
     VideoModule,
-    VideoListFormModule
   ],
   providers: [
-    RouteHandlerService
+    RouteHandlerService,
+    VideoListDataService,
+    VideoListFormService,
+    VideoApiService,
   ]
 })
 export class ViewIndexModule { }
