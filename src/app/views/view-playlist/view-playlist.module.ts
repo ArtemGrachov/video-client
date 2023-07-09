@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VideoModule } from 'src/app/modules/ui/video/video.module';
+import { VideoGridModule } from 'src/app/modules/ui/video/video-grid/video-grid.module';
+import { PlaylistDetalsModule } from 'src/app/modules/ui/playlists/playlist-details/playlist-detals.module';
 import { ViewPlaylistRoutingModule } from './view-playlist-routing.module';
-import { PlaylistsModule } from 'src/app/modules/ui/playlists/playlists.module';
 import { ModalConfirmationModule } from 'src/app/modules/ui/modals/modal-confirmation/modal-confirmation.module';
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
@@ -22,9 +22,9 @@ import { ViewPlaylistComponent } from './view-playlist.component';
   imports: [
     CommonModule,
     ViewPlaylistRoutingModule,
-    VideoModule,
-    PlaylistsModule,
     ModalConfirmationModule,
+    VideoGridModule,
+    PlaylistDetalsModule,
   ],
   providers: [
     RouteHandlerService,

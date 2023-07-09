@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import * as dayjs from 'dayjs';
 import { of, switchMap, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CommentsListDataService } from 'src/app/services/comments-list-data/comments-list-data.service';
 import { ViewCommentEditModalService } from 'src/app/views/views-comment-edit/services/view-comment-edit-modal.service';
-import { ModalConfirmationService } from '../../../modals/modal-confirmation/services/modal-confirmation.service';
+import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 
 import { IComment } from 'src/app/types/models/comment.interface';
 import { IUser } from 'src/app/types/models/user.interface';

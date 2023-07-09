@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PlayerModule } from 'src/app/modules/ui/player/player.module';
-import { VideoModule } from 'src/app/modules/ui/video/video.module';
-import { CommentsModule } from 'src/app/modules/ui/comments/comments.module';
+import { VideoDetailsModule } from 'src/app/modules/ui/video/video-details/video-details.module';
+import { CommentListModule } from 'src/app/modules/ui/comments/comment-list/comment-list.module';
 import { FormCommentModule } from 'src/app/modules/ui/forms/form-comment/form-comment.module';
 import { ViewsCommentEditModule } from 'src/app/views/views-comment-edit/views-comment-edit.module';
 import { ModalConfirmationModule } from 'src/app/modules/ui/modals/modal-confirmation/modal-confirmation.module';
@@ -27,12 +27,12 @@ import { ViewVideoComponent } from './view-video.component';
     CommonModule,
     ViewVideoRoutingModule,
     PlayerModule,
-    VideoModule,
-    CommentsModule,
     FormCommentModule,
     ViewsCommentEditModule,
     ModalConfirmationModule,
     ViewPlaylistAddVideoModule,
+    VideoDetailsModule,
+    CommentListModule,
   ],
   providers: [
     VideoDataService,

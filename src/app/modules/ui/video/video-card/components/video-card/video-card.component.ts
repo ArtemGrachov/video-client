@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/co
 import { ToastrService } from 'ngx-toastr';
 import { Observable, combineLatest, map, of, switchMap, tap } from 'rxjs';
 
-import { ModalConfirmationService } from '../../../modals/modal-confirmation/services/modal-confirmation.service';
+import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PlaylistDataService } from 'src/app/services/playlist-data/playlist-data.service';
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
