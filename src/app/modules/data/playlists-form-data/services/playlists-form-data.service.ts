@@ -19,8 +19,13 @@ export class PlaylistsFormDataService {
     this.form.patchValue(value);
   }
 
-  public update(): Observable<IGetPlaylistsResponse> {
-    const formValue = this.form.getRawValue();
-    return this.playlistsListDataService.getPlaylists(formValue);
+  public update(query?: IGetPlaylistsQuery): Observable<IGetPlaylistsResponse> {
+    const payload = { ...this.form.getRawValue() };
+
+    if (query) {
+      Object.assign(payload, query);
+    }
+
+    return this.playlistsListDataService.getPlaylists(payload);
   }
 }

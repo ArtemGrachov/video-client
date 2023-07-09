@@ -1,1 +1,10 @@
-<p>view-user-playlists works!</p>
+<div class="page">
+  <div class="container">
+    <app-playlist-list
+      [playlists]="(items$ | async)!"
+      [pagination]="pagination$ | async"
+      (getPrevPage)="getPrevPageHandler()"
+      (getNextPage)="getNextPageHandler()"
+    ></app-playlist-list>
+  </div>
+</div>

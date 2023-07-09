@@ -9,7 +9,7 @@ export const viewUserVideosResolver: ResolveFn<boolean> = (route, state) => {
   const routeHandlerSerivce: RouteHandlerService = inject(RouteHandlerService);
   const videoListFormService: VideoListFormService = inject(VideoListFormService);
 
-  const userId = route.params['id'];
+  const userId = route.parent!.parent!.params['id'];
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
   videoListFormService.setValue(formValue);
