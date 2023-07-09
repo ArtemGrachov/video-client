@@ -2,6 +2,8 @@ import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { map } from 'rxjs';
 
+import { USERS_PER_PAGE } from 'src/app/constants/users';
+
 import { UsersListFormService } from 'src/app/services/users-list-form/users-list-form.service';
 import { RouteHandlerService } from '../services/route-handler.service';
 
@@ -12,5 +14,5 @@ export const viewUsersResolver: ResolveFn<boolean> = (route, state) => {
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
   usersListFormService.setValue(formValue)
 
-  return usersListFormService.update().pipe(map(() => true));
+  return usersListFormService.update({ perPage: USERS_PER_PAGE }).pipe(map(() => true));
 };

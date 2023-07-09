@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { skip } from 'rxjs';
 
+import { USERS_PER_PAGE } from 'src/app/constants/users';
+
 import { UsersListDataService } from 'src/app/services/users-list-data/users-list-data.service';
 import { UsersListFormService } from 'src/app/services/users-list-form/users-list-form.service';
 import { RouteHandlerService } from './services/route-handler.service';
@@ -29,7 +31,7 @@ export class ViewUsersComponent {
     .subscribe(query => {
       const formValue = this.routeHandlerSerivce.routeQueryToFormValue(query);
       this.usersListFormService.setValue(formValue);
-      this.usersListFormService.update().subscribe();
+      this.usersListFormService.update({ perPage: USERS_PER_PAGE }).subscribe();
     });
 
   public items$ = this.usersListDataService.items$;

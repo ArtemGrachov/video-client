@@ -1,0 +1,19 @@
+<a
+  [routerLink]="userLink"
+  class="user-card"
+>
+  <div class="avatar mr-md">
+    <app-avatar class="avatar-image" [src]="userAvatarSrc"></app-avatar>
+  </div>
+  <div class="details">
+    <div class="name">
+      {{ userName }}
+    </div>
+    <div
+      *ngIf="isSubscription"
+      class="subcription"
+    >
+      Subscribed
+    </div>
+  </div>
+</a>

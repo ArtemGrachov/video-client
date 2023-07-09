@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ViewUsersRoutingModule } from './view-users-routing.module';
+import { UserListModule } from 'src/app/modules/ui/users/user-list/user-list.module';
 import { UserApiService } from 'src/app/services/user-api/user-api.service';
 import { UsersListDataService } from 'src/app/services/users-list-data/users-list-data.service';
 import { UsersListFormService } from 'src/app/services/users-list-form/users-list-form.service';
@@ -15,7 +16,8 @@ import { ViewUsersComponent } from './view-users.component';
   ],
   imports: [
     CommonModule,
-    ViewUsersRoutingModule
+    ViewUsersRoutingModule,
+    UserListModule,
   ],
   providers: [
     RouteHandlerService,

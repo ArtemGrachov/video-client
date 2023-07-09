@@ -1,0 +1,38 @@
+@import '/src/styles/variables.scss';
+
+$gap: 20px;
+
+.grid {
+  margin: -(calc($gap / 2));
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: map-get($breakpoints, 'xs')) {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+}
+
+.item {
+  padding: calc($gap / 2);
+
+  @media (min-width: map-get($breakpoints, 'xs')) {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    flex: 0 0 auto;
+    width: 33.3%;
+  }
+
+  @media (min-width: map-get($breakpoints, 'lg')) {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+}
+
+.load-more {
+  margin: 0 auto;
+}

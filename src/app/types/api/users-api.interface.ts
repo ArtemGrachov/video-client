@@ -14,6 +14,7 @@ export interface IUpdateUserResponse extends IUser {}
 export interface IGetUsersQuery {
   search?: string | null;
   page?: number | null;
+  perPage?: number | null;
 }
 
 export interface IGetUsersResponse {

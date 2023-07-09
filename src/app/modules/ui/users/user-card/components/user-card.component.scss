@@ -1,0 +1,38 @@
+@import '/src/styles/variables.scss';
+
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  background: map-get($colors, 'background-secondary');
+  text-decoration: none;
+  color: map-get($colors, 'text-primary');
+  box-shadow: 0 2px 8px -2px rgba(black, .1);
+  transition: $transition;
+
+  &:hover {
+    box-shadow: 0 2px 12px -2px rgba(black, .3);
+  }
+}
+
+.details {
+  flex: 1 1 0;
+}
+
+.avatar {
+  flex: 0 0 auto;
+  border: 1px solid map-get($colors, 'border-primary');
+  border-radius: 50%;
+}
+
+.avatar-image {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+}

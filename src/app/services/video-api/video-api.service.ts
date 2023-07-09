@@ -41,6 +41,10 @@ export class VideoApiService {
       params = params.set('userIds', query.userIds.toString());
     }
 
+    if (query?.perPage) {
+      params = params.set('perPage', query.perPage.toString());
+    }
+
     return this.http.get<IGetVideosResponse>(`${environment.API_URL}/video`, { params });
   }
 

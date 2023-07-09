@@ -58,6 +58,10 @@ export class UserApiService {
       params = params.set('search', query.search);
     }
 
+    if (query?.perPage) {
+      params = params.set('perPage', query.perPage.toString());
+    }
+
     return this.http.get<IGetUsersResponse>(`${environment.API_URL}/users/`, { params });
   }
 }

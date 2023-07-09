@@ -10,6 +10,7 @@ export interface IGetVideosResponse {
 
 export interface IGetVideosQuery {
   page?: number | null;
+  perPage?: number | null;
   search?: string | null;
   subscriptions?: boolean | null;
   userIds?: Array<string | number>;
