@@ -4,7 +4,10 @@
   </h1>
   <div class="actions">
     <ul class="actions-list">
-      <li class="actions-item">
+      <li
+        *ngIf="allowSubscription"
+        class="actions-item"
+      >
         <button
           class="button"
           [class.button-primary]="isSubscription"

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, Input, Optional } from '@an
 import { ToastrService } from 'ngx-toastr';
 
 import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
+import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 import { EStatus } from 'src/app/constants/status';
 
 import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-add-video/services/view-playlist-add-video-modal.service';
@@ -26,6 +27,7 @@ export class VideoDetailsComponent {
     private authService: AuthService,
     private viewLoginModalService: ViewLoginModalService,
     @Inject(VIDEO_AUTHOR_SERVICE) private videoAuthorService: UserDataService,
+    @Inject(AUTH_USER_SERVICE) private authUserService: UserDataService,
     @Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService,
     private toastrService: ToastrService,
   ) {}
@@ -56,6 +58,10 @@ export class VideoDetailsComponent {
     }
 
     return 'Subscribe';
+  }
+
+  public get allowSubscription(): boolean {
+    return this.author?.id !== this.authUserService.dataSnapshot?.id;
   }
 
   public addToPlaylistHandler(): void {
