@@ -15,9 +15,11 @@ import { CommentsListFormService } from 'src/app/services/comments-list-form/com
 import { CommentFormDataService } from 'src/app/services/comment-form-data/comment-form-data.service';
 import { VideoApiService } from 'src/app/services/video-api/video-api.service';
 import { CommentsApiService } from 'src/app/services/comments-api/comments-api.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
 
 import { ViewVideoRoutingModule } from './view-video-routing.module';
 import { ViewVideoComponent } from './view-video.component';
+import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,10 @@ import { ViewVideoComponent } from './view-video.component';
     CommentFormDataService,
     VideoApiService,
     CommentsApiService,
+    {
+      provide: VIDEO_AUTHOR_SERVICE,
+      useClass: UserDataService,
+    }
   ]
 })
 export class ViewVideoModule {}

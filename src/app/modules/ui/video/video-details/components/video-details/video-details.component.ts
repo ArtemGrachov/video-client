@@ -1,4 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, Optional } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
+import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
+import { EStatus } from 'src/app/constants/status';
 
 import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-add-video/services/view-playlist-add-video-modal.service';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
@@ -21,8 +25,9 @@ export class VideoDetailsComponent {
   constructor(
     private authService: AuthService,
     private viewLoginModalService: ViewLoginModalService,
-    @Inject('MAIN_USER_SERVICE') private userService: UserDataService,
-    @Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService
+    @Inject(VIDEO_AUTHOR_SERVICE) private videoAuthorService: UserDataService,
+    @Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService,
+    private toastrService: ToastrService,
   ) {}
 
   public get videoName(): string {
@@ -39,6 +44,10 @@ export class VideoDetailsComponent {
 
   public get isSubscription(): boolean {
     return Boolean(this.author?.isSubscription);
+  }
+
+  public get subscribeProcessing(): boolean {
+    return this.author?.subscribeStatus === EStatus.PROCESSING;
   }
 
   public get subscribeLabel(): string {
@@ -59,7 +68,16 @@ export class VideoDetailsComponent {
   }
 
   public subscribeHandler(): void {
-    console.log('test');
+    if (!this.authService.isAuthorized) {
+      this.viewLoginModalService.showModal();
+      return;
+    }
 
+    this
+      .videoAuthorService
+      .updateSubscription(!this.isSubscription)
+      .subscribe({
+        error: () => this.toastrService.error('Subscription update error'),
+      });
   }
 }

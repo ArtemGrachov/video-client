@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { EMPTY, Observable, map, switchMap, tap } from 'rxjs';
+import { EMPTY, Observable, combineLatest, map, switchMap, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
+import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
 
 import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 
@@ -11,9 +12,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { CommentFormDataService } from 'src/app/services/comment-form-data/comment-form-data.service';
 import { CommentsListDataService } from 'src/app/services/comments-list-data/comments-list-data.service';
 import { CommentsListFormService } from 'src/app/services/comments-list-form/comments-list-form.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
 import { VideoDataService } from 'src/app/services/video-data/video-data.service';
 
 import { ICreateCommentPayload } from 'src/app/types/api/comments-api.interface';
+import { IUser } from 'src/app/types/models/user.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 
 @Component({
@@ -29,6 +32,7 @@ export class ViewVideoComponent {
     private toastr: ToastrService,
     private authService: AuthService,
     private videoDataService: VideoDataService,
+    @Inject(VIDEO_AUTHOR_SERVICE) private videoAuthorService: UserDataService,
     private commentsListDataService: CommentsListDataService,
     private commentsListFormService: CommentsListFormService,
     private commentFormDataService: CommentFormDataService,
@@ -41,7 +45,19 @@ export class ViewVideoComponent {
 
   public commentsPagination$ = this.commentsListDataService.pagination$;
 
-  public video$: Observable<IVideo | null> = this.videoDataService.data$;
+  public video$: Observable<IVideo | null> = combineLatest([
+    this.videoDataService.data$,
+    this.videoAuthorService.data$,
+  ]).pipe(
+    map(
+      ([video, user]) => {
+        return {
+          ...video as IVideo,
+          author: user as IUser,
+        }
+      }
+    )
+  );
 
   public showVideo$: Observable<boolean> = this.video$.pipe(map(v => Boolean(v)));
 

@@ -1,3 +1,4 @@
+import { EStatus } from 'src/app/constants/status';
 import { IMedia } from './media.interface';
 
 export interface IUser {
@@ -6,4 +7,6 @@ export interface IUser {
   avatar: IMedia;
   email?: string;
   isSubscription?: boolean;
+  subscribeStatus?: EStatus;
+  subscribeError?: any;
 }
