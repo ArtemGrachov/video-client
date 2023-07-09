@@ -64,4 +64,40 @@ export class UserApiService {
 
     return this.http.get<IGetUsersResponse>(`${environment.API_URL}/users/`, { params });
   }
+
+  public getUsersSubscriptions(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
+    let params = new HttpParams();
+
+    if (query?.page) {
+      params = params.set('page', query.page);
+    }
+
+    if (query?.search) {
+      params = params.set('search', query.search);
+    }
+
+    if (query?.perPage) {
+      params = params.set('perPage', query.perPage.toString());
+    }
+
+    return this.http.get<IGetUsersResponse>(`${environment.API_URL}/users/${userId}/subscriptions`, { params });
+  }
+
+  public getUsersSubscribers(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
+    let params = new HttpParams();
+
+    if (query?.page) {
+      params = params.set('page', query.page);
+    }
+
+    if (query?.search) {
+      params = params.set('search', query.search);
+    }
+
+    if (query?.perPage) {
+      params = params.set('perPage', query.perPage.toString());
+    }
+
+    return this.http.get<IGetUsersResponse>(`${environment.API_URL}/users/${userId}/subscribers`, { params });
+  }
 }

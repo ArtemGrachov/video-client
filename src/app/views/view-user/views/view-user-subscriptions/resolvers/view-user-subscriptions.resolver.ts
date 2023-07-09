@@ -11,8 +11,10 @@ export const viewUserSubscriptionsResolver: ResolveFn<boolean> = (route, state) 
   const routeHandlerSerivce: RouteHandlerService = inject(RouteHandlerService);
   const usersListFormService: UsersListFormService = inject(UsersListFormService);
 
+  const userId = route.parent!.parent!.params['id'];
+
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
   usersListFormService.setValue(formValue)
 
-  return usersListFormService.update({ perPage: USERS_PER_PAGE }).pipe(map(() => true));
+  return usersListFormService.updateSubscriptions(userId, { perPage: USERS_PER_PAGE }).pipe(map(() => true));
 };

@@ -34,6 +34,20 @@ export class UsersListDataService {
       .pipe(tap(res => this.handleData(res, query)));
   }
 
+  public getUserSubscriptions(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
+    return this
+      .userApiService
+      .getUsersSubscriptions(userId, query)
+      .pipe(tap(res => this.handleData(res, query)));
+  }
+
+  public getUserSubscribers(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
+    return this
+      .userApiService
+      .getUsersSubscribers(userId, query)
+      .pipe(tap(res => this.handleData(res, query)));
+  }
+
   public unshiftItem(item: IUser): void {
     this.itemsSbj$.next([item, ...this.itemsSnapshot]);
   }

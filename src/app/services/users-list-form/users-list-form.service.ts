@@ -29,4 +29,24 @@ export class UsersListFormService {
 
     return this.usersListDataService.getUsers(payload);
   }
+
+  public updateSubscriptions(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
+    const payload = { ...this.form.getRawValue() };
+
+    if (query) {
+      Object.assign(payload, query);
+    }
+
+    return this.usersListDataService.getUserSubscriptions(userId, payload);
+  }
+
+  public updateSubscribers(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
+    const payload = { ...this.form.getRawValue() };
+
+    if (query) {
+      Object.assign(payload, query);
+    }
+
+    return this.usersListDataService.getUserSubscribers(userId, payload);
+  }
 }

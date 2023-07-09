@@ -30,7 +30,13 @@ export class ViewUserSubscriptionsComponent {
     .subscribe(query => {
       const formValue = this.routeHandlerSerivce.routeQueryToFormValue(query);
       this.usersListFormService.setValue(formValue);
-      this.usersListFormService.update({ perPage: USERS_PER_PAGE }).subscribe();
+      this
+        .usersListFormService
+        .updateSubscriptions(
+          this.route.parent?.parent?.snapshot.params['id'],
+          { perPage: USERS_PER_PAGE }
+        )
+        .subscribe();
     });
 
   public items$ = this.usersListDataService.items$;
