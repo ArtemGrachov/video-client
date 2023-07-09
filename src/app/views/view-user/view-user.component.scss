@@ -23,4 +23,8 @@
   &-item {
     padding: math.div($gap, 2);
   }
+
+  &-trigger {
+    min-width: 0;
+  }
 }

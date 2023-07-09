@@ -41,4 +41,13 @@ export class ViewUserComponent {
       'subscriptions'
     ];
   }
+
+  public get subscribersLink(): string[] {
+    return [
+      '/',
+      'users',
+      this.userDataService.dataSnapshot!.id.toString(),
+      'subscribers'
+    ];
+  }
 }

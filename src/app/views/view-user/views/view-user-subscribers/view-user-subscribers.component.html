@@ -1,0 +1,10 @@
+<div class="page">
+  <div class="container">
+    <app-user-list
+      [users]="(items$ | async)!"
+      [pagination]="pagination$ | async"
+      (getPrevPage)="getPrevPageHandler()"
+      (getNextPage)="getNextPageHandler()"
+    ></app-user-list>
+  </div>
+</div>

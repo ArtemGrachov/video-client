@@ -23,6 +23,10 @@ const routes: Routes = [
         path: 'subscriptions',
         loadChildren: () => import('./views/view-user-subscriptions/view-user-subscriptions.module').then(m => m.ViewUserSubscriptionsModule),
       },
+      {
+        path: 'subscribers',
+        loadChildren: () => import('./views/view-user-subscribers/view-user-subscribers.module').then(m => m.ViewUserSubscribersModule),
+      },
     ],
   },
 ];
