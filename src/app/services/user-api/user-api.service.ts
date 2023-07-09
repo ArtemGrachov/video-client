@@ -1,8 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IGetUserResponse, IUpdateUserPayload, IUpdateUserResponse } from 'src/app/types/api/users-api.interface';
+import {
+  IGetUserResponse,
+  IGetUsersQuery,
+  IGetUsersResponse,
+  IUpdateUserPayload,
+  IUpdateUserResponse,
+} from 'src/app/types/api/users-api.interface';
 import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 
 import { environment } from 'src/environments/environment';
@@ -39,5 +45,19 @@ export class UserApiService {
 
   public unsubscribeFromUser(userId: number): Observable<IApiGenericResponse> {
     return this.http.delete<IApiGenericResponse>(`${environment.API_URL}/users/${userId}/subscription`);
+  }
+
+  public getUsers(query?: IGetUsersQuery): Observable<IGetUsersResponse> {
+    let params = new HttpParams();
+
+    if (query?.page) {
+      params = params.set('page', query.page);
+    }
+
+    if (query?.search) {
+      params = params.set('search', query.search);
+    }
+
+    return this.http.get<IGetUsersResponse>(`${environment.API_URL}/users/`, { params });
   }
 }
