@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
+import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
 import { VideoApiService } from '../video-api/video-api.service';
 import { CommentsListDataService } from '../comments-list-data/comments-list-data.service';
@@ -22,7 +23,7 @@ export class CommentFormDataService {
   constructor(
     private videoApiService: VideoApiService,
     private commentListDataService: CommentsListDataService,
-    @Inject('MAIN_USER_SERVICE') private userDataService: UserDataService,
+    @Inject(AUTH_USER_SERVICE) private userDataService: UserDataService,
   ) { }
 
   public createComment(videoId: number, payload: ICreateCommentPayload): Observable<ICreateCommentResponse> {

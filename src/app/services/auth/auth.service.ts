@@ -2,9 +2,10 @@ import { Inject, Injectable } from '@angular/core';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
+
 import { AUTH_COOKIE_REFRESH_TOKEN_KEY, AUTH_COOKIE_TOKEN_KEY } from 'src/app/constants/auth';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
-
 
 import { IAuthResponse } from 'src/app/types/api/auth-api.interface';
 import { IUser } from 'src/app/types/models/user.interface';
@@ -14,7 +15,7 @@ import { IGetUserResponse } from 'src/app/types/api/users-api.interface';
 export class AuthService {
   constructor(
     private cookieService: SsrCookieService,
-    @Inject('MAIN_USER_SERVICE') private userDataService: UserDataService,
+    @Inject(AUTH_USER_SERVICE) private userDataService: UserDataService,
   ) {}
 
   private isAuthorizedFlagSbj$: BehaviorSubject<boolean> = new BehaviorSubject(

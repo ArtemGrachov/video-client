@@ -10,7 +10,7 @@ import { VideoDataService } from 'src/app/services/video-data/video-data.service
 
 export const viewVideoResolver: ResolveFn<boolean> = (route, state) => {
   const videoDataService = inject(VideoDataService);
-  const videoAuthorService: UserDataService = inject(VIDEO_AUTHOR_SERVICE);
+  const videoAuthorService: UserDataService = inject(VIDEO_AUTHOR_SERVICE) as UserDataService;
   const commentsListDataService = inject(CommentsListDataService);
 
   const videoId = route.params['id'];

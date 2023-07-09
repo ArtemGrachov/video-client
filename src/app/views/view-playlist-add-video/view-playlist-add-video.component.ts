@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup } from '@angular/forms';
 
 import { EStatus } from 'src/app/constants/status';
+import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
 import { PlaylistsListDataService } from 'src/app/services/playlists-list-data/playlists-list-data.service';
 import { PlaylistsFormDataService } from 'src/app/services/playlists-form-data/playlists-form-data.service';
@@ -26,7 +27,7 @@ export class ViewPlaylistAddVideoComponent extends SimpleModalComponent<{ video:
     private toastr: ToastrService,
     private playlistsListDataService: PlaylistsListDataService,
     private playlistsFormDataService: PlaylistsFormDataService,
-    @Inject('MAIN_USER_SERVICE') private userDataService: UserDataService,
+    @Inject(AUTH_USER_SERVICE) private userDataService: UserDataService,
     private playlistAddVideoDataService: PlaylistAddVideoDataService,
   ) {
     super();

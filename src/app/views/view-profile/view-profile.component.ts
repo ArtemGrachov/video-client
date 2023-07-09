@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
 
@@ -16,7 +17,7 @@ import { IUser } from 'src/app/types/models/user.interface';
 export class ViewProfileComponent {
   constructor(
     private authService: AuthService,
-    @Inject('MAIN_USER_SERVICE') private userDataService: UserDataService,
+    @Inject(AUTH_USER_SERVICE) private userDataService: UserDataService,
     private router: Router,
   ) {}
 
