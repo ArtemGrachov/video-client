@@ -22,6 +22,9 @@ export class FormControlComponent {
   @Input('customClientErrorMessages')
   public customClientErrorMessages?: IDictionary<ValidationMessageFactory> | null;
 
+  @Input('customServerErrorMessages')
+  public customServerErrorMessages?: IDictionary<ValidationMessageFactory> | null;
+
   public get showValidationErrors(): boolean {
     return (this.control?.touched && this.control?.invalid) ?? false;
   }

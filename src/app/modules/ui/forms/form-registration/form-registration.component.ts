@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { EStatus } from 'src/app/constants/status';
+import { EValidationFieldErrors } from 'src/app/constants/validations';
+
 import { PASSWORD_REG_EXP, matchValidatorFactory } from 'src/app/modules/utils/other/validators';
 
 import { IRegistrationRequestPayload } from 'src/app/types/api/auth-api.interface';
@@ -22,6 +25,10 @@ export class FormRegistrationComponent {
 
   @Output('formSubmit')
   private submitEmitter: EventEmitter<IRegistrationRequestPayload> = new EventEmitter();
+
+  public readonly emailServerErrorMessages: IDictionary<ValidationMessageFactory> = {
+    [EValidationFieldErrors.UNIQUE]: () => 'This email is already registered',
+  };
 
   public get submitProcessing(): boolean {
     return this.submitStatus === EStatus.PROCESSING;
