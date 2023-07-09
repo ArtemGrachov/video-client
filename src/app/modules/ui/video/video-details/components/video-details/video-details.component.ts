@@ -68,6 +68,10 @@ export class VideoDetailsComponent {
   }
 
   public subscribeHandler(): void {
+    if (this.subscribeProcessing) {
+      return;
+    }
+
     if (!this.authService.isAuthorized) {
       this.viewLoginModalService.showModal();
       return;
