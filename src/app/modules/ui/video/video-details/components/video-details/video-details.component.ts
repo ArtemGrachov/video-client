@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, Optional } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
-import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
 import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
-import { EStatus } from 'src/app/constants/status';
 
 import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-add-video/services/view-playlist-add-video-modal.service';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
@@ -26,10 +23,8 @@ export class VideoDetailsComponent {
   constructor(
     private authService: AuthService,
     private viewLoginModalService: ViewLoginModalService,
-    @Inject(VIDEO_AUTHOR_SERVICE) private videoAuthorService: UserDataService,
     @Inject(AUTH_USER_SERVICE) private authUserService: UserDataService,
     @Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService,
-    private toastrService: ToastrService,
   ) {}
 
   public get videoName(): string {
@@ -48,18 +43,6 @@ export class VideoDetailsComponent {
     return Boolean(this.author?.isSubscription);
   }
 
-  public get subscribeProcessing(): boolean {
-    return this.author?.subscribeStatus === EStatus.PROCESSING;
-  }
-
-  public get subscribeLabel(): string {
-    if (this.isSubscription) {
-      return 'Unsubscribe';
-    }
-
-    return 'Subscribe';
-  }
-
   public get allowSubscription(): boolean {
     return this.author?.id !== this.authUserService.dataSnapshot?.id;
   }
@@ -71,23 +54,5 @@ export class VideoDetailsComponent {
     }
 
     this.viewPlaylistAddVideoModalService?.showModal(this.video);
-  }
-
-  public subscribeHandler(): void {
-    if (this.subscribeProcessing) {
-      return;
-    }
-
-    if (!this.authService.isAuthorized) {
-      this.viewLoginModalService.showModal();
-      return;
-    }
-
-    this
-      .videoAuthorService
-      .updateSubscription(!this.isSubscription)
-      .subscribe({
-        error: () => this.toastrService.error('Subscription update error'),
-      });
   }
 }

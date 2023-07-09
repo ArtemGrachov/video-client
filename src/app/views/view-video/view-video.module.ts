@@ -19,7 +19,6 @@ import { UserDataService } from 'src/app/services/user-data/user-data.service';
 
 import { ViewVideoRoutingModule } from './view-video-routing.module';
 import { ViewVideoComponent } from './view-video.component';
-import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
 
 @NgModule({
   declarations: [
@@ -44,10 +43,7 @@ import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
     CommentFormDataService,
     VideoApiService,
     CommentsApiService,
-    {
-      provide: VIDEO_AUTHOR_SERVICE,
-      useClass: UserDataService,
-    }
+    UserDataService,
   ]
 })
 export class ViewVideoModule {}

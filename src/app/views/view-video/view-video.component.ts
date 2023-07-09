@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EMPTY, Observable, combineLatest, map, switchMap, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
-import { VIDEO_AUTHOR_SERVICE } from 'src/app/tokens/video';
 
 import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 
@@ -32,7 +31,7 @@ export class ViewVideoComponent {
     private toastr: ToastrService,
     private authService: AuthService,
     private videoDataService: VideoDataService,
-    @Inject(VIDEO_AUTHOR_SERVICE) private videoAuthorService: UserDataService,
+    private userDataService: UserDataService,
     private commentsListDataService: CommentsListDataService,
     private commentsListFormService: CommentsListFormService,
     private commentFormDataService: CommentFormDataService,
@@ -47,7 +46,7 @@ export class ViewVideoComponent {
 
   public video$: Observable<IVideo | null> = combineLatest([
     this.videoDataService.data$,
-    this.videoAuthorService.data$,
+    this.userDataService.data$,
   ]).pipe(
     map(
       ([video, user]) => {

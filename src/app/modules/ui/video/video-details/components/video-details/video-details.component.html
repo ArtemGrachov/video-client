@@ -8,19 +8,7 @@
         *ngIf="allowSubscription"
         class="actions-item"
       >
-        <button
-          class="button"
-          [class.button-primary]="isSubscription"
-          type="button"
-          (click)="subscribeHandler()"
-        >
-          {{ subscribeLabel }}
-          <div *ngIf="subscribeProcessing" class="button-loader">
-            <span class="material-icons button-loader-icon">
-              hourglass_bottom
-            </span>
-          </div>
-        </button>
+        <app-user-subscribe-button [user]="author!"></app-user-subscribe-button>
       </li>
       <li class="actions-item">
         <button

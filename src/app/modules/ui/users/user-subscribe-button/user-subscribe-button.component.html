@@ -1,0 +1,13 @@
+<button
+  class="button"
+  [class.button-primary]="isSubscription"
+  type="button"
+  (click)="subscribeHandler()"
+>
+  {{ subscribeLabel }}
+  <div *ngIf="subscribeProcessing" class="button-loader">
+    <span class="material-icons button-loader-icon">
+      hourglass_bottom
+    </span>
+  </div>
+</button>
