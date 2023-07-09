@@ -23,6 +23,7 @@
 
   &-list {
     display: flex;
+    align-items: center;
     padding: 0;
     list-style: none;
     margin: math.div(-$gap, 2);

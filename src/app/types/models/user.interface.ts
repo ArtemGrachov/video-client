@@ -5,4 +5,5 @@ export interface IUser {
   name: string;
   avatar: IMedia;
   email?: string;
+  isSubscription?: boolean;
 }

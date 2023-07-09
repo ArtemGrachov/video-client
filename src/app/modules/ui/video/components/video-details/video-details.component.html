@@ -6,6 +6,16 @@
     <ul class="actions-list">
       <li class="actions-item">
         <button
+          class="button"
+          [class.button-primary]="isSubscription"
+          type="button"
+          (click)="subscribeHandler()"
+        >
+          {{ subscribeLabel }}
+        </button>
+      </li>
+      <li class="actions-item">
+        <button
           type="button"
           class="button button-icon button-transparent"
           (click)="addToPlaylistHandler()"
@@ -17,11 +27,6 @@
       </li>
       <li class="actions-item">
         <app-video-like-button [video]="video"></app-video-like-button>
-      </li>
-      <li class="actions-item">
-        <button class="button" type="button">
-          Subscribe
-        </button>
       </li>
     </ul>
   </div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { IGetUserResponse, IUpdateUserPayload, IUpdateUserResponse } from 'src/app/types/api/users-api.interface';
+import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 
 import { environment } from 'src/environments/environment';
 
@@ -30,5 +31,13 @@ export class UserApiService {
     }
 
     return this.http.patch<IUpdateUserResponse>(`${environment.API_URL}/users/self`, formData);
+  }
+
+  public subscribeToUser(userId: number): Observable<IApiGenericResponse> {
+    return this.http.post<IApiGenericResponse>(`${environment.API_URL}/users/${userId}/subscription`, null);
+  }
+
+  public unsubscribeFromUser(userId: number): Observable<IApiGenericResponse> {
+    return this.http.delete<IApiGenericResponse>(`${environment.API_URL}/users/${userId}/subscription`);
   }
 }

@@ -6,6 +6,7 @@ import { ViewPlaylistAddVideoModalService } from 'src/app/views/view-playlist-ad
 import { IUser } from 'src/app/types/models/user.interface';
 import { IVideo } from 'src/app/types/models/video.interface';
 import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
+import { UserDataService } from 'src/app/modules/data/user-data/services/user-data.service';
 
 @Component({
   selector: 'app-video-details',
@@ -20,6 +21,7 @@ export class VideoDetailsComponent {
   constructor(
     private authService: AuthService,
     private viewLoginModalService: ViewLoginModalService,
+    private userService: UserDataService,
     @Optional() private viewPlaylistAddVideoModalService: ViewPlaylistAddVideoModalService
   ) {}
 
@@ -35,6 +37,18 @@ export class VideoDetailsComponent {
     return this.video.author ?? null;
   }
 
+  public get isSubscription(): boolean {
+    return Boolean(this.author?.isSubscription);
+  }
+
+  public get subscribeLabel(): string {
+    if (this.isSubscription) {
+      return 'Unsubscribe';
+    }
+
+    return 'Subscribe';
+  }
+
   public addToPlaylistHandler(): void {
     if (!this.authService.isAuthorized) {
       this.viewLoginModalService.showModal();
@@ -42,5 +56,10 @@ export class VideoDetailsComponent {
     }
 
     this.viewPlaylistAddVideoModalService?.showModal(this.video);
+  }
+
+  public subscribeHandler(): void {
+    console.log('test');
+
   }
 }
