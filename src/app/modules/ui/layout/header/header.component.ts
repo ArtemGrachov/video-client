@@ -53,6 +53,19 @@ export class HeaderComponent {
   }
 
   public searchHandler(search: string): void {
-    this.router.navigate(['/'], { queryParams: { search: search || undefined } });
+    let path = [''];
+
+    switch ((this.route.snapshot.firstChild?.url ?? [])[0]?.path) {
+      case 'users': {
+        path = ['/', 'users'];
+        break;
+      }
+      case 'playlists': {
+        path = ['/', 'playlists'];
+        break;
+      }
+    }
+
+    this.router.navigate(path, { queryParams: { search: search || undefined } });
   }
 }
