@@ -88,10 +88,14 @@
   }
 
   &-block {
+    display: block;
+  }
+
+  &-fullwidth {
     width: 100%;
   }
 
-  &-block-mob {
+  &-fullwidth-mob {
     width: 100%;
 
     @media (min-width: map-get($breakpoints, 'sm')) {
