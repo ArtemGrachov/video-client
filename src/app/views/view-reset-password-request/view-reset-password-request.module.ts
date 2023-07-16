@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormResetPasswordRequestModule } from 'src/app/modules/ui/forms/form-reset-password-request/form-reset-password-request.module';
@@ -19,6 +20,7 @@ import { ViewResetPasswordRequestModalService } from './services/view-reset-pass
     SimpleModalModule,
     ModalModule,
     FormResetPasswordRequestModule,
+    L10nTranslationModule,
   ],
   providers: [
     ViewResetPasswordRequestModalService,

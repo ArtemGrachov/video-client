@@ -11,7 +11,7 @@
         <i class="material-icons button-symbol">
           video_call
         </i>
-        Create video
+        {{ 'view_user_videos.create' | translateAsync }}
       </a>
     </div>
     <app-video-grid
@@ -24,7 +24,7 @@
     <app-placeholder
       *ngIf="showPlaceholder$ | async"
       [icon]="'theaters'"
-      [text]="'This user has no video yet'"
+      [text]="'view_user_videos.video_placeholder' | translateAsync"
     ></app-placeholder>
   </div>
 </div>

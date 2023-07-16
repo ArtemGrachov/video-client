@@ -10,7 +10,7 @@
     <app-placeholder
       *ngIf="showPlaceholder$ | async"
       [icon]="'people'"
-      [text]="'No users found'"
+      [text]="'view_users.placeholder' | translateAsync"
     ></app-placeholder>
   </div>
 </div>

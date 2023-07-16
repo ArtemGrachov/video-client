@@ -168,5 +168,80 @@
     "title": "Create playlist",
     "create_success": "Playlist created successfully",
     "create_error": "Playlist creation error"
+  },
+  "view_edit_playlist": {
+    "title": "Update playlist \"{{playlistName}}\"",
+    "edit_success": "Playlist updated successfully",
+    "edit_error": "Playlist updating error"
+  },
+  "view_change_password": {
+    "title": "Change password",
+    "change_success": "Password updated successfully",
+    "change_error": "Password update error"
+  },
+  "view_profile_edit": {
+    "title": "Edit profile",
+    "update_success": "Profile created successfully",
+    "update_error": "Profile update error"
+  },
+  "view_profile": {
+    "edit": "Edit profile",
+    "change_password": "Change password",
+    "logout": "Logout"
+  },
+  "view_registration": {
+    "title": "Registration",
+    "login": "Already have an account? Log in",
+    "registration_success": "Account registered successfully",
+    "registration_error": "Registration error"
+  },
+  "view_reset_password": {
+    "title": "Reset password",
+    "success": "Your password has been resetted successfully. Now you can",
+    "login": "log in",
+    "reset_success": "Pasword has been resetted successfully",
+    "reset_error": "Password reset error"
+  },
+  "view_reset_password_request": {
+    "title": "Forgot password",
+    "success": "Password reset link was sent to your email",
+    "reset_success": "Pasword reset request sent success",
+    "reset_error": "Password reset request error"
+  },
+  "view_user_playlists": {
+    "title": "Create playlist"
+  },
+  "view_user_subscribers": {
+    "title": "This user has no subscribers yet"
+  },
+  "view_user_subscriptions": {
+    "title": "This user has no subscriptions yet"
+  },
+  "view_user_videos": {
+    "create": "Create video",
+    "video_placeholder": "This user has no video yet"
+  },
+  "view_user": {
+    "videos": "Videos",
+    "playlists": "Playlists",
+    "subscriptions": "Subscriptions",
+    "subscribers": "Subscribers"
+  },
+  "view_users": {
+    "placeholder": "No users found"
+  },
+  "view_video": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "create_comment_error": "Creating comment error",
+    "delete_title": "Confirm deleting",
+    "delete_description": "Are you sure you want to delete this video?",
+    "delete_success": "Video deleted successfully",
+    "delete_error": "Video deleting error"
+  },
+  "view_comment_edit": {
+    "title": "Edit comment",
+    "edit_success": "Comment updated successfully",
+    "edit_error": "Comment edit error"
   }
 }

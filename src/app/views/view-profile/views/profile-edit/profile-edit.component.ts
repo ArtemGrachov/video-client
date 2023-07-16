@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { L10nTranslationService } from 'angular-l10n';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
@@ -21,6 +22,7 @@ export class ProfileEditComponent {
     private userFormDataService: UserFormDataService,
     private userDataService: UserDataService,
     private toastr: ToastrService,
+    private translationService: L10nTranslationService,
   ) {}
 
   public user$: Observable<IUser> = this.userDataService.data$ as Observable<IUser>;
@@ -34,8 +36,12 @@ export class ProfileEditComponent {
       .userFormDataService
       .updateProfile(formValue)
       .subscribe({
-        next: () => this.toastr.success('Profile created successfully'),
-        error: () => this.toastr.error('Profile update error')
+        next: () => this.toastr.success(
+          this.translationService.translate('view_profile_edit.update_success'),
+        ),
+        error: () => this.toastr.error(
+          this.translationService.translate('view_profile_edit.update_error'),
+        ),
       });
   }
 }

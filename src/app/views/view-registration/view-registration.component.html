@@ -1,6 +1,6 @@
 <app-modal-window>
   <app-modal-header (close)="close()">
-    Registration
+    {{ 'view_registration.title' | translateAsync }}
   </app-modal-header>
   <app-modal-body>
     <button
@@ -8,7 +8,7 @@
       class="text-button mb-lg"
       (click)="loginHandler()"
     >
-      Already have an account? Log in
+      {{ 'view_registration.login' | translateAsync }}
     </button>
     <app-form-registration
       [submitStatus]="registrationStatus$ | async"

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ViewUserSubscriptionsRoutingModule } from './view-user-subscriptions-routing.module';
 import { UserListModule } from 'src/app/modules/ui/users/user-list/user-list.module';
@@ -20,6 +21,7 @@ import { ViewUserSubscriptionsComponent } from './view-user-subscriptions.compon
     ViewUserSubscriptionsRoutingModule,
     UserListModule,
     PlaceholderModule,
+    L10nTranslationModule,
   ],
   providers: [
     RouteHandlerService,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { UserInfoModule } from 'src/app/modules/ui/users/user-info/user-info.module';
 import { ViewUserRoutingModule } from './view-user-routing.module';
@@ -18,6 +19,7 @@ import { ViewUserComponent } from './view-user.component';
     ViewUserRoutingModule,
     UserInfoModule,
     UserSubscribeButtonModule,
+    L10nTranslationModule,
   ],
   providers: [
     UserDataService,

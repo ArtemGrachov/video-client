@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { L10nTranslationService } from 'angular-l10n';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, map } from 'rxjs';
 
@@ -23,6 +24,7 @@ export class ViewPlaylistEditComponent {
     private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
+    private translationService: L10nTranslationService,
     ) {}
 
   public get playlistId(): number {
@@ -43,10 +45,14 @@ export class ViewPlaylistEditComponent {
       .updatePlaylist(this.playlistId, formValue)
       .subscribe({
         next: playlist => {
-          this.toastr.success('Playlist updated successfully')
+          this.toastr.success(
+            this.translationService.translate('view_edit_playlist.edit_success'),
+          );
           this.router.navigate(['/', 'playlists', playlist.id]);
         },
-        error: () => this.toastr.error('Playlist updating error')
+        error: () => this.toastr.error(
+          this.translationService.translate('view_edit_playlist.edit_error'),
+        ),
       });
   }
 }

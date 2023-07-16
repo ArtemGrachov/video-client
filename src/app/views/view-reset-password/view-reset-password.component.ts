@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, map } from 'rxjs';
+import { L10nTranslationService } from 'angular-l10n';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -24,6 +25,7 @@ export class ViewResetPasswordComponent {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
+    private translationService: L10nTranslationService,
   ) {}
 
   public resetPasswordStatus$: Observable<EStatus> = this.resetPasswordDataService.resetPasswordStatus$;
@@ -40,8 +42,12 @@ export class ViewResetPasswordComponent {
       .resetPasswordDataService
       .resetPassword(payload)
       .subscribe({
-        next: () => this.toastr.success('Pasword has been resetted successfully'),
-        error: () => this.toastr.error('Password reset error'),
+        next: () => this.toastr.success(
+          this.translationService.translate('view_reset_password.reset_success'),
+        ),
+        error: () => this.toastr.error(
+          this.translationService.translate('view_reset_password.reset_error'),
+        ),
       });
   }
 

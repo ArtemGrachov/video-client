@@ -1,7 +1,7 @@
 <div class="page">
   <div class="container container-narrow">
     <h1 class="mb-xl">
-      Update playlist "{{ playlistName$ | async }}"
+      {{ 'view_edit_playlist.title' | translateAsync:{ playlistName: (playlistName$ | async) } }}
     </h1>
     <app-form-playlist
       [playlist]="(playlist$ | async)!"

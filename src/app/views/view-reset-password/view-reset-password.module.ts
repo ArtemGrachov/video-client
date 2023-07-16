@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { FormResetPasswordModule } from 'src/app/modules/ui/forms/form-reset-password/form-reset-password.module';
 import { ResetPasswordDataService } from 'src/app/services/reset-password-data/reset-password-data.service';
@@ -16,6 +17,7 @@ import { ViewResetPasswordComponent } from './view-reset-password.component';
     CommonModule,
     ViewResetPasswordRoutingModule,
     FormResetPasswordModule,
+    L10nTranslationModule,
   ],
   providers: [
     ResetPasswordDataService,

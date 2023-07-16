@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormCommentModule } from 'src/app/modules/ui/forms/form-comment/form-comment.module';
@@ -20,6 +21,7 @@ import { ViewsCommentEditComponent } from './views-comment-edit.component';
     SimpleModalModule,
     ModalModule,
     FormCommentModule,
+    L10nTranslationModule,
   ],
   providers: [
     CommentsApiService,

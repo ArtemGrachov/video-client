@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
@@ -21,6 +22,7 @@ import { ViewUserVideosComponent } from './view-user-videos.component';
     ViewUserVideosRoutingModule,
     VideoGridModule,
     PlaceholderModule,
+    L10nTranslationModule,
   ],
   providers: [
     RouteHandlerService,

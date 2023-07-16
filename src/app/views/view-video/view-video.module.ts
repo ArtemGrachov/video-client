@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { PlayerModule } from 'src/app/modules/ui/player/player.module';
 import { VideoDetailsModule } from 'src/app/modules/ui/video/video-details/video-details.module';
@@ -34,6 +35,7 @@ import { ViewVideoComponent } from './view-video.component';
     ViewPlaylistAddVideoModule,
     VideoDetailsModule,
     CommentListModule,
+    L10nTranslationModule,
   ],
   providers: [
     VideoDataService,

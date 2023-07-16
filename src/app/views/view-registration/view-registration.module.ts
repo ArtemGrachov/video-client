@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormRegistrationModule } from 'src/app/modules/ui/forms/form-registration/form-registration.module';
@@ -19,6 +20,7 @@ import { ViewRegistrationModalService } from './services/view-registration-modal
     SimpleModalModule,
     ModalModule,
     FormRegistrationModule,
+    L10nTranslationModule,
   ],
   providers: [
     ViewRegistrationModalService,

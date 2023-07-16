@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { L10nTranslationService } from 'angular-l10n';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EStatus } from 'src/app/constants/status';
@@ -17,6 +18,7 @@ export class ChangePasswordComponent {
   constructor(
     private changePasswordDataService: ChangePasswordDataService,
     private toastr: ToastrService,
+    private translationService: L10nTranslationService,
   ) {}
 
   public submitStatus$: Observable<EStatus> = this.changePasswordDataService.submitStatus$;
@@ -28,8 +30,12 @@ export class ChangePasswordComponent {
       .changePasswordDataService
       .changePassword(formValue)
       .subscribe({
-        next: () => this.toastr.success('Password updated successfully'),
-        error: () => this.toastr.error('Password update error')
+        next: () => this.toastr.success(
+          this.translationService.translate('view_change_password.change_success'),
+        ),
+        error: () => this.toastr.error(
+          this.translationService.translate('view_change_password.change_error'),
+        ),
       });
   }
 }

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, map } from 'rxjs';
+import { L10nTranslationService } from 'angular-l10n';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -21,7 +22,8 @@ export class ViewResetPasswordRequestComponent extends SimpleModalComponent<void
     private resetPasswordRequestDataService: ResetPasswordRequestDataService,
     private viewLoginModalService: ViewLoginModalService,
     private toastr: ToastrService,
-  ) {
+    private translationService: L10nTranslationService,
+    ) {
     super();
   }
 
@@ -43,9 +45,13 @@ export class ViewResetPasswordRequestComponent extends SimpleModalComponent<void
       .resetPasswordRequest(formValue)
       .subscribe({
         next: () => {
-          this.toastr.success('Pasword reset request sent successfully');
+          this.toastr.success(
+            this.translationService.translate('view_reset_password_request.reset_success'),
+          );
         },
-        error: () => this.toastr.error('Password reset request error'),
+        error: () => this.toastr.error(
+          this.translationService.translate('view_reset_password_request.reset_error'),
+        ),
       });
   }
 

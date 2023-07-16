@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { PlaylistListModule } from 'src/app/modules/ui/playlists/playlist-list/playlist-list.module';
 import { PlaceholderModule } from 'src/app/modules/ui/other/placeholder/placeholder.module';
@@ -21,6 +22,7 @@ import { ViewUserPlaylistsComponent } from './view-user-playlists.component';
     ViewUserPlaylistsRoutingModule,
     PlaylistListModule,
     PlaceholderModule,
+    L10nTranslationModule,
   ],
   providers: [
     RouteHandlerService,

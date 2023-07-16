@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
@@ -17,6 +18,7 @@ import { ViewProfileComponent } from './view-profile.component';
     CommonModule,
     ViewProfileRoutingModule,
     UserDetailsModule,
+    L10nTranslationModule,
   ],
   providers: [
     { provide: UserDataService, useExisting: AUTH_USER_SERVICE },

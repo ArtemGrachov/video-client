@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { L10nTranslationService } from 'angular-l10n';
 import { ToastrService } from 'ngx-toastr';
 import { EMPTY, Observable, combineLatest, map, switchMap, tap } from 'rxjs';
 
@@ -36,6 +37,7 @@ export class ViewVideoComponent {
     private commentsListFormService: CommentsListFormService,
     private commentFormDataService: CommentFormDataService,
     private modalConfirmationService: ModalConfirmationService,
+    private translationService: L10nTranslationService,
   ) {}
 
   public commentsData$ = this.commentsListDataService.data$;
@@ -107,14 +109,16 @@ export class ViewVideoComponent {
       .commentFormDataService
       .createComment(this.videoId, formValue)
       .subscribe({
-        error: () => this.toastr.error('Creating comment error'),
+        error: () => this.toastr.error(
+          this.translationService.translate('view_video.create_comment_error'),
+        ),
       });
   }
 
   public deleteHandler(): void {
     this.modalConfirmationService.showModal({
-      title: 'Confirm deleting',
-      question: 'Are you sure you want to delete this video?'
+      title: this.translationService.translate('view_video.delete_title'),
+      question: this.translationService.translate('view_video.delete_description')
     })
     .pipe(
       switchMap(result => {
@@ -128,10 +132,14 @@ export class ViewVideoComponent {
           .pipe(
             tap({
               next: () => {
-                this.toastr.success('Video deleted successfully');
+                this.toastr.success(
+                  this.translationService.translate('view_video.delete_success'),
+                );
                 this.router.navigate(['/']);
               },
-              error: () => this.toastr.error('Video deleting error'),
+              error: () => this.toastr.error(
+                this.translationService.translate('view_video.delete_error'),
+              ),
             })
           )
       })

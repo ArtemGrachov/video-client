@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
+import { L10nTranslationService } from 'angular-l10n';
 import { ToastrService } from 'ngx-toastr';
 
 import { EStatus } from 'src/app/constants/status';
@@ -21,6 +22,7 @@ export class ViewsCommentEditComponent extends SimpleModalComponent<{ comment: I
   constructor(
     private toastr: ToastrService,
     private commentsListDataService: CommentsListDataService,
+    private translationService: L10nTranslationService,
   ) {
     super();
   }
@@ -38,10 +40,14 @@ export class ViewsCommentEditComponent extends SimpleModalComponent<{ comment: I
       .updateComment(this.comment.id, formValue)
       .subscribe({
         next: () => {
-          this.toastr.success('Comment updated successfully');
+          this.toastr.success(
+            this.translationService.translate('view_comment_edit.edit_success'),
+          );
           this.close();
         },
-        error: () => this.toastr.error('Comment edit error'),
+        error: () => this.toastr.error(
+          this.translationService.translate('view_comment_edit.edit_error'),
+        ),
       });
   }
 }
