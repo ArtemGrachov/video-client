@@ -7,7 +7,6 @@
   color: map-get($colors, 'text-error');
   font-size: $font-size;
   line-height: $line-height;
-  min-height: $font-size * $line-height;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
