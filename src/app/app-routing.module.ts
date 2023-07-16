@@ -56,6 +56,11 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () => import('./views/view-users/view-users.module').then(m => m.ViewUsersModule)
   },
+  {
+    path: 'news',
+    loadChildren: () => import('./views/view-news/view-news.module').then(m => m.ViewNewsModule),
+    canActivate: [authOnlyGuard],
+  },
 ];
 
 @NgModule({

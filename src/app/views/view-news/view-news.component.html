@@ -1,0 +1,10 @@
+<div class="page">
+  <div class="container container-fluid">
+    <app-video-grid
+      [videos]="(items$ | async)!"
+      [pagination]="pagination$ | async"
+      (getPrevPage)="getPrevPageHandler()"
+      (getNextPage)="getNextPageHandler()"
+    ></app-video-grid>
+  </div>
+</div>

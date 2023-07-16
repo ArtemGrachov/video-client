@@ -23,8 +23,8 @@
     </a>
     <button
       *ngIf="isGuest$ | async"
-      type="button button-primary"
-      class="button button-icon"
+      type="button"
+      class="button button-icon button-primary"
       (click)="openAuthModal()"
     >
       <span class="material-icons">
