@@ -1,5 +1,19 @@
 <div class="page">
   <div class="container container-fluid">
+    <div
+      *ngIf="showCreateLink$ | async"
+      class="mb-xl"
+    >
+      <a
+        class="button button-primary"
+        [routerLink]="['/', 'playlists', 'create']"
+      >
+        <i class="material-icons button-symbol">
+          video_call
+        </i>
+        Create video
+      </a>
+    </div>
     <app-video-grid
       [videos]="(items$ | async)!"
       [pagination]="pagination$ | async"

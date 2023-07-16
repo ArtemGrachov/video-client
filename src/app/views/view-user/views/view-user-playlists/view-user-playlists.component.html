@@ -1,5 +1,19 @@
 <div class="page">
   <div class="container container-fluid">
+    <div
+      *ngIf="showCreateLink$ | async"
+      class="mb-xl"
+    >
+      <a
+        class="button button-primary"
+        [routerLink]="['/', 'playlists', 'create']"
+      >
+        <i class="material-icons button-symbol">
+          format_list_bulleted_add
+        </i>
+        Create playlist
+      </a>
+    </div>
     <app-playlist-list
       [playlists]="(items$ | async)!"
       [pagination]="pagination$ | async"

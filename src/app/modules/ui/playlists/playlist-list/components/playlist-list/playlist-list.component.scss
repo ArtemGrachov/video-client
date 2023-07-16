@@ -21,6 +21,11 @@ $gap: 20px;
     flex: 0 0 auto;
     width: 50%;
   }
+
+  @media (min-width: map-get($breakpoints, 'md')) {
+    flex: 0 0 auto;
+    width: 33.3%;
+  }
 }
 
 .load-more {

@@ -1,12 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { skip } from 'rxjs';
+import { Observable, combineLatest, map, skip } from 'rxjs';
+
+import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
 import { RouteHandlerService } from './services/route-handler.service';
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
 
 import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
+import { IUser } from 'src/app/types/models/user.interface';
 
 @Component({
   selector: 'app-view-user-videos',
@@ -16,12 +20,25 @@ import { IGetVideosQuery } from 'src/app/types/api/video-api.interface';
 })
 export class ViewUserVideosComponent {
   constructor(
+    private userDataService: UserDataService,
+    @Inject(AUTH_USER_SERVICE) private authUserService: UserDataService,
     private router: Router,
     private route: ActivatedRoute,
     private routeHandlerSerivce: RouteHandlerService,
     private videoListDataService: VideoListDataService,
     private videoListFormService: VideoListFormService,
   ) {}
+
+  public userData$: Observable<IUser | null> = this.userDataService.data$;
+
+  public isCurrentUser$: Observable<boolean> = combineLatest([
+    this.userData$,
+    this.authUserService.data$,
+  ]).pipe(
+    map(([user, authUser]) => Boolean(authUser) && (user?.id === authUser?.id))
+  );
+
+  public showCreateLink$: Observable<boolean> = this.isCurrentUser$;
 
   private querySbs = this
     .route
