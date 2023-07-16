@@ -27,7 +27,7 @@ export class ViewUserPlaylistsComponent {
     .pipe(skip(1))
     .subscribe(query => {
       const formValue = this.routeHandlerSerivce.routeQueryToFormValue(query);
-      this.playlistsFormDataService.setValue(formValue);
+      this.playlistsFormDataService.fillForm(formValue);
       this.playlistsFormDataService.update().subscribe();
     });
 

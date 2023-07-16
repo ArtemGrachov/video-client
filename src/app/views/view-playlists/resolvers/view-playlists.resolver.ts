@@ -10,7 +10,7 @@ export const viewPlaylistsResolver: ResolveFn<boolean> = (route, state) => {
   const playlistsFormDataService: PlaylistsFormDataService = inject(PlaylistsFormDataService);
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
-  playlistsFormDataService.setValue(formValue)
+  playlistsFormDataService.fillForm(formValue)
 
   return playlistsFormDataService.update().pipe(map(() => true));
 };

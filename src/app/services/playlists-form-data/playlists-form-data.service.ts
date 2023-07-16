@@ -6,6 +6,11 @@ import { PlaylistsListDataService } from '../playlists-list-data/playlists-list-
 
 import { IGetPlaylistsQuery, IGetPlaylistsResponse } from 'src/app/types/api/playlist-api.interface';
 
+const DEFAULT_VALUE = {
+  page: 1,
+  search: '',
+};
+
 @Injectable()
 export class PlaylistsFormDataService {
   public readonly form = new FormGroup({
@@ -15,8 +20,8 @@ export class PlaylistsFormDataService {
 
   constructor(private playlistsListDataService: PlaylistsListDataService) { }
 
-  public setValue(value: IGetPlaylistsQuery): void {
-    this.form.patchValue(value);
+  public fillForm(value: IGetPlaylistsQuery): void {
+    this.form.patchValue(Object.assign({}, DEFAULT_VALUE, value));
   }
 
   public update(query?: IGetPlaylistsQuery): Observable<IGetPlaylistsResponse> {

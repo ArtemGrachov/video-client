@@ -14,7 +14,7 @@ export const viewUserSubscribersResolver: ResolveFn<boolean> = (route, state) =>
   const userId = route.parent!.parent!.params['id'];
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
-  usersListFormService.setValue(formValue)
+  usersListFormService.fillValue(formValue)
 
   return usersListFormService.updateSubscribers(userId, { perPage: USERS_PER_PAGE }).pipe(map(() => true));
 };

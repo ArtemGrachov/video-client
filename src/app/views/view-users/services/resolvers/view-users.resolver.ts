@@ -12,7 +12,7 @@ export const viewUsersResolver: ResolveFn<boolean> = (route, state) => {
   const usersListFormService: UsersListFormService = inject(UsersListFormService);
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
-  usersListFormService.setValue(formValue)
+  usersListFormService.fillValue(formValue)
 
   return usersListFormService.update({ perPage: USERS_PER_PAGE }).pipe(map(() => true));
 };

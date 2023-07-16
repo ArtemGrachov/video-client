@@ -12,7 +12,7 @@ export const viewUserPlaylistsResolver: ResolveFn<boolean> = (route, state) => {
   const userId = route.parent!.parent!.params['id'];
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
-  playlistsFormDataService.setValue(formValue);
+  playlistsFormDataService.fillForm(formValue);
 
   return playlistsFormDataService.update({ userIds: [userId] }).pipe(map(() => true));
 };

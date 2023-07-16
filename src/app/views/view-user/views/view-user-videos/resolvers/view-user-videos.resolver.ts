@@ -12,7 +12,7 @@ export const viewUserVideosResolver: ResolveFn<boolean> = (route, state) => {
   const userId = route.parent!.parent!.params['id'];
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
-  videoListFormService.setValue(formValue);
+  videoListFormService.fillForm(formValue);
 
   return videoListFormService.update({ userIds: [userId] }).pipe(map(() => true));
 };

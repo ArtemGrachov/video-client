@@ -29,7 +29,7 @@ export class ViewUserVideosComponent {
     .pipe(skip(1))
     .subscribe(query => {
       const formValue = this.routeHandlerSerivce.routeQueryToFormValue(query);
-      this.videoListFormService.setValue(formValue);
+      this.videoListFormService.fillForm(formValue);
       this
         .videoListFormService
         .update({

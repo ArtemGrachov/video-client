@@ -6,6 +6,10 @@ import { CommentsListDataService } from '../comments-list-data/comments-list-dat
 
 import { IGetCommentsQuery, IGetCommentsResponse } from 'src/app/types/api/comments-api.interface';
 
+const DEFAULT_VALUE = {
+  page: 1,
+};
+
 @Injectable()
 export class CommentsListFormService {
   public readonly form = new FormGroup({
@@ -14,8 +18,8 @@ export class CommentsListFormService {
 
   constructor(private commentsListDataService: CommentsListDataService) { }
 
-  public setValue(value: IGetCommentsQuery): void {
-    this.form.patchValue(value);
+  public fillForm(value: IGetCommentsQuery): void {
+    this.form.patchValue(Object.assign({}, DEFAULT_VALUE, value));
   }
 
   public update(videoId: number): Observable<IGetCommentsResponse> {

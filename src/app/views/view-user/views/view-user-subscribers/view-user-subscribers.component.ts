@@ -29,7 +29,7 @@ export class ViewUserSubscribersComponent {
     .pipe(skip(1))
     .subscribe(query => {
       const formValue = this.routeHandlerSerivce.routeQueryToFormValue(query);
-      this.usersListFormService.setValue(formValue);
+      this.usersListFormService.fillValue(formValue);
       this
         .usersListFormService
         .updateSubscribers(

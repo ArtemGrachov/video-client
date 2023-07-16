@@ -10,7 +10,7 @@ export const viewIndexResolver: ResolveFn<boolean> = (route, state) => {
   const videoListFormService: VideoListFormService = inject(VideoListFormService);
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
-  videoListFormService.setValue(formValue)
+  videoListFormService.fillForm(formValue)
 
   return videoListFormService.update().pipe(map(() => true));
 };

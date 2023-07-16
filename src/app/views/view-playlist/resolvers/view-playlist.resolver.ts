@@ -12,7 +12,7 @@ export const viewPlaylistResolver: ResolveFn<boolean> = (route, state) => {
   const playlistDataService: PlaylistDataService = inject(PlaylistDataService);
 
   const formValue = routeHandlerSerivce.routeQueryToFormValue(route.queryParams);
-  videoListFormService.setValue(formValue)
+  videoListFormService.fillForm(formValue)
   const playlistId = +route.paramMap.get('id')!;
 
   return combineLatest([

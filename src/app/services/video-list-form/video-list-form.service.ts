@@ -5,6 +5,12 @@ import { Observable } from 'rxjs';
 import { VideoListDataService } from '../video-list-data/video-list-data.service';
 import { IGetVideosQuery, IGetVideosResponse } from 'src/app/types/api/video-api.interface';
 
+const DEFAULT_VALUE = {
+  page: 1,
+  search: '',
+  subscriptions: false,
+};
+
 @Injectable()
 export class VideoListFormService {
   public readonly form = new FormGroup({
@@ -15,8 +21,8 @@ export class VideoListFormService {
 
   constructor(private videoListDataService: VideoListDataService) { }
 
-  public setValue(value: IGetVideosQuery): void {
-    this.form.patchValue(value);
+  public fillForm(value: IGetVideosQuery): void {
+    this.form.patchValue(Object.assign({}, DEFAULT_VALUE, value));
   }
 
   public update(query?: IGetVideosQuery): Observable<IGetVideosResponse> {

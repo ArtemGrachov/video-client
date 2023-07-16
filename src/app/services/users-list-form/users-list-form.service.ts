@@ -6,18 +6,22 @@ import { UsersListDataService } from '../users-list-data/users-list-data.service
 
 import { IGetUsersQuery, IGetUsersResponse } from 'src/app/types/api/users-api.interface';
 
+const DEFAULT_VALUE = {
+  page: 1,
+  search: '',
+};
+
 @Injectable()
 export class UsersListFormService {
   public readonly form = new FormGroup({
     page: new FormControl(1),
     search: new FormControl(''),
-    subscriptions: new FormControl(false)
   });
 
   constructor(private usersListDataService: UsersListDataService) { }
 
-  public setValue(value: IGetUsersQuery): void {
-    this.form.patchValue(value);
+  public fillValue(value: IGetUsersQuery): void {
+    this.form.patchValue(Object.assign({}, DEFAULT_VALUE, value));
   }
 
   public update(query?: IGetUsersQuery): Observable<IGetUsersResponse> {
