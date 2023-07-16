@@ -6,10 +6,15 @@
   flex: 1 1 auto;
 }
 
+.header {
+  border-bottom: 1px solid map-get($colors, 'border-primary');
+}
+
 .sidebar {
   width: 300px;
   flex: 0 0 auto;
   background-color: map-get($colors, 'background-secondary');
+  border-right: 1px solid map-get($colors, 'border-primary');
 }
 
 .content {

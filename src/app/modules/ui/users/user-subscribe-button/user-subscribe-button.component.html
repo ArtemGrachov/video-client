@@ -1,6 +1,7 @@
 <button
   class="button"
-  [class.button-primary]="isSubscription"
+  [class.button-primary]="!isSubscription"
+  [class.button-secondary]="isSubscription"
   type="button"
   (click)="subscribeHandler()"
 >

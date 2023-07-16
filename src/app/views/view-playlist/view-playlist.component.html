@@ -7,19 +7,25 @@
     </div>
     <div
       *ngIf="userIsAuthor$ | async"
-      class="actions"
+      class="actions mb-xl"
     >
       <a
         [routerLink]="['/', 'playlists', playlistId, 'edit']"
-        class="button mr-md"
+        class="button button-secondary mr-md"
       >
+        <span class="material-icons button-symbol">
+          edit
+        </span>
         Edit
       </a>
       <button
         type="button"
-        class="button"
+        class="button button-secondary"
         (click)="deleteHandler()"
       >
+        <span class="material-icons button-symbol">
+          delete_forever
+        </span>
         Delete
       </button>
     </div>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { IsActiveMatchOptions } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
@@ -12,6 +13,13 @@ import { IUser } from 'src/app/types/models/user.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewUserComponent {
+  public readonly routerLinkActiveOptions: IsActiveMatchOptions = {
+    matrixParams: 'ignored',
+    queryParams: 'ignored',
+    fragment: 'ignored',
+    paths: 'exact'
+  };
+
   constructor(private userDataService: UserDataService) {}
 
   public userData$: Observable<IUser | null> = this.userDataService.data$;

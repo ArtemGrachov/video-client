@@ -1,6 +1,8 @@
-<div class="pagination mb-xl">
+<div
+  *ngIf="showPreviousPage"
+  class="pagination mb-xl"
+>
   <button
-    *ngIf="showPreviousPage"
     type="button"
     class="button button-block button-primary load-more"
     (click)="prevPageHandler()"

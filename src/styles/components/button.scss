@@ -28,19 +28,6 @@
     background: lighten(map-get($colors, 'button-default'), 15);
   }
 
-  &-primary {
-    background: map-get($colors, 'button-primary');
-    color: map-get($colors, 'button-primary-text');
-
-    &:hover {
-      background: lighten(map-get($colors, 'button-primary'), 5);
-    }
-
-    &:active {
-      background: lighten(map-get($colors, 'button-primary'), 15);
-    }
-  }
-
   &-transparent {
     background: rgba(white, 0);
     color: map-get($colors, 'text-secondary');
@@ -56,6 +43,23 @@
     &-primary {
       color: map-get($colors, 'text-primary');
     }
+  }
+
+  &-primary {
+    background: map-get($colors, 'button-primary');
+    color: map-get($colors, 'button-primary-text');
+
+    &:hover {
+      background: lighten(map-get($colors, 'button-primary'), 5);
+    }
+
+    &:active {
+      background: lighten(map-get($colors, 'button-primary'), 15);
+    }
+  }
+
+  &-secondary {
+    background: map-get($colors, 'button-secondary');
   }
 
   &-icon {

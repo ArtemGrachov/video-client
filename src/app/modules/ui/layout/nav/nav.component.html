@@ -3,6 +3,8 @@
     <li class="item">
       <a
         [routerLink]="['/']"
+        routerLinkActive="link-active"
+        [routerLinkActiveOptions]="routerLinkActiveOptions"
         class="link"
       >
         <span class="material-icons mr-lg">
@@ -14,6 +16,8 @@
     <li class="item">
       <a
         [routerLink]="['/', 'playlists']"
+        routerLinkActive="link-active"
+        [routerLinkActiveOptions]="routerLinkActiveOptions"
         class="link"
       >
         <span class="material-icons mr-lg">
@@ -25,6 +29,8 @@
     <li class="item">
       <a
         [routerLink]="['/', 'users']"
+        routerLinkActive="link-active"
+        [routerLinkActiveOptions]="routerLinkActiveOptions"
         class="link"
       >
         <span class="material-icons mr-lg">
@@ -33,5 +39,73 @@
         Users
       </a>
     </li>
+    <ng-container *ngIf="showUserLists$ | async">
+      <li class="divider"></li>
+      <li class="item">
+        <a
+          [routerLink]="userPageLink$ | async"
+          routerLinkActive="link-active"
+          [routerLinkActiveOptions]="routerLinkActiveOptions"
+          class="link"
+        >
+          <span class="material-icons mr-lg">
+            person
+          </span>
+          My page
+        </a>
+      </li>
+      <li class="item">
+        <a
+          [routerLink]="userVideoLink$ | async"
+          routerLinkActive="link-active"
+          [routerLinkActiveOptions]="routerLinkActiveOptions"
+          class="link"
+        >
+          <span class="material-icons mr-lg">
+            movie
+          </span>
+          My video
+        </a>
+      </li>
+      <li class="item">
+        <a
+          [routerLink]="userPlaylistsLink$ | async"
+          routerLinkActive="link-active"
+          [routerLinkActiveOptions]="routerLinkActiveOptions"
+          class="link"
+        >
+          <span class="material-icons mr-lg">
+            subscriptions
+          </span>
+          My playlists
+        </a>
+      </li>
+      <li class="item">
+        <a
+          [routerLink]="userSubscriptionsLink$ | async"
+          routerLinkActive="link-active"
+          [routerLinkActiveOptions]="routerLinkActiveOptions"
+          class="link"
+        >
+          <span class="material-icons mr-lg">
+            list_alt
+          </span>
+          Subscriptions
+        </a>
+      </li>
+      <li class="item">
+        <a
+          [routerLink]="userSubscribersLink$ | async"
+          routerLinkActive="link-active"
+          [routerLinkActiveOptions]="routerLinkActiveOptions"
+          class="link"
+        >
+          <span class="material-icons mr-lg">
+            people
+          </span>
+          Subscribers
+        </a>
+      </li>
+    </ng-container>
   </ul>
 </nav>

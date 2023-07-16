@@ -12,6 +12,8 @@
             <a
               [routerLink]="videosLink"
               class="actions-trigger button button-transparent"
+              routerLinkActive="button-primary"
+              [routerLinkActiveOptions]="routerLinkActiveOptions"
             >
               Videos
             </a>
@@ -20,6 +22,8 @@
             <a
               [routerLink]="playlistsLink"
               class="actions-trigger button button-transparent"
+              routerLinkActive="button-primary"
+              [routerLinkActiveOptions]="routerLinkActiveOptions"
             >
               Playlists
             </a>
@@ -28,6 +32,8 @@
             <a
               [routerLink]="subscriptionsLink"
               class="actions-trigger button button-transparent"
+              routerLinkActive="button-primary"
+              [routerLinkActiveOptions]="routerLinkActiveOptions"
             >
               Subscriptions
             </a>
@@ -36,15 +42,17 @@
             <a
               [routerLink]="subscribersLink"
               class="actions-trigger button button-transparent"
+              routerLinkActive="button-primary"
+              [routerLinkActiveOptions]="routerLinkActiveOptions"
             >
               Subscribers
             </a>
           </li>
+          <li class="actions-item">
+            <app-user-subscribe-button [user]="(userData$ | async)!"></app-user-subscribe-button>
+          </li>
         </ul>
       </nav>
-      <ul class="actions-list">
-        <app-user-subscribe-button [user]="(userData$ | async)!"></app-user-subscribe-button>
-      </ul>
     </div>
   </div>
   <router-outlet></router-outlet>

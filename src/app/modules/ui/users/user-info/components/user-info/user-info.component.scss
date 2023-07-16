@@ -3,7 +3,7 @@
 .user {
   display: flex;
   align-items: center;
-  color: map-get($colors, 'text-secondary');
+  color: map-get($colors, 'text-primary');
   text-decoration: none;
 
   &-avatar {

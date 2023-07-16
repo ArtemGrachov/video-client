@@ -18,6 +18,8 @@ $colors: (
   'text-error': map-get($base-colors, 'red-pale'),
   'button-default': map-get($base-colors, 'default'),
   'button-default-text': map-get($base-colors, 'default-reverse'),
+  'button-secondary': #858585,
+  'button-secondary-text': map-get($base-colors, 'default-reverse'),
   'button-primary': map-get($base-colors, 'primary'),
   'button-primary-text': map-get($base-colors, 'primary-reverse'),
   'border-primary': #4b4b4b,

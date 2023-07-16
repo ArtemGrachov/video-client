@@ -26,7 +26,7 @@
   }
 
   &.liked {
-    color: map-get($colors, 'red');
+    color: map-get($base-colors, 'primary');
   }
 }
 

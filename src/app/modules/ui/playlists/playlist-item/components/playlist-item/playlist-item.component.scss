@@ -5,7 +5,7 @@
   padding: 16px;
   background: map-get($colors, 'background-secondary');
   border-radius: 12px;
-  color: map-get($colors, 'text-main');
+  color: map-get($colors, 'text-primary');
   text-decoration: none;
 }
 
@@ -35,7 +35,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-decoration: none;
-  color: map-get($colors, 'text-main');
+  color: map-get($colors, 'text-primary');
   margin-bottom: 16px;
 }
 
