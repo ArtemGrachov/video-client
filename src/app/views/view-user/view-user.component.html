@@ -1,12 +1,16 @@
 <div class="page">
   <div class="container container-fluid">
     <div class="header mb-xl">
-      <div class="mr-auto">
+      <div class="mr-xl">
         <app-user-info
           [user]="(userData$ | async)!"
         ></app-user-info>
       </div>
-      <nav class="nav mr-md">
+      <app-user-subscribe-button
+        *ngIf="showSubscribeButton$ | async"
+        [user]="(userData$ | async)!"
+      ></app-user-subscribe-button>
+      <nav class="nav ml-auto">
         <ul class="actions-list">
           <li class="actions-item">
             <a
@@ -47,9 +51,6 @@
             >
               Subscribers
             </a>
-          </li>
-          <li class="actions-item">
-            <app-user-subscribe-button [user]="(userData$ | async)!"></app-user-subscribe-button>
           </li>
         </ul>
       </nav>

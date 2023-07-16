@@ -26,6 +26,12 @@ $step: 4px;
   }
 }
 
+.ml {
+  &-auto {
+    margin-left: auto;
+  }
+}
+
 .mr {
   &-md {
     margin-right: $step * 3;
@@ -33,6 +39,10 @@ $step: 4px;
 
   &-lg {
     margin-right: $step * 4;
+  }
+
+  &-xl {
+    margin-right: $step * 8;
   }
 }
 

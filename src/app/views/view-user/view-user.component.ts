@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { IsActiveMatchOptions } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, map } from 'rxjs';
 
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
 import { IUser } from 'src/app/types/models/user.interface';
 
@@ -20,9 +21,19 @@ export class ViewUserComponent {
     paths: 'exact'
   };
 
-  constructor(private userDataService: UserDataService) {}
+  constructor(
+    private userDataService: UserDataService,
+    @Inject(AUTH_USER_SERVICE) private authUserService: UserDataService,
+  ) {}
 
   public userData$: Observable<IUser | null> = this.userDataService.data$;
+
+  public showSubscribeButton$: Observable<boolean> = combineLatest([
+    this.userData$,
+    this.authUserService.data$,
+  ]).pipe(
+    map(([user, authUser]) => Boolean(authUser) && (user?.id !== authUser?.id))
+  );
 
   public get videosLink(): string[] {
     return [
