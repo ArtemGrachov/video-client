@@ -1,6 +1,10 @@
 @use 'sass:math';
 @import '/src/styles/variables.scss';
 
+.user-page {
+  padding-bottom: 0;
+}
+
 .header {
   border-radius: 32px;
   padding: 16px;

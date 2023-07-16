@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '/src/styles/variables.scss';
 
 .input {
@@ -32,7 +33,7 @@
   &-list {
     list-style: none;
     padding: 0;
-    margin: -$gap / 2;
+    margin: math.div(-$gap, 2);
 
     @media (min-width: map-get($breakpoints, 'md')) {
       display: flex;
@@ -42,6 +43,6 @@
   }
 
   &-item {
-    padding: $gap / 2;
+    padding: math.div($gap, 2);
   }
 }
