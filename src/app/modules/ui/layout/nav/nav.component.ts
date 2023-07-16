@@ -38,14 +38,6 @@ export class NavComponent {
       map(user => ['/', 'users', user!.id]),
     );
 
-  public userVideoLink$: Observable<Array<string | number>> = this
-    .authUserService
-    .data$
-    .pipe(
-      filter(user => Boolean(user)),
-      map(user => ['/', 'users', user!.id, 'video']),
-    );
-
   public userPlaylistsLink$: Observable<Array<string | number>> = this
     .authUserService
     .data$
