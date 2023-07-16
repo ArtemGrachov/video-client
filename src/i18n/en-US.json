@@ -259,5 +259,8 @@
     "title": "Edit comment",
     "edit_success": "Comment updated successfully",
     "edit_error": "Comment edit error"
+  },
+  "view_not_found": {
+    "title": "Page not found"
   }
 }

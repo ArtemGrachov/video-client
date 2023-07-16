@@ -66,8 +66,16 @@ const routes: Routes = [
 const localizedRoutes = [
   ...routes,
   {
-    path: ':lang',
+    path: 'en',
     children: routes,
+  },
+  {
+    path: 'en/**',
+    loadChildren: () => import('./views/view-not-found/view-not-found.module').then(m => m.ViewNotFoundModule),
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./views/view-not-found/view-not-found.module').then(m => m.ViewNotFoundModule),
   },
 ]
 

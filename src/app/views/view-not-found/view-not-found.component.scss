@@ -1,0 +1,16 @@
+@import '/src/styles/variables.scss';
+
+.not-found-page {
+  text-align: center;
+  padding-top: 48px;
+}
+
+.icon {
+  font-size: 72px;
+  margin-bottom: 24px;
+  color: map-get($colors, 'text-primary');
+}
+
+.title {
+  color: map-get($colors, 'text-secondary');
+}
