@@ -26,6 +26,7 @@
     "@angular/router": "^16.0.0",
     "@looorent/ngx-simple-modal": "^16.0.0",
     "@nguniversal/express-engine": "^16.0.2",
+    "angular-l10n": "^16.0.0",
     "dayjs": "^1.11.8",
     "dotenv": "^16.1.3",
     "express": "^4.15.2",

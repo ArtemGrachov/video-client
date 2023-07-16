@@ -11,5 +11,5 @@ export class PlaceholderComponent {
   public icon!: string;
 
   @Input()
-  public text!: string;
+  public text!: string | null;
 }

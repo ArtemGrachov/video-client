@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, combineLatest, map, skip, tap } from 'rxjs';
+import { Observable, map, skip } from 'rxjs';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
@@ -18,7 +19,8 @@ export class ViewIndexComponent implements OnDestroy {
     private route: ActivatedRoute,
     private routeHandlerSerivce: RouteHandlerService,
     private videoListDataService: VideoListDataService,
-    private videoListFormService: VideoListFormService
+    private videoListFormService: VideoListFormService,
+    @Inject(L10N_LOCALE) public locale: L10nLocale,
   ) {}
 
   private querySbs = this

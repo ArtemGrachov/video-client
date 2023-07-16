@@ -10,6 +10,7 @@ import { VideoApiService } from 'src/app/services/video-api/video-api.service';
 
 import { ViewIndexRoutingModule } from './view-index-routing.module';
 import { ViewIndexComponent } from './view-index.component';
+import { L10nTranslationModule } from 'angular-l10n';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ViewIndexComponent } from './view-index.component';
     ViewIndexRoutingModule,
     VideoGridModule,
     PlaceholderModule,
+    L10nTranslationModule
   ],
   providers: [
     RouteHandlerService,

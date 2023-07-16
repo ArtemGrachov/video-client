@@ -6,6 +6,9 @@ import { SimpleModalModule, defaultSimpleModalOptions } from '@looorent/ngx-simp
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { L10nIntlModule, L10nTranslationModule } from 'angular-l10n';
+
+import { TranslationLoader, l10nConfig } from './l10n-config';
 
 import { CoreModule } from './modules/main/core/core.module';
 import { HeaderModule } from './modules/ui/layout/header/header.module';
@@ -27,6 +30,13 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
+    L10nTranslationModule.forRoot(
+      l10nConfig,
+      {
+        translationLoader: TranslationLoader
+      }
+    ),
+    L10nIntlModule,
     SimpleModalModule.forRoot(
       {
         container: 'modal-container',
