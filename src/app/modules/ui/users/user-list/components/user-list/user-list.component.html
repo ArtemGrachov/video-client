@@ -1,4 +1,4 @@
-<div class="pagination">
+<div class="pagination mb-xl">
   <button
     *ngIf="showPreviousPage"
     type="button"
@@ -8,11 +8,13 @@
     Load more
   </button>
 </div>
-<ul class="grid">
-  <li class="item" *ngFor="let user of users; trackBy: trackBy">
-    <app-user-card [user]="user"></app-user-card>
-  </li>
-</ul>
+<div class="mb-xl">
+  <ul class="grid">
+    <li class="item" *ngFor="let user of users; trackBy: trackBy">
+      <app-user-card [user]="user"></app-user-card>
+    </li>
+  </ul>
+</div>
 <div class="pagination">
   <button
     *ngIf="showNextPage"

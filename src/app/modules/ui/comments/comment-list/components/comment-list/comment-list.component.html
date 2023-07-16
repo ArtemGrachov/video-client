@@ -1,4 +1,4 @@
-<div class="pagination">
+<div class="pagination mb-xl">
   <button
     *ngIf="showPreviousPage"
     type="button"
@@ -8,11 +8,13 @@
     Load more
   </button>
 </div>
-<ul class="list">
-  <li class="item" *ngFor="let comment of comments; trackBy: trackBy">
-    <app-comment-item [comment]="comment"></app-comment-item>
-  </li>
-</ul>
+<div class="mb-xl">
+  <ul class="list">
+    <li class="item" *ngFor="let comment of comments; trackBy: trackBy">
+      <app-comment-item [comment]="comment"></app-comment-item>
+    </li>
+  </ul>
+</div>
 <div class="pagination">
   <button
     *ngIf="showNextPage"

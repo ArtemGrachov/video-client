@@ -1,4 +1,4 @@
-<div class="pagination">
+<div class="pagination mb-xl">
   <button
     *ngIf="showPreviousPage"
     type="button"
@@ -8,13 +8,15 @@
     Load more
   </button>
 </div>
-<ul class="list">
-  <li class="item" *ngFor="let playlist of playlists">
-    <app-playlist-item
-      [playlist]="playlist"
-    ></app-playlist-item>
-  </li>
-</ul>
+<div class="mb-xl">
+  <ul class="list">
+    <li class="item" *ngFor="let playlist of playlists">
+      <app-playlist-item
+        [playlist]="playlist"
+      ></app-playlist-item>
+    </li>
+  </ul>
+</div>
 <div class="pagination">
   <button
     *ngIf="showNextPage"
