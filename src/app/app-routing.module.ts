@@ -63,10 +63,24 @@ const routes: Routes = [
   },
 ];
 
+const localizedRoutes = [
+  ...routes,
+  {
+    path: ':lang',
+    children: routes,
+  },
+]
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-})],
+  imports: [
+    RouterModule
+    .forRoot(
+      localizedRoutes,
+      {
+        initialNavigation: 'enabledBlocking',
+      },
+    )
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

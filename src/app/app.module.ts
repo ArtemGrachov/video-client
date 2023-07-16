@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { L10nIntlModule, L10nTranslationModule } from 'angular-l10n';
 
-import { TranslationLoader, l10nConfig } from './l10n-config';
+import { LocaleResolver, TranslationLoader, l10nConfig } from './l10n-config';
 
 import { CoreModule } from './modules/main/core/core.module';
 import { HeaderModule } from './modules/ui/layout/header/header.module';
@@ -33,7 +33,8 @@ import { AppComponent } from './app.component';
     L10nTranslationModule.forRoot(
       l10nConfig,
       {
-        translationLoader: TranslationLoader
+        translationLoader: TranslationLoader,
+        localeResolver: LocaleResolver,
       }
     ),
     L10nIntlModule,
