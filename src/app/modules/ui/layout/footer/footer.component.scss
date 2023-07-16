@@ -1,0 +1,36 @@
+@import '/src/styles/variables.scss';
+
+:host {
+  background-color: map-get($colors, 'background-secondary');
+  border-top: 1px solid map-get($colors, 'border-primary');
+  padding: 32px 0;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 14px;
+  color: map-get($colors, 'text-secondary');
+}
+
+.right {
+  text-align: right;
+}
+
+.link {
+  color: map-get($colors, 'text-primary');
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+p {
+  margin: 0 0 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -7,15 +7,18 @@ import { LogoModule } from '../other/logo/logo.module';
 
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     NavComponent,
+    FooterComponent,
   ],
   exports: [
     HeaderComponent,
     NavComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
