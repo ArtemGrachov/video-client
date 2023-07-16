@@ -5,7 +5,8 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable, catchError, filter, map, of, switchMap, take, takeLast, tap, throwError } from 'rxjs';
+import { Observable, catchError, filter, map, of, switchMap, take, tap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { EStatus } from 'src/app/constants/status';
 import { TOKEN_NO_AUTH, TOKEN_REFRESH_REQUEST } from 'src/app/constants/http';
@@ -19,6 +20,7 @@ import { IAuthResponse } from 'src/app/types/api/auth-api.interface';
 export class AuthInterceptorInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
+    private router: Router,
     private refreshTokenDataService: RefreshTokenDataService,
   ) {}
 
@@ -38,7 +40,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
           return this
             .expiredTokenHandler()
             .pipe(catchError(() => next.handle(this.setRequestAuthHeaders(request))))
-            .pipe(switchMap((retry) => retry ? next.handle(this.setRequestAuthHeaders(request)) : throwError(() => err)))
+            .pipe(switchMap(() => next.handle(this.setRequestAuthHeaders(request))))
         })
       );
   }
@@ -93,6 +95,13 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
     }
 
     this.authService.unauthorize();
+
+    if (typeof window === 'undefined') {
+      this.router.navigateByUrl('/');
+    } else {
+      window.location.reload();
+    }
+
     return of(false);
   }
 
