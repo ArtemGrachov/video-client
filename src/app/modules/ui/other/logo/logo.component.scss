@@ -9,15 +9,5 @@
 }
 
 .icon {
-  @media (min-width: map-get($breakpoints, 'md')) {
-    margin-right: 16px;
-  }
-}
-
-.name {
-  display: none;
-
-  @media (min-width: map-get($breakpoints, 'md')) {
-    display: inline;
-  }
+  margin-right: 16px;
 }
