@@ -1,0 +1,44 @@
+@import '/src/styles/variables.scss';
+
+.modal-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: map-get($colors, 'background-primary');
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 7px 16px;
+}
+
+.search {
+  flex: 1 1 0;
+  margin-right: 16px;
+}
+
+.close {
+  flex: 0 0 auto;
+}
+
+.main-action {
+  padding: 8px 16px;
+}
+
+.inner {
+  flex: 1 1 0;
+  overflow-y: auto;
+}
+
+.auth {
+  flex: 0 0 auto;
+  padding: 16px;
+}

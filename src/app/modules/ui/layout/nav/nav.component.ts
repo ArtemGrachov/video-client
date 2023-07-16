@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
 import { Observable, filter, map } from 'rxjs';
+import { IsActiveMatchOptions } from '@angular/router';
 
 import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
-import { IsActiveMatchOptions } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -20,6 +20,9 @@ export class NavComponent {
     fragment: 'ignored',
     paths: 'exact'
   };
+
+  @Output('action')
+  private actionEmitter: EventEmitter<void> = new EventEmitter();
 
   constructor(
     private authService: AuthService,
@@ -61,4 +64,8 @@ export class NavComponent {
       filter(user => Boolean(user)),
       map(user => ['/', 'users', user!.id, 'subscribers']),
     );
+
+  public actionHandler(): void {
+    this.actionEmitter.emit();
+  }
 }

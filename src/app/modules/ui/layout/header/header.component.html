@@ -3,7 +3,7 @@
     <app-logo></app-logo>
   </a>
 </div>
-<div class="container container-fluid header-main-container">
+<div class="header-main-container">
   <div class="row">
     <div class="mr-auto search">
       <app-form-search
@@ -40,5 +40,14 @@
         person
       </span>
     </a>
+    <button
+      type="button"
+      class="button button-icon button-transparent button-transparent-primary mobile-menu"
+      (click)="openMenuHandler()"
+    >
+      <i class="material-icons">
+        menu
+      </i>
+    </button>
   </div>
 </div>

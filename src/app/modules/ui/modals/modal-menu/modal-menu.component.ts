@@ -1,26 +1,26 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable, combineLatest, map } from 'rxjs';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ModalMenuService } from '../../modals/modal-menu/services/modal-menu.service';
-
 import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
 
 @Component({
-  selector: '[app-header]',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'app-modal-menu',
+  templateUrl: './modal-menu.component.html',
+  styleUrls: ['./modal-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
+export class ModalMenuComponent extends SimpleModalComponent<void, void> {
   constructor(
     private viewLoginModalService: ViewLoginModalService,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalMenuService: ModalMenuService,
-  ) {}
+  ) {
+    super();
+  }
 
   public isAuthorized$: Observable<boolean> = this.authService.isAuthorizedFlag$;
 
@@ -52,6 +52,7 @@ export class HeaderComponent {
 
   public openAuthModal(): void {
     this.viewLoginModalService.showModal();
+    this.close();
   }
 
   public searchHandler(search: string): void {
@@ -69,9 +70,10 @@ export class HeaderComponent {
     }
 
     this.router.navigate(path, { queryParams: { search: search || undefined } });
+    this.close();
   }
 
-  public openMenuHandler(): void {
-    this.modalMenuService.showModal();
+  public navigationHandler(): void {
+    this.close();
   }
 }

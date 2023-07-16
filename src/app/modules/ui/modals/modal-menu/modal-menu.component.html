@@ -1,0 +1,60 @@
+<div class="modal-menu">
+  <div class="header">
+    <div class="search">
+      <app-form-search
+        [query]="searchQuery$ | async"
+        (formSubmit)="searchHandler($event)"
+      ></app-form-search>
+    </div>
+    <button
+      class="button button-icon button-transparent close"
+      (click)="close()"
+    >
+      <i class="material-icons">
+        close
+      </i>
+    </button>
+  </div>
+  <div class="main-action">
+    <a
+      *ngIf="allowVideoCreate$ | async"
+      [routerLink]="['/', 'video', 'create']"
+      class="button button-transparent button-transparent-primary button-fullwidth"
+      (click)="navigationHandler()"
+    >
+      <span class="material-icons button-symbol">
+        video_call
+      </span>
+      Upload video
+    </a>
+  </div>
+  <div class="inner">
+    <app-nav
+      (action)="navigationHandler()"
+    ></app-nav>
+  </div>
+  <div class="auth">
+    <button
+      *ngIf="isGuest$ | async"
+      type="button"
+      class="button button-primary button-fullwidth auth-button"
+      (click)="openAuthModal()"
+    >
+      <span class="material-icons button-symbol">
+        login
+      </span>
+      Authorization
+    </button>
+    <a
+      *ngIf="isAuthorized$ | async"
+      [routerLink]="['/', 'profile']"
+      class="button button-primary button-fullwidth auth-button"
+      (click)="navigationHandler()"
+    >
+      <span class="material-icons button-symbol">
+        person
+      </span>
+      Profile
+    </a>
+  </div>
+</div>

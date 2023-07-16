@@ -8,7 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { CoreModule } from './modules/main/core/core.module';
-import { LayoutModule } from './modules/ui/layout/layout.module';
+import { HeaderModule } from './modules/ui/layout/header/header.module';
+import { FooterModule } from './modules/ui/layout/footer/footer.module';
+import { NavModule } from './modules/ui/layout/nav/nav.module';
 import { ModalsModule } from './modules/main/modals/modals.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,9 +28,11 @@ import { AppComponent } from './app.component';
     ToastrModule.forRoot(),
     AppRoutingModule,
     SimpleModalModule.forRoot({ container: 'modal-container' }),
-    LayoutModule,
     CoreModule,
     ModalsModule,
+    HeaderModule,
+    FooterModule,
+    NavModule,
   ],
   providers: [
     provideClientHydration(),
