@@ -4,6 +4,7 @@ $base-colors: (
   'default': #89acc9,
   'default-reverse': #1e1e1e,
   'red': #ff1500,
+  'red-pale': #f0674f,
   'success': #33d800,
 );
 
@@ -14,15 +15,14 @@ $colors: (
   'text-main': #efefef,
   'text-primary': map-get($base-colors, 'primary'),
   'text-secondary': #b7b7b7,
-  'text-error': map-get($base-colors, 'red'),
+  'text-error': map-get($base-colors, 'red-pale'),
   'button-default': map-get($base-colors, 'default'),
   'button-default-text': map-get($base-colors, 'default-reverse'),
   'button-primary': map-get($base-colors, 'primary'),
   'button-primary-text': map-get($base-colors, 'primary-reverse'),
-  'border-primary': #494949,
+  'border-primary': #4b4b4b,
   'border-error': map-get($base-colors, 'red'),
   'border-success': map-get($base-colors, 'success'),
-  'error': map-get($base-colors, 'red'),
 );
 
 $container-width: 1200px;

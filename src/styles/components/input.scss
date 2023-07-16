@@ -18,7 +18,7 @@
 
   &:focus {
     outline: none;
-    border-color: darken(map-get($colors, 'border-primary'), 50);
+    border-color: map-get($base-colors, 'primary');
   }
 
   &.ng-touched {
