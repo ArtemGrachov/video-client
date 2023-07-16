@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, Optional, SimpleChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 import { L10nTranslationService } from 'angular-l10n';
 
 import { EStatus } from 'src/app/constants/status';
@@ -17,9 +17,11 @@ import { IUser } from 'src/app/types/models/user.interface';
   styleUrls: ['./user-subscribe-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserSubscribeButtonComponent {
+export class UserSubscribeButtonComponent implements OnChanges {
   @Input()
   public user!: IUser;
+
+  private user$: BehaviorSubject<IUser> = new BehaviorSubject(this.user);
 
   constructor(
     private viewLoginModalService: ViewLoginModalService,
@@ -37,9 +39,10 @@ export class UserSubscribeButtonComponent {
     return this.user?.subscribeStatus === EStatus.PROCESSING;
   }
 
-  public subscribeLabel$: Observable<string> = this
-    .translationService
-    .onChange()
+  public subscribeLabel$: Observable<string> = combineLatest([
+    this.user$,
+    this.translationService.onChange(),
+  ])
     .pipe(
       map(() => {
         if (this.isSubscription) {
@@ -49,6 +52,14 @@ export class UserSubscribeButtonComponent {
         return this.translationService.translate('user_subscribe_button.subscribe');
       })
     )
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    const newUser = changes['user'];
+
+    if (newUser) {
+      this.user$.next(newUser.currentValue);
+    }
+  }
 
   public subscribeHandler(): void {
     if (!this.userDataService || this.subscribeProcessing) {
@@ -63,7 +74,9 @@ export class UserSubscribeButtonComponent {
     this.userDataService
       .updateSubscription(!this.isSubscription)
       .subscribe({
-        error: () => this.translationService.translate('user_subscribe_button.subscripiton_error'),
+        error: () => this.toastrService.error(
+          this.translationService.translate('user_subscribe_button.subscripiton_error'),
+        ),
       });
   }
 }

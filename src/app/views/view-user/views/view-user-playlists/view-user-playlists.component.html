@@ -24,7 +24,7 @@
     <app-placeholder
       *ngIf="showPlaceholder$ | async"
       [icon]="'subscriptions'"
-      [text]="'This user has no playlists yet'"
+      [text]="'view_user_playlists.placeholder' | translateAsync"
     ></app-placeholder>
   </div>
 </div>

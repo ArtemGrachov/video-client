@@ -12,7 +12,7 @@
   </div>
   <div class="container container-narrow">
     <h1 class="mb-xl">
-      {{ 'view_edit_video.title' | translateAsync:{ title: videoName$ | async } }}
+      {{ 'view_edit_video.title' | translateAsync:{ videoName: videoName$ | async } }}
     </h1>
     <app-form-video
       [video]="video$ | async"

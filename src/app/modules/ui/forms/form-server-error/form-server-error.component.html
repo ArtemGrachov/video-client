@@ -1,3 +1,3 @@
-<ng-container *ngIf="formattedMessage">
+<ng-container *ngIf="(formattedMessage$ | async) as formattedMessage">
   {{ formattedMessage }}
 </ng-container>

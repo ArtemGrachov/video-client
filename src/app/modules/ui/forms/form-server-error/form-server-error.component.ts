@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { L10nTranslationService } from 'angular-l10n';
+import { Observable, map } from 'rxjs';
+
 import { EServerErrors } from 'src/app/constants/errors';
 
 import { ServerValidationService } from 'src/app/modules/utils/form-validation/services/server-validation.service';
@@ -17,38 +20,54 @@ export class FormServerErrorComponent {
   @Input('customErrorMessages')
   public customErrorMessages?: IDictionary<string> | null;
 
-  private errorMessageMap: IDictionary<string> = {
-    [EServerErrors.VALIDATION]: 'Form is not valid',
-    [EServerErrors.INCORRECT_EMAIL_OR_PASSWORD]: 'Incorrect email or password',
-    [EServerErrors.INVALID_RESET_PASSWORD_TOKEN]: 'Invalid reset password token',
-    [EServerErrors.NOT_AUTHENTICATED]: 'Not authenticated',
-    [EServerErrors.SERVER_ERROR]: 'Server error',
-    [EServerErrors.NOT_FOUND]: 'Not found',
-    [EServerErrors.NOT_ALLOWED]: 'Not authorized',
-  };
+  private errorMessageMap$: Observable<IDictionary<string>> = this
+    .translationService
+    .onChange()
+    .pipe(map(() => {
+      return {
+          [EServerErrors.VALIDATION]: this.translationService.translate('form_server_error.error_validation'),
+          [EServerErrors.INCORRECT_EMAIL_OR_PASSWORD]: this.translationService.translate('form_server_error.error_incorrect_email_or_password'),
+          [EServerErrors.INVALID_RESET_PASSWORD_TOKEN]: this.translationService.translate('form_server_error.error_invalid_reset_password_token'),
+          [EServerErrors.NOT_AUTHENTICATED]: this.translationService.translate('form_server_error.error_not_authenticated'),
+          [EServerErrors.SERVER_ERROR]: this.translationService.translate('form_server_error.error_server_error'),
+          [EServerErrors.NOT_FOUND]: this.translationService.translate('form_server_error.error_not_found'),
+          [EServerErrors.NOT_ALLOWED]: this.translationService.translate('form_server_error.error_not_authorized'),
+        };
+    }))
 
-  constructor(private serverValidationService: ServerValidationService) {}
+  constructor(
+    private serverValidationService: ServerValidationService,
+    private translationService: L10nTranslationService,
+  ) {}
 
   public get message(): string | null {
     return this.serverValidationService.getServerFormErrorMessage(this.error);
   }
 
-  private get mergedErrorMessages(): IDictionary<string> {
-    if (!this.customErrorMessages) {
-      return this.errorMessageMap;
-    }
+  private mergedErrorMessages$: Observable<IDictionary<string>> = this
+    .errorMessageMap$
+    .pipe(
+      map(errorMessageMap => {
+        if (!this.customErrorMessages) {
+          return errorMessageMap;
+        }
 
-    return {
-      ...this.errorMessageMap,
-      ...this.customErrorMessages,
-    };
-  }
+        return {
+          ...errorMessageMap,
+          ...this.customErrorMessages,
+        };
+      })
+    );
 
-  public get formattedMessage(): string | null {
-    if (!this.message) {
-      return null
-    }
+  public formattedMessage$: Observable<string | null> = this
+    .mergedErrorMessages$
+    .pipe(
+      map(mergedErrorMessages => {
+        if (!this.message) {
+          return null
+        }
 
-    return this.mergedErrorMessages[this.message];
-  }
+        return mergedErrorMessages[this.message];
+      })
+    );
 }

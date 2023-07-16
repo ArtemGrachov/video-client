@@ -69,6 +69,15 @@
     "description": "Опис",
     "submit": "Відправити"
   },
+  "form_server_error": {
+    "error_validation": "Форма невалідна",
+    "error_incorrect_email_or_password": "Неправильний email або пароь",
+    "error_invalid_reset_password_token": "Некоректний токен скидання паролю",
+    "error_not_authenticated": "Помилка автентифікації",
+    "error_server_error": "Помилка сервера",
+    "error_not_found": "Не знайдено",
+    "error_not_authorized": "Помилка авторизації"
+  },
   "input_image": {
     "image_placeholder": "Натисніть, щоб заватажити зображення",
     "upload": "Завантажити",
@@ -83,6 +92,12 @@
   },
   "header": {
     "upload_video": "Завантажити відео"
+  },
+  "footer": {
+    "source_code": "Вихідний код:",
+    "purpose": "Створено з навчальною метою",
+    "developed_by": "Розроблено",
+    "location_year": "Україна, 2023"
   },
   "nav": {
     "link_video": "Відео",
@@ -158,5 +173,76 @@
     "delete_confirm_description": "Ви впевнені, що бажаєте видалити цей список відтворення?",
     "delete_success": "Список відтворення видалено успішно",
     "delete_error": "Помилка видалення списку відтворення"
+  },
+  "view_change_password": {
+    "title": "Редагувати пароль",
+    "change_success": "Пароль успішно відредаговано",
+    "change_error": "Помилка редагування пароля"
+  },
+  "view_profile_edit": {
+    "title": "Редагувати обліковий запис",
+    "update_success": "Обліковий запис успішно відредаговано",
+    "update_error": "Помилка редагування облікового запису"
+  },
+  "view_profile": {
+    "edit": "Редагувати обліковий запис",
+    "change_password": "Змінити пароль",
+    "logout": "Вийти із системи"
+  },
+  "view_registration": {
+    "title": "Реєстрація",
+    "login": "Уже зареєструвалися? Увійдіть в систему",
+    "registration_success": "Обліковий запис успішно зареєстровано",
+    "registration_error": "Помилка реєстрації облікового запису"
+  },
+  "view_reset_password": {
+    "title": "Скинути пароль",
+    "success": "Ваш пароль було успішно скинуто. Тепер ви можете",
+    "login": "Увійти до системи",
+    "reset_success": "Пароль скинуто успішно",
+    "reset_error": "Помилка скидання пароля"
+  },
+  "view_reset_password_request": {
+    "title": "Забули пароль",
+    "success": "Посилання на скидання паролю відправлено на ваш email",
+    "reset_success": "Запит на скидання паролю успішно відправлено",
+    "reset_error": "Помилка відправки зпиту на скидання паролю"
+  },
+  "view_user_playlists": {
+    "title": "Створити список відтворення",
+    "placeholder": "Цей користувач наразі не створив списків відтворення"
+  },
+  "view_user_subscribers": {
+    "placeholder": "Цього користувача наразі ніхто не відстежує"
+  },
+  "view_user_subscriptions": {
+    "placeholder": "Цей користувач наразі нікого не відстежує"
+  },
+  "view_user_videos": {
+    "create": "Створити відео",
+    "video_placeholder": "Цей користувач наразі не завантажив відео"
+  },
+  "view_user": {
+    "videos": "Відео",
+    "playlists": "Списки відтворення",
+    "subscriptions": "Підписки  ",
+    "subscribers": "Підписники"
+  },
+  "view_users": {
+    "placeholder": "Користувачів не знайдено"
+  },
+  "view_video": {
+    "edit": "Редагувати",
+    "delete": "Видалити",
+    "create_comment_error": "Помилка створення коментаря",
+    "delete_title": "Підтвердіть видалення",
+    "delete_description": "Ви впевнені, що бажаєте видалити це відео?",
+    "delete_success": "Відео видалено успішно",
+    "delete_error": "Помилка видалення відео"
+  },
+  "view_comment_edit": {
+    "title": "Редагувати коментар",
+    "edit_success": "Комент успішно відредаговано",
+    "edit_error": "Помилка редагування коментаря"
   }
 }

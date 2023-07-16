@@ -69,6 +69,15 @@
     "description": "Description",
     "submit": "Submit"
   },
+  "form_server_error": {
+    "error_validation": "Form is not valid",
+    "error_incorrect_email_or_password": "Incorrect email or password",
+    "error_invalid_reset_password_token": "Invalid reset password token",
+    "error_not_authenticated": "Not authenticated",
+    "error_server_error": "Server error",
+    "error_not_found": "Not found",
+    "error_not_authorized": "Not authorized"
+  },
   "input_image": {
     "image_placeholder": "Click to upload image",
     "upload": "Upload",
@@ -83,6 +92,12 @@
   },
   "header": {
     "upload_video": "Upload video"
+  },
+  "footer": {
+    "source_code": "Source code:",
+    "purpose": "Created for educational purposes",
+    "developed_by": "Developed by",
+    "location_year": "Ukraine, 2023"
   },
   "nav": {
     "link_video": "Video",
@@ -181,7 +196,7 @@
   },
   "view_profile_edit": {
     "title": "Edit profile",
-    "update_success": "Profile created successfully",
+    "update_success": "Profile updated successfully",
     "update_error": "Profile update error"
   },
   "view_profile": {
@@ -209,7 +224,8 @@
     "reset_error": "Password reset request error"
   },
   "view_user_playlists": {
-    "title": "Create playlist"
+    "title": "Create playlist",
+    "placeholder": "This user has no playlists yet"
   },
   "view_user_subscribers": {
     "title": "This user has no subscribers yet"
