@@ -6,5 +6,10 @@
       (getPrevPage)="getPrevPageHandler()"
       (getNextPage)="getNextPageHandler()"
     ></app-video-grid>
+    <app-placeholder
+      *ngIf="showPlaceholder$ | async"
+      [icon]="'theaters'"
+      [text]="'No video found'"
+    ></app-placeholder>
   </div>
 </div>

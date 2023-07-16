@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { skip } from 'rxjs';
+import { Observable, combineLatest, map, skip, tap } from 'rxjs';
 
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
@@ -34,6 +34,8 @@ export class ViewIndexComponent implements OnDestroy {
   public items$ = this.videoListDataService.items$;
 
   public pagination$ = this.videoListDataService.pagination$;
+
+  public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();

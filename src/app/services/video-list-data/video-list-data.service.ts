@@ -15,6 +15,14 @@ import { IApiGenericResponse } from 'src/app/types/api/common.interface';
 
 @Injectable()
 export class VideoListDataService {
+  private getStatusSbj$: BehaviorSubject<EStatus> = new BehaviorSubject(EStatus.INIT as EStatus);
+
+  private getErrorSbj$: BehaviorSubject<any | null> = new BehaviorSubject(null);
+
+  public getStatus$: Observable<EStatus> = this.getStatusSbj$.asObservable();
+
+  public getError$: Observable<any | null> = this.getErrorSbj$.asObservable();
+
   private dataSbj$: BehaviorSubject<IGetVideosResponse | null> = new BehaviorSubject(null as IGetVideosResponse | null);
 
   private itemsSbj$: BehaviorSubject<IVideo[]> = new BehaviorSubject([] as IVideo[]);
@@ -73,10 +81,25 @@ export class VideoListDataService {
   }
 
   public getVideos(query?: IGetVideosQuery): Observable<IGetVideosResponse> {
+    this.getStatusSbj$.next(EStatus.PROCESSING);
+    this.getErrorSbj$.next(null);
+
     return this
       .videoApiService
       .getVideos(query)
-      .pipe(tap(res => this.handleData(res, query)));
+      .pipe(
+        tap({
+          next: res => {
+            this.handleData(res, query);
+            this.getErrorSbj$.next(null);
+            this.getStatusSbj$.next(EStatus.SUCCESS);
+          },
+          error: err => {
+            this.getStatusSbj$.next(EStatus.ERROR);
+            this.getErrorSbj$.next(err);
+          },
+        }),
+      );
   }
 
   public getPlaylistVideos(playlistId: number, query?: IGetVideosQuery): Observable<IGetVideosResponse> {
@@ -84,10 +107,25 @@ export class VideoListDataService {
       throw new Error('No playlistApiService provided');
     }
 
+    this.getStatusSbj$.next(EStatus.PROCESSING);
+    this.getErrorSbj$.next(null);
+
     return this
       .playlistApiService
       .getPlaylistVideos(playlistId, query)
-      .pipe(tap(res => this.handleData(res, query)));
+      .pipe(
+        tap({
+          next: res => {
+            this.handleData(res, query);
+            this.getErrorSbj$.next(null);
+            this.getStatusSbj$.next(EStatus.SUCCESS);
+          },
+          error: err => {
+            this.getStatusSbj$.next(EStatus.ERROR);
+            this.getErrorSbj$.next(err);
+          },
+        }),
+      );
   }
 
   private handleData(res: IGetVideosResponse, query?: IGetVideosQuery): void {

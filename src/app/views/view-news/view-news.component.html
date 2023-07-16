@@ -6,5 +6,10 @@
       (getPrevPage)="getPrevPageHandler()"
       (getNextPage)="getNextPageHandler()"
     ></app-video-grid>
+    <app-placeholder
+      *ngIf="showPlaceholder$ | async"
+      [icon]="'theaters'"
+      [text]="'Subscribe to other users to see their video in your feed'"
+    ></app-placeholder>
   </div>
 </div>
