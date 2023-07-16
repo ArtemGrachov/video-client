@@ -6,5 +6,10 @@
       (getPrevPage)="getPrevPageHandler()"
       (getNextPage)="getNextPageHandler()"
     ></app-user-list>
+    <app-placeholder
+      *ngIf="showPlaceholder$ | async"
+      [icon]="'people'"
+      [text]="'This user has no subscriptions yet'"
+    ></app-placeholder>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { skip } from 'rxjs';
+import { Observable, map, skip } from 'rxjs';
 
 import { USERS_PER_PAGE } from 'src/app/constants/users';
 
@@ -42,6 +42,8 @@ export class ViewUserSubscribersComponent {
   public items$ = this.usersListDataService.items$;
 
   public pagination$ = this.usersListDataService.pagination$;
+
+  public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();
