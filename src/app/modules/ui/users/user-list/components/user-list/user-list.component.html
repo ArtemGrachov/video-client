@@ -12,9 +12,19 @@
 </div>
 <div class="mb-xl">
   <ul class="grid">
+    <ng-container *ngIf="showSkeletonPrev">
+      <li class="item" *ngFor="let skeleton of [0, 1, 2, 3]">
+        <app-user-card-skeleton></app-user-card-skeleton>
+      </li>
+    </ng-container>
     <li class="item" *ngFor="let user of users; trackBy: trackBy">
       <app-user-card [user]="user"></app-user-card>
     </li>
+    <ng-container *ngIf="showSkeletonNext">
+      <li class="item" *ngFor="let skeleton of [0, 1, 2, 3]">
+        <app-user-card-skeleton></app-user-card-skeleton>
+      </li>
+    </ng-container>
   </ul>
 </div>
 <div class="pagination">

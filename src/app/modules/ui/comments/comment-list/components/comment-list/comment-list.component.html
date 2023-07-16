@@ -12,9 +12,19 @@
 </div>
 <div class="mb-xl">
   <ul class="list">
+    <ng-container *ngIf="showSkeletonPrev">
+      <li class="item" *ngFor="let skeleton of [0, 1]">
+        <app-comment-item-skeleton></app-comment-item-skeleton>
+      </li>
+    </ng-container>
     <li class="item" *ngFor="let comment of comments; trackBy: trackBy">
       <app-comment-item [comment]="comment"></app-comment-item>
     </li>
+    <ng-container *ngIf="showSkeletonNext">
+      <li class="item" *ngFor="let skeleton of [0, 1]">
+        <app-comment-item-skeleton></app-comment-item-skeleton>
+      </li>
+    </ng-container>
   </ul>
 </div>
 <div class="pagination">

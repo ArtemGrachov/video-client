@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -32,6 +32,8 @@ export class PlaylistsListDataService {
   public items$: Observable<IPlaylist[]> = this.itemsSbj$.asObservable();
 
   public pagination$: Observable<IPagination | null> = this.paginationSbj$.asObservable();
+
+  public processing$: Observable<boolean> = this.getStatus$.pipe(map(status => status === EStatus.PROCESSING));
 
   constructor(private playlistApiService: PlaylistApiService) { }
 

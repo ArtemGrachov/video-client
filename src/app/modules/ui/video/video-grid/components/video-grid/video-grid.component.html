@@ -12,9 +12,19 @@
 </div>
 <div class="mb-xl">
   <ul class="grid">
+    <ng-container *ngIf="showSkeletonPrev">
+      <li class="item" *ngFor="let skeleton of [0, 1, 2, 3]">
+        <app-video-card-skeleton></app-video-card-skeleton>
+      </li>
+    </ng-container>
     <li class="item" *ngFor="let video of videos; trackBy: trackBy">
       <app-video-card [video]="video"></app-video-card>
     </li>
+    <ng-container *ngIf="showSkeletonNext">
+      <li class="item" *ngFor="let skeleton of [0, 1, 2, 3]">
+        <app-video-card-skeleton></app-video-card-skeleton>
+      </li>
+    </ng-container>
   </ul>
 </div>
 <div class="pagination">

@@ -48,6 +48,7 @@
     <app-comment-list
       [comments]="(comments$ | async)!"
       [pagination]="(commentsPagination$ | async)!"
+      [processing]="(commentsProcessing$ | async)!"
       (getPrevPage)="getCommentsPrevPageHandler()"
       (getNextPage)="getCommentsNextPageHandler()"
     ></app-comment-list>

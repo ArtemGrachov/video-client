@@ -35,6 +35,8 @@ export class ViewNewsComponent implements OnDestroy {
 
   public pagination$ = this.videoListDataService.pagination$;
 
+  public processing$: Observable<boolean> = this.videoListDataService.processing$;
+
   public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
   public ngOnDestroy(): void {

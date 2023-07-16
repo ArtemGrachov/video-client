@@ -55,6 +55,8 @@ export class ViewUserPlaylistsComponent {
 
   public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
+  public processing$: Observable<boolean> = this.playlistsListDataService.processing$;
+
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();
   }

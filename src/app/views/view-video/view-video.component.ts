@@ -66,6 +66,8 @@ export class ViewVideoComponent {
 
   public commentFormSubmitError$: Observable<any> = this.commentFormDataService.submitError$;
 
+  public commentsProcessing$: Observable<boolean> = this.commentsListDataService.processing$;
+
   public userIsAuthor$: Observable<boolean> = this
     .video$
     .pipe(map(video => video!.authorId === this.authService.userDataSnapshot?.id));

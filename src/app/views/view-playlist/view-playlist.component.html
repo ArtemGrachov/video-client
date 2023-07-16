@@ -32,6 +32,7 @@
     <app-video-grid
       [videos]="(items$ | async)!"
       [pagination]="pagination$ | async"
+      [processing]="(processing$ | async)!"
       (getPrevPage)="getPrevPageHandler()"
       (getNextPage)="getNextPageHandler()"
     ></app-video-grid>

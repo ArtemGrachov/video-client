@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 import { IComment } from 'src/app/types/models/comment.interface';
 import { IPagination } from 'src/app/types/other/pagination.interface';
@@ -9,12 +17,19 @@ import { IPagination } from 'src/app/types/other/pagination.interface';
   styleUrls: ['./comment-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommentListComponent {
+export class CommentListComponent implements OnChanges {
   @Input()
   public comments: IComment[] = [];
 
   @Input()
   public pagination?: IPagination | null
+
+  @Input()
+  public processing?: boolean;
+
+  private loadingPrev: boolean = false;
+
+  private loadingNext: boolean = false;
 
   @Output('getPrevPage')
   private getPrevPageEmitter: EventEmitter<void> = new EventEmitter();
@@ -38,15 +53,32 @@ export class CommentListComponent {
     return this.pagination.upperPage < this.pagination.totalPages;
   }
 
+  public get showSkeletonPrev(): boolean {
+    return Boolean(this.processing) && this.loadingPrev;
+  }
+
+  public get showSkeletonNext(): boolean {
+    return Boolean(this.processing) && this.loadingNext;
+  }
+
   public prevPageHandler(): void {
+    this.loadingPrev = true;
     this.getPrevPageEmitter.emit();
   }
 
   public nextPageHandler(): void {
+    this.loadingPrev = true;
     this.getNextPageEmitter.emit();
   }
 
   public trackBy(index: number, item: IComment): number {
     return item.id;
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['processing']?.currentValue === false) {
+      this.loadingPrev = false;
+      this.loadingNext = false;
+    }
   }
 }

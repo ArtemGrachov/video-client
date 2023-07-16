@@ -39,6 +39,8 @@ export class ViewUsersComponent {
 
   public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
+  public processing$: Observable<boolean> = this.usersListDataService.processing$;
+
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();
   }

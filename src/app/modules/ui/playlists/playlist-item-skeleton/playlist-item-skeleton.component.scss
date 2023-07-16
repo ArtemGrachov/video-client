@@ -1,0 +1,42 @@
+@import '/src/styles/variables.scss';
+
+.link {
+  display: block;
+  padding: 16px;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+
+  &-avatar {
+    margin-right: 10px;
+  }
+
+  &-name {
+    font-size: 12px;
+    width: 100px;
+  }
+}
+
+.name {
+  width: 100px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+}
+
+.video-count {
+  font-size: 14px;
+  width: 100px;
+}

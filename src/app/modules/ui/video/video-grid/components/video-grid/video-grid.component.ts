@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 import { IVideo } from 'src/app/types/models/video.interface';
 import { IPagination } from 'src/app/types/other/pagination.interface';
@@ -9,12 +17,19 @@ import { IPagination } from 'src/app/types/other/pagination.interface';
   styleUrls: ['./video-grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VideoGridComponent {
-  @Input('videos')
+export class VideoGridComponent implements OnChanges {
+  @Input()
   public videos!: IVideo[];
 
-  @Input('pagination')
+  @Input()
   public pagination?: IPagination | null
+
+  @Input()
+  public processing?: boolean;
+
+  private loadingPrev: boolean = false;
+
+  private loadingNext: boolean = false;
 
   @Output('getPrevPage')
   private emitGetPrevPage: EventEmitter<void> = new EventEmitter();
@@ -38,15 +53,32 @@ export class VideoGridComponent {
     return this.pagination.upperPage < this.pagination.totalPages;
   }
 
+  public get showSkeletonPrev(): boolean {
+    return Boolean(this.processing) && this.loadingPrev;
+  }
+
+  public get showSkeletonNext(): boolean {
+    return Boolean(this.processing) && this.loadingNext;
+  }
+
   public prevPageHandler(): void {
+    this.loadingPrev = true;
     this.emitGetPrevPage.emit();
   }
 
   public nextPageHandler(): void {
+    this.loadingNext = true;
     this.emitGetNextPage.emit();
   }
 
   public trackBy(index: number, item: IVideo): number {
     return item.id;
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['processing']?.currentValue === false) {
+      this.loadingPrev = false;
+      this.loadingNext = false;
+    }
   }
 }

@@ -12,11 +12,21 @@
 </div>
 <div class="mb-xl">
   <ul class="list">
+    <ng-container *ngIf="showSkeletonPrev">
+      <li class="item" *ngFor="let skeleton of [0, 1, 2]">
+        <app-playlist-item-skeleton></app-playlist-item-skeleton>
+      </li>
+    </ng-container>
     <li class="item" *ngFor="let playlist of playlists">
       <app-playlist-item
         [playlist]="playlist"
       ></app-playlist-item>
     </li>
+    <ng-container *ngIf="showSkeletonNext">
+      <li class="item" *ngFor="let skeleton of [0, 1, 2]">
+        <app-playlist-item-skeleton></app-playlist-item-skeleton>
+      </li>
+    </ng-container>
   </ul>
 </div>
 <div class="pagination">

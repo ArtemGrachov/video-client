@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+
+import { EStatus } from 'src/app/constants/status';
 
 import { UserApiService } from '../user-api/user-api.service';
 
@@ -9,6 +11,14 @@ import { IPagination } from 'src/app/types/other/pagination.interface';
 
 @Injectable()
 export class UsersListDataService {
+  private getStatusSbj$: BehaviorSubject<EStatus> = new BehaviorSubject(EStatus.INIT as EStatus);
+
+  private getErrorSbj$: BehaviorSubject<any | null> = new BehaviorSubject(null);
+
+  public getStatus$: Observable<EStatus> = this.getStatusSbj$.asObservable();
+
+  public getError$: Observable<any | null> = this.getErrorSbj$.asObservable();
+
   private dataSbj$: BehaviorSubject<IGetUsersResponse | null> = new BehaviorSubject(null as IGetUsersResponse | null);
 
   private itemsSbj$: BehaviorSubject<IUser[]> = new BehaviorSubject([] as IUser[]);
@@ -21,6 +31,8 @@ export class UsersListDataService {
 
   public pagination$: Observable<IPagination | null> = this.paginationSbj$.asObservable();
 
+  public processing$: Observable<boolean> = this.getStatus$.pipe(map(status => status === EStatus.PROCESSING));
+
   public get itemsSnapshot(): IUser[] {
     return this.itemsSbj$.value;
   }
@@ -31,21 +43,57 @@ export class UsersListDataService {
     return this
       .userApiService
       .getUsers(query)
-      .pipe(tap(res => this.handleData(res, query)));
+      .pipe(
+        tap({
+          next: res => {
+            this.handleData(res, query);
+            this.getErrorSbj$.next(null);
+            this.getStatusSbj$.next(EStatus.SUCCESS);
+          },
+          error: err => {
+            this.getStatusSbj$.next(EStatus.ERROR);
+            this.getErrorSbj$.next(err);
+          },
+        }),
+      );
   }
 
   public getUserSubscriptions(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
     return this
       .userApiService
       .getUsersSubscriptions(userId, query)
-      .pipe(tap(res => this.handleData(res, query)));
+      .pipe(
+        tap({
+          next: res => {
+            this.handleData(res, query);
+            this.getErrorSbj$.next(null);
+            this.getStatusSbj$.next(EStatus.SUCCESS);
+          },
+          error: err => {
+            this.getStatusSbj$.next(EStatus.ERROR);
+            this.getErrorSbj$.next(err);
+          },
+        }),
+      );
   }
 
   public getUserSubscribers(userId: number, query?: IGetUsersQuery): Observable<IGetUsersResponse> {
     return this
       .userApiService
       .getUsersSubscribers(userId, query)
-      .pipe(tap(res => this.handleData(res, query)));
+      .pipe(
+        tap({
+          next: res => {
+            this.handleData(res, query);
+            this.getErrorSbj$.next(null);
+            this.getStatusSbj$.next(EStatus.SUCCESS);
+          },
+          error: err => {
+            this.getStatusSbj$.next(EStatus.ERROR);
+            this.getErrorSbj$.next(err);
+          },
+        }),
+      );
   }
 
   public unshiftItem(item: IUser): void {

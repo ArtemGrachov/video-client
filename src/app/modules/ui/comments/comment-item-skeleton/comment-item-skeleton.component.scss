@@ -1,0 +1,48 @@
+@import '/src/styles/variables.scss';
+
+.comment {
+  border-radius: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+
+  &-avatar {
+    margin-right: 10px;
+    flex: 0 0 auto;
+  }
+
+  &-name {
+    font-size: 12px;
+    width: 120px;
+  }
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.date {
+  font-size: 12px;
+  width: 100px;
+}
+
+.content {
+  padding: 16px;
+}
+
+.actions {
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}

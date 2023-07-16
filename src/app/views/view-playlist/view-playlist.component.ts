@@ -51,6 +51,8 @@ export class ViewPlaylistComponent {
 
   public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
+  public processing$: Observable<boolean> = this.videoListDataService.processing$;
+
   public userIsAuthor$: Observable<boolean> = this
     .playlist$
     .pipe(map(playlist => playlist!.authorId === this.authService.userDataSnapshot?.id));

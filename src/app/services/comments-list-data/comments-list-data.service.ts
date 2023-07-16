@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -21,6 +21,14 @@ import { IDictionary } from 'src/app/types/other/dictionary.interface';
 
 @Injectable()
 export class CommentsListDataService {
+  private getStatusSbj$: BehaviorSubject<EStatus> = new BehaviorSubject(EStatus.INIT as EStatus);
+
+  private getErrorSbj$: BehaviorSubject<any | null> = new BehaviorSubject(null);
+
+  public getStatus$: Observable<EStatus> = this.getStatusSbj$.asObservable();
+
+  public getError$: Observable<any | null> = this.getErrorSbj$.asObservable();
+
   private dataSbj$: BehaviorSubject<IGetCommentsResponse | null> = new BehaviorSubject(null as IGetCommentsResponse | null);
 
   private itemsSbj$: BehaviorSubject<IComment[]> = new BehaviorSubject([] as IComment[]);
@@ -32,6 +40,8 @@ export class CommentsListDataService {
   public items$: Observable<IComment[]> = this.itemsSbj$.asObservable();
 
   public pagination$: Observable<IPagination | null> = this.paginationSbj$.asObservable();
+
+  public processing$: Observable<boolean> = this.getStatus$.pipe(map(status => status === EStatus.PROCESSING));
 
   public get itemsSnapshot(): IComment[] {
     return this.itemsSbj$.value;
@@ -46,7 +56,19 @@ export class CommentsListDataService {
     return this
       .videoApiService
       .getVideoComments(videoId, query)
-      .pipe(tap(res => this.handleData(res, query)))
+      .pipe(
+        tap({
+          next: res => {
+            this.handleData(res, query);
+            this.getErrorSbj$.next(null);
+            this.getStatusSbj$.next(EStatus.SUCCESS);
+          },
+          error: err => {
+            this.getStatusSbj$.next(EStatus.ERROR);
+            this.getErrorSbj$.next(err);
+          },
+        }),
+      );
   }
 
   public unshiftItem(item: IComment): void {

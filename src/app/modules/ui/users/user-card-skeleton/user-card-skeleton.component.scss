@@ -1,0 +1,29 @@
+@import '/src/styles/variables.scss';
+
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: $transition;
+}
+
+.details {
+  flex: 1 1 0;
+}
+
+.avatar {
+  flex: 0 0 auto;
+}
+
+.avatar-image {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
+
+.name {
+  font-size: 14px;
+  width: 140px;
+}

@@ -1,5 +1,5 @@
 import { Injectable, Optional } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -34,6 +34,8 @@ export class VideoListDataService {
   public items$: Observable<IVideo[]> = this.itemsSbj$.asObservable();
 
   public pagination$: Observable<IPagination | null> = this.paginationSbj$.asObservable();
+
+  public processing$: Observable<boolean> = this.getStatus$.pipe(map(status => status === EStatus.PROCESSING));
 
   public get itemsSnapshot(): IVideo[] {
     return this.itemsSbj$.value;
