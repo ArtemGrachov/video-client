@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PlaylistListModule } from 'src/app/modules/ui/playlists/playlist-list/playlist-list.module';
+import { PlaceholderModule } from 'src/app/modules/ui/other/placeholder/placeholder.module';
 import { ViewUserPlaylistsRoutingModule } from './view-user-playlists-routing.module';
 import { PlaylistsListDataService } from 'src/app/services/playlists-list-data/playlists-list-data.service';
 import { PlaylistsFormDataService } from 'src/app/services/playlists-form-data/playlists-form-data.service';
@@ -19,6 +20,7 @@ import { ViewUserPlaylistsComponent } from './view-user-playlists.component';
     CommonModule,
     ViewUserPlaylistsRoutingModule,
     PlaylistListModule,
+    PlaceholderModule,
   ],
   providers: [
     RouteHandlerService,

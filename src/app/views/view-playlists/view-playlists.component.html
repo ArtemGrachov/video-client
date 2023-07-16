@@ -14,5 +14,10 @@
       (getPrevPage)="getPrevPageHandler()"
       (getNextPage)="getNextPageHandler()"
     ></app-playlist-list>
+    <app-placeholder
+      *ngIf="showPlaceholder$ | async"
+      [icon]="'subscriptions'"
+      [text]="'No playlists found'"
+    ></app-placeholder>
   </div>
 </div>
