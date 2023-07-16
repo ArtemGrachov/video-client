@@ -2,21 +2,32 @@
 @import '/src/styles/variables.scss';
 
 .row {
-  display: flex;
-  align-items: stretch;
-  margin: math.div(-$layout-gap, 2);
+  @media (min-width: map-get($breakpoints, 'lg')) {
+    display: flex;
+    align-items: stretch;
+    margin: math.div(-$layout-gap, 2);
+  }
 }
 
 .col {
-  flex: 0 0 auto;
-  padding: math.div($layout-gap, 2);
+  margin-bottom: 32px;
 
-  &-sm {
-    width: 25%;
+  &:last-child {
+    margin-bottom: 0;
   }
 
-  &-lg {
-    width: 75%;
+  @media (min-width: map-get($breakpoints, 'lg')) {
+    margin-bottom: 0;
+    flex: 0 0 auto;
+    padding: math.div($layout-gap, 2);
+
+    &-sm {
+      width: 25%;
+    }
+
+    &-lg {
+      width: 75%;
+    }
   }
 }
 

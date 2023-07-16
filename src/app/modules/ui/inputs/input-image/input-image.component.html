@@ -24,26 +24,34 @@
   Click to upload image
 </div>
 <div class="actions">
-  <button
-    type="button"
-    class="button mr-md"
-    (click)="uploadHandler()"
-  >
-    Upload
-  </button>
-  <button
-    type="button"
-    class="button mr-md"
-    (click)="clearHandler()"
-  >
-    Delete
-  </button>
-  <button
-    *ngIf="allowReset"
-    type="button"
-    class="button mr-md"
-    (click)="resetHandler()"
-  >
-    Reset
-  </button>
+  <div class="actions-list">
+    <div class="actions-item">
+      <button
+        type="button"
+        class="button button-fullwidth action-trigger mr-md"
+        (click)="uploadHandler()"
+      >
+        Upload
+      </button>
+    </div>
+    <div class="actions-item">
+      <button
+        type="button"
+        class="button button-fullwidth action-trigger mr-md"
+        (click)="clearHandler()"
+      >
+        Delete
+      </button>
+    </div>
+    <div class="actions-item">
+      <button
+        *ngIf="allowReset"
+        type="button"
+        class="button button-fullwidth action-trigger"
+        (click)="resetHandler()"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
 </div>
