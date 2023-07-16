@@ -8,6 +8,11 @@
 
 .header {
   border-bottom: 1px solid map-get($colors, 'border-primary');
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .sidebar {
