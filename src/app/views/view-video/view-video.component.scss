@@ -1,8 +1,30 @@
+@import '/src/styles/variables.scss';
+
+.video-page {
+  padding-top: 0;
+}
+
 .player {
   background: black;
   box-shadow: 0 20px 50px -10px rgba(black, .5);
 }
 
 .actions {
-  display: flex;
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    display: flex;
+  }
+}
+
+.action-trigger {
+  width: 100%;
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    width: auto;
+    margin-bottom: 0;
+  }
 }

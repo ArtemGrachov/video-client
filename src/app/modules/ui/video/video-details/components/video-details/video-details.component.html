@@ -1,7 +1,4 @@
 <div class="header mb-md">
-  <h1 class="title mb-none">
-    {{ videoName }}
-  </h1>
   <div class="actions">
     <ul class="actions-list">
       <li
@@ -10,7 +7,7 @@
       >
         <app-user-subscribe-button [user]="author!"></app-user-subscribe-button>
       </li>
-      <li class="actions-item">
+      <li class="actions-item playlist-item">
         <button
           type="button"
           class="button button-icon button-transparent"
@@ -26,6 +23,9 @@
       </li>
     </ul>
   </div>
+  <h1 class="title mb-none">
+    {{ videoName }}
+  </h1>
 </div>
 <div
   *ngIf="author"

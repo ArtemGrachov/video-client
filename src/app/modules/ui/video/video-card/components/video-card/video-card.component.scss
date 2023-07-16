@@ -44,7 +44,9 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  min-width: 0;
   text-decoration: none;
+  display: block;
   color: map-get($colors, 'text-main');
 }
 
@@ -58,6 +60,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-decoration: none;
+  display: block;
 }
 
 .avatar {

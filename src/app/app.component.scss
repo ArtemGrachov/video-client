@@ -1,9 +1,11 @@
 @import '/src/styles/variables.scss';
 
 .row {
-  display: flex;
-  align-items: stretch;
-  flex: 1 1 auto;
+  @media (min-width: map-get($breakpoints, 'md')) {
+    display: flex;
+    align-items: stretch;
+    flex: 1 1 auto;
+  }
 }
 
 .header {
@@ -16,10 +18,15 @@
 }
 
 .sidebar {
-  width: 300px;
-  flex: 0 0 auto;
-  background-color: map-get($colors, 'background-secondary');
-  border-right: 1px solid map-get($colors, 'border-primary');
+  display: none;
+
+  @media (min-width: map-get($breakpoints, 'md')) {
+    display: block;
+    width: 300px;
+    flex: 0 0 auto;
+    background-color: map-get($colors, 'background-secondary');
+    border-right: 1px solid map-get($colors, 'border-primary');
+  }
 }
 
 .content {

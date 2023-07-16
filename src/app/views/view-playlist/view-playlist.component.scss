@@ -7,5 +7,21 @@
 }
 
 .actions {
-  display: flex;
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    display: flex;
+  }
+}
+
+.action-trigger {
+  width: 100%;
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    width: auto;
+    margin-bottom: 0;
+  }
 }

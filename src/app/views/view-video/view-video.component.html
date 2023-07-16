@@ -1,14 +1,16 @@
-<div class="page">
-  <div *ngIf="showVideo$ | async" class="container container-fluid mb-xl">
+<div class="page video-page">
+  <ng-container *ngIf="showVideo$ | async">
     <div class="player mb-xl">
       <app-player
         [video]="(video$ | async)!"
       ></app-player>
     </div>
-    <app-video-details
-      [video]="(video$ | async)!"
-    ></app-video-details>
-  </div>
+    <div class="container container-fluid mb-xl">
+      <app-video-details
+        [video]="(video$ | async)!"
+      ></app-video-details>
+    </div>
+  </ng-container>
   <div
     *ngIf="userIsAuthor$ | async"
     class="container container-fluid mb-xl"
@@ -16,7 +18,7 @@
     <div class="actions">
       <a
         [routerLink]="['/', 'video', videoId, 'edit']"
-        class="button button-secondary mr-md"
+        class="button button-secondary mr-md action-trigger"
       >
         <span class="material-icons button-symbol">
           edit
@@ -25,7 +27,7 @@
       </a>
       <button
         type="button"
-        class="button button-secondary"
+        class="button button-secondary action-trigger"
         (click)="deleteHandler()"
       >
         <span class="material-icons button-symbol">

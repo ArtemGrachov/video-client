@@ -12,8 +12,11 @@
 }
 
 .logo-wrap {
-  width: 300px;
   flex: 0 0 auto;
+
+  @media (min-width: map-get($breakpoints, 'md')) {
+    width: 300px;
+  }
 }
 
 .row {
@@ -29,6 +32,20 @@
 }
 
 .search {
-  max-width: 500px;
-  flex: 1 1 auto;
+  display: none;
+
+  @media (min-width: map-get($breakpoints, 'md')) {
+    display: block;
+    max-width: 500px;
+    flex: 1 1 auto;
+  }
+}
+
+.upload-video-button,
+.auth-button {
+  display: none;
+
+  @media (min-width: map-get($breakpoints, 'md')) {
+    display: flex;
+  }
 }

@@ -2,8 +2,10 @@
 @import '/src/styles/variables.scss';
 
 .header {
-  display: flex;
-  align-items: center;
+  @media (min-width: map-get($breakpoints, 'md')) {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .title {
@@ -21,6 +23,13 @@
 .actions {
   $gap: 16px;
 
+  margin-bottom: 32px;
+
+  @media (min-width: map-get($breakpoints, 'md')) {
+    margin-bottom: 0;
+    order: 1;
+  }
+
   &-list {
     display: flex;
     align-items: center;
@@ -31,5 +40,13 @@
 
   &-item {
     padding: math.div($gap, 2);
+  }
+}
+
+.playlist-item {
+  margin-left: auto;
+
+  @media (min-width: map-get($breakpoints, 'md')) {
+    margin-left: 0;
   }
 }

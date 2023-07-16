@@ -7,15 +7,30 @@
 }
 
 .row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   font-size: 14px;
   color: map-get($colors, 'text-secondary');
+  text-align: center;
+
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.left {
+  margin-bottom: 32px;
+
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    margin-bottom: 0;
+  }
 }
 
 .right {
-  text-align: right;
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    text-align: right;
+  }
 }
 
 .link {

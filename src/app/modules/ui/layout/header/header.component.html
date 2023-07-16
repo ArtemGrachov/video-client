@@ -14,7 +14,7 @@
     <a
       *ngIf="allowVideoCreate$ | async"
       [routerLink]="['/', 'video', 'create']"
-      class="button button-transparent button-transparent-primary mr-md"
+      class="button button-transparent button-transparent-primary mr-md upload-video-button"
     >
       <span class="material-icons button-symbol">
         video_call
@@ -24,7 +24,7 @@
     <button
       *ngIf="isGuest$ | async"
       type="button"
-      class="button button-icon button-primary"
+      class="button button-icon button-primary auth-button"
       (click)="openAuthModal()"
     >
       <span class="material-icons">
@@ -34,7 +34,7 @@
     <a
       *ngIf="isAuthorized$ | async"
       [routerLink]="['/', 'profile']"
-      class="button button-icon button-primary"
+      class="button button-icon button-primary auth-button"
     >
       <span class="material-icons">
         person
