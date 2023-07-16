@@ -16,7 +16,6 @@ export class ViewResetPasswordRequestModalService {
         {
           closeOnEscape: true,
           closeOnClickOutside: true,
-          animationDuration: 0
         }
       );
   }

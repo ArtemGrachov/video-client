@@ -18,7 +18,6 @@ export class ViewPlaylistAddVideoModalService {
         {
           closeOnEscape: true,
           closeOnClickOutside: true,
-          animationDuration: 0
         }
       );
   }

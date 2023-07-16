@@ -17,7 +17,6 @@ export class ViewLoginModalService {
         {
           closeOnEscape: true,
           closeOnClickOutside: true,
-          animationDuration: 0
         }
       );
   }

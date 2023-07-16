@@ -19,7 +19,6 @@ export class ModalConfirmationService {
         {
           closeOnEscape: false,
           closeOnClickOutside: false,
-          animationDuration: 0
         }
       );
   }

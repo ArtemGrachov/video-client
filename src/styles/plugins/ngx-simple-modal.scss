@@ -8,6 +8,43 @@
   overflow-y: auto;
 }
 
+.modal-backdrop {
+  background-color: rgba(black, 0.35);
+}
+
 .modal-open {
   overflow: hidden;
+}
+
+.modal-default {
+  opacity: 0;
+  transition: 200ms;
+
+  .modal-window {
+    transition: 200ms;
+    transform: translateY(-200px);
+  }
+}
+
+.modal-default.modal-active {
+  opacity: 1;
+
+  .modal-window {
+    transform: none;
+  }
+}
+
+.modal-slide-left {
+  .modal-window {
+    transition: 200ms;
+    transform: translateX(-100%);
+  }
+}
+
+.modal-slide-left.modal-active {
+  opacity: 1;
+
+  .modal-window {
+    transform: none;
+  }
 }

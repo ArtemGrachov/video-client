@@ -15,7 +15,6 @@ export class ViewRegistrationModalService {
         {
           closeOnEscape: true,
           closeOnClickOutside: true,
-          animationDuration: 0
         }
       );
   }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { SimpleModalService } from '@looorent/ngx-simple-modal';
-import { Observable } from 'rxjs';
 
 import { ModalMenuComponent } from '../modal-menu.component';
 
@@ -17,7 +16,7 @@ export class ModalMenuService {
         {
           closeOnEscape: false,
           closeOnClickOutside: false,
-          animationDuration: 0
+          wrapperDefaultClasses: 'modal modal-backdrop modal-slide-left',
         }
       );
   }

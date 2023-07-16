@@ -2,7 +2,7 @@ import { APP_ID, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-import { SimpleModalModule } from '@looorent/ngx-simple-modal';
+import { SimpleModalModule, defaultSimpleModalOptions } from '@looorent/ngx-simple-modal';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -27,7 +27,17 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
-    SimpleModalModule.forRoot({ container: 'modal-container' }),
+    SimpleModalModule.forRoot(
+      {
+        container: 'modal-container',
+      },
+      {
+        ...defaultSimpleModalOptions,
+        animationDuration: 200,
+        wrapperDefaultClasses: 'modal modal-backdrop modal-default',
+        wrapperClass: 'modal-active',
+      },
+    ),
     CoreModule,
     ModalsModule,
     HeaderModule,

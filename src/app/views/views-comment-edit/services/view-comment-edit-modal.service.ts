@@ -20,7 +20,6 @@ export class ViewCommentEditModalService {
         {
           closeOnEscape: true,
           closeOnClickOutside: true,
-          animationDuration: 0
         }
       );
   }
