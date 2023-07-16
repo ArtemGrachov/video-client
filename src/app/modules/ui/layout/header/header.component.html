@@ -1,42 +1,29 @@
-<div class="container">
+<div class="logo-wrap">
+  <a class="logo" routerLink="/">
+    <app-logo></app-logo>
+  </a>
+</div>
+<div class="container container-fluid header-main-container">
   <div class="row">
-    <a class="logo" routerLink="/">
-      VIDEO
-    </a>
-    <div class="mx-auto search">
+    <div class="mr-auto search">
       <app-form-search
         [query]="searchQuery$ | async"
         (formSubmit)="searchHandler($event)"
       ></app-form-search>
     </div>
     <a
-      [routerLink]="['/', 'users']"
-      class="button button-icon mr-md"
-    >
-      <span class="material-icons">
-        group
-      </span>
-    </a>
-    <a
-      [routerLink]="['/', 'playlists']"
-      class="button button-icon mr-md"
-    >
-      <span class="material-icons">
-        subscriptions
-      </span>
-    </a>
-    <a
       *ngIf="allowVideoCreate$ | async"
       [routerLink]="['/', 'video', 'create']"
-      class="button button-icon mr-md"
+      class="button button-transparent mr-md"
     >
-      <span class="material-icons">
+      <span class="material-icons button-symbol">
         video_call
       </span>
+      Upload video
     </a>
     <button
       *ngIf="isGuest$ | async"
-      type="button"
+      type="button button-primary"
       class="button button-icon"
       (click)="openAuthModal()"
     >
@@ -47,7 +34,7 @@
     <a
       *ngIf="isAuthorized$ | async"
       [routerLink]="['/', 'profile']"
-      class="button button-icon mr-md"
+      class="button button-icon button-primary"
     >
       <span class="material-icons">
         person

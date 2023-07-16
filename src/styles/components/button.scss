@@ -129,7 +129,7 @@
   padding: 0;
 
   &:hover {
-    color: darken(map-get($colors, 'text-secondary'), 40);
+    color: lighten(map-get($colors, 'text-secondary'), 40);
   }
 
   &:active {

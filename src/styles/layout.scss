@@ -29,7 +29,11 @@ body {
   max-width: $container-width-narrow + ($container-padding * 2);
 }
 
+.container-fluid {
+  max-width: none;
+}
+
 .page {
-  padding-top: 48px;
+  padding-top: 24px;
   padding-bottom: 128px;
 }

@@ -1,0 +1,17 @@
+@import '/src/styles/variables.scss';
+
+.row {
+  display: flex;
+  align-items: stretch;
+  min-height: 100%;
+}
+
+.sidebar {
+  width: 300px;
+  flex: 0 0 auto;
+  background-color: map-get($colors, 'background-secondary');
+}
+
+.content {
+  flex: 1 1 0;
+}

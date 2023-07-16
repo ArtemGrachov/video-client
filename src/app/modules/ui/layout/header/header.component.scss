@@ -3,16 +3,29 @@
 :host {
   background-color: map-get($colors, 'background-secondary');
   color: map-get($colors, 'text-primary');
+  display: flex;
+  align-items: center;
+}
+
+.header-main-container {
+  flex: 1 1 0;
+}
+
+.logo-wrap {
+  width: 300px;
+  flex: 0 0 auto;
 }
 
 .row {
   display: flex;
   align-items: center;
+  padding: 8px 0;
 }
 
 .logo {
   padding: 20px 0;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .search {

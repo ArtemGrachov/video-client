@@ -1,5 +1,5 @@
 <div class="page">
-  <div *ngIf="showVideo$ | async" class="container mb-xl">
+  <div *ngIf="showVideo$ | async" class="container container-fluid mb-xl">
     <div class="player mb-xl">
       <app-player
         [video]="(video$ | async)!"
@@ -11,7 +11,7 @@
   </div>
   <div
     *ngIf="userIsAuthor$ | async"
-    class="container mb-xl"
+    class="container container-fluid mb-xl"
   >
     <div class="actions">
       <a
