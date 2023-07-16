@@ -5,6 +5,7 @@ import { VideoGridModule } from 'src/app/modules/ui/video/video-grid/video-grid.
 import { PlaylistDetalsModule } from 'src/app/modules/ui/playlists/playlist-details/playlist-detals.module';
 import { ViewPlaylistRoutingModule } from './view-playlist-routing.module';
 import { ModalConfirmationModule } from 'src/app/modules/ui/modals/modal-confirmation/modal-confirmation.module';
+import { PlaceholderModule } from 'src/app/modules/ui/other/placeholder/placeholder.module';
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
 import { PlaylistDataService } from 'src/app/services/playlist-data/playlist-data.service';
@@ -25,6 +26,7 @@ import { ViewPlaylistComponent } from './view-playlist.component';
     ModalConfirmationModule,
     VideoGridModule,
     PlaylistDetalsModule,
+    PlaceholderModule,
   ],
   providers: [
     RouteHandlerService,

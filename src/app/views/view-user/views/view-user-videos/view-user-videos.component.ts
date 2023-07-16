@@ -59,6 +59,8 @@ export class ViewUserVideosComponent {
 
   public pagination$ = this.videoListDataService.pagination$;
 
+  public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
+
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();
   }
