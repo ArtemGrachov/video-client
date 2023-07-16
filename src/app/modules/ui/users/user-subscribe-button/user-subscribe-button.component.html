@@ -5,7 +5,7 @@
   type="button"
   (click)="subscribeHandler()"
 >
-  {{ subscribeLabel }}
+  {{ subscribeLabel$ | async }}
   <div *ngIf="subscribeProcessing" class="button-loader">
     <span class="material-icons button-loader-icon">
       hourglass_bottom
