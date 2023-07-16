@@ -11,7 +11,7 @@
         <span class="material-icons mr-lg">
           movie
         </span>
-        Video
+        {{ 'nav.link_video' | translateAsync }}
       </a>
     </li>
     <li class="item">
@@ -25,7 +25,7 @@
         <span class="material-icons mr-lg">
           dynamic_feed
         </span>
-        News
+        {{ 'nav.link_news' | translateAsync }}
       </a>
     </li>
     <li class="item">
@@ -39,7 +39,7 @@
         <span class="material-icons mr-lg">
           subscriptions
         </span>
-        Playlists
+        {{ 'nav.link_playlists' | translateAsync }}
       </a>
     </li>
     <li class="item">
@@ -53,7 +53,7 @@
         <span class="material-icons mr-lg">
           group
         </span>
-        Users
+        {{ 'nav.link_users' | translateAsync }}
       </a>
     </li>
     <ng-container *ngIf="showUserLists$ | async">
@@ -69,7 +69,7 @@
           <span class="material-icons mr-lg">
             person
           </span>
-          My page
+          {{ 'nav.link_my_page' | translateAsync }}
         </a>
       </li>
       <li class="item">
@@ -83,7 +83,7 @@
           <span class="material-icons mr-lg">
             subscriptions
           </span>
-          My playlists
+          {{ 'nav.link_my_playlists' | translateAsync }}
         </a>
       </li>
       <li class="item">
@@ -97,7 +97,7 @@
           <span class="material-icons mr-lg">
             list_alt
           </span>
-          Subscriptions
+          {{ 'nav.link_subscriptions' | translateAsync }}
         </a>
       </li>
       <li class="item">
@@ -111,7 +111,7 @@
           <span class="material-icons mr-lg">
             people
           </span>
-          Subscribers
+          {{ 'nav.link_subscribers' | translateAsync }}
         </a>
       </li>
     </ng-container>

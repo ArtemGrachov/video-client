@@ -1,5 +1,172 @@
 {
   "view_index": {
     "no_video": "No video found"
+  },
+  "comment_list": {
+    "load_prev": "Load more",
+    "load_next": "Load more"
+  },
+  "control_client_error": {
+    "validation_required": "This field is required",
+    "validation_format": "This field has incorrect format",
+    "validation_match": "Fields do not match",
+    "validation_email": "This filed should have email format",
+    "validation_length": "This field should have {{requiredLength}} symbols"
+  },
+  "control_server_error": {
+    "validation_required": "This field is required",
+    "validation_email": "This field should have email format",
+    "validation_format": "This field has incorrect format",
+    "validation_match": "Passwords are not equal",
+    "validation_min_length": "This field should have at least {{length}} symbols",
+    "validation_unique": "This field is not unique"
+  },
+  "form_add_to_playlist": {
+    "submit": "Submit"
+  },
+  "form_change_password": {
+    "password": "Password",
+    "password_confirm": "Confirm password",
+    "submit": "Submit"
+  },
+  "form_comment": {
+    "comment": "Comment",
+    "submit": "Submit"
+  },
+  "form_login": {
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit"
+  },
+  "form_playlist": {
+    "name": "Name",
+    "description": "Description",
+    "submit": "Submit"
+  },
+  "form_profile": {
+    "email": "Email",
+    "name": "Name",
+    "submit": "Submit"
+  },
+  "form_registration": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "submit": "Submit"
+  },
+  "form_reset_password": {
+    "password": "Password",
+    "password_confirm": "Confirm password",
+    "submit": "Submit"
+  },
+  "form_reset_password_request": {
+    "email": "Email",
+    "submit": "Submit"
+  },
+  "form_video": {
+    "name": "Name",
+    "description": "Description",
+    "submit": "Submit"
+  },
+  "input_image": {
+    "image_placeholder": "Click to upload image",
+    "upload": "Upload",
+    "delete": "Delete",
+    "reset": "Reset"
+  },
+  "input_video": {
+    "video_placeholder": "Click to upload video",
+    "upload": "Upload",
+    "delete": "Delete",
+    "reset": "Reset"
+  },
+  "header": {
+    "upload_video": "Upload video"
+  },
+  "nav": {
+    "link_video": "Video",
+    "link_news": "News",
+    "link_playlists": "Playlists",
+    "link_users": "Users",
+    "link_my_page": "My page",
+    "link_my_playlists": "My playlists",
+    "link_subscriptions": "Subscriptions",
+    "link_subscribers": "Subscribers"
+  },
+  "modal_confirmation": {
+    "confirm": "Confirm",
+    "reject": "Reject"
+  },
+  "modal_menu": {
+    "upload_video": "Upload video",
+    "authorization": "Authorization",
+    "profile": "Profile"
+  },
+  "playlist_item": {
+    "videos_count": "Videos:"
+  },
+  "playlist_list": {
+    "load_prev": "Load more",
+    "load_next": "Load more"
+  },
+  "user_card": {
+    "subscription": "Subscribed"
+  },
+  "user_list": {
+    "load_prev": "Load more",
+    "load_next": "Load more"
+  },
+  "user_subscribe_button": {
+    "unsubscribe": "Unsubscribe",
+    "subscribe": "Subscribe",
+    "subscripiton_error": "Subscription update error"
+  },
+  "video_grid": {
+    "load_prev": "Load more",
+    "load_next": "Load more"
+  },
+  "view_create_video": {
+    "title": "Upload video",
+    "create_success": "Video created successfully",
+    "create_error": "Video creation error"
+  },
+  "view_edit_video": {
+    "title": "Update video \"{{videoName}}\"",
+    "edit_success": "Video updated successfully",
+    "edit_error": "Video updation error",
+    "delete": "Delete",
+    "delete_confirm_title": "Confirm deleting",
+    "delete_confirm_description": "Are you sure you want to delete this video?",
+    "delete_success": "Video deleted successfully",
+    "delete_error": "Video deleting error"
+  },
+  "view_login": {
+    "title": "Login",
+    "registration": "No account? Register",
+    "reset_password": "Forgot password?",
+    "login_error": "Login error"
+  },
+  "view_news": {
+    "users_placeholder": "Subscribe to other users to see their video in your feed"
+  },
+  "view_playlist": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "video_placeholder": "This playlist has no video yet",
+    "delete_confirm_title": "Confirm deleting",
+    "delete_confirm_description": "Are you sure you want to delete this video",
+    "delete_success": "Playlist deleted successfully",
+    "delete_error": "Playlist deleting error"
+  },
+  "view_playlist_add_video": {
+    "title": "Add to playlist",
+    "add_success": "Video added to playlist successfully",
+    "add_error": "Adding video to playlist error"
+  },
+  "view_create_playlist": {
+    "title": "Create playlist",
+    "create_success": "Playlist created successfully",
+    "create_error": "Playlist creation error"
   }
 }

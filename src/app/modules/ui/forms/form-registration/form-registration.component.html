@@ -6,7 +6,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Name
+      {{ 'form_registration.name' | translateAsync }}
     </div>
     <input
       name="name"
@@ -23,7 +23,7 @@
     [customServerErrorMessages]="emailServerErrorMessages"
   >
     <div label>
-      Email
+      {{ 'form_registration.email' | translateAsync }}
     </div>
     <input
       name="email"
@@ -40,7 +40,7 @@
     [customClientErrorMessages]="passwordValidationMessages"
   >
     <div label>
-      Password
+      {{ 'form_registration.password' | translateAsync }}
     </div>
     <input
       name="password"
@@ -56,7 +56,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Confirm password
+      {{ 'form_registration.password_confirm' | translateAsync }}
     </div>
     <input
       name="passwordConfirmation"
@@ -70,7 +70,7 @@
     [error]="submitError"
   ></app-form-server-error>
   <button type="submit" class="button button-primary button-fullwidth mx-auto">
-    Submit
+    {{ 'form_registration.submit' | translateAsync }}
     <div *ngIf="submitProcessing" class="button-loader">
       <span class="material-icons button-loader-icon">
         hourglass_bottom

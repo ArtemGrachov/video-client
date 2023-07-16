@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable, map, skip, switchMap, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { L10nTranslationService } from 'angular-l10n';
 
 import { ModalConfirmationService } from 'src/app/modules/ui/modals/modal-confirmation/services/modal-confirmation.service';
 import { RouteHandlerService } from './services/route-handler.service';
@@ -27,7 +28,8 @@ export class ViewPlaylistComponent {
     private videoListFormService: VideoListFormService,
     private playlistDataService: PlaylistDataService,
     private modalConfirmationService: ModalConfirmationService,
-  ) {}
+    private translationService: L10nTranslationService,
+    ) {}
 
   public get playlistId(): number {
     return +this.route.snapshot.params['id'];
@@ -98,8 +100,8 @@ export class ViewPlaylistComponent {
   }
   public deleteHandler(): void {
     this.modalConfirmationService.showModal({
-      title: 'Confirm deleting',
-      question: 'Are you sure you want to delete this video?'
+      title: this.translationService.translate('view_playlist.delete_confirm_title'),
+      question: this.translationService.translate('view_playlist.delete_confirm_title'),
     })
     .pipe(
       switchMap(result => {
@@ -113,10 +115,14 @@ export class ViewPlaylistComponent {
           .pipe(
             tap({
               next: () => {
-                this.toastr.success('Playlist deleted successfully');
+                this.toastr.success(
+                  this.translationService.translate('view_playlist.delete_confirm_title'),
+                );
                 this.router.navigate(['/', 'playlists']);
               },
-              error: () => this.toastr.error('Playlist deleting error'),
+              error: () => this.toastr.error(
+                this.translationService.translate('view_playlist.delete_confirm_title'),
+              ),
             })
           )
       })

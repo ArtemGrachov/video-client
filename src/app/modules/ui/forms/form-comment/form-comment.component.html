@@ -8,7 +8,7 @@
     <textarea
       name="content"
       class="textarea-default"
-      placeholder="Comment"
+      [placeholder]="'form_comment.comment' | translateAsync"
       formControlName="content"
     ></textarea>
   </app-form-control>
@@ -17,7 +17,7 @@
     [error]="submitError"
   ></app-form-server-error>
   <button type="submit" class="button button-primary">
-    Submit
+    {{ 'form_comment.submit' | translateAsync }}
     <div *ngIf="submitProcessing" class="button-loader">
       <span class="material-icons button-loader-icon">
         hourglass_bottom

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { InputImageComponent } from './input-image.component';
 
@@ -9,6 +10,7 @@ import { InputImageComponent } from './input-image.component';
   ],
   imports: [
     CommonModule,
+    L10nTranslationModule,
   ],
   exports: [
     InputImageComponent,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ModalModule } from '../../modal/modal.module';
 
@@ -14,6 +15,7 @@ import { ModalConfirmationService } from './services/modal-confirmation.service'
   imports: [
     CommonModule,
     ModalModule,
+    L10nTranslationModule,
   ],
   providers: [
     ModalConfirmationService,

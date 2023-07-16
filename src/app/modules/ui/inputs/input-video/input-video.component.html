@@ -19,7 +19,7 @@
   class="placeholder mb-lg"
   (click)="uploadHandler()"
 >
-  Click to upload video
+  {{ 'input_video.video_placeholder' | translateAsync }}
 </div>
 <div class="actions">
   <div class="actions-list">
@@ -29,7 +29,7 @@
         class="button button-fullwidth action-trigger mr-md"
         (click)="uploadHandler()"
       >
-        Upload
+        {{ 'input_video.upload' | translateAsync }}
       </button>
     </div>
     <div class="actions-item">
@@ -38,7 +38,7 @@
         class="button button-fullwidth action-trigger mr-md"
         (click)="clearHandler()"
       >
-        Delete
+        {{ 'input_video.delete' | translateAsync }}
       </button>
     </div>
     <div class="actions-item">
@@ -48,7 +48,7 @@
         class="button button-fullwidth action-trigger"
         (click)="resetHandler()"
       >
-        Reset
+        {{ 'input_video.reset' | translateAsync }}
       </button>
     </div>
   </div>

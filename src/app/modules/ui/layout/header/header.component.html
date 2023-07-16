@@ -19,7 +19,7 @@
       <span class="material-icons button-symbol">
         video_call
       </span>
-      Upload video
+      {{ 'header.upload_video' | translateAsync }}
     </a>
     <button
       *ngIf="isGuest$ | async"

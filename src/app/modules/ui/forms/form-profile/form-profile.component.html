@@ -17,7 +17,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Email
+      {{ 'form_profile.email' | translateAsync }}
     </div>
     <input
       name="email"
@@ -33,7 +33,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Name
+      {{ 'form_profile.name' | translateAsync }}
     </div>
     <input
       name="name"
@@ -47,7 +47,7 @@
     [error]="submitError"
   ></app-form-server-error>
   <button type="submit" class="button button-primary mx-auto">
-    Submit
+    {{ 'form_profile.submit' | translateAsync }}
     <div *ngIf="submitProcessing" class="button-loader">
       <span class="material-icons button-loader-icon">
         hourglass_bottom

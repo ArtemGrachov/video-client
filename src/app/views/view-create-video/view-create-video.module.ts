@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { FormVideoModule } from 'src/app/modules/ui/forms/form-video/form-video.module';
 
@@ -17,6 +18,7 @@ import { ViewCreateVideoComponent } from './view-create-video.component';
     CommonModule,
     ViewCreateVideoRoutingModule,
     FormVideoModule,
+    L10nTranslationModule,
   ],
   providers: [
     VideoApiService,

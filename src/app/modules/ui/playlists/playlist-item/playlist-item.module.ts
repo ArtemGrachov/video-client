@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { PlaylistItemComponent } from './components/playlist-item/playlist-item.component';
 import { AvatarModule } from '../../other/avatar/avatar.module';
@@ -13,6 +14,7 @@ import { AvatarModule } from '../../other/avatar/avatar.module';
     CommonModule,
     RouterModule,
     AvatarModule,
+    L10nTranslationModule,
   ],
   exports: [
     PlaylistItemComponent,

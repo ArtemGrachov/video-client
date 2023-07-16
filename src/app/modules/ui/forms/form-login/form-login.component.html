@@ -6,7 +6,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Email
+      {{ 'form_login.email' | translateAsync }}
     </div>
     <input
       name="email"
@@ -22,7 +22,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Password
+      {{ 'form_login.password' | translateAsync }}
     </div>
     <input
       name="password"
@@ -36,7 +36,7 @@
     [error]="submitError"
   ></app-form-server-error>
   <button type="submit" class="button button-primary button-fullwidth mx-auto">
-    Submit
+    {{ 'form_login.submit' | translateAsync }}
     <div *ngIf="submitProcessing" class="button-loader">
       <span class="material-icons button-loader-icon">
         hourglass_bottom

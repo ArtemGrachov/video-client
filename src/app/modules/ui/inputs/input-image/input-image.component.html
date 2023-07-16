@@ -21,7 +21,7 @@
   class="placeholder mb-lg"
   (click)="uploadHandler()"
 >
-  Click to upload image
+  {{ 'input_image.image_placeholder' | translateAsync }}
 </div>
 <div class="actions">
   <div class="actions-list">
@@ -31,7 +31,7 @@
         class="button button-fullwidth action-trigger mr-md"
         (click)="uploadHandler()"
       >
-        Upload
+        {{ 'input_image.upload' | translateAsync }}
       </button>
     </div>
     <div class="actions-item">
@@ -40,7 +40,7 @@
         class="button button-fullwidth action-trigger mr-md"
         (click)="clearHandler()"
       >
-        Delete
+        {{ 'input_image.delete' | translateAsync }}
       </button>
     </div>
     <div class="actions-item">
@@ -50,7 +50,7 @@
         class="button button-fullwidth action-trigger"
         (click)="resetHandler()"
       >
-        Reset
+        {{ 'input_image.reset' | translateAsync }}
       </button>
     </div>
   </div>

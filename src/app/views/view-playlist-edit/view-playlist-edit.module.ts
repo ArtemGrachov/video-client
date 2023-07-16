@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ViewPlaylistEditRoutingModule } from './view-playlist-edit-routing.module';
 import { FormPlaylistModule } from 'src/app/modules/ui/forms/form-playlist/form-playlist.module';
@@ -17,6 +18,7 @@ import { ViewPlaylistEditComponent } from './view-playlist-edit.component';
     CommonModule,
     ViewPlaylistEditRoutingModule,
     FormPlaylistModule,
+    L10nTranslationModule,
   ],
   providers: [
     PlaylistFormDataService,

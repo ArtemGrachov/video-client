@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { VideoGridModule } from 'src/app/modules/ui/video/video-grid/video-grid.module';
 import { ViewNewsComponent } from './view-news.component';
@@ -20,6 +21,7 @@ import { PlaceholderModule } from 'src/app/modules/ui/other/placeholder/placehol
     ViewNewsRoutingModule,
     VideoGridModule,
     PlaceholderModule,
+    L10nTranslationModule,
   ],
   providers: [
     RouteHandlerService,

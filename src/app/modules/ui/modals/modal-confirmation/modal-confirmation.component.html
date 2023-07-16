@@ -4,7 +4,7 @@
   </app-modal-header>
   <app-modal-body>
     <div class="question mb-lg">
-      {{ question}}
+      {{ question }}
     </div>
     <div class="actions">
       <button
@@ -12,14 +12,14 @@
         class="button button-primary action mr-lg"
         (click)="confirmHandler()"
       >
-        Confirm
+        {{ 'modal_confirmation.confirm' | translateAsync }}
       </button>
       <button
         type="button"
         class="button action"
         (click)="rejectHandler()"
       >
-        Reject
+        {{ 'modal_confirmation.reject' | translateAsync }}
       </button>
     </div>
   </app-modal-body>

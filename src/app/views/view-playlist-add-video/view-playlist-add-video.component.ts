@@ -3,6 +3,7 @@ import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup } from '@angular/forms';
+import { L10nTranslationService } from 'angular-l10n';
 
 import { EStatus } from 'src/app/constants/status';
 import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
@@ -29,6 +30,7 @@ export class ViewPlaylistAddVideoComponent extends SimpleModalComponent<{ video:
     private playlistsFormDataService: PlaylistsFormDataService,
     @Inject(AUTH_USER_SERVICE) private userDataService: UserDataService,
     private playlistAddVideoDataService: PlaylistAddVideoDataService,
+    private translationService: L10nTranslationService,
   ) {
     super();
   }
@@ -78,10 +80,14 @@ export class ViewPlaylistAddVideoComponent extends SimpleModalComponent<{ video:
       .submit(formValue.playlist, { videoIds: [this.video.id] })
       .subscribe({
         next: () => {
-          this.toastr.success('Video added to playlist successfully');
+          this.toastr.success(
+            this.translationService.translate('view_playlist_add_video.add_success'),
+          );
           this.close();
         },
-        error: () => this.toastr.error('Adding video to playlist error'),
+        error: () => this.toastr.error(
+          this.translationService.translate('view_playlist_add_video.add_error'),
+        ),
       });
   }
 

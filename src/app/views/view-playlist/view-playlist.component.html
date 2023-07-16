@@ -16,7 +16,7 @@
         <span class="material-icons button-symbol">
           edit
         </span>
-        Edit
+        {{ 'view_playlist.edit' | translateAsync }}
       </a>
       <button
         type="button"
@@ -26,7 +26,7 @@
         <span class="material-icons button-symbol">
           delete_forever
         </span>
-        Delete
+        {{ 'view_playlist.delete' | translateAsync }}
       </button>
     </div>
     <app-video-grid
@@ -39,7 +39,7 @@
     <app-placeholder
       *ngIf="showPlaceholder$ | async"
       [icon]="'theaters'"
-      [text]="'This playlist has no video yet'"
+      [text]="'view_playlist.video_placeholder' | translateAsync"
     ></app-placeholder>
   </div>
 </div>

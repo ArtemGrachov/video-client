@@ -6,7 +6,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Name
+      {{ 'form_playlist.name' | translateAsync }}
     </div>
     <input
       name="name"
@@ -22,7 +22,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Description
+      {{ 'form_playlist.description' | translateAsync }}
     </div>
     <textarea
       name="description"
@@ -35,7 +35,7 @@
     [error]="submitError"
   ></app-form-server-error>
   <button type="submit" class="button button-primary mx-auto">
-    Submit
+    {{ 'form_playlist.submit' | translateAsync }}
     <div *ngIf="submitProcessing" class="button-loader">
       <span class="material-icons button-loader-icon">
         hourglass_bottom

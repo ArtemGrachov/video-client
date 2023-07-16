@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, map } from 'rxjs';
+import { L10nTranslationService } from 'angular-l10n';
 
 import { EStatus } from 'src/app/constants/status';
 import { ViewLoginModalService } from 'src/app/views/view-login/services/view-login-modal.service';
@@ -24,15 +26,8 @@ export class UserSubscribeButtonComponent {
     private authService: AuthService,
     private toastrService: ToastrService,
     @Optional() private userDataService: UserDataService | null,
+    private translationService: L10nTranslationService,
   ) {}
-
-  public get subscribeLabel(): string {
-    if (this.isSubscription) {
-      return 'Unsubscribe';
-    }
-
-    return 'Subscribe';
-  }
 
   public get isSubscription(): boolean {
     return Boolean(this.user?.isSubscription);
@@ -41,6 +36,19 @@ export class UserSubscribeButtonComponent {
   public get subscribeProcessing(): boolean {
     return this.user?.subscribeStatus === EStatus.PROCESSING;
   }
+
+  public subscribeLabel$: Observable<string> = this
+    .translationService
+    .onChange()
+    .pipe(
+      map(() => {
+        if (this.isSubscription) {
+          return this.translationService.translate('user_subscribe_button.unsubscribe');
+        }
+
+        return this.translationService.translate('user_subscribe_button.subscribe');
+      })
+    )
 
   public subscribeHandler(): void {
     if (!this.userDataService || this.subscribeProcessing) {
@@ -55,7 +63,7 @@ export class UserSubscribeButtonComponent {
     this.userDataService
       .updateSubscription(!this.isSubscription)
       .subscribe({
-        error: () => this.toastrService.error('Subscription update error'),
+        error: () => this.translationService.translate('user_subscribe_button.subscripiton_error'),
       });
   }
 }

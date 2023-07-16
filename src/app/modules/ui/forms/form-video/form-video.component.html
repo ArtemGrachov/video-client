@@ -17,7 +17,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Name
+      {{ 'form_video.name' | translateAsync }}
     </div>
     <input
       name="name"
@@ -33,7 +33,7 @@
     [serverError]="submitError"
   >
     <div label>
-      Description
+      {{ 'form_video.description' | translateAsync }}
     </div>
     <textarea
       name="description"
@@ -48,7 +48,7 @@
   ></app-form-server-error>
   <div class="actions">
     <button type="submit" class="button button-primary">
-      Submit
+      {{ 'form_video.submit' | translateAsync }}
       <div *ngIf="submitProcessing" class="button-loader">
         <span class="material-icons button-loader-icon">
           hourglass_bottom

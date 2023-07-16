@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { NavComponent } from './nav.component';
 
@@ -11,6 +12,7 @@ import { NavComponent } from './nav.component';
   imports: [
     CommonModule,
     RouterModule,
+    L10nTranslationModule,
   ],
   exports: [
     NavComponent,

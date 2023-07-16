@@ -1,7 +1,7 @@
 <div class="page">
   <div class="container container-narrow">
     <h1 class="mb-xl">
-      Upload video
+      {{ 'view_create_video.title' | translateAsync }}
     </h1>
     <app-form-video
       [submitStatus]="submitStatus$ | async"

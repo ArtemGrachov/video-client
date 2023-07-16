@@ -7,7 +7,7 @@
     class="button button-primary button-block load-more"
     (click)="prevPageHandler()"
   >
-    Load more
+    {{ 'comment_list.load_prev' | translateAsync }}
   </button>
 </div>
 <div class="mb-xl">
@@ -34,6 +34,6 @@
     class="button button-primary button-block load-more"
     (click)="nextPageHandler()"
   >
-    Load more
+    {{ 'comment_list.load_next' | translateAsync }}
   </button>
 </div>

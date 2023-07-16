@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { L10nTranslationService } from 'angular-l10n';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EStatus } from 'src/app/constants/status';
@@ -19,6 +20,7 @@ export class ViewPlaylistCreateComponent {
     private playlistFormDataService: PlaylistFormDataService,
     private toastr: ToastrService,
     private router: Router,
+    private translationService: L10nTranslationService,
   ) {}
 
   public submitStatus$: Observable<EStatus> = this.playlistFormDataService.submitStatus$;
@@ -31,10 +33,14 @@ export class ViewPlaylistCreateComponent {
       .createPlaylist(formValue)
       .subscribe({
         next: playlist => {
-          this.toastr.success('Playlist created successfully')
+          this.toastr.success(
+            this.translationService.translate('view_create_playlist.create_success'),
+          );
           this.router.navigate(['/', 'playlists', playlist.id]);
         },
-        error: () => this.toastr.error('Playlist creation error')
+        error: () => this.toastr.error(
+          this.translationService.translate('view_create_playlist.create_error'),
+        ),
       });
   }
 }

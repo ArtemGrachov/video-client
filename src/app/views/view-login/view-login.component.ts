@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SimpleModalComponent } from '@looorent/ngx-simple-modal';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { L10nTranslationService } from 'angular-l10n';
 
 import { EStatus } from 'src/app/constants/status';
 
@@ -25,6 +26,7 @@ export class ViewLoginComponent extends SimpleModalComponent<{ redirectTo?: stri
     private viewResetPasswordRequestModalService: ViewResetPasswordRequestModalService,
     private toastr: ToastrService,
     private router: Router,
+    private translationService: L10nTranslationService,
   ) {
     super();
   }
@@ -47,7 +49,7 @@ export class ViewLoginComponent extends SimpleModalComponent<{ redirectTo?: stri
             this.router.navigateByUrl(this.redirectTo);
           }
         },
-        error: () => this.toastr.error('Login error')
+        error: () => this.toastr.error(this.translationService.translate('view_login.login_error')),
       });
   }
 

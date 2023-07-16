@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormLoginModule } from 'src/app/modules/ui/forms/form-login/form-login.module';
@@ -19,6 +20,7 @@ import { ViewLoginComponent } from './view-login.component';
     SimpleModalModule,
     ModalModule,
     FormLoginModule,
+    L10nTranslationModule,
   ],
   providers: [
     ViewLoginModalService,

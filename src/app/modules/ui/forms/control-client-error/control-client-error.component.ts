@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { Observable, map, of, startWith } from 'rxjs';
+import { L10nTranslationService } from 'angular-l10n';
+import { BehaviorSubject, EMPTY, Observable, combineLatest, map, startWith } from 'rxjs';
 
 import { IDictionary } from 'src/app/types/other/dictionary.interface';
 import { ValidationMessageFactory } from 'src/app/types/other/validation.types';
@@ -15,63 +16,71 @@ export class ControlClientErrorComponent implements OnChanges {
   @Input()
   public control?: AbstractControl<any, any> | null;
 
-  public validationMessage$: Observable<string | null> = of(null);
-
   @Input('customErrorMessages')
   public customErrorMessages?: IDictionary<ValidationMessageFactory> | null;
 
-  private errorMessageMap: IDictionary<ValidationMessageFactory> = {
-    required: () => 'This field is required',
-    pattern: () => 'This field has incorrect format',
-    match: () => 'Fields do not match',
-    email: () => 'This filed should have email format',
-    minlength: (
-      { requiredLength, actualLength }:
-      { requiredLength: number, actualLength: number }
-    ) => `This field should have ${requiredLength} symbols`
-  };
+  private control$: BehaviorSubject<AbstractControl<any, any> | null> = new BehaviorSubject(this.control ?? null);
+
+  constructor(private translationService: L10nTranslationService) {}
+
+  private errorMessageMap$: Observable<IDictionary<ValidationMessageFactory>> = this
+    .translationService
+    .onChange()
+    .pipe(map(() => {
+      return {
+        required: () => this.translationService.translate('control_client_error.validation_required'),
+        pattern: () => this.translationService.translate('control_client_error.validation_format'),
+        match: () => this.translationService.translate('control_client_error.validation_match'),
+        email: () => this.translationService.translate('control_client_error.validation_email'),
+        minlength: (
+          { requiredLength, actualLength }:
+          { requiredLength: number, actualLength: number }
+        ) => this.translationService.translate('control_client_error.validation_length', { requiredLength }),
+      };
+    }))
 
   public ngOnChanges(changes: SimpleChanges): void {
     const newControl: AbstractControl<any, any> | undefined = changes['control']?.currentValue
 
     if (newControl) {
-      this.validationMessage$ = newControl
-        .valueChanges
-        .pipe(
-          startWith(this.getErrorText()),
-          map(() => this.getErrorText())
-        )
+      this.control$.next(newControl);
     }
   }
 
-  private get mergedErrorMessages(): IDictionary<ValidationMessageFactory> {
-    if (!this.customErrorMessages) {
-      return this.errorMessageMap;
-    }
+  private mergedErrorMessages$: Observable<IDictionary<ValidationMessageFactory>> = this
+    .errorMessageMap$
+    .pipe(map(errorMessageMap => {
+      if (!this.customErrorMessages) {
+        return errorMessageMap;
+      }
 
-    return {
-      ...this.errorMessageMap,
-      ...this.customErrorMessages,
-    };
-  }
+      return {
+        ...errorMessageMap,
+        ...this.customErrorMessages,
+      };
+    }));
 
-  private getErrorText(): string | null {
-    if (!this.control?.errors) {
-      return null;
-    }
+  public validationMessage$: Observable<string | null> = combineLatest([
+    this.control$,
+    this.mergedErrorMessages$,
+  ])
+    .pipe(map(([control, mergedErrorMessages]) => {
+      if (!control?.errors) {
+        return null;
+      }
 
-    const key = Object.keys(this.control.errors)[0];
+      const key = Object.keys(control.errors)[0];
 
-    if (!key) {
-      return null;
-    }
+      if (!key) {
+        return null;
+      }
 
-    const message = this.mergedErrorMessages[key];
+      const message = mergedErrorMessages[key];
 
-    if (!message) {
-      return null;
-    }
+      if (!message) {
+        return null;
+      }
 
-    return message(this.control.errors[key]);
-  }
+      return message(control.errors[key]);
+    }))
 }

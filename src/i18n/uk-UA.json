@@ -1,5 +1,162 @@
 {
   "view_index": {
     "no_video": "Не знайдено жодного відео"
+  },
+  "comment_list": {
+    "load_prev": "Завантажити ще",
+    "load_next": "Завантажити ще"
+  },
+  "control_client_error": {
+    "validation_required": "Це поле обов'язкове",
+    "validation_format": "У цього поля некоректний формат",
+    "validation_match": "Ці поля не співпадають",
+    "validation_email": "Це поле має мати формат електронної пошти",
+    "validation_length": "Це поле має мати {{requiredLength}} симоли(-ів)"
+  },
+  "control_server_error": {
+    "validation_required": "Це поле обов'язкове",
+    "validation_email": "Це поле має мати формат електронної пошти",
+    "validation_format": "У цього поля некоректний формат",
+    "validation_match": "Ці поля не співпадають",
+    "validation_min_length": "Це поле має мати щонайменше {{requiredLength}} симоли(-ів)",
+    "validation_unique": "Це поле не є унікальним"
+  },
+  "form_add_to_playlist": {
+    "submit": "Відправити"
+  },
+  "form_change_password": {
+    "password": "Пароль",
+    "password_confirm": "Підтвердити пароль",
+    "submit": "Відправити"
+  },
+  "form_comment": {
+    "comment": "Коментар",
+    "submit": "Відправити"
+  },
+  "form_login": {
+    "email": "Email",
+    "password": "Пароль",
+    "submit": "Відправити"
+  },
+  "form_playlist": {
+    "name": "Назва",
+    "description": "Опис",
+    "submit": "Відправити"
+  },
+  "form_profile": {
+    "email": "Email",
+    "name": "Ім'я",
+    "submit": "Відправити"
+  },
+  "form_registration": {
+    "name": "Ім'я",
+    "email": "Email",
+    "password": "Пароль",
+    "password_confirm": "Підтвердити пароль",
+    "submit": "Відправити"
+  },
+  "form_reset_password": {
+    "password": "Пароль",
+    "password_confirm": "Підтвердити пароль",
+    "submit": "Відправити"
+  },
+  "form_reset_password_request": {
+    "email": "Email",
+    "submit": "Відправити"
+  },
+  "form_video": {
+    "name": "Назва",
+    "description": "Опис",
+    "submit": "Відправити"
+  },
+  "input_image": {
+    "image_placeholder": "Натисніть, щоб заватажити зображення",
+    "upload": "Завантажити",
+    "delete": "Видалити",
+    "reset": "Скинути зміни"
+  },
+  "input_video": {
+    "video_placeholder": "Натисніть, щоб заватажити відео",
+    "upload": "Завантажити",
+    "delete": "Видалити",
+    "reset": "Скинути зміни"
+  },
+  "header": {
+    "upload_video": "Завантажити відео"
+  },
+  "nav": {
+    "link_video": "Відео",
+    "link_news": "Новини",
+    "link_playlists": "Списки відтворення",
+    "link_users": "Користувачі",
+    "link_my_page": "Моя сторінка",
+    "link_my_playlists": "Мої списки відтвореня",
+    "link_subscriptions": "Підписки",
+    "link_subscribers": "Підписники"
+  },
+  "modal_confirmation": {
+    "confirm": "Так",
+    "reject": "Ні"
+  },
+  "modal_menu": {
+    "upload_video": "Завантажити відео",
+    "authorization": "Авторизація",
+    "profile": "Профіль"
+  },
+  "playlist_item": {
+    "videos_count": "Відео:"
+  },
+  "playlist_list": {
+    "load_prev": "Завантажити ще",
+    "load_next": "Завантажити ще"
+  },
+  "user_card": {
+    "subscription": "Відстежується"
+  },
+  "user_list": {
+    "load_prev": "Завантажити ще",
+    "load_next": "Завантажити ще"
+  },
+  "user_subscribe_button": {
+    "unsubscribe": "Не стежити",
+    "subscribe": "Відстежувати",
+    "subscripiton_error": "Помилка відстежування"
+  },
+  "video_grid": {
+    "load_prev": "Завантажити ще",
+    "load_next": "Завантажити ще"
+  },
+  "view_create_video": {
+    "title": "Завантажити відео",
+    "create_success": "Відео завантажено успішно",
+    "create_error": "Помилка завантаження відео"
+  },
+  "view_edit_video": {
+    "title": "Редагування відео \"{{videoName}}\"",
+    "edit_success": "Відео успішно відредаговано",
+    "edit_error": "Помилка редагування відео",
+    "delete": "Видалити",
+    "delete_confirm_title": "Підтвердіть видалення",
+    "delete_confirm_description": "Ви впевнені, що бажаєте видалити це відео?",
+    "delete_success": "Відео видалено успішно",
+    "delete_error": "Помилка видалення відео"
+  },
+  "view_login": {
+    "title": "Вхід у систему",
+    "registration": "Немає облікового запису? Зареєструватися",
+    "reset_password": "Забули пароль?",
+    "login_error": "Помилка входу у систему"
+  },
+  "view_news": {
+    "users_placeholder": "Відстежуйте інших користувачів, щоб бачити їх відео у себе в новинах"
+  },
+  "view_playlist": {
+    "edit": "Редагувати",
+    "delete": "Видалити",
+    "video_placeholder": "В цьому списку відтворення ще немає відео",
+    "delete_confirm_title": "Підтвердіть видалення",
+    "delete_confirm_description": "Ви впевнені, що бажаєте видалити цей список відтворення?",
+    "delete_success": "Список відтворення видалено успішно",
+    "delete_error": "Помилка видалення списку відтворення"
   }
 }

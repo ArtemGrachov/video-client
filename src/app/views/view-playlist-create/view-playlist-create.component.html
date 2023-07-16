@@ -1,7 +1,7 @@
 <div class="page">
   <div class="container container-narrow">
     <h1 class="mb-xl">
-      Create playlist
+      {{ 'view_create_playlist.title' | translateAsync }}
     </h1>
     <app-form-playlist
       [submitStatus]="submitStatus$ | async"

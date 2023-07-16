@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { L10nTranslationService } from 'angular-l10n';
+import { Observable, map } from 'rxjs';
 
 import { EValidationFieldErrors } from 'src/app/constants/validations';
 
@@ -24,40 +26,60 @@ export class ControlServerErrorComponent {
   @Input('customErrorMessages')
   public customErrorMessages?: IDictionary<ValidationMessageFactory> | null;
 
-  private errorMessageMap: IDictionary<ValidationMessageFactory> = {
-    [EValidationFieldErrors.REQUIRED]: () => 'This field is required',
-    [EValidationFieldErrors.NOT_EMAIL]: () => 'This field should have email format',
-    [EValidationFieldErrors.FORMAT]: () => 'This field has incorrect format',
-    [EValidationFieldErrors.PASSWORDS_ARE_NOT_EQUAL]: () => 'Passwords are not equal',
-    [EValidationFieldErrors.MIN_LENGTH]: ({ length }: { length: number }) => `This field should have at least ${length} symbols`,
-    [EValidationFieldErrors.UNIQUE]: () => 'This field is not unique',
-  };
+  private errorMessageMap$: Observable<IDictionary<ValidationMessageFactory>> = this
+    .translationService
+    .onChange()
+    .pipe(map(() => {
+      return {
+        [EValidationFieldErrors.REQUIRED]: () => this.translationService.translate('control_server_error.validation_required'),
+        [EValidationFieldErrors.NOT_EMAIL]: () => this.translationService.translate('control_server_error.validation_email'),
+        [EValidationFieldErrors.FORMAT]: () => this.translationService.translate('control_server_error.validation_format'),
+        [EValidationFieldErrors.PASSWORDS_ARE_NOT_EQUAL]: () => this.translationService.translate('control_server_error.validation_match'),
+        [EValidationFieldErrors.MIN_LENGTH]: (
+          { length }: { length: number }
+        ) => this.translationService.translate('control_server_error.validation_min_length', { length }),
+        [EValidationFieldErrors.UNIQUE]: () => this.translationService.translate('control_server_error.validation_unique'),
+      };
+    }))
 
-  constructor(private serverValidationService: ServerValidationService) {}
+  constructor(
+    private serverValidationService: ServerValidationService,
+    private translationService: L10nTranslationService,
+  ) {}
 
   private get fieldErrors(): IServerFieldValidations[] {
     return this.serverValidationService.getServerFormFieldValidation(this.selector, this.error);
   }
 
-  public get formattedMessages(): string[] {
-    return this.fieldErrors
-      .map(err => this.getFormattedMessage(err))
-      .filter(m => Boolean(m)) as string[];
-  }
 
-  private get mergedErrorMessages(): IDictionary<ValidationMessageFactory> {
-    if (!this.customErrorMessages) {
-      return this.errorMessageMap;
-    }
+  private mergedErrorMessages$: Observable<IDictionary<ValidationMessageFactory>> = this
+    .errorMessageMap$
+    .pipe(map(errorMessageMap => {
+      if (!this.customErrorMessages) {
+        return errorMessageMap;
+      }
 
-    return {
-      ...this.errorMessageMap,
-      ...this.customErrorMessages,
-    };
-  }
+      return {
+        ...errorMessageMap,
+        ...this.customErrorMessages,
+      };
+    }));
 
-  public getFormattedMessage(validation: IServerFieldValidations): string | null {
-    const handler = this.mergedErrorMessages[validation.rule];
+    public formattedMessages$: Observable<string[]> = this
+      .mergedErrorMessages$
+      .pipe(
+        map(
+          (messages) => this.fieldErrors
+            .map(err => this.getFormattedMessage(messages, err))
+            .filter(m => Boolean(m)) as string[]
+        ),
+      );
+
+  public getFormattedMessage(
+    errorMessages: IDictionary<ValidationMessageFactory>,
+    validation: IServerFieldValidations,
+  ): string | null {
+    const handler = errorMessages[validation.rule];
 
     if (!handler) {
       return null;

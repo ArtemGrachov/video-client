@@ -12,7 +12,7 @@
   </div>
   <div class="container container-narrow">
     <h1 class="mb-xl">
-      Update video "{{ videoName$ | async }}"
+      {{ 'view_edit_video.title' | translateAsync:{ title: videoName$ | async } }}
     </h1>
     <app-form-video
       [video]="video$ | async"
@@ -26,7 +26,7 @@
         class="button"
         (click)="deleteHandler()"
       >
-        Delete
+      {{ 'view_edit_video.delete' | translateAsync }}
       </button>
     </app-form-video>
   </div>

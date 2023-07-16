@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { L10nTranslationService } from 'angular-l10n';
 import { ToastrService } from 'ngx-toastr';
 import { EMPTY, Observable, map, switchMap, tap } from 'rxjs';
 
@@ -26,6 +27,7 @@ export class ViewEditVideoComponent {
     private videoDataService: VideoDataService,
     private videoFormDataService: VideoFormDataService,
     private modalConfirmationService: ModalConfirmationService,
+    private translationService: L10nTranslationService,
   ) {}
 
   public get videoId(): number {
@@ -52,17 +54,21 @@ export class ViewEditVideoComponent {
       .updateVideo(this.videoId, formValue)
       .subscribe({
         next: video => {
-          this.toastr.success('Video updated successfully')
+          this
+            .toastr
+            .success(this.translationService.translate('view_edit_video.create_success'));
           this.router.navigate(['/', 'video', video.id]);
         },
-        error: () => this.toastr.error('Video updating error'),
+        error: () => this
+          .toastr
+          .error(this.translationService.translate('view_edit_video.create_error')),
       });
   }
 
   public deleteHandler(): void {
     this.modalConfirmationService.showModal({
-      title: 'Confirm deleting',
-      question: 'Are you sure you want to delete this video?'
+      title: this.translationService.translate('view_edit_video.delete_confirm_title'),
+      question: this.translationService.translate('view_edit_video.delete_confirm_description,')
     })
     .pipe(
       switchMap(result => {
@@ -76,10 +82,14 @@ export class ViewEditVideoComponent {
           .pipe(
             tap({
               next: () => {
-                this.toastr.success('Video deleted successfully');
+                this.toastr.success(
+                  this.translationService.translate('view_edit_video.delete_success'),
+                );
                 this.router.navigate(['/']);
               },
-              error: () => this.toastr.error('Video deleting error'),
+              error: () => this.toastr.error(
+                this.translationService.translate('view_edit_video.delete_error'),
+              ),
             })
           )
       })

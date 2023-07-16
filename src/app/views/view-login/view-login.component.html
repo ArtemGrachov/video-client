@@ -1,6 +1,6 @@
 <app-modal-window>
   <app-modal-header (close)="close()">
-    Login
+    {{ 'view_login.title' | translateAsync }}
   </app-modal-header>
   <app-modal-body>
     <button
@@ -8,7 +8,7 @@
       class="text-button mb-lg"
       (click)="registrationHandler()"
     >
-      No account? Register
+    {{ 'view_login.registration' | translateAsync }}
     </button>
     <div class="mb-lg">
       <app-form-login
@@ -22,7 +22,7 @@
       class="text-button"
       (click)="resetPasswordRequestHandler()"
     >
-      Forgot password?
+    {{ 'view_login.reset_password' | translateAsync }}
     </button>
   </app-modal-body>
 </app-modal-window>

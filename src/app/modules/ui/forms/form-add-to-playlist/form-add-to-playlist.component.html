@@ -38,7 +38,7 @@
     [error]="submitError"
   ></app-form-server-error>
   <button type="submit" class="button button-primary">
-    Submit
+    {{ 'form_add_to_playlist.submit' | translateAsync }}
     <div *ngIf="submitProcessing" class="button-loader">
       <span class="material-icons button-loader-icon">
         hourglass_bottom
