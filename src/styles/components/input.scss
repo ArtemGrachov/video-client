@@ -7,9 +7,14 @@
   border-radius: 24px;
   border: 1px solid map-get($colors, 'border-primary');
   font-size: 16px;
-  color: map-get($colors, 'text-secondary');
+  color: map-get($colors, 'text-main');
+  background-color: map-get($colors, 'background-tertiary');
   transition: $transition;
   line-height: 1;
+
+  &::placeholder {
+    color: map-get($colors, 'text-secondary');
+  }
 
   &:focus {
     outline: none;

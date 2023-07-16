@@ -1,18 +1,29 @@
-$colors: (
+$base-colors: (
+  'primary': #2effa8,
+  'primary-reverse': #1e1e1e,
+  'default': #89acc9,
+  'default-reverse': #1e1e1e,
   'red': #ff1500,
+  'success': #33d800,
+);
+
+$colors: (
   'background-primary': #1e1e1e,
   'background-secondary': #292929,
   'background-tertiary': #4f4f4f,
   'text-main': #efefef,
-  'text-primary': #f7f7f7,
-  'text-secondary': #cfcfcf,
-  'text-error': #ff1500,
-  'button-default': #2d2d2d,
-  'button-primary': #525252,
+  'text-primary': map-get($base-colors, 'primary'),
+  'text-secondary': #b7b7b7,
+  'text-error': map-get($base-colors, 'red'),
+  'button-default': map-get($base-colors, 'default'),
+  'button-default-text': map-get($base-colors, 'default-reverse'),
+  'button-primary': map-get($base-colors, 'primary'),
+  'button-primary-text': map-get($base-colors, 'primary-reverse'),
   'border-primary': #494949,
-  'border-error': #ff1500,
-  'border-success': #33d800,
-  );
+  'border-error': map-get($base-colors, 'red'),
+  'border-success': map-get($base-colors, 'success'),
+  'error': map-get($base-colors, 'red'),
+);
 
 $container-width: 1200px;
 $container-width-narrow: 800px;
