@@ -38,6 +38,12 @@
   overflow-y: auto;
 }
 
+.language-switch {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: center;
+}
+
 .auth {
   flex: 0 0 auto;
   padding: 16px;

@@ -5,6 +5,7 @@ import { L10nTranslationModule } from 'angular-l10n';
 import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { FormSearchModule } from '../../forms/form-search/form-search.module';
 import { NavModule } from '../../layout/nav/nav.module';
+import { LocaleSwitchModule } from '../../other/locale-switch/locale-switch.module';
 
 import { ModalMenuService } from './services/modal-menu.service';
 
@@ -19,6 +20,7 @@ import { ModalMenuComponent } from './modal-menu.component';
     FormSearchModule,
     RouterModule,
     NavModule,
+    LocaleSwitchModule,
     L10nTranslationModule,
   ],
   providers: [

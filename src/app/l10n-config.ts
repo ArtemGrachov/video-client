@@ -38,8 +38,8 @@ export const l10nConfig: L10nConfig = {
   keySeparator: '.',
   defaultLocale: LOCALE_UK,
   schema: [
-    { locale: LOCALE_UK },
-    { locale: LOCALE_EN },
+    { locale: LOCALE_UK, text: 'UA' },
+    { locale: LOCALE_EN, text: 'EN' },
   ],
 };
 

@@ -1,0 +1,15 @@
+<ul class="locales">
+  <li
+    *ngFor="let link of (links$ | async)"
+    class="locale-item"
+  >
+    <a
+      [routerLink]="link.path"
+      (click)="linkClickHandler(link)"
+      class="link"
+      [class.link-active]="link.active"
+    >
+      {{ link.label }}
+    </a>
+  </li>
+</ul>

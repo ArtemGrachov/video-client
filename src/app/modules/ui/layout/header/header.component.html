@@ -21,6 +21,9 @@
       </span>
       {{ 'header.upload_video' | translateAsync }}
     </a>
+    <div class="language-switch">
+      <app-locale-switch></app-locale-switch>
+    </div>
     <button
       *ngIf="isGuest$ | async"
       type="button"
