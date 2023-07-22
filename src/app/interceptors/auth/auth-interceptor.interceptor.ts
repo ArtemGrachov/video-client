@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable, catchError, filter, map, of, switchMap, take, tap, throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { EMPTY, Observable, catchError, filter, map, of, switchMap, take, tap, throwError } from 'rxjs';
+import { Response } from 'express';
+import { RESPONSE } from '@nguniversal/express-engine/tokens';
+
 
 import { EStatus } from 'src/app/constants/status';
 import { TOKEN_NO_AUTH, TOKEN_REFRESH_REQUEST } from 'src/app/constants/http';
+import { AUTH_COOKIE_REFRESH_TOKEN_KEY, AUTH_COOKIE_TOKEN_KEY } from 'src/app/constants/auth';
 
 import { RefreshTokenDataService } from 'src/app/services/refresh-token-data/refresh-token-data.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -20,8 +23,8 @@ import { IAuthResponse } from 'src/app/types/api/auth-api.interface';
 export class AuthInterceptorInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
-    private router: Router,
     private refreshTokenDataService: RefreshTokenDataService,
+    @Optional() @Inject(RESPONSE) private response?: Response,
   ) {}
 
   private tokenRefreshing$: Observable<EStatus> = this.refreshTokenDataService.refreshStatus$;
@@ -33,14 +36,22 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
       .handle(authReq)
       .pipe(
         catchError((err: any) => {
-          if (err?.status !== 401 || request.context.get(TOKEN_REFRESH_REQUEST)) {
+          if (
+            err?.status !== 401 ||
+            request.context.get(TOKEN_REFRESH_REQUEST) ||
+            request.context.get(TOKEN_NO_AUTH)) {
             return throwError(() => err);
           }
 
           return this
             .expiredTokenHandler()
-            .pipe(catchError(() => next.handle(this.setRequestAuthHeaders(request))))
-            .pipe(switchMap(() => next.handle(this.setRequestAuthHeaders(request))))
+            .pipe(switchMap(result => {
+              if (result) {
+                return next.handle(this.setRequestAuthHeaders(request));
+              }
+
+              return EMPTY;
+            }))
         })
       );
   }
@@ -50,7 +61,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
       return request;
     }
 
-    const authToken = this.authService.getAuthToken();
+    const authToken = this.authService.authToken;
 
     if (!authToken) {
       return request;
@@ -61,8 +72,8 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
     });
   }
 
-  private expiredTokenHandler() {
-    const refreshToken = this.authService.getRefreshToken();
+  private expiredTokenHandler(): Observable<boolean> {
+    const refreshToken = this.authService.refreshToken;
 
     if (refreshToken) {
       return this
@@ -76,7 +87,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
                   .tokenRefreshing$
                   .pipe(
                     take(1),
-                    filter(st => st === EStatus.PROCESSING),
+                    filter(st => st === EStatus.SUCCESS),
                     map(() => true)
                   );
               }
@@ -90,19 +101,29 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
               }
             }
           }),
-          catchError(() => of(true)),
+          catchError(() => {
+            this.unauthorize();
+            return of(false);
+          }),
         );
     }
 
+    this.unauthorize();
+
+    return of(false);
+  }
+
+  private unauthorize(): void {
     this.authService.unauthorize();
 
     if (typeof window === 'undefined') {
-      this.router.navigateByUrl('/');
+      this.response!.status(302);
+      this.response!.setHeader('Location', '/');
+      this.response?.clearCookie(AUTH_COOKIE_TOKEN_KEY);
+      this.response?.clearCookie(AUTH_COOKIE_REFRESH_TOKEN_KEY);
     } else {
       window.location.reload();
     }
-
-    return of(false);
   }
 
   private refreshAuthToken(refreshToken: string): Observable<IAuthResponse> {

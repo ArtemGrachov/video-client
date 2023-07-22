@@ -2,7 +2,7 @@
   <ul class="list">
     <li class="item">
       <a
-        [routerLink]="['/']"
+        [routerLink]="['/'] | routeLocalization"
         routerLinkActive="link-active"
         [routerLinkActiveOptions]="routerLinkActiveOptions"
         class="link"
@@ -16,7 +16,7 @@
     </li>
     <li class="item">
       <a
-        [routerLink]="['/', 'news']"
+        [routerLink]="['/', 'news'] | routeLocalization"
         routerLinkActive="link-active"
         [routerLinkActiveOptions]="routerLinkActiveOptions"
         class="link"
@@ -30,7 +30,7 @@
     </li>
     <li class="item">
       <a
-        [routerLink]="['/', 'playlists']"
+        [routerLink]="['/', 'playlists'] | routeLocalization"
         routerLinkActive="link-active"
         [routerLinkActiveOptions]="routerLinkActiveOptions"
         class="link"
@@ -44,7 +44,7 @@
     </li>
     <li class="item">
       <a
-        [routerLink]="['/', 'users']"
+        [routerLink]="['/', 'users'] | routeLocalization"
         routerLinkActive="link-active"
         [routerLinkActiveOptions]="routerLinkActiveOptions"
         class="link"
@@ -60,7 +60,7 @@
       <li class="divider"></li>
       <li class="item">
         <a
-          [routerLink]="userPageLink$ | async"
+          [routerLink]="userPageLink$ | async | routeLocalization"
           routerLinkActive="link-active"
           [routerLinkActiveOptions]="routerLinkActiveOptions"
           class="link"
@@ -74,7 +74,7 @@
       </li>
       <li class="item">
         <a
-          [routerLink]="userPlaylistsLink$ | async"
+          [routerLink]="userPlaylistsLink$ | async | routeLocalization"
           routerLinkActive="link-active"
           [routerLinkActiveOptions]="routerLinkActiveOptions"
           class="link"
@@ -88,7 +88,7 @@
       </li>
       <li class="item">
         <a
-          [routerLink]="userSubscriptionsLink$ | async"
+          [routerLink]="userSubscriptionsLink$ | async | routeLocalization"
           routerLinkActive="link-active"
           [routerLinkActiveOptions]="routerLinkActiveOptions"
           class="link"
@@ -102,7 +102,7 @@
       </li>
       <li class="item">
         <a
-          [routerLink]="userSubscribersLink$ | async"
+          [routerLink]="userSubscribersLink$ | async | routeLocalization"
           routerLinkActive="link-active"
           [routerLinkActiveOptions]="routerLinkActiveOptions"
           class="link"

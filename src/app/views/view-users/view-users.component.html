@@ -1,5 +1,8 @@
 <div class="page">
   <div class="container container-fluid">
+    <h1 *ngIf="showTitle$ | async">
+      {{ title$ | async }}
+    </h1>
     <app-user-list
       [users]="(items$ | async)!"
       [pagination]="pagination$ | async"

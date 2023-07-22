@@ -10,6 +10,7 @@ import { UserDataService } from 'src/app/services/user-data/user-data.service';
 import { IAuthResponse } from 'src/app/types/api/auth-api.interface';
 import { IUser } from 'src/app/types/models/user.interface';
 import { IGetUserResponse } from 'src/app/types/api/users-api.interface';
+import * as dayjs from 'dayjs';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,10 @@ export class AuthService {
     private cookieService: SsrCookieService,
     @Inject(AUTH_USER_SERVICE) private userDataService: UserDataService,
   ) {}
+
+  private _authToken: string | null = this.cookieService.get(AUTH_COOKIE_TOKEN_KEY);
+
+  private _refreshToken: string | null = this.cookieService.get(AUTH_COOKIE_REFRESH_TOKEN_KEY);
 
   private isAuthorizedFlagSbj$: BehaviorSubject<boolean> = new BehaviorSubject(
     Boolean(this.cookieService.get(AUTH_COOKIE_TOKEN_KEY))
@@ -28,23 +33,53 @@ export class AuthService {
     return this.isAuthorizedFlagSbj$.getValue();
   }
 
-  public getAuthToken(): string | null {
-    return this.cookieService.get(AUTH_COOKIE_TOKEN_KEY) ?? null;
+  public get authToken(): string | null {
+    return this._authToken;
   }
 
-  public getRefreshToken(): string | null {
-    return this.cookieService.get(AUTH_COOKIE_REFRESH_TOKEN_KEY) ?? null;
+  public get refreshToken(): string | null {
+    return this._refreshToken;
   }
 
-  public authorize(authData: IAuthResponse): void {
-    this.cookieService.set(AUTH_COOKIE_TOKEN_KEY, authData.token, 30, '/');
-    this.cookieService.set(AUTH_COOKIE_REFRESH_TOKEN_KEY, authData.refreshToken, 30, '/');
+  public set authToken(value: string | null) {
+    this._authToken = value;
+
+    if (this._authToken) {
+      this.cookieService.set(
+        AUTH_COOKIE_TOKEN_KEY,
+        this._authToken,
+        dayjs().add(7, 'days').toDate(),
+        '/',
+      );
+    } else {
+      this.cookieService.delete(AUTH_COOKIE_TOKEN_KEY, '/');
+    }
+  }
+
+  public set refreshToken(value: string | null) {
+    this._refreshToken = value;
+
+    if (this._refreshToken) {
+      this.cookieService.set(
+        AUTH_COOKIE_REFRESH_TOKEN_KEY,
+        this._refreshToken,
+        dayjs().add(30, 'days').toDate(),
+        '/',
+      );
+    } else {
+      this.cookieService.delete(AUTH_COOKIE_REFRESH_TOKEN_KEY, '/');
+    }
+  }
+
+  public authorize({ token, refreshToken }: IAuthResponse): void {
+    this.authToken = token;
+    this.refreshToken = refreshToken;
     this.isAuthorizedFlagSbj$.next(true);
   }
 
   public unauthorize(): void {
-    this.cookieService.delete(AUTH_COOKIE_TOKEN_KEY, '/');
-    this.cookieService.delete(AUTH_COOKIE_REFRESH_TOKEN_KEY, '/');
+    this.authToken = null;
+    this.refreshToken = null;
     this.isAuthorizedFlagSbj$.next(false);
   }
 

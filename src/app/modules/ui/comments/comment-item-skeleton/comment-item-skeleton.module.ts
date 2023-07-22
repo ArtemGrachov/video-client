@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { CommentItemSkeletonComponent } from './comment-item-skeleton.component';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { CommentItemSkeletonComponent } from './comment-item-skeleton.component'
     CommentItemSkeletonComponent,
   ],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   exports: [
     CommentItemSkeletonComponent,

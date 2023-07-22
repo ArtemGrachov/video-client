@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { authOnlyGuard } from './shared/guards/auth-only/auth-only.guard';
 
 const routes: Routes = [

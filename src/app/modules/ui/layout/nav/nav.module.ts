@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { NavComponent } from './nav.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { NavComponent } from './nav.component';
     NavComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule,
     L10nTranslationModule,
   ],

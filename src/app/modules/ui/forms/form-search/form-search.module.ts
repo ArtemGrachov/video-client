@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { FormSearchComponent } from './form-search.component';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { FormSearchComponent } from './form-search.component';
     FormSearchComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ReactiveFormsModule,
   ],
   exports: [

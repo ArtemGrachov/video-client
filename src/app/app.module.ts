@@ -15,6 +15,8 @@ import { HeaderModule } from './modules/ui/layout/header/header.module';
 import { FooterModule } from './modules/ui/layout/footer/footer.module';
 import { NavModule } from './modules/ui/layout/nav/nav.module';
 import { ModalsModule } from './modules/main/modals/modals.module';
+import { SharedModule } from './modules/main/shared/shared.module';
+import { ErrorPageModule } from './modules/ui/other/error-page/error-page.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +56,8 @@ import { AppComponent } from './app.component';
     HeaderModule,
     FooterModule,
     NavModule,
+    SharedModule,
+    ErrorPageModule,
   ],
   providers: [
     provideClientHydration(),

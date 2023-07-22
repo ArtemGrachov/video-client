@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { UserInfoModule } from 'src/app/modules/ui/users/user-info/user-info.module';
 import { ViewUserRoutingModule } from './view-user-routing.module';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
@@ -15,7 +15,7 @@ import { ViewUserComponent } from './view-user.component';
     ViewUserComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewUserRoutingModule,
     UserInfoModule,
     UserSubscribeButtonModule,

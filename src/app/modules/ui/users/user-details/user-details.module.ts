@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { AvatarModule } from '../../other/avatar/avatar.module';
 
 import { UserDetailsComponent } from './components/user-details/user-details.component';
@@ -10,7 +10,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     UserDetailsComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     AvatarModule,
   ],
   exports: [

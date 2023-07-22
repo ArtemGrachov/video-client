@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { FormChangePasswordModule } from 'src/app/modules/ui/forms/form-change-password/form-change-password.module';
 import { ChangePasswordDataService } from 'src/app/services/change-password-data/change-password-data.service';
 
@@ -13,7 +13,7 @@ import { ChangePasswordComponent } from './change-password.component';
     ChangePasswordComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ChangePasswordRoutingModule,
     FormChangePasswordModule,
     L10nTranslationModule,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { ViewUserSubscribersRoutingModule } from './view-user-subscribers-routing.module';
 import { UserListModule } from 'src/app/modules/ui/users/user-list/user-list.module';
 import { PlaceholderModule } from 'src/app/modules/ui/other/placeholder/placeholder.module';
@@ -17,7 +17,7 @@ import { ViewUserSubscribersComponent } from './view-user-subscribers.component'
     ViewUserSubscribersComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewUserSubscribersRoutingModule,
     UserListModule,
     PlaceholderModule,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { FormVideoModule } from 'src/app/modules/ui/forms/form-video/form-video.module';
 import { ModalConfirmationModule } from 'src/app/modules/ui/modals/modal-confirmation/modal-confirmation.module';
 import { VideoDataService } from 'src/app/services/video-data/video-data.service';
@@ -17,7 +17,7 @@ import { ViewEditVideoComponent } from './view-edit-video.component';
     ViewEditVideoComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewEditVideoRoutingModule,
     FormVideoModule,
     ModalConfirmationModule,

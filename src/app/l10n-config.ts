@@ -24,7 +24,7 @@ const LOCALE_EN = {
   timeZone: 'America/Los_Angeles',
 };
 
-const PATH_KEYS: IDictionary<string> = {
+export const PATH_KEYS: IDictionary<string> = {
   'uk-UA': 'ua',
   'en-US': 'en',
 };
@@ -38,8 +38,8 @@ export const l10nConfig: L10nConfig = {
   keySeparator: '.',
   defaultLocale: LOCALE_UK,
   schema: [
-    { locale: LOCALE_UK },
-    { locale: LOCALE_EN },
+    { locale: LOCALE_UK, text: 'UA' },
+    { locale: LOCALE_EN, text: 'EN' },
   ],
 };
 

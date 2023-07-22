@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 
 import { PlaceholderComponent } from './placeholder.component';
 
@@ -8,7 +9,7 @@ import { PlaceholderComponent } from './placeholder.component';
     PlaceholderComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
   ],
   exports: [
     PlaceholderComponent,

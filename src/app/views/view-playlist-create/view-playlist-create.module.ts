@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { FormPlaylistModule } from 'src/app/modules/ui/forms/form-playlist/form-playlist.module';
 import { PlaylistFormDataService } from 'src/app/services/playlist-form-data/playlist-form-data.service';
 import { PlaylistApiService } from 'src/app/services/playlist-api/playlist-api.service';
@@ -14,7 +14,7 @@ import { ViewPlaylistCreateComponent } from './view-playlist-create.component';
     ViewPlaylistCreateComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewPlaylistCreateRoutingModule,
     FormPlaylistModule,
     L10nTranslationModule,

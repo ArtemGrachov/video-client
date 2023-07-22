@@ -18,7 +18,7 @@
         <ul class="actions-list">
           <li class="actions-item">
             <a
-              [routerLink]="videosLink"
+              [routerLink]="videosLink | routeLocalization"
               class="actions-trigger button button-transparent"
               routerLinkActive="button-primary"
               [routerLinkActiveOptions]="routerLinkActiveOptions"
@@ -28,7 +28,7 @@
           </li>
           <li class="actions-item">
             <a
-              [routerLink]="playlistsLink"
+              [routerLink]="playlistsLink | routeLocalization"
               class="actions-trigger button button-transparent"
               routerLinkActive="button-primary"
               [routerLinkActiveOptions]="routerLinkActiveOptions"
@@ -38,7 +38,7 @@
           </li>
           <li class="actions-item">
             <a
-              [routerLink]="subscriptionsLink"
+              [routerLink]="subscriptionsLink | routeLocalization"
               class="actions-trigger button button-transparent"
               routerLinkActive="button-primary"
               [routerLinkActiveOptions]="routerLinkActiveOptions"
@@ -48,7 +48,7 @@
           </li>
           <li class="actions-item">
             <a
-              [routerLink]="subscribersLink"
+              [routerLink]="subscribersLink | routeLocalization"
               class="actions-trigger button button-transparent"
               routerLinkActive="button-primary"
               [routerLinkActiveOptions]="routerLinkActiveOptions"

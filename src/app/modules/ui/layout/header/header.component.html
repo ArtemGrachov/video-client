@@ -1,5 +1,5 @@
 <div class="logo-wrap">
-  <a class="logo" routerLink="/">
+  <a class="logo" [routerLink]="['/' | routeLocalization]">
     <app-logo></app-logo>
   </a>
 </div>
@@ -12,8 +12,7 @@
       ></app-form-search>
     </div>
     <a
-      *ngIf="allowVideoCreate$ | async"
-      [routerLink]="['/', 'video', 'create']"
+      [routerLink]="['/', 'video', 'create'] | routeLocalization"
       class="button button-transparent button-transparent-primary mr-md upload-video-button"
     >
       <span class="material-icons button-symbol">
@@ -21,6 +20,9 @@
       </span>
       {{ 'header.upload_video' | translateAsync }}
     </a>
+    <div class="language-switch">
+      <app-locale-switch></app-locale-switch>
+    </div>
     <button
       *ngIf="isGuest$ | async"
       type="button"
@@ -33,7 +35,7 @@
     </button>
     <a
       *ngIf="isAuthorized$ | async"
-      [routerLink]="['/', 'profile']"
+      [routerLink]="['/', 'profile'] | routeLocalization"
       class="button button-icon button-primary auth-button"
     >
       <span class="material-icons">

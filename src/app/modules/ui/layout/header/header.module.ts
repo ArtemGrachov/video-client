@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { FormSearchModule } from '../../forms/form-search/form-search.module';
 import { LogoModule } from '../../other/logo/logo.module';
 import { ModalMenuModule } from '../../modals/modal-menu/modal-menu.module';
+import { LocaleSwitchModule } from '../../other/locale-switch/locale-switch.module';
 
 import { HeaderComponent } from './header.component';
 
@@ -14,12 +15,13 @@ import { HeaderComponent } from './header.component';
     HeaderComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule,
     FormSearchModule,
     LogoModule,
     ModalMenuModule,
     L10nTranslationModule,
+    LocaleSwitchModule,
   ],
   exports: [
     HeaderComponent,

@@ -1,0 +1,13 @@
+<div class="error-page">
+  <h1 class="subtitle">
+    {{ title$ | async }}
+  </h1>
+  <h2 class="title">
+    {{ subtitle$ | async }}
+  </h2>
+  <div class="return-wrap">
+    <a [routerLink]="['/'] | routeLocalization" class="button button-primary">
+      {{ 'error_page.return' | translateAsync }}
+    </a>
+  </div>
+</div>

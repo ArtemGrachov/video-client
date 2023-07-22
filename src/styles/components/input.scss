@@ -75,7 +75,7 @@
       + .selection-default {
         &-label {
           &:before {
-            background: map-get($colors, 'text-main');
+            background: map-get($base-colors, 'primary-reverse');
           }
         }
       }

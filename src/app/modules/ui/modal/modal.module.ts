@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 import { ModalHeaderComponent } from './components/modal-header/modal-header.component';
 import { ModalBodyComponent } from './components/modal-body/modal-body.component';
@@ -12,7 +12,7 @@ import { ModalBodyComponent } from './components/modal-body/modal-body.component
     ModalBodyComponent
   ],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   exports: [
     ModalWindowComponent,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { ModalModule } from '../../modal/modal.module';
 
 import { ModalConfirmationComponent } from './modal-confirmation.component';
@@ -13,7 +13,7 @@ import { ModalConfirmationService } from './services/modal-confirmation.service'
     ModalConfirmationComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ModalModule,
     L10nTranslationModule,
   ],

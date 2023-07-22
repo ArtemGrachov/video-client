@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { UserCardSkeletonComponent } from './user-card-skeleton.component';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { UserCardSkeletonComponent } from './user-card-skeleton.component';
     UserCardSkeletonComponent
   ],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   exports: [
     UserCardSkeletonComponent

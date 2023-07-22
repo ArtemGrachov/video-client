@@ -18,7 +18,7 @@
   <div class="main-action">
     <a
       *ngIf="allowVideoCreate$ | async"
-      [routerLink]="['/', 'video', 'create']"
+      [routerLink]="['/', 'video', 'create'] | routeLocalization"
       class="button button-transparent button-transparent-primary button-fullwidth"
       (click)="navigationHandler()"
     >
@@ -47,7 +47,7 @@
     </button>
     <a
       *ngIf="isAuthorized$ | async"
-      [routerLink]="['/', 'profile']"
+      [routerLink]="['/', 'profile'] | routeLocalization"
       class="button button-primary button-fullwidth auth-button"
       (click)="navigationHandler()"
     >
@@ -56,5 +56,8 @@
       </span>
       {{ 'modal_menu.profile' | translateAsync }}
     </a>
+  </div>
+  <div class="language-switch">
+    <app-locale-switch></app-locale-switch>
   </div>
 </div>

@@ -1,0 +1,28 @@
+@use 'sass:math';
+@import '/src/styles/variables.scss';
+
+$gap: 16px;
+
+.locales {
+  list-style: none;
+  margin: math.div(-$gap, 2);
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.locale-item {
+  padding: math.div($gap, 2);
+}
+
+.link {
+  font-weight: 500;
+  opacity: 0.5;
+  color: map-get($colors, 'text-secondary');
+  text-decoration: none;
+  font-size: 14px;
+
+  &-active {
+    color: map-get($colors, 'text-primary');
+  }
+}

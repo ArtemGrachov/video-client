@@ -1,5 +1,4 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AuthModule } from '../auth/auth.module';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
@@ -9,15 +8,14 @@ import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
 import { InitService } from './services/init.service';
 import { ConfigService } from './services/config.service';
+import { ErrorHandlerService } from './services/error-handler.service';
 
 function appConfigFactory(initService: InitService) {
   return () => initService.init();
 }
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule,
     AuthModule,
   ],
   providers: [
@@ -34,6 +32,7 @@ function appConfigFactory(initService: InitService) {
       multi: true,
     },
     ConfigService,
+    ErrorHandlerService,
   ],
 })
 export class CoreModule { }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 
 import { PlaylistItemSkeletonComponent } from './playlist-item-skeleton.component';
 
@@ -8,7 +9,7 @@ import { PlaylistItemSkeletonComponent } from './playlist-item-skeleton.componen
     PlaylistItemSkeletonComponent,
   ],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   exports: [
     PlaylistItemSkeletonComponent,
