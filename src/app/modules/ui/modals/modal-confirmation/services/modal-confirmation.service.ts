@@ -19,6 +19,9 @@ export class ModalConfirmationService {
         {
           closeOnEscape: false,
           closeOnClickOutside: false,
+          animationDuration: 200,
+          wrapperDefaultClasses: 'modal modal-backdrop modal-default',
+          wrapperClass: 'modal-active',
         }
       );
   }

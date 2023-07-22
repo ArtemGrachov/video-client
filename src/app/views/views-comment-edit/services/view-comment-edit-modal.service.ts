@@ -20,6 +20,9 @@ export class ViewCommentEditModalService {
         {
           closeOnEscape: true,
           closeOnClickOutside: true,
+          animationDuration: 200,
+          wrapperDefaultClasses: 'modal modal-backdrop modal-default',
+          wrapperClass: 'modal-active',
         }
       );
   }
