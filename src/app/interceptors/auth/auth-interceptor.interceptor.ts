@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable, catchError, filter, map, of, switchMap, take, tap, throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { EMPTY, Observable, catchError, filter, map, of, switchMap, take, tap, throwError } from 'rxjs';
+import { Response } from 'express';
+import { RESPONSE } from '@nguniversal/express-engine/tokens';
+
 
 import { EStatus } from 'src/app/constants/status';
 import { TOKEN_NO_AUTH, TOKEN_REFRESH_REQUEST } from 'src/app/constants/http';
+import { AUTH_COOKIE_REFRESH_TOKEN_KEY, AUTH_COOKIE_TOKEN_KEY } from 'src/app/constants/auth';
 
 import { RefreshTokenDataService } from 'src/app/services/refresh-token-data/refresh-token-data.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -20,8 +23,8 @@ import { IAuthResponse } from 'src/app/types/api/auth-api.interface';
 export class AuthInterceptorInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
-    private router: Router,
     private refreshTokenDataService: RefreshTokenDataService,
+    @Optional() @Inject(RESPONSE) private response?: Response,
   ) {}
 
   private tokenRefreshing$: Observable<EStatus> = this.refreshTokenDataService.refreshStatus$;
@@ -42,7 +45,13 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
 
           return this
             .expiredTokenHandler()
-            .pipe(switchMap(() => next.handle(this.setRequestAuthHeaders(request))))
+            .pipe(switchMap(result => {
+              if (result) {
+                return next.handle(this.setRequestAuthHeaders(request));
+              }
+
+              return EMPTY;
+            }))
         })
       );
   }
@@ -92,19 +101,29 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
               }
             }
           }),
-          catchError(() => of(false)),
+          catchError(() => {
+            this.unauthorize();
+            return of(false);
+          }),
         );
     }
 
+    this.unauthorize();
+
+    return of(false);
+  }
+
+  private unauthorize(): void {
     this.authService.unauthorize();
 
     if (typeof window === 'undefined') {
-      this.router.navigateByUrl('/');
+      this.response!.status(302);
+      this.response!.setHeader('Location', '/');
+      this.response?.clearCookie(AUTH_COOKIE_TOKEN_KEY);
+      this.response?.clearCookie(AUTH_COOKIE_REFRESH_TOKEN_KEY);
     } else {
       window.location.reload();
     }
-
-    return of(false);
   }
 
   private refreshAuthToken(refreshToken: string): Observable<IAuthResponse> {
