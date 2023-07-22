@@ -5,6 +5,7 @@
   >
     <a
       [routerLink]="link.path"
+      [queryParams]="link.queryParams"
       (click)="linkClickHandler(link)"
       class="link"
       [class.link-active]="link.active"

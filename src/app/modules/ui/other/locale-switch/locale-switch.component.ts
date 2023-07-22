@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { L10N_LOCALE, L10nLocale, L10nTranslationService } from 'angular-l10n';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, combineLatest, map } from 'rxjs';
+import * as qs from 'qs';
 
 import { PATH_KEYS, l10nConfig } from 'src/app/l10n-config';
 
@@ -39,21 +40,25 @@ export class LocaleSwitchComponent {
             newLocalePrefix = null;
           }
 
-          let path = this.router.url;
+          let rawPath = this.router.url;
 
           if (currentLocalePrefix) {
-            path = path.replace(`/${currentLocalePrefix}`, '');
+            rawPath = rawPath.replace(`/${currentLocalePrefix}`, '');
           }
 
           if (newLocalePrefix) {
-            path = `/${newLocalePrefix}${path}`
+            rawPath = `/${newLocalePrefix}${rawPath}`
           }
+
+          const [path, rawQuery] = rawPath.split('?');
+          const queryParams = qs.parse(rawQuery);
 
           return {
             path,
             localeSchema: item,
             label: item.text!,
             active: this.locale.language === item.locale.language,
+            queryParams,
           };
         });
       }));
