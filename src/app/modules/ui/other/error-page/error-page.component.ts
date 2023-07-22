@@ -18,7 +18,7 @@ export class ErrorPageComponent {
     .translationService
     .onChange()
     .pipe(map((() => {
-      if (this.error?.code === 404) {
+      if (this.error?.status === 404) {
         return this.translationService.translate('error_page.not_found_title');
       }
 
@@ -29,7 +29,7 @@ export class ErrorPageComponent {
     .translationService
     .onChange()
     .pipe(map((() => {
-      if (this.error?.code === 404) {
+      if (this.error?.status === 404) {
         return this.translationService.translate('error_page.not_found_subtitle');
       }
 
