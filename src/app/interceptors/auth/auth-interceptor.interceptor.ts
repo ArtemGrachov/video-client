@@ -52,7 +52,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
       return request;
     }
 
-    const authToken = this.authService.getAuthToken();
+    const authToken = this.authService.authToken;
 
     if (!authToken) {
       return request;
@@ -64,7 +64,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
   }
 
   private expiredTokenHandler(): Observable<boolean> {
-    const refreshToken = this.authService.getRefreshToken();
+    const refreshToken = this.authService.refreshToken;
 
     if (refreshToken) {
       return this
