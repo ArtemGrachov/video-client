@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { L10N_LOCALE, L10nLocale, L10nTranslationService } from 'angular-l10n';
-import { Observable, map } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, combineLatest, map } from 'rxjs';
 
 import { PATH_KEYS, l10nConfig } from 'src/app/l10n-config';
 
@@ -16,24 +17,36 @@ export class LocaleSwitchComponent {
   constructor(
     @Inject(L10N_LOCALE) public locale: L10nLocale,
     private translation: L10nTranslationService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
-  public readonly links$: Observable<ILocaleSwitchLink[]> = this
-    .translation
-    .onChange()
+  public readonly links$: Observable<ILocaleSwitchLink[]> = combineLatest([
+    this.translation.onChange(),
+    this.router.events,
+  ])
     .pipe(
       map(() => {
         return l10nConfig.schema.map(item => {
-          const path = ['/'];
+          let currentLocalePrefix: string | null = PATH_KEYS[this.locale.language] ?? null;
+          let newLocalePrefix: string | null = PATH_KEYS[item.locale.language] ?? null;
 
-          let localePrefix: string | null = PATH_KEYS[item.locale.language] ?? null;
-
-          if (item.locale.language === l10nConfig.defaultLocale.language) {
-            localePrefix = null;
+          if (this.locale.language === l10nConfig.defaultLocale.language) {
+            currentLocalePrefix = null;
           }
 
-          if (localePrefix) {
-            path.push(localePrefix);
+          if (item.locale.language === l10nConfig.defaultLocale.language) {
+            newLocalePrefix = null;
+          }
+
+          let path = this.router.url;
+
+          if (currentLocalePrefix) {
+            path = path.replace(`/${currentLocalePrefix}`, '');
+          }
+
+          if (newLocalePrefix) {
+            path = `/${newLocalePrefix}${path}`
           }
 
           return {
