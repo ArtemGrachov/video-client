@@ -33,13 +33,15 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
       .handle(authReq)
       .pipe(
         catchError((err: any) => {
-          if (err?.status !== 401 || request.context.get(TOKEN_REFRESH_REQUEST)) {
+          if (
+            err?.status !== 401 ||
+            request.context.get(TOKEN_REFRESH_REQUEST) ||
+            request.context.get(TOKEN_NO_AUTH)) {
             return throwError(() => err);
           }
 
           return this
             .expiredTokenHandler()
-            .pipe(catchError(() => next.handle(this.setRequestAuthHeaders(request))))
             .pipe(switchMap(() => next.handle(this.setRequestAuthHeaders(request))))
         })
       );
@@ -61,7 +63,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
     });
   }
 
-  private expiredTokenHandler() {
+  private expiredTokenHandler(): Observable<boolean> {
     const refreshToken = this.authService.getRefreshToken();
 
     if (refreshToken) {
@@ -76,7 +78,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
                   .tokenRefreshing$
                   .pipe(
                     take(1),
-                    filter(st => st === EStatus.PROCESSING),
+                    filter(st => st === EStatus.SUCCESS),
                     map(() => true)
                   );
               }
@@ -90,7 +92,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
               }
             }
           }),
-          catchError(() => of(true)),
+          catchError(() => of(false)),
         );
     }
 
