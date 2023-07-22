@@ -24,8 +24,6 @@ export class HeaderComponent {
 
   public isAuthorized$: Observable<boolean> = this.authService.isAuthorizedFlag$;
 
-  public allowVideoCreate$: Observable<boolean> = this.authService.isAuthorizedFlag$;
-
   public isGuest$: Observable<boolean> = this.authService.isAuthorizedFlag$.pipe(map(v => !v));
 
   public searchQuery$: Observable<string | null> = combineLatest([

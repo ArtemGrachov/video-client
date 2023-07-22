@@ -12,7 +12,6 @@
       ></app-form-search>
     </div>
     <a
-      *ngIf="allowVideoCreate$ | async"
       [routerLink]="['/', 'video', 'create'] | routeLocalization"
       class="button button-transparent button-transparent-primary mr-md upload-video-button"
     >
