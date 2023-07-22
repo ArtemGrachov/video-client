@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { VideoGridModule } from 'src/app/modules/ui/video/video-grid/video-grid.module';
 import { PlaylistDetalsModule } from 'src/app/modules/ui/playlists/playlist-details/playlist-detals.module';
 import { ViewPlaylistRoutingModule } from './view-playlist-routing.module';
@@ -22,7 +22,7 @@ import { ViewPlaylistComponent } from './view-playlist.component';
     ViewPlaylistComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewPlaylistRoutingModule,
     ModalConfirmationModule,
     VideoGridModule,

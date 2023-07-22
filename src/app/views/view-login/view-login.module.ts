@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormLoginModule } from 'src/app/modules/ui/forms/form-login/form-login.module';
 import { LoginDataService } from 'src/app/services/login-data/login-data.service';
@@ -16,7 +16,7 @@ import { ViewLoginComponent } from './view-login.component';
     ViewLoginComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     SimpleModalModule,
     ModalModule,
     FormLoginModule,

@@ -1,5 +1,4 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AuthModule } from '../auth/auth.module';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
@@ -15,9 +14,7 @@ function appConfigFactory(initService: InitService) {
 }
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule,
     AuthModule,
   ],
   providers: [

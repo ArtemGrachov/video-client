@@ -1,17 +1,17 @@
-<a [routerLink]="videoLink" class="link">
+<a [routerLink]="videoLink | routeLocalization" class="link">
   <div class="thumbnail-wrap">
     <app-thumbnail class="thumbnail" [src]="thumbnailSrc"></app-thumbnail>
   </div>
 </a>
 <div class="details">
-  <a [routerLink]="authorLink" class="details-avatar">
+  <a [routerLink]="authorLink | routeLocalization" class="details-avatar">
     <app-avatar class="avatar" [src]="authorAvatarSrc"></app-avatar>
   </a>
   <div class="details-text">
-    <a [routerLink]="authorLink" class="author">
+    <a [routerLink]="authorLink | routeLocalization" class="author">
       {{ authorName }}
     </a>
-    <a class="name" [routerLink]="videoLink">
+    <a class="name" [routerLink]="videoLink | routeLocalization">
       {{ videoName }}
     </a>
   </div>

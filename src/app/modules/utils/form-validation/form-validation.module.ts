@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 
 import { ServerValidationService } from './services/server-validation.service';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   providers: [
     ServerValidationService

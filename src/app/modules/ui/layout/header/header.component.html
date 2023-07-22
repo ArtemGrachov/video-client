@@ -1,5 +1,5 @@
 <div class="logo-wrap">
-  <a class="logo" routerLink="/">
+  <a class="logo" [routerLink]="['/' | routeLocalization]">
     <app-logo></app-logo>
   </a>
 </div>
@@ -13,7 +13,7 @@
     </div>
     <a
       *ngIf="allowVideoCreate$ | async"
-      [routerLink]="['/', 'video', 'create']"
+      [routerLink]="['/', 'video', 'create'] | routeLocalization"
       class="button button-transparent button-transparent-primary mr-md upload-video-button"
     >
       <span class="material-icons button-symbol">
@@ -33,7 +33,7 @@
     </button>
     <a
       *ngIf="isAuthorized$ | async"
-      [routerLink]="['/', 'profile']"
+      [routerLink]="['/', 'profile'] | routeLocalization"
       class="button button-icon button-primary auth-button"
     >
       <span class="material-icons">

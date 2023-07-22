@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { FormValidationModule } from 'src/app/modules/utils/form-validation/form-validation.module';
 
 import { ControlServerErrorComponent } from './control-server-error.component';
@@ -10,7 +10,7 @@ import { ControlServerErrorComponent } from './control-server-error.component';
     ControlServerErrorComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     FormValidationModule,
   ],
   exports: [

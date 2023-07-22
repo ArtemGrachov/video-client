@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { AvatarModule } from '../../other/avatar/avatar.module';
 
 import { UserBlockComponent } from './components/user-block/user-block.component';
@@ -11,7 +11,7 @@ import { UserBlockComponent } from './components/user-block/user-block.component
     UserBlockComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule,
     AvatarModule,
   ],

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { PlaylistListModule } from 'src/app/modules/ui/playlists/playlist-list/playlist-list.module';
 import { PlaceholderModule } from 'src/app/modules/ui/other/placeholder/placeholder.module';
 import { ViewUserPlaylistsRoutingModule } from './view-user-playlists-routing.module';
@@ -18,7 +18,7 @@ import { ViewUserPlaylistsComponent } from './view-user-playlists.component';
     ViewUserPlaylistsComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewUserPlaylistsRoutingModule,
     PlaylistListModule,
     PlaceholderModule,

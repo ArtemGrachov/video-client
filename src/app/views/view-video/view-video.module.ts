@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { PlayerModule } from 'src/app/modules/ui/player/player.module';
 import { VideoDetailsModule } from 'src/app/modules/ui/video/video-details/video-details.module';
 import { CommentListModule } from 'src/app/modules/ui/comments/comment-list/comment-list.module';
@@ -26,7 +26,7 @@ import { ViewVideoComponent } from './view-video.component';
     ViewVideoComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewVideoRoutingModule,
     PlayerModule,
     FormCommentModule,

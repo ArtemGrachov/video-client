@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SimpleModalModule } from '@looorent/ngx-simple-modal';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { ModalModule } from 'src/app/modules/ui/modal/modal.module';
 import { FormAddToPlaylistModule } from 'src/app/modules/ui/forms/form-add-to-playlist/form-add-to-playlist.module';
 import { PlaylistsListDataService } from 'src/app/services/playlists-list-data/playlists-list-data.service';
@@ -19,7 +19,7 @@ import { ViewPlaylistAddVideoModalService } from './services/view-playlist-add-v
     ViewPlaylistAddVideoComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     SimpleModalModule,
     ModalModule,
     FormAddToPlaylistModule,

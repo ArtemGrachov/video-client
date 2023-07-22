@@ -18,6 +18,7 @@ import { ModalsModule } from './modules/main/modals/modals.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './modules/main/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AppComponent } from './app.component';
     HeaderModule,
     FooterModule,
     NavModule,
+    SharedModule,
   ],
   providers: [
     provideClientHydration(),

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { UserBlockModule } from '../../users/user-block/user-block.module';
 
 import { PlaylistDetailsComponent } from './components/playlist-details/playlist-details.component';
@@ -10,7 +10,7 @@ import { PlaylistDetailsComponent } from './components/playlist-details/playlist
     PlaylistDetailsComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     UserBlockModule,
   ],
   exports: [

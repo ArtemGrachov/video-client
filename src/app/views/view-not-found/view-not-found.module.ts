@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { ViewNotFoundRoutingModule } from './view-not-found-routing.module';
 import { ViewNotFoundComponent } from './view-not-found.component';
-
 
 @NgModule({
   declarations: [
     ViewNotFoundComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewNotFoundRoutingModule,
     L10nTranslationModule,
   ]

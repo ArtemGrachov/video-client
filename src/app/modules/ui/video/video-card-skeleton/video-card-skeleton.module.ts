@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 
 import { VideoCardSkeletonComponent } from './video-card-skeleton.component';
 
@@ -8,7 +9,7 @@ import { VideoCardSkeletonComponent } from './video-card-skeleton.component';
     VideoCardSkeletonComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
   ],
   exports: [
     VideoCardSkeletonComponent,

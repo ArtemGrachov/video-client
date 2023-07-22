@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { ControlClientErrorComponent } from './control-client-error.component';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { ControlClientErrorComponent } from './control-client-error.component';
     ControlClientErrorComponent
   ],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   exports: [
     ControlClientErrorComponent

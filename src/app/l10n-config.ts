@@ -24,7 +24,7 @@ const LOCALE_EN = {
   timeZone: 'America/Los_Angeles',
 };
 
-const PATH_KEYS: IDictionary<string> = {
+export const PATH_KEYS: IDictionary<string> = {
   'uk-UA': 'ua',
   'en-US': 'en',
 };

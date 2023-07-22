@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { VideoGridModule } from 'src/app/modules/ui/video/video-grid/video-grid.module';
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
@@ -17,7 +17,7 @@ import { L10nTranslationModule } from 'angular-l10n';
     ViewIndexComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewIndexRoutingModule,
     VideoGridModule,
     PlaceholderModule,

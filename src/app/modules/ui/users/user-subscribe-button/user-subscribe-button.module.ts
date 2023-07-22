@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 
 import { UserSubscribeButtonComponent } from './user-subscribe-button.component';
 
@@ -8,7 +9,7 @@ import { UserSubscribeButtonComponent } from './user-subscribe-button.component'
     UserSubscribeButtonComponent,
   ],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   exports: [
     UserSubscribeButtonComponent,

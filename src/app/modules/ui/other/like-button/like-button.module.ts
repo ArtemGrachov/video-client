@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 
 import { LikeButtonComponent } from './components/like-button/like-button.component';
 
@@ -11,7 +12,7 @@ import { LikeButtonComponent } from './components/like-button/like-button.compon
     LikeButtonComponent
   ],
   imports: [
-    CommonModule
-  ]
+    SharedModule,
+  ],
 })
 export class LikeButtonModule { }

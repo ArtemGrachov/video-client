@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { L10nTranslationModule } from 'angular-l10n';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { InputVideoComponent } from './input-video.component';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { InputVideoComponent } from './input-video.component';
     InputVideoComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     L10nTranslationModule,
   ],
   exports: [

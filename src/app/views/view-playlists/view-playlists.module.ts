@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ViewPlaylistsRoutingModule } from './view-playlists-routing.module';
 
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 import { PlaylistListModule } from 'src/app/modules/ui/playlists/playlist-list/playlist-list.module';
 import { PlaceholderModule } from 'src/app/modules/ui/other/placeholder/placeholder.module';
 import { RouteHandlerService } from './services/route-handler.service';
@@ -17,7 +17,7 @@ import { ViewPlaylistsComponent } from './view-playlists.component';
     ViewPlaylistsComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ViewPlaylistsRoutingModule,
     PlaylistListModule,
     PlaceholderModule,

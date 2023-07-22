@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'src/app/modules/main/shared/shared.module';
 
 import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
 
@@ -11,7 +12,7 @@ import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
     ThumbnailComponent
   ],
   imports: [
-    CommonModule
-  ]
+    SharedModule,
+  ],
 })
 export class ThumbnailModule { }
