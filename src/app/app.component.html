@@ -4,7 +4,11 @@
     <app-nav></app-nav>
   </aside>
   <div class="content">
-    <router-outlet></router-outlet>
+    <app-error-page
+      *ngIf="showError$ | async"
+      [error]="error$ | async"
+    ></app-error-page>
+    <router-outlet *ngIf="showRoute$ | async"></router-outlet>
   </div>
 </div>
 <footer app-footer class="footer"></footer>

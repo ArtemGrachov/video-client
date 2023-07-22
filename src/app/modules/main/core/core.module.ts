@@ -8,6 +8,7 @@ import { AUTH_USER_SERVICE } from 'src/app/tokens/auth';
 
 import { InitService } from './services/init.service';
 import { ConfigService } from './services/config.service';
+import { ErrorHandlerService } from './services/error-handler.service';
 
 function appConfigFactory(initService: InitService) {
   return () => initService.init();
@@ -31,6 +32,7 @@ function appConfigFactory(initService: InitService) {
       multi: true,
     },
     ConfigService,
+    ErrorHandlerService,
   ],
 })
 export class CoreModule { }

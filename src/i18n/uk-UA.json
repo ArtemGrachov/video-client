@@ -247,5 +247,12 @@
   },
   "view_not_found": {
     "title": "Сторінку не знайдено"
+  },
+  "error_page": {
+    "not_found_title": "404",
+    "error_title": "Помилка",
+    "not_found_subtitle": "Сторінка не знайдена",
+    "error_subtitle": "Будь-ласка, зв'яжіться із адміністратором",
+    "return": "Повернутися на головну сторінку"
   }
 }

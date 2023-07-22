@@ -262,5 +262,12 @@
   },
   "view_not_found": {
     "title": "Page not found"
+  },
+  "error_page": {
+    "not_found_title": "404",
+    "error_title": "Error",
+    "not_found_subtitle": "Page not found",
+    "error_subtitle": "Please contact the administrator",
+    "return": "Return to home page"
   }
 }
