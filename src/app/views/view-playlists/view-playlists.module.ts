@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { L10nTranslationModule } from 'angular-l10n';
 
 import { ViewPlaylistsRoutingModule } from './view-playlists-routing.module';
 
@@ -21,6 +22,7 @@ import { ViewPlaylistsComponent } from './view-playlists.component';
     ViewPlaylistsRoutingModule,
     PlaylistListModule,
     PlaceholderModule,
+    L10nTranslationModule,
   ],
   providers: [
     RouteHandlerService,

@@ -1,6 +1,7 @@
 {
   "view_index": {
-    "no_video": "No video found"
+    "no_video": "No video found",
+    "search_title": "Search results for \"{{query}}\""
   },
   "comment_list": {
     "load_prev": "Load more",
@@ -174,6 +175,10 @@
     "delete_success": "Playlist deleted successfully",
     "delete_error": "Playlist deleting error"
   },
+  "view_playlists": {
+    "no_playlists": "No playlists found",
+    "search_title": "Search results for \"{{query}}\""
+  },
   "view_playlist_add_video": {
     "title": "Add to playlist",
     "add_success": "Video added to playlist successfully",
@@ -244,7 +249,8 @@
     "subscribers": "Subscribers"
   },
   "view_users": {
-    "placeholder": "No users found"
+    "placeholder": "No users found",
+    "search_title": "Search results for \"{{query}}\""
   },
   "view_video": {
     "edit": "Edit",

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { L10nTranslationService } from 'angular-l10n';
 import { Observable, map, skip } from 'rxjs';
 
 import { USERS_PER_PAGE } from 'src/app/constants/users';
@@ -21,6 +22,7 @@ export class ViewUsersComponent {
     private routeHandlerSerivce: RouteHandlerService,
     private usersListDataService: UsersListDataService,
     private usersListFormService: UsersListFormService,
+    private translationService: L10nTranslationService,
   ) {}
 
   private querySbs = this
@@ -40,6 +42,18 @@ export class ViewUsersComponent {
   public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
   public processing$: Observable<boolean> = this.usersListDataService.processing$;
+
+  public title$: Observable<string | null> = this.route.queryParams.pipe(map(query => {
+    const searchQuery = query['search'];
+
+    if (searchQuery) {
+      return this.translationService.translate('view_users.search_title', { query: searchQuery });
+    }
+
+    return null;
+  }));
+
+  public showTitle$: Observable<boolean> = this.title$.pipe(map(title => Boolean(title)));
 
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { L10nTranslationService } from 'angular-l10n';
 import { Observable, map, skip } from 'rxjs';
 
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
@@ -18,7 +19,8 @@ export class ViewNewsComponent implements OnDestroy {
     private route: ActivatedRoute,
     private routeHandlerSerivce: RouteHandlerService,
     private videoListDataService: VideoListDataService,
-    private videoListFormService: VideoListFormService
+    private videoListFormService: VideoListFormService,
+    private translationService: L10nTranslationService,
   ) {}
 
   private querySbs = this
@@ -38,6 +40,18 @@ export class ViewNewsComponent implements OnDestroy {
   public processing$: Observable<boolean> = this.videoListDataService.processing$;
 
   public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
+
+  public title$: Observable<string | null> = this.route.queryParams.pipe(map(query => {
+    const searchQuery = query['search'];
+
+    if (searchQuery) {
+      return this.translationService.translate('view_news.search_title', { query: searchQuery });
+    }
+
+    return null;
+  }));
+
+  public showTitle$: Observable<boolean> = this.title$.pipe(map(title => Boolean(title)));
 
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();

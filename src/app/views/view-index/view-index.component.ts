@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { L10N_LOCALE, L10nLocale, L10nTranslationService } from 'angular-l10n';
 import { Observable, map, skip } from 'rxjs';
-import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 import { VideoListDataService } from 'src/app/services/video-list-data/video-list-data.service';
 import { VideoListFormService } from 'src/app/services/video-list-form/video-list-form.service';
@@ -21,6 +21,7 @@ export class ViewIndexComponent implements OnDestroy {
     private videoListDataService: VideoListDataService,
     private videoListFormService: VideoListFormService,
     @Inject(L10N_LOCALE) public locale: L10nLocale,
+    private translationService: L10nTranslationService,
   ) {}
 
   private querySbs = this
@@ -40,6 +41,18 @@ export class ViewIndexComponent implements OnDestroy {
   public showPlaceholder$: Observable<boolean> = this.items$.pipe(map(items => items.length === 0));
 
   public processing$: Observable<boolean> = this.videoListDataService.processing$;
+
+  public title$: Observable<string | null> = this.route.queryParams.pipe(map(query => {
+    const searchQuery = query['search'];
+
+    if (searchQuery) {
+      return this.translationService.translate('view_index.search_title', { query: searchQuery });
+    }
+
+    return null;
+  }));
+
+  public showTitle$: Observable<boolean> = this.title$.pipe(map(title => Boolean(title)));
 
   public ngOnDestroy(): void {
     this.querySbs.unsubscribe();
