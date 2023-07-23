@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { EStatus } from 'src/app/constants/status';
+import { ImagesService } from 'src/app/modules/utils/images/services/images.service';
 
 import { IUpdateUserPayload } from 'src/app/types/api/users-api.interface';
 import { IUser } from 'src/app/types/models/user.interface';
@@ -25,6 +26,8 @@ export class FormProfileComponent {
   @Output('formSubmit')
   private submitEmitter: EventEmitter<IUpdateUserPayload> = new EventEmitter()
 
+  constructor(private imagesService: ImagesService) {}
+
   public get submitProcessing(): boolean {
     return this.submitStatus === EStatus.PROCESSING;
   }
@@ -39,13 +42,17 @@ export class FormProfileComponent {
     avatar: new FormControl(null),
   });
 
-  public submitHandler(): void {
+  public async submitHandler(): Promise<void> {
     if (this.form.invalid || this.submitProcessing) {
       this.form.markAllAsTouched();
       return;
     }
 
-    this.submitEmitter.next(this.form.value);
+    const payload = { ...this.form.value };
+    const avatarScaled = await this.imagesService.compress(payload.avatar, 400, 400);
+    payload.avatar = avatarScaled;
+
+    this.submitEmitter.next(payload);
   }
 
   public ngOnInit(): void {
@@ -59,7 +66,7 @@ export class FormProfileComponent {
       {
         email: user.email,
         name: user.name,
-        avatar: user.avatar?.url,
+        avatar: user.avatar?.url ?? null,
       },
       { emitEvent: false }
     );
