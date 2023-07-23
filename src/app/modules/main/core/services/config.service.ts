@@ -23,18 +23,11 @@ export class ConfigService {
   ];
 
   public readonly imageAcceptableExt = [
-    'webp',
-    'avif',
-    'bmp',
     'gif',
-    'heif',
-    'heic',
-    'ico',
     'jpg',
     'jpe',
     'jpeg',
     'png',
-    'svg',
   ];
 
   public get videoInputAcceptAttr(): string {
