@@ -5,6 +5,7 @@
   position: relative;
   border-radius: 50%;
   overflow: hidden;
+  font-size: 24px;
 }
 
 .avatar-image {
@@ -26,4 +27,8 @@
   height: 100%;
   width: 100%;
   background-color: map-get($colors, 'background-secondary');
+}
+
+.placeholder-icon {
+  font-size: 1em;
 }
