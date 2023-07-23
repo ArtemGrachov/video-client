@@ -1,0 +1,55 @@
+@import '/src/styles/variables.scss';
+
+$middle-width: 20%;
+$corner-width: 0%;
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1000;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: map-get($base-colors, 'primary');
+    display: block;
+    animation-name: loader;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-delay: 500ms;
+  }
+}
+
+@keyframes loader {
+  0% {
+    left: 0;
+    width: $corner-width;
+  }
+
+  25% {
+    width: $middle-width;
+  }
+
+  50% {
+    left: 100% - $corner-width;
+    width: $corner-width;
+  }
+
+  75% {
+    width: $middle-width;
+  }
+
+  100% {
+    left: 0;
+    width: $corner-width;
+  }
+}
