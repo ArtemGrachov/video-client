@@ -59,7 +59,7 @@ export class FormProfileComponent {
       {
         email: user.email,
         name: user.name,
-        avatar: user.avatar?.url,
+        avatar: user.avatar?.url ?? null,
       },
       { emitEvent: false }
     );
